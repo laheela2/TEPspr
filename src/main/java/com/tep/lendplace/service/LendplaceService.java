@@ -1,5 +1,5 @@
 package com.tep.lendplace.service;
 
-public class LendplaceService {
+public interface LendplaceService {
 
 }

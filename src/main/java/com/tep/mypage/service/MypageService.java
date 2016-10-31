@@ -1,5 +1,5 @@
 package com.tep.mypage.service;
 
-public class MypageService {
+public interface MypageService {
 
 }
