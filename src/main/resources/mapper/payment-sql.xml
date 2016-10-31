@@ -3,7 +3,7 @@
 
 <mapper namespace="payment">
 
-	<select id="" parameterType="" resultType="">
+	<!-- <select id="" parameterType="" resultType="">
         <![CDATA[
             SELECT
                 IDX,
@@ -43,7 +43,6 @@
     ]]>
 	</insert>
 
-	<!-- HIT_CNT = HIT_CNT + 1 -->
 	<update id="" parameterType="">
     <![CDATA[
         UPDATE BOARD 
@@ -62,6 +61,6 @@
         WHERE
             IDX = #{IDX}
     ]]>	
-	</delete>
+	</delete> -->
 
 </mapper>
