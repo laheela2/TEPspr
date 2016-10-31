@@ -1,5 +1,5 @@
 package com.tep.recommend.service;
 
-public class RecommendService {
+public interface RecommendService {
 
 }

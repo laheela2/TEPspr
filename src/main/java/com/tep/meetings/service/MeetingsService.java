@@ -1,5 +1,5 @@
 package com.tep.meetings.service;
 
-public class MeetingsService {
+public interface MeetingsService {
 
 }
