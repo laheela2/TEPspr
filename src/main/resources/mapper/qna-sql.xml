@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qna">
+
+	<select id="" parameterType="" resultType="">
+        <![CDATA[
+            SELECT
+                IDX,
+                TITLE,
+                HIT_CNT,
+                CREA_DTM
+            FROM
+                BOARD
+            WHERE
+                DEL_GB = 'N'
+            ORDER BY IDX DESC
+        ]]>
+	</select>
+
+	<insert id="" parameterType="">
+    <![CDATA[
+        INSERT INTO BOARD
+        (
+            IDX,
+            TITLE, 
+            CONTENTS, 
+            HIT_CNT, 
+            DEL_GB, 
+            CREA_DTM, 
+            CREA_ID
+        )
+        VALUES
+        (
+            SEQ_BOARD_IDX.NEXTVAL, 
+            #{TITLE}, 
+            #{CONTENTS}, 
+            0, 
+            'N', 
+            SYSDATE, 
+            'Admin'
+        )
+    ]]>
+	</insert>
+
+	<!-- HIT_CNT = HIT_CNT + 1 -->
+	<update id="" parameterType="">
+    <![CDATA[
+        UPDATE BOARD 
+        SET
+            HIT_CNT = NVL(HIT_CNT,0)+1
+        WHERE
+            IDX = #{IDX}    
+    ]]>
+	</update>
+	
+	<delete id="" parameterType="">
+    <![CDATA[
+        DELETE  
+        FROM 
+        	BOARD
+        WHERE
+            IDX = #{IDX}
+    ]]>	
+	</delete>
+
+</mapper>

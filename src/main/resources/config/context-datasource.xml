@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/jdbc  http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+     
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="password" value="oracle"/>
+        
+        <!-- kh db -->
+        <property name="url" value="jdbc:oracle:thin:@khstudy.iptime.org:7000:orcl"/>
+        <property name="username" value="kh03pro04"/>
+
+		<!-- jinu local db -->
+<!--         <property name="url" value="jdbc:oracle:thin:@192.168.33.3:1521:ora12c"/>
+        <property name="username" value="tep"/> -->
+    </bean>
+</beans>
