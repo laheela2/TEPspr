@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="members">
+<mapper namespace="login">
 
 <select id="loginCheck" parameterType="com.tep.members.model.MembersModel" resultType="com.tep.members.model.MembersModel">
        <![CDATA[
             SELECT
-               	m_no
-				m_email
-				m_name
-				m_nickname
-				m_password
-				m_company
-				m_phone
-				m_fav_area
-				m_fav_field
-				m_date
+               	m_no, m_email, m_name, m_nickname, m_password, m_company, m_phone, m_fav_area,	m_fav_field, m_date
         	 FROM
                 members
              WHERE 

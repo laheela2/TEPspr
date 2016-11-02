@@ -1,4 +1,4 @@
-package com.tep.members.service;
+/*package com.tep.members.service;
 
 import javax.annotation.Resource;
 
@@ -24,3 +24,4 @@ public class MembersServiceImpl implements MembersService{
 
 	
 }
+*/

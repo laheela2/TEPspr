@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<definition name="loginForm" extends=".default">
+		<put-attribute name="title" value="TEP - 로그인"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/login/loginForm.jsp"></put-attribute>
+	</definition>	
+	<definition name="loginSuccess" extends=".default">
+		<put-attribute name="title" value="TEP - 로그인성공"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/login/loginSuccess.jsp"></put-attribute>
+	</definition>	
+<!-- 	<definition name="findForm" extends=".default">
+		<put-attribute name="title" value="TEP - 아이디,비밀번호 찾기"></put-attribute>
+		<put-attribute name="body" value="/login/findIdPassword.jsp"></put-attribute>
+	</definition>	
+	<definition name="findId" extends=".default">
+		<put-attribute name="title" value="TEP - 아이디찾기"></put-attribute>
+		<put-attribute name="body" value="/login/findIdResult.jsp"></put-attribute>
+	</definition>
+	<definition name="findPassword" extends=".default">
+		<put-attribute name="title" value="TEP - 비밀번호찾기"></put-attribute>
+		<put-attribute name="body" value="/login/findPasswordResult.jsp"></put-attribute>
+	</definition>	 -->
+</tiles-definitions>
