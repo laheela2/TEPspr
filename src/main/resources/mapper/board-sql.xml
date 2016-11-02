@@ -8,8 +8,9 @@
             SELECT
                 b_no,
                 b_subject,
-                b_readcount,
-                b_date
+                b_name,
+                b_date,
+                b_readcount
             FROM
                 board
             ORDER BY 
