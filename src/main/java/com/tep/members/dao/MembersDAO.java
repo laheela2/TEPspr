@@ -1,5 +1,12 @@
 package com.tep.members.dao;
 
-public class MembersDAO {
+import com.tep.commons.dao.AbstractDAO;
+
+//@Repository("membersDAO")
+public class MembersDAO extends AbstractDAO {
+
+//	public MembersModel membersLogin(MembersModel mem) {
+//		return (MembersModel) selectOne("members.loginCheck", mem);
+//	}
 
 }

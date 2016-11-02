@@ -9,11 +9,11 @@
         <property name="password" value="oracle"/>
         
         <!-- kh db -->
-        <property name="url" value="jdbc:oracle:thin:@khstudy.iptime.org:7000:orcl"/>
-        <property name="username" value="kh03pro04"/>
+        <!-- <property name="url" value="jdbc:oracle:thin:@khstudy.iptime.org:7000:orcl"/>
+        <property name="username" value="kh03pro04"/> -->
 
-		<!-- jinu local db -->
-<!--         <property name="url" value="jdbc:oracle:thin:@192.168.33.3:1521:ora12c"/>
-        <property name="username" value="tep"/> -->
+<!-- 	lahee VM local db -->
+        <property name="url" value="jdbc:oracle:thin:@192.168.230.128:1521:ora12c"/>
+        <property name="username" value="tep"/>
     </bean>
 </beans>
