@@ -1,4 +1,4 @@
-/*package com.tep.members.service;
+package com.tep.members.service;
 
 import javax.annotation.Resource;
 
@@ -16,12 +16,23 @@ public class MembersServiceImpl implements MembersService{
 	@Resource(name="membersDAO")
 	private MembersDAO membersDAO;
 
+							/*@Override
+							public MembersModel MembersLogin(MembersModel mem) {
+							
+								return membersDAO.membersLogin(mem);
+							}
+							 	*/
 	@Override
-	public MembersModel MembersLogin(MembersModel mem) {
-	
-		return membersDAO.membersLogin(mem);
+	public MembersModel insertMembers(MembersModel mem) {
+		
+		return  membersDAO.insert(mem);
+	}
+
+	@Override
+	public MembersModel selectOneMember(MembersModel mem) {
+		
+		return membersDAO.selectOne(mem) ;
 	}
 
 	
 }
-*/

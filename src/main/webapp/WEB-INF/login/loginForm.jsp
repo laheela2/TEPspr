@@ -45,9 +45,14 @@
 		document.getElementById('id').focus();
 	}
 
-	function openConfirmId() {
-		var url = "findIdPassword";
-		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=430");
+	function findId() {
+		var url = "findId";
+		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=130");
+	}
+	
+	function findPassword() {
+		var url = "findPassword";
+		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=130");
 	}
 </script>
 
@@ -69,6 +74,9 @@ input.login_btn{
 }
 input.sub_btn{
 	width: 100px;
+}
+input.sub_btn2{
+	width: 69px;
 }
 </style>
 
@@ -98,7 +106,15 @@ input.sub_btn{
 
 		<tr>
 			<td>
-				<input class="sub_btn" type="button" onclick="openConfirmId();" value="ID/PW 찾기" />
+			<table style="margin:0; padding:0;">
+				<tr align="center">
+					<td><input class="sub_btn2" type="button" onclick="findId();" value="ID찾기" /></td>
+					<td><input class="sub_btn2" type="button" onclick="findPassword();" value="PW찾기" /></td>
+				</tr>
+			</table>
+			
+			
+				
 			</td>
 			<td align="right">
 				<input class="sub_btn" type="button" onclick="location.href='agreementForm'" value="회원가입" />

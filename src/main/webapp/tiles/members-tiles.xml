@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+	<definition name = "agreementForm" extends= ".default" >
+		<put-attribute name="title" value = "TEPspr - 회원가입약관"></put-attribute>
+		<put-attribute name="body" value = "/WEB-INF/members/agreementForm.jsp"></put-attribute>
+	</definition>
+
+	<definition name="membersForm" extends=".default">
+		<put-attribute name="title" value="TEPspr - 회원가입폼"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/members/membersForm.jsp"></put-attribute>
+	</definition>
+
+
+
+	<definition name="membersSuccess" extends=".default">
+		<put-attribute name="title" value="TEPspr- 회원가입성공"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/members/membersSuccess.jsp"></put-attribute>
+		<!-- <put-attribute name="reject" value="/WEB-INF/members/memberIdChkError.jsp"></put-attribute> -->
+	</definition>
+
+ 	<definition name="reject" extends= ".default" >
+ 		<put-attribute name="title" value="TEPspr-아이디중복체크에러"></put-attribute>
+ 		<put-attribute name="body" value="/WEB-INF/members/memberIdChkError.jsp"></put-attribute>
+ 	</definition>
+
+</tiles-definitions>

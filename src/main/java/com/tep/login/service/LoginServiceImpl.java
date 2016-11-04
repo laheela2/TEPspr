@@ -17,4 +17,9 @@ public class LoginServiceImpl implements LoginService{
 		return loginDAO.loginCheck(mem);
 	}
 
+	@Override
+	public MembersModel findId(MembersModel mem) throws Exception{
+		return loginDAO.findId(mem);
+	}
+
 }
