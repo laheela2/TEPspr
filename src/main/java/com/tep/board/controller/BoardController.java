@@ -4,60 +4,40 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tep.board.service.BoardService;
-import com.tep.commons.common.PagingCalculator;
+import com.tep.commons.common.CommandMap;
+import com.tep.commons.util.PagingCalculator;
+import com.tep.commons.util.TepUtils;
 
 @Controller
 public class BoardController {
-	Logger log = Logger.getLogger(this.getClass());
-
-	private static final int SEARCHKEY_SUBEJCT = 0;
-	private static final int SEARCHKEY_SUBJECT_CONTENT = 1;
-	private static final int SEARCHKEY_NAME = 2;
-	
-	private int currentPage = 1;
-	private int totalCount;
-	private int blockCount = 9;
-	private int blockPage = 3;
-	private String pagingHtml;
-	private PagingCalculator page;
-	
-	private int searchKey = -1;
-	private String searchWord = "";	
+	protected Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name = "boardService")
 	private BoardService boardService;
 	
-    @RequestMapping(value="/board")
-    public ModelAndView openBoardList(Map<String,Object> map) throws Exception{
+    @RequestMapping(value="/board", method={RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView boardList(CommandMap map, HttpServletRequest request) throws Exception{
+    	TepUtils.savePageURI(request);
+    	
         ModelAndView mv = new ModelAndView("board");
-
-        List<Map<String,Object>> list = boardService.selectBoardList(map);
-        totalCount = list.size();
-		page = new PagingCalculator("board", currentPage, totalCount, blockCount, blockPage);
-		pagingHtml = page.getPagingHtml().toString();
-		
-		int lastCount = totalCount;
-		
-		if(page.getEndCount() < totalCount){
-			lastCount = page.getEndCount()+1;
-		}
-		
-		list = list.subList(page.getStartCount(), lastCount);
         
+        List<Map<String,Object>> list = boardService.selectBoardList(map.getMap());
+        PagingCalculator paging = new PagingCalculator("board", map.get("currentPage") == null ? 1:Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
         
+        Map<String, Object> rMap = paging.getPagingList();
         
-        mv.addObject("list", list);
-        mv.addObject("pagingHtml",pagingHtml);
+        mv.addObject("list", rMap.get("list"));
+        mv.addObject("pagingHtml",rMap.get("pagingHtml"));
         
         return mv;
     }
-    
-    
 }

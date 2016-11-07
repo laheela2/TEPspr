@@ -12,7 +12,7 @@ public class BoardDAO extends AbstractDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectList("board.selectBoardList",map);
+		return (List<Map<String, Object>>)selectList("board.selectBoardList",map);
 	}
 
 }

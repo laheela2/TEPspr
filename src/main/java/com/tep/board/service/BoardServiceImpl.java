@@ -9,11 +9,12 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.tep.board.dao.BoardDAO;
+import com.tep.commons.service.CommentsService;
 
 @Service("boardService")
-public class BoardServiceImpl implements BoardService{
-	Logger log = Logger.getLogger(this.getClass());
-
+public class BoardServiceImpl implements BoardService, CommentsService{
+	private Logger log = Logger.getLogger(this.getClass());
+	
 	@Resource(name="boardDAO")
 	private BoardDAO boardDAO;
 
@@ -21,7 +22,7 @@ public class BoardServiceImpl implements BoardService{
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
 		return boardDAO.selectBoardList(map);
 	}
-
+	
 	@Override
 	public void insertBoard(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -42,6 +43,18 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void deleteBoard(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insertComments(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteComments(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

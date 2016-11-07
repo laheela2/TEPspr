@@ -1,4 +1,4 @@
-	package com.tep.commons.common;
+	package com.tep.commons.util;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -7,11 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.tep.commons.common.TepConstants;
 
 public class TepUtils {
 	/**
@@ -130,12 +132,13 @@ public class TepUtils {
 	 * @param request
 	 * @param session
 	 */
-	public static void savePageURI(HttpServletRequest request, Map session){
-		if(request == null || session == null){
+	public static void savePageURI(HttpServletRequest request){
+		if(request == null){
 			return;
 		}
-		String currentURI = getUrl(request).substring("/TEP/".length());
-		session.put(TepConstants.SAVEURI, currentURI);
+		String currentURI = getUrl(request).substring("/tepspr/".length());
+		HttpSession session = request.getSession();
+		session.setAttribute(TepConstants.SAVEURI, currentURI);
 	}
 	
 	/**

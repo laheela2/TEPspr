@@ -3,22 +3,32 @@
 
 <mapper namespace="board">
 
-<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
-        <![CDATA[
-            SELECT
-                b_no,
-                b_subject,
-                b_name,
-                b_date,
-                b_readcount
-            FROM
-                board
-            ORDER BY 
-            	b_no desc
-        ]]>
+	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			B_NO,
+			B_SUBJECT,
+			B_NAME,
+			B_DATE,
+			B_READCOUNT
+		FROM
+			BOARD
+		<where>
+			<if test="searchKey != null and searchKey == 0">
+				B_SUBJECT like '%' || #{searchWord} || '%'
+			</if>
+			<if test="searchKey != null and searchKey == 1">
+				B_SUBJECT like '%' || #{searchWord} || '%' or B_CONTENT like '%' ||#{searchWord} || '%'
+			</if>
+			<if test="searchKey != null and searchKey == 2">
+				B_NAME like '%' || #{searchWord} || '%'
+			</if>
+		</where>
+		ORDER BY
+			B_NO DESC
 	</select>
-
+	
 <!-- 
+
 	<insert id="" parameterType="">
     <![CDATA[
         INSERT INTO BOARD

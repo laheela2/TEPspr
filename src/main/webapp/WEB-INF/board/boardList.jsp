@@ -1,14 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<c:url value='/resources/css/boardview.css'/>" type="text/css">
-<link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
+<%@ include file="/WEB-INF/include/common-header.jspf"%>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
 </head>
 <body>
 <table class="board" align=center cellspacing=0 border="0">
@@ -59,15 +55,16 @@
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
 			${pagingHtml }
 			<c:if test="${sessionScope.session_m_email != null}">
-				<input type="button" value="글쓰기" onclick="location.href='boardWrite'" style="float:right;margin-top: -6px;">
+				<input type="button" value="글쓰기" id="write" style="float:right;margin-top: -6px;">
 			</c:if>
 		</td>
 	</tr>
 
 <!-- 게시판 검색 -->
 <tr>
+
 <td colspan="6" align="center">
-	<form method="post" action="board.action">
+	<form method="post" action="<c:url value='board'/>">
 		<table>
 		<tr>
 		<td>
@@ -84,7 +81,37 @@
 	</form>
 </td>
 </tr>
-
 </table>
+
+
+<%@ include file="/WEB-INF/include/common-body.jspf" %>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#write").on("click", function(e){ // 글쓰기 버튼
+            e.preventDefault();
+            fn_boardWrite();
+        }); 
+         
+        $("a[name='subject']").on("click", function(e){ // 글상세보기
+            e.preventDefault();
+            fn_boardDetail($(this));
+        });
+    });
+     
+    function fn_boardWrite(){
+        var cs = new CustomSubmit();
+        cs.setUrl("<c:url value='boardWrite' />");
+        cs.submit();
+    }
+    
+    function fn_boardDetail(obj){
+        var cs = new CustomSubmit();
+        cs.setUrl("<c:url value='boardDetail' />");
+        cs.addParam("B_NO", obj.parent().find("#B_NO").val());
+        cs.submit();
+    }
+</script> 
+
+
 </body>
 </html>
