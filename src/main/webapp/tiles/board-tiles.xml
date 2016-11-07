@@ -4,24 +4,24 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="board" extends=".default">
+	<definition name="boardList" extends=".default">
 		<put-attribute name="title" value="TEP - 스승과 제자를 찾아보세요 ;)" />
 		<put-attribute name="body" value="/WEB-INF/board/boardList.jsp" />
 	</definition>
 	
 	<definition name="boardDetail" extends=".default">
 		<put-attribute name="title" value="TEP - 게시판 상세보기 ;)" />
-		<put-attribute name="body" value="/board/boardDetail.jsp" />
+		<put-attribute name="body" value="/WEB-INF/board/boardDetail.jsp" />
 	</definition>
 	
 <!-- 	
 	<definition name="boardWrite" extends=".default">
 		<put-attribute name="title" value="TEP - 게시판 글쓰기 ;)" />
-		<put-attribute name="body" value="/board/boardWrite.jsp" />
+		<put-attribute name="body" value="/WEB-INF/board/boardWrite.jsp" />
 	</definition>
 	
 	<definition name="boardModify" extends=".default">
 		<put-attribute name="title" value="TEP - 게시판 수정 페이지 ;)" />
-		<put-attribute name="body" value="/board/boardModify.jsp" />
+		<put-attribute name="body" value="/WEB-INF/board/boardModify.jsp" />
 	</definition> -->
 </tiles-definitions>

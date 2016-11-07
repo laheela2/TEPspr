@@ -26,52 +26,80 @@
 		ORDER BY
 			B_NO DESC
 	</select>
+
+	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			B_NO,
+			B_KIND,
+			B_NAME,
+			B_EMAIL,
+			B_COMPANY,
+			B_CATEGORY,
+			B_SUBJECT,
+			B_CONTENT,
+			B_FAV_AREA,
+			B_FAV_FIELD,
+			B_PAYMENT,
+			B_DATE,
+			B_READCOUNT,
+			M_NO
+		FROM
+			BOARD
+		WHERE
+			B_NO = #{B_NO}
+	</select>
 	
-<!-- 
+	<select id="selectCmtList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			C_NO,
+			C_NAME,
+			C_CONTENT,
+			C_DATE,
+			C_MY_NO,
+			O_NO,
+			B_NO,
+			M_NO
+		FROM
+			COMMENTS
+		WHERE
+			B_NO = #{B_NO}
+		ORDER BY
+			C_NO DESC
+	</select>	
 
-	<insert id="" parameterType="">
-    <![CDATA[
-        INSERT INTO BOARD
-        (
-            IDX,
-            TITLE, 
-            CONTENTS, 
-            HIT_CNT, 
-            DEL_GB, 
-            CREA_DTM, 
-            CREA_ID
-        )
-        VALUES
-        (
-            SEQ_BOARD_IDX.NEXTVAL, 
-            #{TITLE}, 
-            #{CONTENTS}, 
-            0, 
-            'N', 
-            SYSDATE, 
-            'Admin'
-        )
-    ]]>
-	</insert>
-
-	<update id="" parameterType="">
-    <![CDATA[
-        UPDATE BOARD 
+	<update id="updateBoardReadCount" parameterType="hashmap">
+        UPDATE BOARD
         SET
-            HIT_CNT = NVL(HIT_CNT,0)+1
+            B_READCOUNT = NVL(B_READCOUNT,0)+1
         WHERE
-            IDX = #{IDX}    
-    ]]>
+            B_NO = #{B_NO}
 	</update>
+
+	<insert id="insertCmt" parameterType="hashmap">
+		INSERT INTO COMMENTS
+		(
+			C_NO,
+			C_NAME,
+			C_CONTENT,
+			C_DATE,
+			B_NO,
+			M_NO
+		)
+		VALUES
+		(
+			COMMENTS_SEQ.NEXTVAL,
+			#{C_NAME},
+			#{C_CONTENT},
+			SYSDATE,
+			#{B_NO},
+			#{M_NO}
+		)
+	</insert>
 	
-	<delete id="" parameterType="">
-    <![CDATA[
-        DELETE  
-        FROM 
-        	BOARD
-        WHERE
-            IDX = #{IDX}
-    ]]>	
+	<delete id="deleteCmt" parameterType="hashmap">
+		DELETE FROM 
+			COMMENTS 
+		WHERE C_NO=#{C_NO} and M_NO=#{M_NO}
 	</delete>
- -->
+	
 </mapper>

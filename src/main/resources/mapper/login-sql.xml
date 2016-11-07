@@ -3,16 +3,13 @@
 
 <mapper namespace="login">
 
-<select id="loginCheck" parameterType="memberModel" resultType="memberModel">
-       <![CDATA[
-            SELECT
-               	m_no, m_email, m_name, m_nickname, m_password, m_company, m_phone, m_fav_area,	m_fav_field, m_date
-        	 FROM
-                members
-             WHERE 
-             	m_email = #{m_email} and m_password=#{m_password}
-            ORDER BY 
-            	m_no desc
-        ]]>
+	<select id="selectLogin" parameterType="memberModel" resultType="memberModel">
+		SELECT
+			*
+		FROM 
+			MEMBERS
+		WHERE
+			M_EMAIL=#{m_email} and M_PASSWORD=#{m_password}
 	</select>
+	
 </mapper>

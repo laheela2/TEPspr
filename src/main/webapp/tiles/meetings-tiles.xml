@@ -4,28 +4,28 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="meetings" extends=".default">
+	<definition name="meetingsList" extends=".default">
 		<put-attribute name="title" value="TEP - 모임개설 목록" />
 		<put-attribute name="body" value="/WEB-INF/meetings/meetingsList.jsp" />
 	</definition>
 <!-- 	
 	<definition name="meetingsDetail" extends=".default">
 		<put-attribute name="title" value="TEP - 모임개설 상세정보" />
-		<put-attribute name="body" value="/meetings/meetingsDetail.jsp" />
+		<put-attribute name="body" value="/WEB-INF/meetings/meetingsDetail.jsp" />
 	</definition>
 	
 	<definition name="meetingsSubscribe" extends=".default">
 		<put-attribute name="title" value="TEP - 모임 신청하기" />
-		<put-attribute name="body" value="/meetings/meetingsSubscribe.jsp" />
+		<put-attribute name="body" value="/WEB-INF/meetings/meetingsSubscribe.jsp" />
 	</definition>
 	
 	<definition name="meetingsForm" extends=".default">
 		<put-attribute name="title" value="TEP - 모임 개설하기" />
-		<put-attribute name="body" value="/meetings/meetingsForm.jsp" />
+		<put-attribute name="body" value="/WEB-INF/meetings/meetingsForm.jsp" />
 	</definition>
 	
 	<definition name="meetingsModify" extends=".default">
 		<put-attribute name="title" value="TEP - 모임 수정하기" />
-		<put-attribute name="body" value="/meetings/meetingsModify.jsp" />
+		<put-attribute name="body" value="/WEB-INF/meetings/meetingsModify.jsp" />
 	</definition> -->
 </tiles-definitions>

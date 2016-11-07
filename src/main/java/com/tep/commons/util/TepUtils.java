@@ -13,9 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.tep.commons.common.TepConstants;
 
 public class TepUtils {
+	protected static Logger log = Logger.getLogger(TepUtils.class);
+	
 	/**
 	 * @param date
 	 * @return 8월 30일 (화) 9시 00분
@@ -136,7 +140,8 @@ public class TepUtils {
 		if(request == null){
 			return;
 		}
-		String currentURI = getUrl(request).substring("/tepspr/".length());
+		String currentURI = getUrl(request).substring("/tepspr".length());
+		log.debug("savePageUri : "+currentURI);
 		HttpSession session = request.getSession();
 		session.setAttribute(TepConstants.SAVEURI, currentURI);
 	}
@@ -146,7 +151,7 @@ public class TepUtils {
 	 * @param request
 	 * @return
 	 */
-	private static String getUrl(HttpServletRequest request) {
+	public static String getUrl(HttpServletRequest request) {
 		String ret_url = request.getRequestURI();
 
 		int k = 0;

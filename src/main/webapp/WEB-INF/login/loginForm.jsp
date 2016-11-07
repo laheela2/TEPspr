@@ -1,14 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
-<link rel="stylesheet" href="<c:url value='/resources/css/alertify.default.css'/>" type="text/css">
-<script src="<c:url value='/resources/js/alertify.min.js'/>"></script>
-<script src="<c:url value='/resources/js/jquery-3.1.0.js'/>"></script>
+<%@ include file="/WEB-INF/include/common-header.jspf"%>
 <script>
 	function insert() {
 		var join = document.userinput
@@ -75,7 +69,7 @@ input.sub_btn{
 </head>
 <body onload="idFocus();">
 <center>
-<form action="login" method="post" name="userinput">
+<form action="<c:url value="/login"/>" method="post" name="userinput">
 <table class="loginform_border" align=center>
 <tr><td>
 	<table class="loginform_inner_table" border="0" align=center cellspacing=10>
@@ -101,7 +95,7 @@ input.sub_btn{
 				<input class="sub_btn" type="button" onclick="openConfirmId();" value="ID/PW 찾기" />
 			</td>
 			<td align="right">
-				<input class="sub_btn" type="button" onclick="location.href='agreementForm'" value="회원가입" />
+				<input class="sub_btn" type="button" onclick="location.href='<c:url value="agreement"/>'" value="회원가입" />
 			</td>
 		</tr>
 	</table>

@@ -1,5 +1,6 @@
 package com.tep.board.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import com.tep.commons.service.CommentsService;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService, CommentsService{
-	private Logger log = Logger.getLogger(this.getClass());
+	protected Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="boardDAO")
 	private BoardDAO boardDAO;
@@ -22,17 +23,37 @@ public class BoardServiceImpl implements BoardService, CommentsService{
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
 		return boardDAO.selectBoardList(map);
 	}
+
+	@Override
+	public Map<String, Object> selectBoardDetail(Map<String, Object> map, boolean readCount) throws Exception {
+		if(readCount){
+			boardDAO.updateBoardReadCount(map);
+		}
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		Map<String, Object> detail = boardDAO.selectBoardDetail(map);
+		List<Map<String, Object>> cmtList = boardDAO.selectCmtList(map);
+		
+		resultMap.put("detail", detail);
+		resultMap.put("cmtList", cmtList);
+		
+		return resultMap;
+	}
+	
+	@Override
+	public void insertComments(Map<String, Object> map) throws Exception {
+		boardDAO.insertComments(map);
+	}
+
+	@Override
+	public void deleteComments(Map<String, Object> map) throws Exception {
+		boardDAO.deleteComments(map);
+	}
 	
 	@Override
 	public void insertBoard(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -43,18 +64,6 @@ public class BoardServiceImpl implements BoardService, CommentsService{
 
 	@Override
 	public void deleteBoard(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void insertComments(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteComments(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

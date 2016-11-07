@@ -9,8 +9,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/boardwrite.css'/>/TEP/static/css/alertify.core.css" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/boardwrite.css'/>/TEP/static/css/alertify.default.css" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/alertify.core.css'/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/alertify.default.css'/>"/>
  
 <!-- jQuery -->
 <script src="<c:url value='/resources/js/alertify.min.js'/>"></script>

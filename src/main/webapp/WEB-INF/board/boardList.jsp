@@ -64,7 +64,7 @@
 <tr>
 
 <td colspan="6" align="center">
-	<form method="post" action="<c:url value='board'/>">
+	<form method="post" action="<c:url value='/board'/>">
 		<table>
 		<tr>
 		<td>
@@ -100,13 +100,13 @@
      
     function fn_boardWrite(){
         var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='boardWrite' />");
+        cs.setUrl("<c:url value='/board/write' />");
         cs.submit();
     }
     
     function fn_boardDetail(obj){
         var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='boardDetail' />");
+        cs.setUrl("<c:url value='/board/detail' />");
         cs.addParam("B_NO", obj.parent().find("#B_NO").val());
         cs.submit();
     }

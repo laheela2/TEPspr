@@ -9,9 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MeetingsController {
 
-    @RequestMapping(value="/meetings")
+    @RequestMapping(value={"/meetings","/meetings/list"})
     public ModelAndView openMeetingsList(Map<String,Object> map) throws Exception{
-        ModelAndView mv = new ModelAndView("meetings");
+        ModelAndView mv = new ModelAndView("meetingsList");
 
         
         return mv;

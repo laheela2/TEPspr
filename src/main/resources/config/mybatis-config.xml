@@ -15,8 +15,10 @@
 	</settings>
 
 	<typeAliases>
+	
 		<!-- members -->
 		<typeAlias type="com.tep.members.model.MembersModel" alias="memberModel" />
+		
 	</typeAliases>
 
 </configuration>

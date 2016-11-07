@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="<c:url value='resources/css/boardview.css'/>" type="text/css">
-<link rel="stylesheet" href="<c:url value='resources/css/root.css'/>" type="text/css">
+<%@ include file="/WEB-INF/include/common-header.jspf"%>
 <style type="text/css">
 table.login_table {
 	border-style: solid;
@@ -58,32 +55,31 @@ input.login_btn {
 </head>
 <body>
 	<br>
-
-<table class="login_table" align=center>
-
-	<tr>
-		<td class="login_name">
-			${sessionScope.session_m_name }님
-		</td>
-	</tr>
-	<tr>
-		<td id="login_msg" align="center" height="30"></td>
-	</tr>
-
-	<tr>
-		<td class="login_btn_grp">
-			<input class="login_btn" type="button" value="마이페이지" onclick="location.href='mypageView'">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input class="login_btn" type="button" value="메인으로" onclick="location.href='meetings'">
-		<c:if test="${sessionScope.save_current_page != null }">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input class="login_btn" type="button" value="이전 페이지" onclick="location.href='${sessionScope.save_current_page}'">
-		</c:if>
-		</td>
-	</tr>
-
-</table>
-
+	<c:set var="savePageURI" value="${sessionScope.save_current_page_uri}"/>
+	<table class="login_table" align=center>
+	
+		<tr>
+			<td class="login_name">
+				${sessionScope.session_m_name }님
+			</td>
+		</tr>
+		<tr>
+			<td id="login_msg" align="center" height="30"></td>
+		</tr>
+	
+		<tr>
+			<td class="login_btn_grp">
+				<input class="login_btn" type="button" value="마이페이지" onclick="location.href='<c:url value="/mypageView"/>'">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="login_btn" type="button" value="메인으로" onclick="location.href='<c:url value="/meetings"/>'">
+				<c:if test="${savePageURI != null }">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="login_btn" type="button" value="이전 페이지" onclick="location.href='<c:url value="${savePageURI}"/>'">
+				</c:if>
+			</td>
+		</tr>
+	
+	</table>
 	<br>
 </body>
 </html>
