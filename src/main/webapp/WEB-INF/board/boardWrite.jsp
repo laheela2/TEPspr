@@ -1,30 +1,42 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="/TEP/static/css/boardwrite.css">
-<link rel="stylesheet" href="/TEP/static/css/alertify.core.css">
-<link rel="stylesheet" href="/TEP/static/css/alertify.default.css">
-<script src="/TEP/static/js/alertify.min.js"></script>
-<script src="/TEP/static/js/ckeditor/ckeditor.js"></script>
-<script src="/TEP/static/js/boardwrite.js"></script>
+<%@ include file="/WEB-INF/include/common-header.jspf" %>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/boardwrite.css"/>">
+<script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
 <script>
 	window.onload = function() {
-		CKEDITOR.replace('b_content');
+		CKEDITOR.replace('B_CONTENT');
+	}
+	
+	function fn_validation(){
+		var subject = document.getElementById("b_subject");
+		var content = CKEDITOR.instances.b_content;
+		
+		if(!subject.value){
+			alertify.error("제목이 입력되지 않았습니다.");
+			subject.focus();
+			return false;
+		}
+		
+		if(!content.getData()){
+			alertify.error("내용이 입력되지 않았습니다.");
+			content.focus();
+			return false;
+		}
 	}
 </script>
 </head>
 <body>
 
-<form id="writeForm" action="boardWriteInsert.action" method="post" onsubmit="return valuecheck();">
+<form id="writeForm" action="<c:url value="/board/write"/>" method="post" onsubmit="return fn_validation();">
 <table class="boardwrite" align=center border="0">
 
 <tr>
 <td class="bw_title">종&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;류</td>
 <td>
-<select name="b_kind">
+<select name="B_KIND">
 	<option value="0">일반게시물</option>
 	<option value="1">스승찾아요</option>
 	<option value="2">제자찾아요</option>
@@ -35,7 +47,7 @@
 <tr>
 <td class="bw_title">카테고리</td>
 <td>
-<select name="b_category">
+<select name="B_CATEGORY">
 	<option value="교육">교육</option>
 	<option value="강연">강연</option>
 	<option value="세미나/컨퍼런스">세미나/컨퍼런스</option>
@@ -57,7 +69,7 @@
 <tr>
 <td class="bw_title">관심분야</td>
 <td>
-<select name="b_fav_field">
+<select name="B_FAV_FIELD">
 	<option value="프로그래밍">프로그래밍</option>
 	<option value="네일아트">네일아트</option>
 	<option value="공예">공예</option>
@@ -74,7 +86,7 @@
 <tr>
 <td class="bw_title">관심지역</td>
 <td>
-<select name="b_fav_area">
+<select name="B_FAV_AREA">
 	<option value="서울">서울</option>
 	<option value="부산/울산/경남">부산/울산/경남</option>
 	<option value="인천/경기">인천/경기</option>
@@ -90,23 +102,22 @@
 
 <tr>
 <td class="bw_title">비&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</td>
-<td><input type="number" name="b_payment" value="0" maxlength="10"><b style="font-size: xx-small;font-family:monospace;color: gray;">&nbsp;&nbsp;*값을 0원으로 설정하면, 무료로 표시됩니다.</b></td>
+<td><input type="number" name="B_PAYMENT" value="0" maxlength="10"><b style="font-size: xx-small;font-family:monospace;color: gray;">&nbsp;&nbsp;*값을 0원으로 설정하면, 무료로 표시됩니다.</b></td>
 </tr>
 
 <tr>
 <td class="bw_title">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</td>
-<td><input id="b_subject" type="text" name="b_subject" maxlength="50"></td>
+<td><input id="b_subject" type="text" name="B_SUBJECT" maxlength="50"></td>
 </tr>
 
 <tr>
-<td colspan="2"><textarea id="b_content" name="b_content"></textarea></td>
+<td colspan="2"><textarea id="b_content" name="B_CONTENT"></textarea></td>
 </tr>
-
 
 <tr>
 <td colspan="2" align="right" style="border:none;">
 <input type="submit" value="저장">
-<input type="button" value="취소" onclick="location.href='board.action'">
+<input type="button" value="취소" onclick="location.href='<c:url value="/board"/>'">
 </td>
 </tr>
 

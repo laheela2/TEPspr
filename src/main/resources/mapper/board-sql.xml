@@ -6,6 +6,7 @@
 	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
 		SELECT
 			B_NO,
+			B_KIND,
 			B_SUBJECT,
 			B_NAME,
 			B_DATE,
@@ -74,6 +75,20 @@
         WHERE
             B_NO = #{B_NO}
 	</update>
+	
+	<update id="updateBoard" parameterType="hashmap">
+        UPDATE BOARD
+        SET
+            B_KIND = #{B_KIND},
+            B_CATEGORY = #{B_CATEGORY},
+			B_SUBJECT = #{B_SUBJECT},
+			B_CONTENT = #{B_CONTENT},
+			B_FAV_AREA = #{B_FAV_AREA},
+			B_FAV_FIELD = #{B_FAV_FIELD},
+			B_PAYMENT = #{B_PAYMENT}
+        WHERE
+            B_NO = #{B_NO} and M_NO=#{M_NO}
+	</update>
 
 	<insert id="insertCmt" parameterType="hashmap">
 		INSERT INTO COMMENTS
@@ -96,10 +111,41 @@
 		)
 	</insert>
 	
+	<insert id="insertBoard" parameterType="hashmap">
+		INSERT INTO BOARD
+		VALUES
+		(
+			BOARD_SEQ.NEXTVAL,
+			#{B_KIND},
+			#{B_NAME},
+			#{B_EMAIL},
+			#{B_COMPANY},
+			#{B_CATEGORY},
+			#{B_SUBJECT},
+			#{B_CONTENT},
+			#{B_FAV_AREA},
+			#{B_FAV_FIELD},
+			#{B_PAYMENT},
+			SYSDATE,
+			0,
+			#{M_NO}
+		)
+	</insert>
+	
 	<delete id="deleteCmt" parameterType="hashmap">
 		DELETE FROM 
 			COMMENTS 
 		WHERE C_NO=#{C_NO} and M_NO=#{M_NO}
+	</delete>
+
+	<delete id="deleteBoard" parameterType="hashmap">
+		{call
+			declare
+			begin
+				DELETE FROM COMMENTS WHERE B_NO=#{B_NO};
+				DELETE FROM BOARD WHERE B_NO=#{B_NO} and M_NO=#{M_NO};
+			end
+		}
 	</delete>
 	
 </mapper>

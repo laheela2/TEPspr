@@ -32,7 +32,7 @@ public class LoginController {
 	public ModelAndView login(MembersModel mem, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
-		MembersModel result = loginService.login(mem);
+		MembersModel result = loginService.selectMember(mem);
 		if(result == null){
 			mav.setViewName("login/loginError");
 			return mav;
@@ -42,6 +42,7 @@ public class LoginController {
 		session.setAttribute(TepConstants.M_EMAIL, result.getM_email());
 		session.setAttribute(TepConstants.M_NAME, result.getM_name());
 		session.setAttribute(TepConstants.M_NO, result.getM_no());
+		session.setAttribute(TepConstants.M_OBJECT, result);
 
 		mav.setViewName("loginSuccess");
 		return mav;

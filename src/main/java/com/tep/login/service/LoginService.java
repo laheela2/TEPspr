@@ -4,6 +4,6 @@ import com.tep.members.model.MembersModel;
 
 public interface LoginService {
 
-	MembersModel login(MembersModel mem) throws Exception;
+	MembersModel selectMember(MembersModel mem) throws Exception;
 
 }

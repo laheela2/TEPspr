@@ -11,17 +11,6 @@
 	}
 </script>
 <script type="text/javascript">
-function form_action(val){
-	var f = document.detail_form;
-	if(val == 0){
-		f.action="/board/modify";
-		f.submit();
-	} else if(val == 1){
-		f.action="/board/delete";
-		f.submit();
-	}
-}
-
 function cmt_check(kind) {
 	var session_id = '${sessionScope.session_m_email}';
 	var area = document.getElementById('cmt_content');
@@ -40,14 +29,10 @@ function cmt_check(kind) {
 </head>
 <body>
 
-<form name="detail_form" method="post">
-<input type="hidden" name="B_NO" value='${data.B_NO }'>
-</form>
-
 <table style="width:890px;" border="0" align=center>
 <tr>
 <td style="font-weight: bold;font-size: large;font-family: sans-serif;">게시판</td>
-<td align="right"><input type="button" value="목록보기" onclick="history.back();"></td>
+<td align="right"><input type="button" value="목록보기" onclick="location.href='<c:url value="/board"/>'"></td>
 </tr>
 </table>
 
@@ -115,8 +100,8 @@ ${data.B_FAV_AREA }
 <c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.M_NO }">
 <tr>
 <td colspan="2" align="right" style="border:none;">
-<input type="button" value="수정" onclick="form_action('0');">
-<input type="button" value="삭제" onclick="form_action('1');">
+<input type="button" value="수정" id="modifyBtn">
+<input type="button" value="삭제" id="deleteBtn">
 </td>
 </tr>
 </c:if>
@@ -163,6 +148,16 @@ ${cmt.C_NAME }
             e.preventDefault();
             fn_deleteCmt($(this));
         });
+        
+        $("#modifyBtn").on("click", function(e){ // 수정버튼
+            e.preventDefault();
+            fn_boardModify();
+        });
+        
+        $("#deleteBtn").on("click", function(e){ // 삭제버튼
+            e.preventDefault();
+            fn_boardDelete();
+        });
     });
     
     function fn_deleteCmt(obj){
@@ -172,6 +167,20 @@ ${cmt.C_NAME }
         cs.addParam("B_NO", obj.parent().find("#B_NO").val());
         cs.submit();
     }
+    
+	function fn_boardModify(){
+		var cs = new CustomSubmit();
+        cs.setUrl("<c:url value='/board/modify' />");
+        cs.addParam("B_NO", '${data.B_NO }');
+        cs.submit("GET");
+	}
+	
+	function fn_boardDelete(){
+		var cs = new CustomSubmit();
+        cs.setUrl("<c:url value='/board/delete' />");
+        cs.addParam("B_NO", '${data.B_NO }');
+        cs.submit();
+	}
 </script> 
 
 </body>

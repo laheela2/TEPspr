@@ -13,8 +13,8 @@ public class LoginServiceImpl implements LoginService{
 	private LoginDAO loginDAO;
 
 	@Override
-	public MembersModel login(MembersModel mem) throws Exception {
-		return loginDAO.login(mem);
+	public MembersModel selectMember(MembersModel mem) throws Exception {
+		return loginDAO.selectMember(mem);
 	}
 
 }

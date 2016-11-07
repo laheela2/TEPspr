@@ -37,4 +37,16 @@ public class BoardDAO extends AbstractDAO{
 		delete("board.deleteCmt", map);
 	}
 
+	public void insertBoard(Map<String, Object> map) {
+		insert("board.insertBoard", map);
+	}
+
+	public void updateBoard(Map<String, Object> map) {
+		update("board.updateBoard", map);
+	}
+
+	public void deleteBoard(Map<String, Object> map) {
+		delete("board.deleteBoard", map);
+	}
+
 }

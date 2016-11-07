@@ -2,37 +2,37 @@ package com.tep.members.model;
 
 import java.util.Date;
 
-//?šŒ?›? •ë³? ?…Œ?´ë¸?
+//íšŒì›ì •ë³´ í…Œì´ë¸”
 public class MembersModel {
 
 	//ë²ˆí˜¸
 	private int m_no;
 	
-	// ?´ë©”ì¼(?•„?´?””)
+	// ì´ë©”ì¼(ì•„ì´ë””)
 	private String m_email;
 
-	// ?‚¬?š©??´ë¦?
+	// ì‚¬ìš©ìì´ë¦„
 	private String m_name;
 
-	// ?‹‰?„¤?„
+	// ë‹‰ë„¤ì„
 	private String m_nickname;
 
-	// ë¹„ë?ë²ˆí˜¸
+	// ë¹„ë°€ë²ˆí˜¸
 	private String m_password;
 
-	// ?œ´???°ë²ˆí˜¸
+	// íœ´ëŒ€í°ë²ˆí˜¸
 	private String m_phone;
 
-	//?†Œ?†
+	//ì†Œì†
 	private String m_company;
 	
-	// ê´??‹¬ì§??—­
+	// ê´€ì‹¬ì§€ì—­
 	private String m_fav_area;
 
-	// ê´??‹¬ë¶„ì•¼
+	// ê´€ì‹¬ë¶„ì•¼
 	private String m_fav_field;
 
-	// ê°??…?‚ ì§?
+	// ê°€ì…ë‚ ì§œ
 	private Date m_date;
 
 	

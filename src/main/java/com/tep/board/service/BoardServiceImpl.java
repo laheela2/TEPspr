@@ -41,6 +41,11 @@ public class BoardServiceImpl implements BoardService, CommentsService{
 	}
 	
 	@Override
+	public Map<String, Object> selectBoardModify(Map<String, Object> map) throws Exception {
+		return boardDAO.selectBoardDetail(map);
+	}
+	
+	@Override
 	public void insertComments(Map<String, Object> map) throws Exception {
 		boardDAO.insertComments(map);
 	}
@@ -52,20 +57,17 @@ public class BoardServiceImpl implements BoardService, CommentsService{
 	
 	@Override
 	public void insertBoard(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		
+		boardDAO.insertBoard(map);
 	}
 
 	@Override
 	public void updateBoard(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
+		boardDAO.updateBoard(map);
 	}
 
 	@Override
 	public void deleteBoard(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
+		boardDAO.deleteBoard(map);
 	}
 
 }

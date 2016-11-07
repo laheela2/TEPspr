@@ -23,14 +23,14 @@
 				<tr>
 					<td>${row.B_NO}</td>
 					<td class="board_kind">
+						<c:if test="${row.B_KIND == 0}">
+							<font class="board_subject_kind">[일반게시물]</font>
+						</c:if>
 						<c:if test="${row.B_KIND == 1 }">
 							<font class="board_subject_kind">[스승찾아요]</font>
 						</c:if>
 						<c:if test="${row.B_KIND == 2 }">
 							<font class="board_subject_kind">[제자찾아요]</font>
-						</c:if>
-						<c:if test="${row.B_KIND != 1 || row.B_KIND != 2}">
-							<font class="board_subject_kind">[일반게시물]</font>
 						</c:if>
 					</td>					
 					<td class="board_subject">
@@ -101,7 +101,7 @@
     function fn_boardWrite(){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/write' />");
-        cs.submit();
+        cs.submit("GET");
     }
     
     function fn_boardDetail(obj){

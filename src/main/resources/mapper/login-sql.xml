@@ -3,7 +3,7 @@
 
 <mapper namespace="login">
 
-	<select id="selectLogin" parameterType="memberModel" resultType="memberModel">
+	<select id="selectMember" parameterType="memberModel" resultType="memberModel">
 		SELECT
 			*
 		FROM 

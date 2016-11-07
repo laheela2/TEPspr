@@ -8,8 +8,8 @@ import com.tep.members.model.MembersModel;
 @Repository("loginDAO")
 public class LoginDAO extends AbstractDAO{
 
-	public MembersModel login(MembersModel mem) {
-		return (MembersModel) selectOne("login.selectLogin",mem);
+	public MembersModel selectMember(MembersModel mem) {
+		return (MembersModel) selectOne("login.selectMember",mem);
 	}
 
 }

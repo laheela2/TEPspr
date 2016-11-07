@@ -25,10 +25,10 @@ function CustomSubmit(opt_formId) {
         $("#"+this.formId).append($("<input type='hidden' name='"+key+"' id='"+key+"' value='"+value+"' >"));
     };
      
-    this.submit = function submit(){
+    this.submit = function submit(method){
         var frm = $("#"+this.formId)[0];
         frm.action = this.url;
-        frm.method = "post";
+        frm.method = isNullCheck(method) ? "POST":method;
         frm.submit();   
     };
 }
