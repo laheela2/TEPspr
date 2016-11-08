@@ -28,7 +28,7 @@ public class MembersController {
 	}
 	
 
-	@RequestMapping(value = { "/members", "/members/membersForm" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/membersForm" }, method = RequestMethod.POST)
 	public String membersForm() {
 		return "membersForm";
 	}

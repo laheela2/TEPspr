@@ -3,29 +3,21 @@
 
 <mapper namespace="login">
 
-<select id="loginCheck" parameterType="com.tep.members.model.MembersModel" resultType="com.tep.members.model.MembersModel">
-       <![CDATA[
-            SELECT
-               	m_no, m_email, m_name, m_nickname, m_password, m_company, m_phone, m_fav_area,	m_fav_field, m_date
-        	 FROM
-                members
-             WHERE 
-             	m_email = #{m_email} and m_password=#{m_password}
-            ORDER BY 
-            	m_no desc
-        ]]>
+	<select id="selectMember" parameterType="memberModel" resultType="memberModel">
+		SELECT
+			*
+		FROM 
+			MEMBERS
+		WHERE
+			M_EMAIL=#{m_email} and M_PASSWORD=#{m_password}
 	</select>
 
-<select id="findId" parameterType="com.tep.members.model.MembersModel" resultType="com.tep.members.model.MembersModel">	
-		       <![CDATA[
-            SELECT
-               	m_no, m_email, m_name, m_nickname, m_password, m_company, m_phone, m_fav_area,	m_fav_field, m_date
-        	 FROM
-                members
-             WHERE 
-             	m_name = #{m_name} and m_phone=#{m_phone}
-            ORDER BY 
-            	m_no desc
-        ]]>
+	<select id="findId" parameterType="memberModel" resultType="memberModel">	
+		SELECT
+			*
+		FROM
+			members
+		WHERE 
+			m_name = #{m_name} and m_phone=#{m_phone}
       </select>
 </mapper>

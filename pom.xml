@@ -27,18 +27,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
-		
-		<repository>
-			<id>egovframe</id>
-			<url>http://www.egovframe.go.kr/maven/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		
+	
 		<repository>
 			<id>codelds</id>
 			<name>ORACLE JDBC Repository</name>
@@ -145,9 +134,9 @@
 		
 		<!-- Oracle -->
 		<dependency>
-		    <groupId>com.oracle</groupId>
-		    <artifactId>ojdbc6</artifactId>
-		    <version>11.1.0.7.0</version>
+		    <groupId>oracle</groupId>
+		    <artifactId>ojdbc14</artifactId>
+		    <version>10.2.0.4</version>
 		</dependency>
 
 
@@ -257,13 +246,6 @@
 			<version>1.10</version>
 		</dependency>
 		
-		<!-- EgovProperty -->
-		<dependency>
-			<groupId>egovframework.rte</groupId>
-			<artifactId>egovframework.rte.fdl.property</artifactId>  
-			<version>2.7.0</version>
-		</dependency>
-		
 		<!-- Mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -276,13 +258,6 @@
 			<artifactId>velocity</artifactId>
 			<version>1.7</version>
 		</dependency>
-		
-		<!-- 전자정부 페이징 -->
-		<dependency>
-		    <groupId>egovframework.rte</groupId>
-		    <artifactId>egovframework.rte.ptl.mvc</artifactId>
-		    <version>3.5.0</version>
-        </dependency>
 		
 		<!-- Log4j -->
 		<dependency>

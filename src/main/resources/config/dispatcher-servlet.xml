@@ -5,35 +5,34 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"	
     xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
  
-	<context:component-scan base-package="com.tep" />
-	
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	<context:component-scan base-package="com.tep" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
 	<resources mapping="/resources/**" location="/resources/" />
 	
-	<mvc:annotation-driven>
-		<mvc:argument-resolvers>
+	<annotation-driven>
+		<argument-resolvers>
 			<beans:bean class="com.tep.commons.resolver.CustomMapArgumentResolver"/>
-		</mvc:argument-resolvers>
-	</mvc:annotation-driven>
+		</argument-resolvers>
+	</annotation-driven>
 	
-	<mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
+	<interceptors>
+        <interceptor>
+            <mapping path="/**"/>
             <beans:bean id="loggerInterceptor" class="com.tep.commons.logger.LoggerInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+        </interceptor>
+    </interceptors>
 
-<!-- 	
-	<beans:bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
-    <beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
--->
-
+	<aop:aspectj-autoproxy />
+    <beans:bean id="loggerAspect" class="com.tep.commons.logger.LoggerAspect"/>
+	
     <beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
         <beans:property name="order" value="0" />
     </beans:bean>

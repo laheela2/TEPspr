@@ -1,5 +1,6 @@
 package com.tep.board.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,11 +10,12 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.tep.board.dao.BoardDAO;
+import com.tep.commons.service.CommentsService;
 
 @Service("boardService")
-public class BoardServiceImpl implements BoardService{
-	Logger log = Logger.getLogger(this.getClass());
-
+public class BoardServiceImpl implements BoardService, CommentsService{
+	protected Logger log = Logger.getLogger(this.getClass());
+	
 	@Resource(name="boardDAO")
 	private BoardDAO boardDAO;
 
@@ -23,27 +25,49 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void insertBoard(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+	public Map<String, Object> selectBoardDetail(Map<String, Object> map, boolean readCount) throws Exception {
+		if(readCount){
+			boardDAO.updateBoardReadCount(map);
+		}
 		
+		Map<String, Object> resultMap = new HashMap<>();
+		Map<String, Object> detail = boardDAO.selectBoardDetail(map);
+		List<Map<String, Object>> cmtList = boardDAO.selectCmtList(map);
+		
+		resultMap.put("detail", detail);
+		resultMap.put("cmtList", cmtList);
+		
+		return resultMap;
+	}
+	
+	@Override
+	public Map<String, Object> selectBoardModify(Map<String, Object> map) throws Exception {
+		return boardDAO.selectBoardDetail(map);
+	}
+	
+	@Override
+	public void insertComments(Map<String, Object> map) throws Exception {
+		boardDAO.insertComments(map);
 	}
 
 	@Override
-	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteComments(Map<String, Object> map) throws Exception {
+		boardDAO.deleteComments(map);
+	}
+	
+	@Override
+	public void insertBoard(Map<String, Object> map) {
+		boardDAO.insertBoard(map);
 	}
 
 	@Override
 	public void updateBoard(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
+		boardDAO.updateBoard(map);
 	}
 
 	@Override
 	public void deleteBoard(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
+		boardDAO.deleteBoard(map);
 	}
 
 }

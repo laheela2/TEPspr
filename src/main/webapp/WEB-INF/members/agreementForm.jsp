@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="/TEP/static/css/boardview.css" type="text/css">
-<link rel="stylesheet" href="/TEP/static/css/root.css" type="text/css">
-<link rel="stylesheet" href="/TEP/static/css/alertify.default.css">
-<script src="/TEP/static/js/alertify.min.js"></script>
-<script src="/TEP/static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet" href="<c:url value='resources/css/boardview.css'/>" type="text/css">
+<link rel="stylesheet" href="<c:url value='resources/css/root.css'/>" type="text/css">
+<link rel="stylesheet" href="<c:url value='resources/css/alertify.default.css'/>">
+
+<script src="<c:url value='/resources/js/alertify.min.js'/>"></script>
+<script src="<c:url value='/resources/js/jquery-3.1.0.js'/>"></script>
 <title>이용약관</title>
 <SCRIPT type="text/javascript">
 	function check_agree(form) {
@@ -34,7 +37,9 @@ input.agree_btn{
 <body>
 <br>
 <br>
-<form action="MembersForm.action" method="post" name="f">
+
+<form action="membersForm" method="post" name="f">
+
 <table align="center" width="834" border="0" cellspacing="0" cellpadding="0">
 	
 	<tr height="25">
@@ -387,7 +392,7 @@ D. 무료모임을 개설하고 '모임요약내용' 또는 '모임세부설명'
 <tr align="center">
 
 	<td align="center">
-			<input type="button" value="회원가입취소" class="agree_btn" onClick="window:location='loginForm.action'"/>
+			<input type="button" value="회원가입취소" class="agree_btn" onClick="window:location='loginForm'"/>
 	</td>
 	
 	<td align="center">
@@ -396,11 +401,10 @@ D. 무료모임을 개설하고 '모임요약내용' 또는 '모임세부설명'
 	
 </tr>
 </table>
+
+
+
+
 </form>
-
-
-<br>
-<br>
-
 </body>
 </html>

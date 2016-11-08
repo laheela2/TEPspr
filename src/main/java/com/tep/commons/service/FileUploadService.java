@@ -1,4 +1,4 @@
-package com.tep.commons.common;
+package com.tep.commons.service;
 
 import java.io.File;
 import java.io.FileInputStream;

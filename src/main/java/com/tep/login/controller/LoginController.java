@@ -1,9 +1,12 @@
 package com.tep.login.controller;
 
+import java.util.Enumeration;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,55 +19,48 @@ import com.tep.members.model.MembersModel;
 
 @Controller
 public class LoginController {
-
+	protected Logger log = Logger.getLogger(this.getClass());
+	
 	@Resource(name = "loginService")
 	private LoginService loginService;
 
-	@RequestMapping(value = { "/login", "/login/loginForm" }, method = RequestMethod.GET)
-	public String loginForm() {
+	@RequestMapping(value = { "/login", "/login/form" }, method = RequestMethod.GET)
+	public String form() {
 		return "loginForm";
 	}
 
-	@RequestMapping(value = { "/login", "/login/loginForm" }, method = RequestMethod.POST)
-	public ModelAndView loginCheck(HttpServletRequest request, MembersModel mem) throws Exception {
-
+	@RequestMapping(value = { "/login", "/login/form" }, method = RequestMethod.POST)
+	public ModelAndView login(MembersModel mem, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
-		MembersModel result = loginService.loginCheck(mem);
-
-		if (result != null) {
-			HttpSession session = request.getSession();
-
-			session.setAttribute(TepConstants.M_EMAIL, result.getM_email());
-			session.setAttribute(TepConstants.M_NAME, result.getM_name());
-			session.setAttribute(TepConstants.M_NO, result.getM_no());
-
-			mav.setViewName("loginSuccess");
+		MembersModel result = loginService.selectMember(mem);
+		if(result == null){
+			mav.setViewName("login/loginError");
 			return mav;
 		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute(TepConstants.M_EMAIL, result.getM_email());
+		session.setAttribute(TepConstants.M_NAME, result.getM_name());
+		session.setAttribute(TepConstants.M_NO, result.getM_no());
+		session.setAttribute(TepConstants.M_OBJECT, result);
 
-		mav.setViewName("login/loginError");
+		mav.setViewName("loginSuccess");
 		return mav;
 	}
 
-	@RequestMapping("/logout")
-	public ModelAndView Logout(HttpServletRequest request, MembersModel mem) {
-
+	@RequestMapping(value="/logout")
+	public ModelAndView logout(MembersModel mem, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-
-		if (session.getAttribute(TepConstants.M_EMAIL) != null) {
-
-			session.removeAttribute(TepConstants.M_EMAIL);
-			session.removeAttribute(TepConstants.M_NAME);
-			session.removeAttribute(TepConstants.M_NO);
-
-			if (session.getAttribute(TepConstants.SAVEURI) != null) {
-				session.removeAttribute(TepConstants.SAVEURI);
-			}
+		Enumeration<?> valueNames = session.getAttributeNames();
+		while(valueNames.hasMoreElements()){
+			String sessionKey = (String) valueNames.nextElement();
+			log.debug("remove sessionKey : "+sessionKey);
+			session.removeAttribute(sessionKey);
 		}
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login/logout");
-		return mav;
+		
+		session.invalidate();
+		return new ModelAndView("redirect:/meetings");
 	}
 
 	// Id 찾기
@@ -91,12 +87,6 @@ public class LoginController {
 			mav.setViewName("findIdResult");
 			return mav;
 		}
-		
-		
-		
-		
-
-
 	}
 }
 		

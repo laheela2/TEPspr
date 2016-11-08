@@ -83,7 +83,7 @@
 	}
 
 	function openConfirmId(userinput) {
-		var url = "membersIdChk.action?m_email=" + document.userinput.m_email.value;
+		var url = "membersIdChk?m_email=" + document.userinput.m_email.value;
 		var join = document.userinput;
 		if (!userinput.m_email.value.match(regExp)) {
 			alertify.error("이메일 형식과 맞지 않습니다.");
