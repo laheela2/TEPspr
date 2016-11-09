@@ -51,4 +51,8 @@ public class CommandMap {
 	public Map<String, Object> getMap() {
 		return map;
 	}
+	
+	public int getCurrentPageNo(){
+		return map.get("currentPageNo") == null ? 1:Integer.parseInt(map.get("currentPageNo").toString());
+	}
 }

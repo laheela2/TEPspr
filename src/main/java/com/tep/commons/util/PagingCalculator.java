@@ -7,7 +7,7 @@ import java.util.Map;
 public class PagingCalculator {
 	private int blockCount; // 한페이지에 보여줄 총 리스트 수
 	private int blockPage; // 한화면에 보여줄 페이지 수
-	private int currentPage; // 현재 페이지
+	private int currentPageNo; // 현재 페이지
 	private int totalCount; // 전체게시물수
 	private int totalPage; // 전체페이지수
 	private int startCount; // 한페이지에 보여줄 게시글 시작번호
@@ -21,14 +21,14 @@ public class PagingCalculator {
 
 	/**
 	 * @param action : url 액션
-	 * @param currentPage : 현재 페이지
+	 * @param currentPageNo : 현재 페이지
 	 * @param list : db에서 가져온 리스트 목록
 	 * @param blockCount : 한페이지에 보여줄 리스트 수
 	 * @param blockPage : 한페이지에 보여줄 페이지 수
 	 */
-	public PagingCalculator(String action, int currentPage, List<?> list, int blockCount, int blockPage) {
-		this.action = action;
-		this.currentPage = currentPage;
+	public PagingCalculator(String action, int currentPageNo, List<?> list, int blockCount, int blockPage) {
+		this.action = "/tepspr/"+action;
+		this.currentPageNo = currentPageNo;
 		this.list = list;
 		this.totalCount = list.size();
 		this.blockCount = blockCount;
@@ -43,14 +43,14 @@ public class PagingCalculator {
 			totalPage = 1;
 		}
 
-		if (currentPage > totalPage) {
-			currentPage = totalPage;
+		if (currentPageNo > totalPage) {
+			currentPageNo = totalPage;
 		}
 
-		startCount = (currentPage - 1) * blockCount;
+		startCount = (currentPageNo - 1) * blockCount;
 		endCount = startCount + blockCount - 1;
 
-		startPage = (int) ((currentPage - 1) / blockPage) * blockPage + 1;
+		startPage = (int) ((currentPageNo - 1) / blockPage) * blockPage + 1;
 		endPage = startPage + blockPage - 1;
 
 		if (endPage > totalPage) {
@@ -58,8 +58,8 @@ public class PagingCalculator {
 		}
 
 		pagingHtml = new StringBuffer();
-		if (currentPage > blockPage) {
-			pagingHtml.append("<a class='paging_move' href=" + action + "?currentPage=" + (startPage - 1) + ">◀</a>");
+		if (currentPageNo > blockPage) {
+			pagingHtml.append("<a class='paging_move' href=" + action + "?currentPageNo=" + (startPage - 1) + ">◀</a>");
 		}
 		pagingHtml.append("&nbsp;");
 
@@ -67,11 +67,11 @@ public class PagingCalculator {
 			if (i > totalPage) {
 				break;
 			}
-			if (i == currentPage) {
+			if (i == currentPageNo) {
 				pagingHtml.append("&nbsp;<b class='paging'>" + i + "</b>");
 			} else {
 				pagingHtml.append("&nbsp;");
-				pagingHtml.append("<a class='paging' href=" + action + "?currentPage=" + i + ">" + i + "</a>");
+				pagingHtml.append("<a class='paging' href=" + action + "?currentPageNo=" + i + ">" + i + "</a>");
 			}
 			pagingHtml.append("&nbsp;");
 		}
@@ -80,7 +80,7 @@ public class PagingCalculator {
 
 		// 다음 블럭 페이지
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a class='paging_move' href=" + action + "?currentPage=" + (endPage + 1) + ">▶</a>");
+			pagingHtml.append("<a class='paging_move' href=" + action + "?currentPageNo=" + (endPage + 1) + ">▶</a>");
 		}
 		
 		int lastCount = totalCount;

@@ -54,9 +54,7 @@
 	<tr>
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
 			${pagingHtml }
-			<c:if test="${sessionScope.session_m_email != null}">
-				<input type="button" value="글쓰기" id="write" style="float:right;margin-top: -6px;">
-			</c:if>
+			<input type="button" value="글쓰기" id="write" style="float:right;margin-top: -6px;">
 		</td>
 	</tr>
 
@@ -89,6 +87,7 @@
     $(document).ready(function(){
         $("#write").on("click", function(e){ // 글쓰기 버튼
             e.preventDefault();
+            sessionCheck("${sessionScope.session_m_email}");
             fn_boardWrite();
         }); 
          
@@ -101,6 +100,7 @@
     function fn_boardWrite(){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/write' />");
+        cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit("GET");
     }
     
@@ -108,6 +108,7 @@
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/detail' />");
         cs.addParam("B_NO", obj.parent().find("#B_NO").val());
+        cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();
     }
 </script> 

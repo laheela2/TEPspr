@@ -2,65 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="meetings">
-
-	<!-- <select id="" parameterType="" resultType="">
-        <![CDATA[
-            SELECT
-                IDX,
-                TITLE,
-                HIT_CNT,
-                CREA_DTM
-            FROM
-                BOARD
-            WHERE
-                DEL_GB = 'N'
-            ORDER BY IDX DESC
-        ]]>
+	<select id="selectList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			O_NO,
+			O_SUBJECT,
+			O_REP_IMG,
+			(O_TOTAL_PNUM - O_CURRENT_PNUM) as O_PERMIT_PNUM
+		FROM
+			OPENMEET
+<!-- 		<where>
+			<if test="searchKey != null and searchKey == 0">
+				B_SUBJECT like '%' || #{searchWord} || '%'
+			</if>
+			<if test="searchKey != null and searchKey == 1">
+				B_SUBJECT like '%' || #{searchWord} || '%' or B_CONTENT like '%' ||#{searchWord} || '%'
+			</if>
+			<if test="searchKey != null and searchKey == 2">
+				B_NAME like '%' || #{searchWord} || '%'
+			</if>
+		</where> -->
+		ORDER BY
+			O_NO DESC
 	</select>
-
-	<insert id="" parameterType="">
-    <![CDATA[
-        INSERT INTO BOARD
-        (
-            IDX,
-            TITLE, 
-            CONTENTS, 
-            HIT_CNT, 
-            DEL_GB, 
-            CREA_DTM, 
-            CREA_ID
-        )
-        VALUES
-        (
-            SEQ_BOARD_IDX.NEXTVAL, 
-            #{TITLE}, 
-            #{CONTENTS}, 
-            0, 
-            'N', 
-            SYSDATE, 
-            'Admin'
-        )
-    ]]>
-	</insert>
-
-	<update id="" parameterType="">
-    <![CDATA[
-        UPDATE BOARD 
-        SET
-            HIT_CNT = NVL(HIT_CNT,0)+1
-        WHERE
-            IDX = #{IDX}    
-    ]]>
-	</update>
 	
-	<delete id="" parameterType="">
-    <![CDATA[
-        DELETE  
-        FROM 
-        	BOARD
-        WHERE
-            IDX = #{IDX}
-    ]]>	
-	</delete> -->
-
+	<select id="selectLikeitCount" parameterType="int" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			LIKEIT
+		WHERE
+			O_NO=#{o_no}
+	</select>
 </mapper>
