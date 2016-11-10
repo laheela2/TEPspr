@@ -9,6 +9,13 @@ function isNullCheck(str) {
     return false; 
 }
 
+function sessionCheck(sessionID) {
+	if (isNullCheck(sessionID)) {
+		alertify.error("로그인 상태가 아닙니다.");
+		return false;
+	}
+}
+
 function CustomSubmit(opt_formId) {
     this.formId = isNullCheck(opt_formId) == true ? "commonForm" : opt_formId;
     this.url = "";

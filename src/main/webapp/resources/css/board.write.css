@@ -29,10 +29,3 @@ textarea#cmt_content{
 	border-style: solid;
 	border-width: thin;
 }
-a{
-	text-decoration: none;
-	color: black;	
-}
-a:HOVER {
-	color: red;
-}

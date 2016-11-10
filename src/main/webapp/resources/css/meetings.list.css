@@ -1,4 +1,4 @@
-img.openmeet_rep {
+img#repIMG {
 	width: 200px;
 	height: 200px;
 }
@@ -24,7 +24,7 @@ td.om_view_subject{
 	background-color: #FFE9E9;
 }
 
-td.opemneet_paging{
+td.paging{
 	padding-top:16px;
 	text-align: center;
 	width: 100%;
@@ -93,7 +93,13 @@ input[type=text].dtpicker_omview {
 	text-align: center;
 }
 
-.onview_likeit_btn{
+#likeitBtnTd {
+	border-right: 0;
+	font-family: sans-serif;
+	font-size: x-small;
+}
+
+#likeitBtn{
 	float: left;
     overflow: hidden;
     width: 22px;
@@ -108,14 +114,41 @@ input[type=text].dtpicker_omview {
     font-size:large;
 }
 
-.onview_likeit_btn:HOVER{
+#likeitBtn:HOVER{
 	background: #ffeeee;
     border: 1px solid red;
     color: red;
     font-weight: bold;
 }
 
-.onview_likeit_num{
+#likeitCount{
  	float: left;
  	margin-top:10px;
+ 	margin-left:5px;
+ 	font-family:monospace;
+ 	font-size:small;
+ 	font-weight: bold;
+}
+#applyforBtnDisabled{
+	background-color: gray;
+	font-size: xx-small;
+	font-family: sans-serif;
+	margin-right: 5px;
+	width: 100px;
+}
+#applyforBtn{
+	font-size: xx-small;
+	font-family: sans-serif;
+	margin-right: 5px;
+	width: 100px;
+}
+#pay {
+	width: 100%;
+	height: 20px;
+	font-size: x-small;
+	color: gray;
+	text-align: right;
+}
+.hint{
+	font-size: xx-small;font-family: sans-serif;color: navy;font-weight: bold;padding-top:3px;
 }

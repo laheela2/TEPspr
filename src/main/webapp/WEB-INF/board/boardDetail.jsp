@@ -3,7 +3,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/boardwrite.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/board.write.css"/>">
 <script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
 <script>
 	window.onload = function() {
@@ -12,13 +12,10 @@
 </script>
 <script type="text/javascript">
 function cmt_check(kind) {
-	var session_id = '${sessionScope.session_m_email}';
 	var area = document.getElementById('cmt_content');
 
-	if (session_id == null || session_id.length <= 0) {
-		alertify.error("로그인 상태가 아닙니다.");
-		return false;
-	}
+	sessionCheck("${sessionScope.session_m_email}");
+	
 	if (kind == 1 && !area.value) {
 		alertify.error("댓글에 내용이 입력되지 않았습니다.");
 		area.focus();
@@ -32,7 +29,7 @@ function cmt_check(kind) {
 <table style="width:890px;" border="0" align=center>
 <tr>
 <td style="font-weight: bold;font-size: large;font-family: sans-serif;">게시판</td>
-<td align="right"><input type="button" value="목록보기" onclick="location.href='<c:url value="/board"/>'"></td>
+<td align="right"><input type="button" value="목록보기" id="backBoardListBtn"></td>
 </tr>
 </table>
 
@@ -157,6 +154,12 @@ ${cmt.C_NAME }
         $("#deleteBtn").on("click", function(e){ // 삭제버튼
             e.preventDefault();
             fn_boardDelete();
+        });
+        
+        $("#backBoardListBtn").on("click",function(e){ // 목록버튼
+        	e.preventDefault();
+        	var url = "<c:url value='/board?currentPageNo=${currentPageNo}'/>";
+        	$(location).attr("href",url);
         });
     });
     
