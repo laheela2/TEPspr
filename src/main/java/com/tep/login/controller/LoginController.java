@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tep.commons.common.TepConstants;
@@ -63,8 +64,8 @@ public class LoginController {
 		return new ModelAndView("redirect:/meetings");
 	}
 
+	
 	// Id 찾기
-
 	@RequestMapping("/findId")
 	public ModelAndView findIdForm() {
 		ModelAndView mav = new ModelAndView();
@@ -73,7 +74,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/findId", method = RequestMethod.POST)
-	public ModelAndView findId(@ModelAttribute("findId") MembersModel mem, HttpServletRequest request) throws Exception {
+	public ModelAndView findId(MembersModel mem, HttpServletRequest request) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
 		
@@ -84,10 +85,36 @@ public class LoginController {
 			return mav;
 		}else {
 			mav.addObject("findId", m);
-			mav.setViewName("findIdResult");
+			mav.setViewName("login/findIdResult");
 			return mav;
 		}
 	}
+	
+	// 비밀번호 찾기
+	@RequestMapping("/findPassword")
+	public ModelAndView findPasswordForm(){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login/findPassword");
+		return mav;
+		}
+	
+	@RequestMapping(value = "/findPassword", method =  RequestMethod.POST )
+	public ModelAndView findPassword(MembersModel mem, HttpServletRequest request ) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		MembersModel m = loginService.findPassword(mem);
+		
+		if(m == null){
+			mav.setViewName("login/findPasswordError");
+			return mav;
+		}else{
+			mav.addObject("findPassword", m);
+			mav.setViewName("login/findPasswordResult");
+			return mav;
+		}
+
+	}
+	
 }
 		
 		

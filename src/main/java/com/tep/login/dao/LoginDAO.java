@@ -16,4 +16,8 @@ public class LoginDAO extends AbstractDAO{
 		return (MembersModel) selectOne("login.findId", mem);
 	}
 
+	public MembersModel findPassword(MembersModel mem) {
+		return (MembersModel) selectOne("login.findPassword", mem);
+	}
+
 }

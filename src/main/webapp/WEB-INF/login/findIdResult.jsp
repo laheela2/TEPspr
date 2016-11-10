@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -27,11 +27,11 @@ body.find_pw_body{
 </head>
 <body class="find_Id_body">
 
-<s:if test="list.size() <= 0">
-
+<!-- <s:if test="list.size() <= 0">
+ -->
 <form action="findId" name="findId" method="post" onsubmit="return validation();">
 
-<table align="center" width="265" border="0" cellspacing="0" cellpadding="0">
+<%-- <table align="center" width="265" border="0" cellspacing="0" cellpadding="0">
 
 	<tr height="25">
 		<td bgcolor="red" align="left" colspan="1" width="10"></td>
@@ -137,14 +137,14 @@ body.find_pw_body{
 		<td height="1" colspan="4"></td>
 	</tr>
 </table>
-
-<s:iterator value="list" status="stat">
+ --%>
+<!-- <s:iterator value="list" status="stat"> -->
 
 <br>
 
 <table align="center" width="265" border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<td>회원님의 ID는 "<s:property value="m_email"/>" 입니다.<br/></td>
+		<td>회원님의 ID는 ${findId.m_email} 입니다.<br/></td>
 	</tr>
 </table>
 
@@ -166,6 +166,6 @@ body.find_pw_body{
 	</tr>
 </table>
 
-</s:else>
+</s:if>
 </body>
 </html>

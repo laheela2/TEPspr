@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tep.members.model.MembersModel;
@@ -42,7 +43,7 @@ public class MembersController {
 
 		try {
 
-/*			if (session != null && session.getAttribute(TepConstants.REG_ID_CHECK) == null) {
+			if (session != null && session.getAttribute(TepConstants.REG_ID_CHECK) == null) {
 				mav.setViewName("reject");
 				return mav;
 			} else {
@@ -51,7 +52,7 @@ public class MembersController {
 					return mav;
 				}
 			}
-*/			
+			
 			
 			mem.setM_date(Calendar.getInstance().getTime());
 			MembersModel result = membersService.insertMembers(mem);
@@ -75,4 +76,28 @@ public class MembersController {
 		mav.setViewName("membersSuccess");
 		return mav;
 	}
+	
+
+	@RequestMapping(value={"/memberIdChk"}, method=RequestMethod.GET)
+		public ModelAndView IdChk(HttpServletRequest request, @RequestParam(value="m_email") String m_email) throws Exception{
+			
+			HttpSession session= request.getSession();
+			
+			ModelAndView mav = new ModelAndView();
+			
+			MembersModel m = membersService.selectIdChk(m_email);
+			
+			if(m == null){
+				int chkId = 0;
+				session.setAttribute(TepConstants.REG_ID_CHECK, "allow");
+				mav.setViewName("members/membersForm");
+			}else{
+				int chkId = 1;
+				session.setAttribute(TepConstants.REG_ID_CHECK, "reject");
+				mav.setViewName("members/membersIdChk");
+			}
+			return mav;
+			
+			}
 }
+

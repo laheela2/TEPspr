@@ -20,4 +20,16 @@
 		WHERE 
 			m_name = #{m_name} and m_phone=#{m_phone}
       </select>
+      
+      <select id = "findPassword" parameterType="memberModel" resultType="memberModel">
+      		SELECT
+      			*
+      		FROM
+      			MEMBERS
+      		WHERE
+      			M_EMAIL=#{m_email} and M_NAME=#{m_name} and M_PHONE=#{m_phone}
+      </select>
+      
+      
+      
 </mapper>

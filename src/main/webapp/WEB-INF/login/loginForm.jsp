@@ -111,7 +111,7 @@ input.sub_btn2{
 				
 			</td>
 			<td align="right">
-				<input class="sub_btn" type="button" onclick="location.href='<c:url value="agreement"/>'" value="회원가입" />
+				<input class="sub_btn" type="button" onclick="location.href='<c:url value="agreementForm"/>'" value="회원가입" />
 			</td>
 		</tr>
 	</table>

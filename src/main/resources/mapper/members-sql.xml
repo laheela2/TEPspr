@@ -3,14 +3,14 @@
 
 <mapper namespace="members">
 
-	<insert id="insertMembers" parameterType="com.tep.members.model.MembersModel">
+	<insert id="insertMembers" parameterType="memberModel">
        <![CDATA[
            INSERT INTO MEMBERS(m_no,m_email,m_name,m_nickname,m_password,m_phone,m_company,m_fav_area,m_fav_field,m_date)
 		VALUES(members_seq.nextval,#{m_email},#{m_name},#{m_nickname},#{m_password},#{m_phone},#{m_company},#{m_fav_area},#{m_fav_field},#{m_date})
         ]]>
 	</insert>
 
-	<select id="selectOneMember" parameterType="com.tep.members.model.MembersModel" resultType="com.tep.members.model.MembersModel">
+	<select id="selectOneMember" parameterType="memberModel" resultType="memberModel">
        <![CDATA[
        		SELECT
                	m_no, m_email, m_name, m_nickname, m_password, m_company, m_phone, m_fav_area,	m_fav_field, m_date
@@ -21,5 +21,13 @@
         ]]>
 	</select>
 
+	<select id="selectIdChk" parameterType="string" resultType="memberModel">
+		SELECT
+			*
+		FROM 
+			MEMBERS
+		WHERE
+			M_EMAIL = #{M_EMAIL}
+	</select>
 
 </mapper>

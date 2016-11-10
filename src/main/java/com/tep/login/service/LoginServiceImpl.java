@@ -22,4 +22,9 @@ public class LoginServiceImpl implements LoginService{
 		return loginDAO.findId(mem);
 	}
 
+	@Override
+	public MembersModel findPassword(MembersModel mem) throws Exception {
+		return loginDAO.findPassword(mem);
+	}
+
 }

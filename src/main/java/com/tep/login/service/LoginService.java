@@ -8,4 +8,6 @@ public interface LoginService {
 
 	MembersModel findId(MembersModel mem) throws Exception;
 
+	MembersModel findPassword(MembersModel mem) throws Exception;
+
 }

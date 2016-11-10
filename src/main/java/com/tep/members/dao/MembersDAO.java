@@ -18,8 +18,8 @@ public class MembersDAO extends AbstractDAO {
 		return (MembersModel) selectOne("members.selectOneMember" , mem);
 	}
 
-//	public MembersModel membersLogin(MembersModel mem) {
-//		return (MembersModel) selectOne("members.loginCheck", mem);
-//	}
+	public MembersModel selectIdChk(String m_email) {
+		return (MembersModel) selectOne("members.selectIdChk", m_email);
+	}
 
 }

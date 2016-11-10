@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 <script type="text/javascript">
 
 function validation(){
 	if(document.findId.m_name.value==""){
-		alert("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		alert("ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		document.findId.m_name.focus();
 		return false;
 	}
 	if(document.findId.m_phone.value==""){
-		alert("ÇÚµåÆù¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+		alert("í•¸ë“œí°ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 		document.findId.m_phone.focus();
 		return false;
 	}
@@ -37,7 +37,7 @@ body.find_pw_body{
 	
 	<tr height="25">
 			<td bgcolor="red" align="left" colspan="1" width="10"></td>
-			<td align="left" colspan="3"><strong>&nbsp;&nbsp;ID Ã£±â</strong></td>
+			<td align="left" colspan="3"><strong>&nbsp;&nbsp;ID ì°¾ê¸°</strong></td>
 	</tr>
 	
 </table>
@@ -51,7 +51,7 @@ body.find_pw_body{
 	</tr>
 
 	<tr height="30">
-		<td align="center" bgcolor="#ffe9e9" width="100"><font size="2"><strong>ÀÌ¸§</strong></font></td>
+		<td align="center" bgcolor="#ffe9e9" width="100"><font size="2"><strong>ì´ë¦„</strong></font></td>
 		<td width="165">
 			&nbsp;&nbsp;<input type="text" name="m_name" maxlength="20"/>
 		</td>
@@ -62,7 +62,7 @@ body.find_pw_body{
 	</tr>
 	
 	<tr height="30">
-		<td align="center" bgcolor="#ffe9e9" width="100"><font size="2"><strong>ÇÚµåÆù ¹øÈ£</strong></font></td>
+		<td align="center" bgcolor="#ffe9e9" width="100"><font size="2"><strong>í•¸ë“œí° ë²ˆí˜¸</strong></font></td>
 		<td width="165">
 			&nbsp;&nbsp;<input type="text" name="m_phone" maxlength="20"/>
 		</td>
@@ -77,7 +77,7 @@ body.find_pw_body{
 	</tr>
 	
 	<tr>
-		<td colspan="2" align="center"><input type="submit" value="ID Ã£±â" class="login1"/></td>
+		<td colspan="2" align="center"><input type="submit" value="ID ì°¾ê¸°" class="login1"/></td>
 	</tr>
 </table>
 
