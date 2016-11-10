@@ -17,4 +17,14 @@ public class LoginServiceImpl implements LoginService{
 		return loginDAO.selectMember(mem);
 	}
 
+	@Override
+	public MembersModel findId(MembersModel mem) throws Exception{
+		return loginDAO.findId(mem);
+	}
+
+	@Override
+	public MembersModel findPassword(MembersModel mem) throws Exception {
+		return loginDAO.findPassword(mem);
+	}
+
 }

@@ -4,12 +4,10 @@ import com.tep.members.model.MembersModel;
 
 public interface MembersService {
 
-	MembersModel MembersLogin(MembersModel mem);
+	MembersModel insertMembers(MembersModel mem) throws Exception;
 
-	/*
-	 * public MembersModel getMembers(String m_email);
-	 * 
-	 * public Object insertMembers(MembersModel mem);
-	 */
+	MembersModel selectOneMember(MembersModel mem) throws Exception;
+
+	MembersModel selectIdChk(String m_email) throws Exception;
 
 }

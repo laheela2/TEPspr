@@ -1,12 +1,25 @@
 package com.tep.members.dao;
 
-import com.tep.commons.dao.AbstractDAO;
+import org.springframework.stereotype.Repository;
 
-//@Repository("membersDAO")
+import com.tep.commons.dao.AbstractDAO;
+import com.tep.members.model.MembersModel;
+
+@Repository("membersDAO")
 public class MembersDAO extends AbstractDAO {
 
-//	public MembersModel membersLogin(MembersModel mem) {
-//		return (MembersModel) selectOne("members.loginCheck", mem);
-//	}
+	public MembersModel insert(MembersModel mem) {
+		
+		return (MembersModel) insert("members.insertMembers" , mem);
+	}
+
+	public MembersModel selectOne(MembersModel mem) {
+	
+		return (MembersModel) selectOne("members.selectOneMember" , mem);
+	}
+
+	public MembersModel selectIdChk(String m_email) {
+		return (MembersModel) selectOne("members.selectIdChk", m_email);
+	}
 
 }
