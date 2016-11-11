@@ -3,64 +3,145 @@
 
 <mapper namespace="mypage">
 
-	<!-- <select id="" parameterType="" resultType="">
-        <![CDATA[
-            SELECT
-                IDX,
-                TITLE,
-                HIT_CNT,
-                CREA_DTM
-            FROM
-                BOARD
-            WHERE
-                DEL_GB = 'N'
-            ORDER BY IDX DESC
+	<select id="selectOneMember" parameterType="Integer" resultType="hashmap">
+		<![CDATA[
+            SELECT m_no, m_email, m_name, m_password, m_phone, m_date FROM members WHERE m_no = #{m_no}
         ]]>
 	</select>
 
-	<insert id="" parameterType="">
-    <![CDATA[
-        INSERT INTO BOARD
-        (
-            IDX,
-            TITLE, 
-            CONTENTS, 
-            HIT_CNT, 
-            DEL_GB, 
-            CREA_DTM, 
-            CREA_ID
-        )
-        VALUES
-        (
-            SEQ_BOARD_IDX.NEXTVAL, 
-            #{TITLE}, 
-            #{CONTENTS}, 
-            0, 
-            'N', 
-            SYSDATE, 
-            'Admin'
-        )
-    ]]>
-	</insert>
-
-	<update id="" parameterType="">
-    <![CDATA[
-        UPDATE BOARD 
-        SET
-            HIT_CNT = NVL(HIT_CNT,0)+1
-        WHERE
-            IDX = #{IDX}    
-    ]]>
+	<update id="mypageModify" parameterType="hashmap">
+		<![CDATA[
+			UPDATE members SET
+				m_name = #{m_name}, m_nickname = #{m_name}, m_password = #{m_password}, m_phone = #{m_phone}, m_company = #{m_company}, m_fav_area = #{m_fav_area}, m_fav_field = #{m_fav_field}
+			WHERE
+				m_email = #{m_email}	
+		]]>
 	</update>
-	
-	<delete id="" parameterType="">
-    <![CDATA[
-        DELETE  
-        FROM 
-        	BOARD
-        WHERE
-            IDX = #{IDX}
-    ]]>	
-	</delete> -->
 
+	<!-- 게시판 글쓴 내역 검색포함 -->
+	<select id="writeHistoryBoard" parameterType="hashmap" resultType="hashmap">
+			SELECT b_no, b_subject, b_readcount, b_date FROM board
+			<where>
+			<if test="searchKeyB != null and searchKeyB == 0">
+				B_SUBJECT like '%' || #{searchWordB} || '%' and m_no = #{m_no}
+			</if>
+			<if test="searchKeyB != null and searchKeyB == 1">
+				B_SUBJECT like '%' || #{searchWordB} || '%' or B_CONTENT like '%' ||#{searchWordB} || '%' and m_no = #{m_no}
+			</if>
+			<if test="searchKeyB == null">
+				m_no = #{m_no}
+			</if>
+		</where>
+		ORDER BY
+			B_NO DESC
+			
+	</select>
+	<!-- <select id="writeHistoryBoard" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+            SELECT b_no, b_subject, b_readcount, b_date FROM board WHERE m_no = #{m_no}
+        ]]>
+	</select> -->
+	
+	<!-- qna 내역 -->
+	<select id="qnaHistory" parameterType="hashmap" resultType="hashmap">
+            SELECT q_no, q_category1, q_title, q_content, q_date FROM QNA
+            <where>
+            	<if test="searchKey != null and searchKey == 0">
+					Q_TITLE like '%' || #{searchWord} || '%' and m_no = #{m_no}
+				</if>
+				<if test="searchKey != null and searchKey == 1">
+					Q_TITLE like '%' || #{searchWord} || '%' or Q_CONTENT like '%' ||#{searchWord} || '%' and m_no = #{m_no}
+				</if>
+				<if test="searchKey == null">
+					m_no = #{m_no}
+				</if>
+            </where>
+	</select>
+	
+	<!-- cmt 내역 -->
+	<select id="cmtHistory" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+            SELECT c_no, c_date, c_content, o_no, b_no, v_no FROM comments WHERE m_no = #{m_no} ORDER BY c_no desc
+        ]]> 
+	</select>
+	
+	<!-- 모임개설내역 -->
+	<select id="writeHistoryOmeet" parameterType="Integer" resultType="hashmap">
+            SELECT mt_no, mt_subject, mt_title, mt_readcount, mt_date, mt_content, mt_category FROM meetings
+            <where>
+            	<if test="searchKey != null and searchKey == 0">
+					MT_SUBJECT like '%' || #{searchWord} || '%' and m_no = #{m_no}
+				</if>
+				<if test="searchKey != null and searchKey == 1">
+					MT_SUBJECT like '%' || #{searchWord} || '%' or MT_CONTENT like '%' ||#{searchWord} || '%' and m_no = #{m_no}
+				</if>
+				<if test="searchKey == null">
+					m_no = #{m_no}
+				</if>
+            </where>
+            ORDER BY
+            	O_NO DESC
+	</select>
+	
+	<!-- meet 내역 -->
+	<select id="subscribeHistory" parameterType="Integer" resultType="hashmap">
+		<![CDATA[
+            SELECT ma_no, ma_snum, ma_date, o_no, m_no FROM meetingsapplyfor WHERE m_no = #{m_no}
+        ]]>
+	</select>
+	<select id="meetHistory" parameterType="Integer" resultType="hashmap">
+		<![CDATA[
+            SELECT mt_no, mt_category, mt_title, mt_subject, mt_content, mt_rep_img FROM meetings WHERE o_no = #{o_no}
+        ]]>
+	</select>
+	 
+	<!-- 마이페이지 회원정보 수정 -->
+	<update id="memberUpdate" parameterType="hashmap">
+		<![CDATA[
+            UPDATE members SET m_name=#{m_name}, m_password=#{m_password}, m_phone=#{m_phone}
+            WHERE m_email=#{m_email}
+        ]]>
+	</update>	
+	
+	<!-- 회원탈퇴 -->
+	<delete id="memDeleteMembers" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM members WHERE m_no=#{m_no}
+        ]]>
+	</delete>
+	
+	<delete id="memDeleteOpenmeet" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM meetings WHERE m_no=#{m_no}
+        ]]>
+	</delete>
+	
+	<delete id="memDeleteSubscribe" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM meetingsapplyfor WHERE m_no=#{m_no}
+        ]]>
+	</delete>
+	<delete id="memDeleteBoard" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM board WHERE m_no=#{m_no}
+        ]]>
+	</delete>
+	<delete id="memDeleteBoardHelp" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM qna WHERE m_no=#{m_no}
+        ]]>
+	</delete>
+	<delete id="memDeleteComments" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM comments WHERE m_no=#{m_no}
+        ]]>
+	</delete>
+	<delete id="memDeleteLendplaceBook" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM lendplaceapplyfor WHERE m_no=#{m_no}
+        ]]>
+	</delete>
+	
+	<!-- 회원탈퇴 완료 -->
+	
 </mapper>
