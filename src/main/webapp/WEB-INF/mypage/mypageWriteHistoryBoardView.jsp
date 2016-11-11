@@ -5,7 +5,6 @@
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 </head>
 <body>
 
@@ -50,9 +49,9 @@
 							<font class="board_subject_kind">[일반게시물]</font>
 						</c:if>
 					</td>					
-					<td class="board_subject">
-						<a href="#" name="subject">${row.B_SUBJECT}</a>
-						<input type="hidden" id="B_NO" value="${row.B_NO}">
+					<td class="board_title">
+						<a href="#" name="title">${row.B_TITLE}</a>
+						<input type="hidden" id="b_no" value="${row.B_NO}">
 					</td>
 					<td>${sessionScope.session_m_name }</td>
 					<td><fmt:formatDate value="${row.B_DATE}" pattern="yyyy.MM.dd"/></td>
@@ -76,7 +75,7 @@
 	
 <!-- 게시판 검색 -->
 					<tr>
-						<td colspan="5" align="center">
+						<td colspan="6" align="center">
 							<form method="post" action="<c:url value='/writeHistoryBoard'/>">
 								<table>
 									<tr>
@@ -87,7 +86,7 @@
 											</select>
 										</td>
 										<td>
-											<input type="text" name="searchWordB" size="15" maxlength="50" />
+											<input type="text" name="searchWordB" size="33" maxlength="15" />
 										</td>
 										<td>
 											<input type="submit" value="검색" />
@@ -103,7 +102,7 @@
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("a[name='subject']").on("click", function(e){ // 글상세보기
+    	$("a[name='title']").on("click", function(e){ // 글상세보기
             e.preventDefault();
             fn_boardDetail($(this));
         });
@@ -112,7 +111,8 @@
     function fn_boardDetail(obj){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/mypageBoardDetail' />");
-        cs.addParam("B_NO", obj.parent().find("#B_NO").val());
+        cs.addParam("b_no", obj.parent().find("#b_no").val());
+        cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();
     }
 </script> 
