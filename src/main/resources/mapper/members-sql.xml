@@ -3,31 +3,66 @@
 
 <mapper namespace="members">
 
-	<insert id="insertMembers" parameterType="memberModel">
-       <![CDATA[
-           INSERT INTO MEMBERS(m_no,m_email,m_name,m_nickname,m_password,m_phone,m_company,m_fav_area,m_fav_field,m_date)
-		VALUES(members_seq.nextval,#{m_email},#{m_name},#{m_nickname},#{m_password},#{m_phone},#{m_company},#{m_fav_area},#{m_fav_field},#{m_date})
-        ]]>
+	<insert id="insertMembers" parameterType="membersModel" useGeneratedKeys="true" keyProperty="m_no">
+		<selectKey keyProperty="m_no" resultType="int" order="BEFORE">
+			SELECT members_seq.NEXTVAL FROM DUAL
+		</selectKey>	
+		INSERT INTO
+			members
+		VALUES
+		(
+			#{m_no},
+			#{m_name},
+			#{m_email},
+			#{m_password},
+			#{m_phone},
+			sysdate
+		)
 	</insert>
 
-	<select id="selectOneMember" parameterType="memberModel" resultType="memberModel">
-       <![CDATA[
-       		SELECT
-               	m_no, m_email, m_name, m_nickname, m_password, m_company, m_phone, m_fav_area,	m_fav_field, m_date
-        	 FROM
-                members
-             WHERE 
-             	m_email = #{m_email} 
-        ]]>
+	<select id="selectMEmailMembers" parameterType="membersModel" resultType="membersModel">
+		SELECT
+			*
+		FROM
+			members
+		WHERE
+			m_email=#{m_email}
 	</select>
 
-	<select id="selectIdChk" parameterType="string" resultType="memberModel">
+	<select id="selectMNoMembers" parameterType="int" resultType="membersModel">
+		SELECT
+			*
+		FROM
+			members
+		WHERE
+			m_no=#{m_no}
+	</select>
+
+	<select id="selectMembersLogin" parameterType="membersModel" resultType="membersModel">
 		SELECT
 			*
 		FROM 
-			MEMBERS
+			members
 		WHERE
-			M_EMAIL = #{M_EMAIL}
+			m_email=#{m_email} and m_password=#{m_password}
 	</select>
+
+	<select id="selectFindEmail" parameterType="membersModel" resultType="membersModel">	
+		SELECT
+			*
+		FROM
+			members
+		WHERE 
+			m_name=#{m_name} and m_phone=#{m_phone}
+      </select>
+      
+      <select id = "selectFindPassword" parameterType="membersModel" resultType="membersModel">
+      		SELECT
+      			*
+      		FROM
+      			members
+      		WHERE
+      			m_email=#{m_email} and m_name=#{m_name} and m_phone=#{m_phone}
+      </select>
 
 </mapper>

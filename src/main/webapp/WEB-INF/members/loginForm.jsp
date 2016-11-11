@@ -40,12 +40,12 @@
 	}
 
 	function findId() {
-		var url = "findId";
+		var url = '<c:url value="/members/find/email"/>';
 		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=130");
 	}
 	
 	function findPassword() {
-		var url = "findPassword";
+		var url = '<c:url value="/members/find/password"/>';
 		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=130");
 	}
 </script>
@@ -106,12 +106,10 @@ input.sub_btn2{
 					<td><input class="sub_btn2" type="button" onclick="findPassword();" value="PW찾기" /></td>
 				</tr>
 			</table>
-			
-			
 				
 			</td>
 			<td align="right">
-				<input class="sub_btn" type="button" onclick="location.href='<c:url value="agreementForm"/>'" value="회원가입" />
+				<input class="sub_btn" type="button" onclick="location.href='<c:url value="/agreement/form"/>'" value="회원가입" />
 			</td>
 		</tr>
 	</table>

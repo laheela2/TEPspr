@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="<c:url value='resources/css/boardview.css'/>" type="text/css">
-<link rel="stylesheet" href="<c:url value='resources/css/root.css'/>"type="text/css">
+<%@ include file="/WEB-INF/include/common-header.jspf" %>
 <style type="text/css">
 table.login_table {
 	border-style: solid;
@@ -32,7 +29,7 @@ td.login_btn_grp {
 }
 
 input.login_btn {
-	width: 100px;
+	width: 120px;
 	height: 50px;
 }
 </style>
@@ -69,9 +66,9 @@ input.login_btn {
 
 	<tr>
 		<td class="login_btn_grp">
-			<input class="login_btn" type="button" value="마이페이지" onclick="location.href='mypageView'">
+			<input class="login_btn" type="button" value="마이페이지" onclick="location.href='<c:url value="/mypageView"/>'">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input class="login_btn" type="button" value="모임목록페이지" onclick="location.href='meetings'">
+		<input class="login_btn" type="button" value="모임목록페이지" onclick="location.href='<c:url value="/meetings"/>'">
 		</td>
 	</tr>
 

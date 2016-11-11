@@ -7,19 +7,30 @@ import com.tep.members.model.MembersModel;
 
 @Repository("membersDAO")
 public class MembersDAO extends AbstractDAO {
+	private final String NAMESPACE = "members.";
 
-	public MembersModel insert(MembersModel mem) {
-		
-		return (MembersModel) insert("members.insertMembers" , mem);
+	public int insertMembers(MembersModel mem) {
+		return (int) insert(NAMESPACE+"insertMembers" , mem);
 	}
 
-	public MembersModel selectOne(MembersModel mem) {
+	public MembersModel selectMEmailMembers(String m_email) {
+		return (MembersModel) selectOne(NAMESPACE+"selectMEmailMembers",m_email);
+	}
 	
-		return (MembersModel) selectOne("members.selectOneMember" , mem);
+	public MembersModel selectMNoMembers(int m_no) {
+		return (MembersModel) selectOne(NAMESPACE+"selectMNoMembers",m_no);
 	}
 
-	public MembersModel selectIdChk(String m_email) {
-		return (MembersModel) selectOne("members.selectIdChk", m_email);
+	public MembersModel selectMembersLogin(MembersModel mem) {
+		return (MembersModel) selectOne(NAMESPACE+"selectMembersLogin",mem);
+	}
+
+	public MembersModel selectFindEmail(MembersModel mem) {
+		return (MembersModel) selectOne(NAMESPACE+"selectFindEmail",mem);
+	}
+	
+	public MembersModel selectFindPassword(MembersModel mem) {
+		return (MembersModel) selectOne(NAMESPACE+"selectFindPassword",mem);
 	}
 
 }

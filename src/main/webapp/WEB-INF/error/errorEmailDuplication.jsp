@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script language="javascript">
+<script>
 	window.onload = function() {
-		alert("아이디가 중복 되었거나, 중복 확인을 하지 않았습니다.");
+		alert("이메일이 중복 되었거나, 중복 확인을 하지 않았습니다.");
 		history.go(-1);
 	}
 </script>

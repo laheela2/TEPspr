@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script language="javascript">
+<script>
 	window.onload = function() {
-		alert("비밀번호 리셋이 실패하였습니다.");
+		alert("이메일이 존재하지 않거나 비밀번호가 일치하지 않습니다");
 		history.go(-1);
 	}
 </script>

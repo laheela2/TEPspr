@@ -14,7 +14,9 @@
 function cmt_check() {
 	var area = document.getElementById('cmt_content');
 
-	sessionCheck("${sessionScope.session_m_email}");
+	if(!sessionCheck("${sessionScope.session_m_email}")){
+		return false;
+	}
 	
 	if (!area.value) {
 		alertify.error("댓글에 내용이 입력되지 않았습니다.");
@@ -38,13 +40,13 @@ function cmt_check() {
 <tr>
 <td class="bw_title">종&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;류</td>
 <td  class="bw_content">
-<c:if test="${data.b_kind == 0 }">
+<c:if test="${data.B_KIND == 0 }">
 일반
 </c:if>
-<c:if test="${data.b_kind == 1 }">
+<c:if test="${data.B_KIND == 1 }">
 스승찾기
 </c:if>
-<c:if test="${data.b_kind == 2 }">
+<c:if test="${data.B_KIND == 2 }">
 제자찾기
 </c:if>
 </td>
@@ -53,36 +55,36 @@ function cmt_check() {
 <tr>
 <td class="bw_title">카테고리</td>
 <td  class="bw_content">
-${data.b_category}
+${data.B_CATEGORY}
 </td>
 </tr>
 
 <tr>
 <td class="bw_title">관심분야</td>
 <td class="bw_content">
-${data.b_fav_field}
+${data.B_FAV_FIELD}
 </td>
 </tr>
 
 <tr>
 <td class="bw_title">관심지역</td>
 <td class="bw_content">
-${data.b_fav_area}
+${data.B_FAV_AREA}
 </td>
 </tr>
 
 <tr>
 <td class="bw_title">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</td>
-<td class="bw_content">${data.b_title }</td>
+<td class="bw_content">${data.B_TITLE}</td>
 </tr>
 
 <tr>
 <td colspan="2">
-<textarea id="b_content" disabled="disabled">${data.b_content }</textarea>
+<textarea id="b_content" disabled="disabled">${data.B_CONTENT}</textarea>
 </td>
 </tr>
 
-<c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.m_no }">
+<c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.M_NO }">
 <tr>
 <td colspan="2" align="right" style="border:none;">
 <input type="button" value="수정" id="modifyBtn">
@@ -98,7 +100,7 @@ ${data.b_fav_area}
 <hr class="om_detail_hr">
 
 <form action="<c:url value="/board/insertcmt"/>" onsubmit="return cmt_check();" method="post">
-	<input type="hidden" name="b_no" value="${data.b_no }">
+	<input type="hidden" name="b_no" value="${data.B_NO }">
 	<div style="padding-right:6px;padding-bottom:5px;"><textarea id="cmt_content" name="c_content"></textarea></div>
 	<div align="right"><input type="submit" value="내용입력"></div>
 </form>
@@ -106,18 +108,19 @@ ${data.b_fav_area}
 <c:forEach items="${cmtList }" var="cmt">
 <hr />
 <div style="padding-left:13px;font-weight: bold;font-family: sans-serif;font-size: x-small;">
-${cmt.c_name }&nbsp;&nbsp;&nbsp;<font style="font-size: xx-small;"><fmt:formatDate value="${cmt.c_date}" pattern="yyyy년MM월dd일 hh:mm:ss"/></font>
+${cmt.C_NAME }&nbsp;&nbsp;&nbsp;
+<font style="font-size: xx-small;font-weight: lighter;"><fmt:formatDate value="${cmt.C_DATE}" pattern="yy/MM/dd hh:mm:ss"/></font>
 
 <!-- 댓글 삭제 -->
-<c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == cmt.m_no }">
+<c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == cmt.M_NO }">
 	<span style="float:right;">
 		<a href="#" name="deleteCmtBtn">삭제</a>
-		<input type="hidden" id="c_no" value="${cmt.c_no}">
+		<input type="hidden" id="c_no" value="${cmt.C_NO}">
 	</span>
 </c:if>
 
 </div>
-<div style="padding-top:5px; padding-left:13px;font-family: monospace;font-size: x-small;">${cmt.c_content }</div>
+<div style="padding-top:5px; padding-left:13px;font-family: monospace;font-size: x-small;">${cmt.C_CONTENT }</div>
 </c:forEach>
 
 </td>
@@ -154,21 +157,21 @@ ${cmt.c_name }&nbsp;&nbsp;&nbsp;<font style="font-size: xx-small;"><fmt:formatDa
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/deletecmt' />");
         cs.addParam("c_no", obj.parent().find("#c_no").val());
-        cs.addParam("b_no", '${data.b_no }');
+        cs.addParam("b_no", '${data.B_NO }');
         cs.submit();
     }
     
 	function fn_boardModify(){
 		var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/modify' />");
-        cs.addParam("b_no", '${data.b_no }');
+        cs.addParam("b_no", '${data.B_NO }');
         cs.submit("GET");
 	}
 	
 	function fn_boardDelete(){
 		var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/delete' />");
-        cs.addParam("b_no", '${data.b_no }');
+        cs.addParam("b_no", '${data.B_NO }');
         cs.submit();
 	}
 </script> 

@@ -32,7 +32,7 @@ public interface TepConstants {
 	String SAVEURI = "save_current_page_uri";
 	
 	/**
-	 * 회원 가입시 아이디 중복확인 세션저장 키
+	 * 회원 가입시 이메일 중복확인 세션저장 키
 	 */
-	String REG_ID_CHECK = "registration_id_check";
+	String DUPLICATION_CHECK = "duplication_email_check";
 }

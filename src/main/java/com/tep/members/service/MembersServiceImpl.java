@@ -17,17 +17,28 @@ public class MembersServiceImpl implements MembersService {
 
 	@Override
 	public MembersModel insertMembers(MembersModel mem) throws Exception {
-		return membersDAO.insert(mem);
+		int m_no = membersDAO.insertMembers(mem);
+		return membersDAO.selectMNoMembers(m_no);
 	}
 
 	@Override
-	public MembersModel selectOneMember(MembersModel mem) throws Exception {
-		return membersDAO.selectOne(mem);
+	public MembersModel selectMEmailMembers(String m_email) throws Exception {
+		return membersDAO.selectMEmailMembers(m_email);
 	}
 
 	@Override
-	public MembersModel selectIdChk(String m_email) throws Exception {
-		return membersDAO.selectIdChk(m_email);
+	public MembersModel selectMembersLogin(MembersModel mem) throws Exception {
+		return membersDAO.selectMembersLogin(mem);
+	}
+	
+	@Override
+	public MembersModel selectFindPassword(MembersModel mem) throws Exception {
+		return membersDAO.selectFindPassword(mem);
+	}
+
+	@Override
+	public MembersModel selectFindEmail(MembersModel mem) throws Exception {
+		return membersDAO.selectFindEmail(mem);
 	}
 
 }

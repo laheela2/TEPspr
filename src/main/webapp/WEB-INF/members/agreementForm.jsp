@@ -36,7 +36,7 @@ textarea {
 
 <body>
 
-<form action="<c:url value="/membersForm"/>" method="post" onsubmit="return check_agree(this);">
+<form action="<c:url value="/members/form"/>" method="post" onsubmit="return check_agree(this);">
 	<table align="center" width="834" border="0" cellspacing="0" cellpadding="0">
 		<tr height="25">
 			<td bgcolor="#FF2929" align="left" colspan="1" width="10"></td>

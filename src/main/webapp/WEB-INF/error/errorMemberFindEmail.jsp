@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script language="javascript">
+<script>
 	window.onload = function() {
-		alert("아이디가 존재하지 않습니다.");
+		alert("이메일이 존재하지 않습니다.");
 		history.go(-1);
 	}
 </script>

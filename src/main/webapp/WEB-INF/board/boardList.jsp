@@ -21,25 +21,25 @@
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
 				<tr>
-					<td>${row.b_no}</td>
+					<td>${row.B_NO}</td>
 					<td class="board_kind">
-						<c:if test="${row.b_kind == 0}">
+						<c:if test="${row.B_KIND == 0}">
 							<font class="board_title_kind">[일반게시물]</font>
 						</c:if>
-						<c:if test="${row.b_kind == 1 }">
+						<c:if test="${row.B_KIND == 1 }">
 							<font class="board_title_kind">[스승찾아요]</font>
 						</c:if>
-						<c:if test="${row.b_kind == 2 }">
+						<c:if test="${row.B_KIND == 2 }">
 							<font class="board_title_kind">[제자찾아요]</font>
 						</c:if>
 					</td>					
 					<td class="board_title">
-						<a href="#" name="title">${row.b_title}</a>
-						<input type="hidden" id="b_no" value="${row.b_no}">
+						<a href="#" name="title">${row.B_TITLE}</a>
+						<input type="hidden" id="b_no" value="${row.B_NO}">
 					</td>
-					<td>${row.b_name}</td>
-					<td><fmt:formatDate value="${row.b_date}" pattern="yyyy.MM.dd"/></td>
-					<td>${row.b_readcount}</td>
+					<td>${row.B_NAME}</td>
+					<td><fmt:formatDate value="${row.B_DATE}" pattern="yyyy.MM.dd"/></td>
+					<td>${row.B_READCOUNT}</td>
 				</tr>
 			</c:forEach>
 		</c:when>
@@ -87,8 +87,9 @@
     $(document).ready(function(){
         $("#write").on("click", function(e){ // 글쓰기 버튼
             e.preventDefault();
-            sessionCheck("${sessionScope.session_m_email}");
-            fn_boardWrite();
+            if(sessionCheck('${sessionScope.session_m_email}')){
+            	fn_boardWrite();
+            };
         }); 
          
         $("a[name='title']").on("click", function(e){ // 글상세보기

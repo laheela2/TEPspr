@@ -109,7 +109,6 @@ public class BoardController {
     	HttpSession session = request.getSession();
     	
     	map.put("m_no", session.getAttribute(TepConstants.M_NO));
-    	
     	boardService.insertComments(map.getMap());
     	return new ModelAndView("redirect:/board/detail?b_no="+map.get("b_no"));
     }

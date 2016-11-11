@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-		${findPassword.m_name}님의 비밀번호는 <strong>${findPassword.m_password}</strong>입니다.
+		비밀번호는 <strong>${password}</strong>입니다.
 </div>
 </body>
 </html>

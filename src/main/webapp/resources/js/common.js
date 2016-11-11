@@ -13,6 +13,8 @@ function sessionCheck(sessionID) {
 	if (isNullCheck(sessionID)) {
 		alertify.error("로그인 상태가 아닙니다.");
 		return false;
+	} else {
+		return true;
 	}
 }
 

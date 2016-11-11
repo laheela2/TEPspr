@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="<c:url value='resources/css/boardview.css'/>" type="text/css">
-<link rel="stylesheet" href="<c:url value='resources/css/root.css'/>" type="text/css">
-<link rel="stylesheet" href="<c:url value='resources/css/alertify.default.css'/>" type="text/css">
-<script src="<c:url value='/resources/js/alertify.min.js'/>"></script>
-<script src="<c:url value='/resources/js/jquery-3.1.0.js'/>"></script>
-<title>회원가입폼</title>
+<%@ include file="/WEB-INF/include/common-header.jspf" %>
 <script type="text/javascript">
 	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	var kor_check = /([^가-힣ㄱ-ㅎㅏ-ㅣ\x20])/i;
@@ -48,12 +39,6 @@
 			return false;
 		}
 		
-		if (join.m_nickname.value == "") {
-			alertify.error("닉네임을 입력해주세요");
-			join.m_nickname.focus();
-			return false;
-		} 
-		
 		if (join.m_password.value == "") {
 			alertify.error("비밀번호를 입력해주세요");
 			join.m_password.focus();
@@ -83,7 +68,7 @@
 	}
 
 	function openConfirmId(userinput) {
-		var url = "membersIdChk?m_email=" + document.userinput.m_email.value;
+		var url = '<c:url value="/members/duplication"/>?m_email=' + document.userinput.m_email.value;
 		var join = document.userinput;
 		if (!userinput.m_email.value.match(regExp)) {
 			alertify.error("이메일 형식과 맞지 않습니다.");
@@ -118,12 +103,12 @@ table.memform_table {
 		<h3>
 			<font size="4">회원가입 정보입력</font>
 		</h3>
-		<br>
-		<form method="post" action="insertMembers" name="userinput">
+		
+		<form method="post" action="<c:url value="/members/insert"/>" name="userinput">
 			<table class="memform_table" border="0" cellpadding="6" cellspacing="0">
 				<tr>
 					<td>
-						<font color="red">*</font> ID(이메일)
+						<font color="red">*</font> 이메일
 					</td>
 					<td>
 						<input type="text" name="m_email" id="m_email" style="ime-mode: disabled" maxlength="23">
@@ -142,14 +127,6 @@ table.memform_table {
 				</tr>
 				<tr>
 					<td>
-						<font color="red">*</font> 닉네임
-					</td>
-					<td>
-						<input type="text" name="m_nickname" id="m_nickname"  maxlength="13">
-					</td>
-				</tr>
-				<tr>
-					<td>
 						<font color="red">*</font> 패스워드
 					</td>
 					<td>
@@ -164,28 +141,10 @@ table.memform_table {
 						<input type="text" name="m_phone" id="m_phone" placeholder="ex) 010-1234-1234"  maxlength="13">
 					</td>
 				</tr>
-				<tr>
-					<td>소속</td>
-					<td>
-						<input type="text" name="m_company" id="m_company"  maxlength="13">
-					</td>
-				</tr>
-				<tr>
-					<td>관심 지역</td>
-					<td>
-						<input type="text" name="m_fav_area" id="m_fav_area"  maxlength="13">
-					</td>
-				</tr>
-				<tr>
-					<td>관심 분야</td>
-					<td>
-						<input type="text" name="m_fav_field" id="m_fav_field"  maxlength="13">
-					</td>
-				</tr>
 
 				<tr>
 					<td colspan="2" align="center">
-						<input type="button" style="width: 113px" value="취소" onclick="window:location='meetings'">
+						<input type="button" style="width: 113px" value="취소" onclick="window:location='<c:url value="/meetings"/>'">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" style="width: 113px" value="등록" onclick="insert()">
 					</td>

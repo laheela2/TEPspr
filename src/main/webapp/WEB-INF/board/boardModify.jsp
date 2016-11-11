@@ -10,11 +10,11 @@
 		CKEDITOR.replace('b_content');
 		
 		var f = document.mForm;
-		f.b_kind.value='${data.b_kind}';
-		f.b_category.value='${data.b_category}';
-		f.b_fav_field.value='${data.b_fav_field}';
-		f.b_fav_area.value='${data.b_fav_area}';
-		f.b_title.value='${data.b_title}';
+		f.b_kind.value='${data.B_KIND}';
+		f.b_category.value='${data.B_CATEGORY}';
+		f.b_fav_field.value='${data.B_FAV_FIELD}';
+		f.b_fav_area.value='${data.B_FAV_AREA}';
+		f.b_title.value='${data.B_TITLE}';
 	}
 	
 	function fn_validation(){
@@ -38,7 +38,7 @@
 
 <body>
 <form name="mForm" action='<c:url value="/board/modify"/>' method="post" onsubmit="return fn_validation();">
-<input type="hidden" name="b_no" value="${data.b_no}">
+<input type="hidden" name="b_no" value="${data.B_NO}">
 <table class="boardwrite" align=center border="0">
 
 <tr>
@@ -115,7 +115,7 @@
 
 <tr>
 <td class="bw_title">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</td>
-<td><textarea name="b_content">${data.b_content }</textarea></td>
+<td><textarea name="b_content">${data.B_CONTENT }</textarea></td>
 </tr>
 
 <tr>
