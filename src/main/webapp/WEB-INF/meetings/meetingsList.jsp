@@ -33,31 +33,31 @@
 				<table class="om_img_base">
 					<tr>
 						<td colspan="2">
-							<a href="#" id="subject"><img id="repIMG" src='${row.O_REP_IMG }'/></a>
-							<input type="hidden" id="O_NO" value="${row.O_NO }">
+							<a href="#" id="title"><img id="repIMG" src='${row.mt_rep_img }'/></a>
+							<input type="hidden" id="mt_no" value="${row.mt_no }">
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2" class="om_view_subject">
-							<a href="#" id="subject">${row.O_SUBJECT }</a>
-							<input type="hidden" id="O_NO" value="${row.O_NO }">
+						<td colspan="2" class="om_view_title">
+							<a href="#" id="title">${row.mt_title }</a>
+							<input type="hidden" id="mt_no" value="${row.mt_no }">
 						</td>
 					</tr>
 					<tr>
 						<td align="center" id="likeitBtnTd">
 							<a href="#" id="likeitBtn">♡</a>
-							<input type="hidden" id="O_NO" value="${row.O_NO }">
-							<span id="likeitCount">${row.O_LIKEIT }</span>
+							<input type="hidden" id="mt_no" value="${row.mt_no }">
+							<span id="likeitCount">${row.mt_likeit}</span>
 						</td>
 						
 						<td align="right" style="border-left:0;">
 							<c:choose>
-								<c:when test="${row.O_PERMIT_PNUM <= 0 }">
+								<c:when test="${row.mt_permit_pnum <= 0 }">
 									<input id="applyforBtnDisabled" type="button" value="신청마감" disabled="disabled">
 								</c:when>
 								<c:otherwise>
-									<input id="applyforBtn" type="button" value="${row.O_PERMIT_PNUM }명 신청가능"">
-									<input type="hidden" id="O_NO" value="${row.O_NO }">
+									<input id="applyforBtn" type="button" value="${row.mt_permit_pnum }명 신청가능"">
+									<input type="hidden" id="mt_no" value="${row.mt_no }">
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -159,14 +159,6 @@
 
 <br>
 
-<div class="title">참여비용</div>
-<div style="padding-left:2.2px;padding-right:2.2px;">
-	<input id="pay" type="number" maxlength="7">
-</div>
-<div class="hint">*0원으로 입력하면 '무료' 모임이 검색 됩니다.</div>
-
-<br>
-
 <div class="title">모임기간</div>
 <div style="text-align: center;">
 	<input type="text" class="dtpicker_omview" id="startdt" size="5">&nbsp;&nbsp;~&nbsp;
@@ -195,7 +187,7 @@
             fn_meetingsApplyfor($(this));
         }); 
          
-        $("#subject").on("click", function(e){ // 모임 상세보기
+        $("#title").on("click", function(e){ // 모임 상세보기
             e.preventDefault();
             fn_meetingsDetail($(this));
         });
@@ -211,7 +203,7 @@
     function fn_meetingsLikeit(obj){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/meetings/likeit' />");
-        cs.addParam("O_NO", obj.parent().find("#O_NO").val());
+        cs.addParam("mt_no", obj.parent().find("#mt_no").val());
         cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();
     }
@@ -219,7 +211,7 @@
     function fn_meetingsApplyfor(obj){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/meetings/applyfor' />");
-        cs.addParam("O_NO", obj.parent().find("#O_NO").val());
+        cs.addParam("mt_no", obj.parent().find("#mt_no").val());
         cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();
     }
@@ -227,7 +219,7 @@
     function fn_meetingsDetail(obj){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/meetings/detail' />");
-        cs.addParam("O_NO", obj.parent().find("#O_NO").val());
+        cs.addParam("mt_no", obj.parent().find("#mt_no").val());
         cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();
     }

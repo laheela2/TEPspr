@@ -5,145 +5,133 @@
 
 	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
 		SELECT
-			B_NO,
-			B_KIND,
-			B_SUBJECT,
-			B_NAME,
-			B_DATE,
-			B_READCOUNT
+			b_no,
+			b_kind,
+			b_title,
+			b_date,
+			b_readcount,
+			m_name as b_name
 		FROM
-			BOARD
+			board natural join members
 		<where>
 			<if test="searchKey != null and searchKey == 0">
-				B_SUBJECT like '%' || #{searchWord} || '%'
+				b_title like '%' || #{searchWord} || '%'
 			</if>
 			<if test="searchKey != null and searchKey == 1">
-				B_SUBJECT like '%' || #{searchWord} || '%' or B_CONTENT like '%' ||#{searchWord} || '%'
+				b_title like '%' || #{searchWord} || '%' or b_content like '%' ||#{searchWord} || '%'
 			</if>
 			<if test="searchKey != null and searchKey == 2">
-				B_NAME like '%' || #{searchWord} || '%'
+				m_name like '%' || #{searchWord} || '%'
 			</if>
 		</where>
 		ORDER BY
-			B_NO DESC
+			b_no DESC
 	</select>
 
 	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
 		SELECT
-			B_NO,
-			B_KIND,
-			B_NAME,
-			B_EMAIL,
-			B_COMPANY,
-			B_CATEGORY,
-			B_SUBJECT,
-			B_CONTENT,
-			B_FAV_AREA,
-			B_FAV_FIELD,
-			B_PAYMENT,
-			B_DATE,
-			B_READCOUNT,
-			M_NO
+			b_no,
+			b_kind,
+			b_category,
+			b_title,
+			b_content,
+			b_fav_area,
+			b_fav_field,
+			b_date,
+			b_readcount,
+			m_no
 		FROM
-			BOARD
+			board
 		WHERE
-			B_NO = #{B_NO}
+			b_no=#{b_no}
 	</select>
 	
 	<select id="selectCmtList" parameterType="hashmap" resultType="hashmap">
 		SELECT
-			C_NO,
-			C_NAME,
-			C_CONTENT,
-			C_DATE,
-			C_MY_NO,
-			O_NO,
-			B_NO,
-			M_NO
+			c_no,
+			c_content,
+			c_date,
+			m_no,
+			m_name as c_name
 		FROM
-			COMMENTS
+			comments natural join members
 		WHERE
-			B_NO = #{B_NO}
+			b_no=#{b_no}
 		ORDER BY
-			C_NO DESC
+			c_no DESC
 	</select>	
 
 	<update id="updateBoardReadCount" parameterType="hashmap">
-        UPDATE BOARD
+        UPDATE 
+        	board
         SET
-            B_READCOUNT = NVL(B_READCOUNT,0)+1
+            b_readcount=NVL(b_readcount,0)+1
         WHERE
-            B_NO = #{B_NO}
+            b_no=#{b_no}
 	</update>
 	
 	<update id="updateBoard" parameterType="hashmap">
-        UPDATE BOARD
+        UPDATE
+        	board
         SET
-            B_KIND = #{B_KIND},
-            B_CATEGORY = #{B_CATEGORY},
-			B_SUBJECT = #{B_SUBJECT},
-			B_CONTENT = #{B_CONTENT},
-			B_FAV_AREA = #{B_FAV_AREA},
-			B_FAV_FIELD = #{B_FAV_FIELD},
-			B_PAYMENT = #{B_PAYMENT}
+            b_kind=#{b_kind},
+            b_category=#{b_category},
+			b_title=#{b_title},
+			b_content=#{b_content},
+			b_fav_area=#{b_fav_area},
+			b_fav_field=#{b_fav_field}
         WHERE
-            B_NO = #{B_NO} and M_NO=#{M_NO}
+            b_no=#{b_no} and m_no=#{m_no}
 	</update>
 
 	<insert id="insertCmt" parameterType="hashmap">
-		INSERT INTO COMMENTS
+		INSERT INTO comments
 		(
-			C_NO,
-			C_NAME,
-			C_CONTENT,
-			C_DATE,
-			B_NO,
-			M_NO
+			c_no,
+			c_content,
+			c_date,
+			b_no,
+			m_no
 		)
 		VALUES
 		(
-			COMMENTS_SEQ.NEXTVAL,
-			#{C_NAME},
-			#{C_CONTENT},
-			SYSDATE,
-			#{B_NO},
-			#{M_NO}
+			comments_seq.nextval,
+			#{c_content},
+			sysdate,
+			#{b_no},
+			#{m_no}
 		)
 	</insert>
 	
 	<insert id="insertBoard" parameterType="hashmap">
-		INSERT INTO BOARD
+		INSERT INTO board
 		VALUES
 		(
-			BOARD_SEQ.NEXTVAL,
-			#{B_KIND},
-			#{B_NAME},
-			#{B_EMAIL},
-			#{B_COMPANY},
-			#{B_CATEGORY},
-			#{B_SUBJECT},
-			#{B_CONTENT},
-			#{B_FAV_AREA},
-			#{B_FAV_FIELD},
-			#{B_PAYMENT},
-			SYSDATE,
+			board_seq.nextval,
+			#{b_kind},
+			#{b_category},
+			#{b_title},
+			#{b_content},
+			#{b_fav_area},
+			#{b_fav_field},
+			sysdate,
 			0,
-			#{M_NO}
+			#{m_no}
 		)
 	</insert>
 	
 	<delete id="deleteCmt" parameterType="hashmap">
 		DELETE FROM 
-			COMMENTS 
-		WHERE C_NO=#{C_NO} and M_NO=#{M_NO}
+			comments 
+		WHERE c_no=#{c_no} and m_no=#{m_no}
 	</delete>
 
 	<delete id="deleteBoard" parameterType="hashmap">
 		{call
 			declare
 			begin
-				DELETE FROM COMMENTS WHERE B_NO=#{B_NO};
-				DELETE FROM BOARD WHERE B_NO=#{B_NO} and M_NO=#{M_NO};
+				DELETE FROM comments WHERE b_no=#{b_no};
+				DELETE FROM board WHERE b_no=#{b_no} and m_no=#{m_no};
 			end
 		}
 	</delete>

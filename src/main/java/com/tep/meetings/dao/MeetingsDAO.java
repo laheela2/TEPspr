@@ -15,7 +15,7 @@ public class MeetingsDAO extends AbstractDAO{
 		return (List<Map<String, Object>>) selectList("meetings.selectList",map);
 	}
 
-	public int selectLikeitCount(int o_no){
-		return (int) selectOne("meetings.selectLikeitCount", o_no);
+	public int selectLikeitCount(int mt_no){
+		return (int) selectOne("meetings.selectLikeitCount", mt_no);
 	}
 }

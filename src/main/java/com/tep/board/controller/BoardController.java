@@ -18,7 +18,6 @@ import com.tep.commons.common.CommandMap;
 import com.tep.commons.common.TepConstants;
 import com.tep.commons.util.PagingCalculator;
 import com.tep.commons.util.TepUtils;
-import com.tep.members.model.MembersModel;
 
 @Controller
 public class BoardController {
@@ -75,14 +74,7 @@ public class BoardController {
     
     @RequestMapping(value="/board/write", method=RequestMethod.POST)
     public ModelAndView boardWrite(CommandMap map, HttpServletRequest request) throws Exception{
-    	HttpSession session = request.getSession();
-    	MembersModel mm = (MembersModel) session.getAttribute(TepConstants.M_OBJECT);
-    	
-    	map.put("B_NAME", mm.getM_name());
-    	map.put("B_EMAIL", mm.getM_email());
-    	map.put("B_COMPANY", mm.getM_company());
-    	map.put("M_NO", mm.getM_no());
-    	
+    	map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
     	boardService.insertBoard(map.getMap());
     	return new ModelAndView("redirect:/board");
     }
@@ -98,15 +90,15 @@ public class BoardController {
     
     @RequestMapping(value="/board/modify", method=RequestMethod.POST)
     public ModelAndView boardModify(CommandMap map, HttpServletRequest request) throws Exception{
-    	map.put("M_NO", request.getSession().getAttribute(TepConstants.M_NO));
+    	map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
     	
     	boardService.updateBoard(map.getMap());
-    	return new ModelAndView("redirect:/board/detail?B_NO="+map.get("B_NO"));
+    	return new ModelAndView("redirect:/board/detail?b_no="+map.get("b_no"));
     }
     
     @RequestMapping(value="/board/delete", method=RequestMethod.POST)
     public ModelAndView boardDelete(CommandMap map, HttpServletRequest request) throws Exception{
-    	map.put("M_NO", request.getSession().getAttribute(TepConstants.M_NO));
+    	map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
     	
     	boardService.deleteBoard(map.getMap());
     	return new ModelAndView("redirect:/board");
@@ -116,19 +108,18 @@ public class BoardController {
     public ModelAndView insertCmt(CommandMap map, HttpServletRequest request) throws Exception{
     	HttpSession session = request.getSession();
     	
-    	map.put("C_NAME", session.getAttribute(TepConstants.M_NAME));
-    	map.put("M_NO", session.getAttribute(TepConstants.M_NO));
+    	map.put("m_no", session.getAttribute(TepConstants.M_NO));
     	
     	boardService.insertComments(map.getMap());
-    	return new ModelAndView("redirect:/board/detail?B_NO="+map.get("B_NO"));
+    	return new ModelAndView("redirect:/board/detail?b_no="+map.get("b_no"));
     }
     
     @RequestMapping(value="/board/deletecmt", method=RequestMethod.POST)
     public ModelAndView deleteCmt(CommandMap map, HttpServletRequest request) throws Exception{
     	HttpSession session = request.getSession();
-    	map.put("M_NO", session.getAttribute(TepConstants.M_NO));
+    	map.put("m_no", session.getAttribute(TepConstants.M_NO));
     	
     	boardService.deleteComments(map.getMap());
-    	return new ModelAndView("redirect:/board/detail?B_NO="+map.get("B_NO"));
+    	return new ModelAndView("redirect:/board/detail?b_no="+map.get("b_no"));
     }
 }

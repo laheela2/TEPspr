@@ -4,12 +4,12 @@
 <mapper namespace="meetings">
 	<select id="selectList" parameterType="hashmap" resultType="hashmap">
 		SELECT
-			O_NO,
-			O_SUBJECT,
-			O_REP_IMG,
-			(O_TOTAL_PNUM - O_CURRENT_PNUM) as O_PERMIT_PNUM
+			mt_no,
+			mt_title,
+			mt_rep_img,
+			(mt_total_pnum - mt_current_pnum) as mt_permit_pnum
 		FROM
-			OPENMEET
+			meetings
 <!-- 		<where>
 			<if test="searchKey != null and searchKey == 0">
 				B_SUBJECT like '%' || #{searchWord} || '%'
@@ -22,15 +22,15 @@
 			</if>
 		</where> -->
 		ORDER BY
-			O_NO DESC
+			mt_no desc
 	</select>
 	
 	<select id="selectLikeitCount" parameterType="int" resultType="int">
 		SELECT
-			COUNT(*)
+			count(*)
 		FROM
-			LIKEIT
+			likeit
 		WHERE
-			O_NO=#{o_no}
+			mt_no=#{mt_no}
 	</select>
 </mapper>

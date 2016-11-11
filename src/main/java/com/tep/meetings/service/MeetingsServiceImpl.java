@@ -20,8 +20,8 @@ public class MeetingsServiceImpl implements MeetingsService {
 	public List<Map<String, Object>> selectMeetingsList(Map<String, Object> map) throws Exception {
 		List<Map<String, Object>> resultList = (List<Map<String, Object>>)dao.selectMeetingsList(map);
 		for (int i = 0; i < resultList.size(); i++) {
-			int o_no = Integer.parseInt(resultList.get(i).get("O_NO").toString());
-			resultList.get(i).put("O_LIKEIT", dao.selectLikeitCount(o_no));
+			int mt_no = Integer.parseInt(resultList.get(i).get("mt_no").toString());
+			resultList.get(i).put("mt_likeit", dao.selectLikeitCount(mt_no));
 		}
 		return resultList;
 	}

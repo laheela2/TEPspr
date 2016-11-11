@@ -21,25 +21,25 @@
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
 				<tr>
-					<td>${row.B_NO}</td>
+					<td>${row.b_no}</td>
 					<td class="board_kind">
-						<c:if test="${row.B_KIND == 0}">
-							<font class="board_subject_kind">[일반게시물]</font>
+						<c:if test="${row.b_kind == 0}">
+							<font class="board_title_kind">[일반게시물]</font>
 						</c:if>
-						<c:if test="${row.B_KIND == 1 }">
-							<font class="board_subject_kind">[스승찾아요]</font>
+						<c:if test="${row.b_kind == 1 }">
+							<font class="board_title_kind">[스승찾아요]</font>
 						</c:if>
-						<c:if test="${row.B_KIND == 2 }">
-							<font class="board_subject_kind">[제자찾아요]</font>
+						<c:if test="${row.b_kind == 2 }">
+							<font class="board_title_kind">[제자찾아요]</font>
 						</c:if>
 					</td>					
-					<td class="board_subject">
-						<a href="#" name="subject">${row.B_SUBJECT}</a>
-						<input type="hidden" id="B_NO" value="${row.B_NO}">
+					<td class="board_title">
+						<a href="#" name="title">${row.b_title}</a>
+						<input type="hidden" id="b_no" value="${row.b_no}">
 					</td>
-					<td>${row.B_NAME }</td>
-					<td><fmt:formatDate value="${row.B_DATE}" pattern="yyyy.MM.dd"/></td>
-					<td>${row.B_READCOUNT}</td>
+					<td>${row.b_name}</td>
+					<td><fmt:formatDate value="${row.b_date}" pattern="yyyy.MM.dd"/></td>
+					<td>${row.b_readcount}</td>
 				</tr>
 			</c:forEach>
 		</c:when>
@@ -91,7 +91,7 @@
             fn_boardWrite();
         }); 
          
-        $("a[name='subject']").on("click", function(e){ // 글상세보기
+        $("a[name='title']").on("click", function(e){ // 글상세보기
             e.preventDefault();
             fn_boardDetail($(this));
         });
@@ -107,7 +107,7 @@
     function fn_boardDetail(obj){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/detail' />");
-        cs.addParam("B_NO", obj.parent().find("#B_NO").val());
+        cs.addParam("b_no", obj.parent().find("#b_no").val());
         cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();
     }

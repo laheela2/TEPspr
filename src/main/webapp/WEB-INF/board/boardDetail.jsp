@@ -11,12 +11,12 @@
 	}
 </script>
 <script type="text/javascript">
-function cmt_check(kind) {
+function cmt_check() {
 	var area = document.getElementById('cmt_content');
 
 	sessionCheck("${sessionScope.session_m_email}");
 	
-	if (kind == 1 && !area.value) {
+	if (!area.value) {
 		alertify.error("댓글에 내용이 입력되지 않았습니다.");
 		area.focus();
 		return false;
@@ -38,13 +38,13 @@ function cmt_check(kind) {
 <tr>
 <td class="bw_title">종&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;류</td>
 <td  class="bw_content">
-<c:if test="${data.B_KIND == 0 }">
+<c:if test="${data.b_kind == 0 }">
 일반
 </c:if>
-<c:if test="${data.B_KIND == 1 }">
+<c:if test="${data.b_kind == 1 }">
 스승찾기
 </c:if>
-<c:if test="${data.B_KIND == 2 }">
+<c:if test="${data.b_kind == 2 }">
 제자찾기
 </c:if>
 </td>
@@ -53,48 +53,36 @@ function cmt_check(kind) {
 <tr>
 <td class="bw_title">카테고리</td>
 <td  class="bw_content">
-${data.B_CATEGORY }
+${data.b_category}
 </td>
 </tr>
 
 <tr>
 <td class="bw_title">관심분야</td>
 <td class="bw_content">
-${data.B_FAV_FIELD }
+${data.b_fav_field}
 </td>
 </tr>
 
 <tr>
 <td class="bw_title">관심지역</td>
 <td class="bw_content">
-${data.B_FAV_AREA }
-</td>
-</tr>
-
-<tr>
-<td class="bw_title">비&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</td>
-<td class="bw_content">
-<c:choose>
-	<c:when test="${data.B_PAYMENT == 0 }">무료</c:when>
-	<c:otherwise>${data.B_PAYMENT }원</c:otherwise>
-</c:choose>
-<c:if test="${data.B_PAYMENT == 0}">
-</c:if>
+${data.b_fav_area}
 </td>
 </tr>
 
 <tr>
 <td class="bw_title">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</td>
-<td class="bw_content">${data.B_SUBJECT }</td>
+<td class="bw_content">${data.b_title }</td>
 </tr>
 
 <tr>
 <td colspan="2">
-<textarea id="b_content" disabled="disabled">${data.B_CONTENT }</textarea>
+<textarea id="b_content" disabled="disabled">${data.b_content }</textarea>
 </td>
 </tr>
 
-<c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.M_NO }">
+<c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.m_no }">
 <tr>
 <td colspan="2" align="right" style="border:none;">
 <input type="button" value="수정" id="modifyBtn">
@@ -109,28 +97,27 @@ ${data.B_FAV_AREA }
 <div style="font-weight: bold;font-size:small;padding-top: 10px">댓글(${fn:length(cmtList)})</div>
 <hr class="om_detail_hr">
 
-<form action="<c:url value="/board/insertcmt"/>" onsubmit="return cmt_check('1');" method="post">
-<input type="hidden" name="B_NO" value="${data.B_NO }">
-<div style="padding-right:6px;padding-bottom:5px;"><textarea id="cmt_content" name="C_CONTENT"></textarea></div>
-<div align="right"><input type="submit" value="내용입력"></div>
+<form action="<c:url value="/board/insertcmt"/>" onsubmit="return cmt_check();" method="post">
+	<input type="hidden" name="b_no" value="${data.b_no }">
+	<div style="padding-right:6px;padding-bottom:5px;"><textarea id="cmt_content" name="c_content"></textarea></div>
+	<div align="right"><input type="submit" value="내용입력"></div>
 </form>
 
 <c:forEach items="${cmtList }" var="cmt">
-<hr class="om_detail_hr">
+<hr />
 <div style="padding-left:13px;font-weight: bold;font-family: sans-serif;font-size: x-small;">
-${cmt.C_NAME }
+${cmt.c_name }&nbsp;&nbsp;&nbsp;<font style="font-size: xx-small;"><fmt:formatDate value="${cmt.c_date}" pattern="yyyy년MM월dd일 hh:mm:ss"/></font>
 
 <!-- 댓글 삭제 -->
-<c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == cmt.M_NO }">
+<c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == cmt.m_no }">
 	<span style="float:right;">
 		<a href="#" name="deleteCmtBtn">삭제</a>
-		<input type="hidden" id="C_NO" value="${cmt.C_NO}">
-		<input type="hidden" id="B_NO" value="${cmt.B_NO}">
+		<input type="hidden" id="c_no" value="${cmt.c_no}">
 	</span>
 </c:if>
 
 </div>
-<div style="padding-top:5px; padding-left:13px;font-family: monospace;font-size: x-small;">${cmt.C_CONTENT }</div>
+<div style="padding-top:5px; padding-left:13px;font-family: monospace;font-size: x-small;">${cmt.c_content }</div>
 </c:forEach>
 
 </td>
@@ -166,22 +153,22 @@ ${cmt.C_NAME }
     function fn_deleteCmt(obj){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/deletecmt' />");
-        cs.addParam("C_NO", obj.parent().find("#C_NO").val());
-        cs.addParam("B_NO", obj.parent().find("#B_NO").val());
+        cs.addParam("c_no", obj.parent().find("#c_no").val());
+        cs.addParam("b_no", '${data.b_no }');
         cs.submit();
     }
     
 	function fn_boardModify(){
 		var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/modify' />");
-        cs.addParam("B_NO", '${data.B_NO }');
+        cs.addParam("b_no", '${data.b_no }');
         cs.submit("GET");
 	}
 	
 	function fn_boardDelete(){
 		var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/board/delete' />");
-        cs.addParam("B_NO", '${data.B_NO }');
+        cs.addParam("b_no", '${data.b_no }');
         cs.submit();
 	}
 </script> 

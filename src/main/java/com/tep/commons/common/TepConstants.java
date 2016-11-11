@@ -17,11 +17,6 @@ public interface TepConstants {
 	String M_NO = "session_m_no";
 	
 	/**
-	 * session member object
-	 */
-	String M_OBJECT = "session_m_object";
-	
-	/**
 	 * ckeditor image upload path
 	 */
 	String CKIMG_PATH = "ckeditor_image_upload_path";
