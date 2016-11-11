@@ -14,7 +14,7 @@
 <nav id="topMenu">
    <ul>
       <li class="topMenuLi">
-      	<a class="menuLink" href="mypageHome">마이페이지 홈</a>
+      	<a class="menuLink" href="mypageView">마이페이지 홈</a>
       </li>
       <li>|</li>
       <li class="topMenuLi">

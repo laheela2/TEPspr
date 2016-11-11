@@ -36,7 +36,7 @@ public class MypageController {
 	}
 	
 	//마이페이지 홈
-	@RequestMapping(value="/mypageHome")
+	@RequestMapping(value="/mypageView")
 	public ModelAndView mypageHome(HttpSession session) throws Exception{
 		if(session.getAttribute("session_m_no") == null){
 			return new ModelAndView("redirect:/login");
