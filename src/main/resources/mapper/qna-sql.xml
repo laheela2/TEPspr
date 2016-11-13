@@ -3,64 +3,75 @@
 
 <mapper namespace="qna">
 
-	<!-- <select id="" parameterType="" resultType="">
-        <![CDATA[
-            SELECT
-                IDX,
-                TITLE,
-                HIT_CNT,
-                CREA_DTM
-            FROM
-                BOARD
-            WHERE
-                DEL_GB = 'N'
-            ORDER BY IDX DESC
-        ]]>
+	<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			q_no,
+			q_category1,
+			q_title,
+			q_content,
+			q_date,
+			m_name as q_name
+		FROM
+			qna natural join members
+		<where>
+			<if test="searchKey != null and searchKey == 0">
+				q_title like '%' || #{searchWord} || '%'
+			</if>
+			<if test="searchKey != null and searchKey == 1">
+				q_title like '%' || #{searchWord} || '%' or q_content like '%' ||#{searchWord} || '%'
+			</if>
+			<if test="searchKey != null and searchKey == 2">
+				m_name like '%' || #{searchWord} || '%'
+			</if>
+		</where>
+		ORDER BY
+			q_no DESC
 	</select>
-
-	<insert id="" parameterType="">
-    <![CDATA[
-        INSERT INTO BOARD
-        (
-            IDX,
-            TITLE, 
-            CONTENTS, 
-            HIT_CNT, 
-            DEL_GB, 
-            CREA_DTM, 
-            CREA_ID
-        )
-        VALUES
-        (
-            SEQ_BOARD_IDX.NEXTVAL, 
-            #{TITLE}, 
-            #{CONTENTS}, 
-            0, 
-            'N', 
-            SYSDATE, 
-            'Admin'
-        )
-    ]]>
+	
+	<insert id="insertQna" parameterType="hashmap">
+		INSERT INTO qna
+		VALUES
+		(
+			qna_seq.nextval,
+			#{q_category1},
+			#{q_category2},
+			#{q_title},
+			#{q_content},
+			sysdate,
+			#{m_no}
+		)
 	</insert>
-
-	<update id="" parameterType="">
-    <![CDATA[
-        UPDATE BOARD 
+	
+	<select id="selectQnaDetail" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			q_no,
+			q_category1,
+			q_category2,
+			q_title,
+			q_content,
+			q_date,
+			m_no
+		FROM
+			qna
+		WHERE
+			q_no=#{q_no}
+	</select>
+	
+	<update id="updateQna" parameterType="hashmap">
+        UPDATE
+        	qna
         SET
-            HIT_CNT = NVL(HIT_CNT,0)+1
+            q_category1=#{q_category1},
+            q_category2=#{q_category2},
+			q_title=#{q_title},
+			q_content=#{q_content}
         WHERE
-            IDX = #{IDX}    
-    ]]>
+            q_no=#{q_no} and m_no=#{m_no}
 	</update>
 	
-	<delete id="" parameterType="">
-    <![CDATA[
-        DELETE  
-        FROM 
-        	BOARD
-        WHERE
-            IDX = #{IDX}
-    ]]>	
-	</delete> -->
-
+	<delete id="deleteQna" parameterType="hashmap">
+		DELETE FROM qna 
+		WHERE q_no=#{q_no} and m_no=#{m_no}
+	</delete>
+	
 </mapper>
