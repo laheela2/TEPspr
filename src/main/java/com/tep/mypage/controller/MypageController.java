@@ -132,11 +132,10 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/mypageQnaDetail", method = RequestMethod.POST)
+	@RequestMapping(value="/mypageQnaDetail")
 	public ModelAndView qnaDetail(CommandMap map, HttpServletRequest request) throws Exception{
 		TepUtils.savePageURI(request);
 		ModelAndView mv = new ModelAndView("mypageQnaDetail");
-
 		Map<String, Object> result = qnaService.selectQnaDetail(map.getMap());
 
 		mv.addObject("data", result.get("detail"));
