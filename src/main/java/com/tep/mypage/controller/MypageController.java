@@ -11,10 +11,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tep.mypage.service.MypageService;
+import com.tep.qna.service.QnaService;
 import com.tep.board.service.BoardService;
 import com.tep.commons.common.CommandMap;
 import com.tep.commons.util.PagingCalculator;
@@ -28,6 +30,9 @@ public class MypageController {
 	
 	@Resource(name = "boardService")
 	private BoardService boardService;
+	
+	@Resource
+	private QnaService qnaService;
 	
 	//회원정보수정 패스워드 체크
 	@RequestMapping(value="/modifyPwChk")
@@ -126,6 +131,19 @@ public class MypageController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="/mypageQnaDetail", method = RequestMethod.POST)
+	public ModelAndView qnaDetail(CommandMap map, HttpServletRequest request) throws Exception{
+		TepUtils.savePageURI(request);
+		ModelAndView mv = new ModelAndView("mypageQnaDetail");
+
+		Map<String, Object> result = qnaService.selectQnaDetail(map.getMap());
+
+		mv.addObject("data", result.get("detail"));
+		mv.addObject("currentPageNo", map.getCurrentPageNo());
+		return mv;
+    }
+	
 	
 	//답글내역
 	@RequestMapping(value="/cmtHistory")

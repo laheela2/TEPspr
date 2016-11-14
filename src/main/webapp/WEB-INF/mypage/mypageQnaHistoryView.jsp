@@ -5,7 +5,6 @@
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 </head>
 <body>
 <br>
@@ -42,7 +41,7 @@
 					<td>${row.Q_CATEGORY1}</td>
 					<td class="board_title">
 						<a href="#" name="title">${row.Q_TITLE}</a>
-						<input type="hidden" id="Q_NO" value="${row.Q_NO}">
+						<input type="hidden" id="q_no" value="${row.Q_NO}">
 					</td>
 					<td><fmt:formatDate value="${row.Q_DATE}" pattern="yyyy.MM.dd"/></td>
 				</tr>
@@ -81,7 +80,25 @@
 	</form>
 </td>
 </tr>
-
 </table>
+
+<%@ include file="/WEB-INF/include/common-body.jspf" %>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("a[name='title']").on("click", function(e){ // 글상세보기
+            e.preventDefault();
+            fn_qnaDetail($(this));
+        });
+    });
+    
+    function fn_qnaDetail(obj){
+        var cs = new CustomSubmit();
+        cs.setUrl("<c:url value='/mypageQnaDetail' />");
+        cs.addParam("q_no", obj.parent().find("#q_no").val());
+        cs.addParam("currentPageNo", "${currentPageNo}");
+        cs.submit();
+    }
+</script> 
+
 </body>
 </html>

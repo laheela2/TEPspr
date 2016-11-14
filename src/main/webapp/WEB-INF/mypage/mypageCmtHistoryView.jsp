@@ -33,12 +33,12 @@
 			<c:forEach items="${list }" var="row">
 				<tr>
 					<td>${row.C_NO}</td>			
-					<td class="board_subject">
-						<c:if test="${row.b_no ne 'null'}">
+					<td class="board_title">
+						<c:if test="${row.b_no ne ''}">
 							<a href="#" name="content">${row.C_CONTENT}</a>
 							<input type="hidden" id="B_NO" value="${row.B_NO}">
 						</c:if>
-						<c:if test="${row.o_no ne 'null'}">
+						<c:if test="${row.o_no ne ''}">
 							<a href="#" name="content">${row.C_CONTENT}</a>
 							<input type="hidden" id="O_NO" value="${row.O_NO}">
 						</c:if>

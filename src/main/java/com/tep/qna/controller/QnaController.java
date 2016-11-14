@@ -25,7 +25,7 @@ public class QnaController {
 	@Resource
 	private QnaService qnaService;
 
-	@RequestMapping(value = { "/qna", "/qna/list" }, method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/qna")
 	public ModelAndView qnaList(CommandMap map, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
 		ModelAndView mv = new ModelAndView("qnaList");

@@ -78,14 +78,14 @@ ${data.Q_CATEGORY2}
         });
     });
     
-	function fn_boardModify(){
+	function fn_qnaModify(){
 		var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/qna/modify' />");
         cs.addParam("q_no", '${data.Q_NO }');
         cs.submit("GET");
 	}
 	
-	function fn_boardDelete(){
+	function fn_qnaDelete(){
 		var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/qna/delete' />");
         cs.addParam("q_no", '${data.Q_NO }');
