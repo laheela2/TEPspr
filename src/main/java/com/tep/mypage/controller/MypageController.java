@@ -106,7 +106,7 @@ public class MypageController {
 			
 			ModelAndView mv = new ModelAndView("mypageBoardDetail");
 			
-			Map<String, Object> result = boardService.selectBoardDetail(map.getMap(),true);
+			Map<String, Object> result = boardService.selectBoardDetail(map.getMap(),false);
 			
 			mv.addObject("data",result.get("detail"));
 			mv.addObject("cmtList", result.get("cmtList"));

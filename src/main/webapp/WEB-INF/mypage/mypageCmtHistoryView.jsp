@@ -34,14 +34,9 @@
 				<tr>
 					<td>${row.C_NO}</td>			
 					<td class="board_title">
-						<c:if test="${row.b_no ne ''}">
 							<a href="#" name="content">${row.C_CONTENT}</a>
-							<input type="hidden" id="B_NO" value="${row.B_NO}">
-						</c:if>
-						<c:if test="${row.o_no ne ''}">
-							<a href="#" name="content">${row.C_CONTENT}</a>
-							<input type="hidden" id="O_NO" value="${row.O_NO}">
-						</c:if>
+							<input type="hidden" id="b_no" value="${row.B_NO}">
+							<input type="hidden" id="mt_no" value="${row.MT_NO}">
 					</td>
 					<td>${sessionScope.session_m_name }</td>
 					<td><fmt:formatDate value="${row.C_DATE}" pattern="yyyy.MM.dd"/></td>
@@ -78,14 +73,16 @@
     
     function fn_boardDetail(obj){
         var cs = new CustomSubmit();
-        if($('#B_NO').val()){
+        if($("#b_no").length > 0){
         	cs.setUrl("<c:url value='/mypageBoardDetail' />");
-       	 	cs.addParam("B_NO", obj.parent().find("#B_NO").val());
+       	 	cs.addParam("b_no", obj.parent().find("#b_no").val());
+       		cs.addParam("currentPageNo", "${currentPageNo}");
         	cs.submit();
         }
         else{
         	cs.setUrl("<c:url value='/mypageOmeetDetail' />");
-            cs.addParam("O_NO", obj.parent().find("#O_NO").val());
+            cs.addParam("mt_no", obj.parent().find("#mt_no").val());
+            cs.addParam("currentPageNo", "${currentPageNo}");
             cs.submit();
         }
     }
