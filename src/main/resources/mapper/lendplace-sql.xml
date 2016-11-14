@@ -3,6 +3,39 @@
 
 <mapper namespace="lendplace">
 
+	<select id="selectLendplaceList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			l_no,
+			l_title,
+			l_addr,
+			l_rep_img,
+			l_pnum
+		FROM
+			lendplace
+<!-- 		<where>
+			<if test="searchKey != null and searchKey == 0">
+				b_title like '%' || #{searchWord} || '%'
+			</if>
+			<if test="searchKey != null and searchKey == 1">
+				b_title like '%' || #{searchWord} || '%' or b_content like '%' ||#{searchWord} || '%'
+			</if>
+			<if test="searchKey != null and searchKey == 2">
+				m_name like '%' || #{searchWord} || '%'
+			</if>
+		</where> -->
+		ORDER BY
+			l_no DESC
+	</select>
+
+
+
+
+
+
+
+
+
+
 	<!-- <select id="" parameterType="" resultType="">
         <![CDATA[
             SELECT
