@@ -81,12 +81,12 @@
 	<!-- meet 내역 -->
 	<select id="subscribeHistory" parameterType="Integer" resultType="hashmap">
 		<![CDATA[
-            SELECT ma_no, ma_snum, ma_date, o_no, m_no FROM meetingsapplyfor WHERE m_no = #{m_no}
+            SELECT ma_no, ma_snum, ma_date, mt_no, m_no FROM meetingsapplyfor WHERE m_no = #{m_no}
         ]]>
 	</select>
 	<select id="meetHistory" parameterType="Integer" resultType="hashmap">
 		<![CDATA[
-            SELECT mt_no, mt_category, mt_title, mt_subject, mt_content, mt_rep_img FROM meetings WHERE o_no = #{o_no}
+            SELECT mt_no, mt_category, mt_title, mt_subject, mt_content, mt_rep_img FROM meetings WHERE mt_no = #{mt_no}
         ]]>
 	</select>
 	 
