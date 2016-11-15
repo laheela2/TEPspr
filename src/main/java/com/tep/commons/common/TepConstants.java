@@ -24,7 +24,7 @@ public interface TepConstants {
 	/**
 	 * default image upload path
 	 */
-	String UPLOAD_TEMP_PATH = "C:/temp";
+	String UPLOAD_PATH_IMAGE = "C:\\tep\\upload\\image\\";
 	
 	/**
 	 * save page loading uri

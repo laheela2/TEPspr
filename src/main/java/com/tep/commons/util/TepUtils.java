@@ -37,7 +37,7 @@ public class TepUtils {
 	 * @param end ; 모임종료일시
 	 * @return 8월 30일 (화) 9시 00분 ~ 2017년 2월 22일 (수) 18시 30분
 	 */
-	public static String dateFormat(Date start, Date end){
+	public static String dateFormat(Object start, Object end){
 		if(start == null || end == null){
 			return null;
 		}
@@ -63,7 +63,7 @@ public class TepUtils {
 	 * @param date
 	 * @return ex) 2016-09-05 00:30 
 	 */
-	public static String dateParseFormat(Date date){
+	public static String dateParseFormat(Object date){
 		if(date == null){
 			return null;
 		}
@@ -90,7 +90,7 @@ public class TepUtils {
 			cookie.setMaxAge((1000*60)*2);
 			response.addCookie(cookie);
 		} catch (Exception e) {
-			System.out.println("setCookie error : "+e.getMessage());
+			log.debug("setCookie error : "+e.getMessage());
 		}
 	}
 	
@@ -112,7 +112,7 @@ public class TepUtils {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("getCookies error"+e.getMessage());
+			log.debug("getCookies error"+e.getMessage());
 		}
 		return null;
 	}

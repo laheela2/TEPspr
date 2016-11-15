@@ -10,19 +10,22 @@
 			(mt_total_pnum - mt_current_pnum) as mt_permit_pnum
 		FROM
 			meetings
-<!-- 		<where>
-			<if test="searchKey != null and searchKey == 0">
-				B_SUBJECT like '%' || #{searchWord} || '%'
+		<where>
+			<if test="searchWord != null">
+				(mt_title like '%' || #{searchWord} || '%' or mt_subject like '%' || #{searchWord} || '%' or mt_content like '%' || #{searchWord} || '%')
 			</if>
-			<if test="searchKey != null and searchKey == 1">
-				B_SUBJECT like '%' || #{searchWord} || '%' or B_CONTENT like '%' ||#{searchWord} || '%'
+			<if test="searchCategory != null">
+				AND REGEXP_LIKE(mt_category,#{searchCategory})
 			</if>
-			<if test="searchKey != null and searchKey == 2">
-				B_NAME like '%' || #{searchWord} || '%'
+			<if test="searchAddr != null">
+				AND REGEXP_LIKE(mt_addr,#{searchAddr})
 			</if>
-		</where> -->
+			<if test="searchMStart != null and searchMEnd != null">
+				AND ((mt_m_sdate >= #{searchMStart} and #{searchMEnd} >= mt_m_edate))
+			</if>
+		</where>
 		ORDER BY
-			mt_no desc
+			mt_no DESC
 	</select>
 	
 	<select id="selectLikeitCount" parameterType="int" resultType="int">
@@ -33,4 +36,191 @@
 		WHERE
 			mt_no=#{mt_no}
 	</select>
+	
+	<select id="selectLikeitExist" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			li_no,
+			li_date,
+			mt_no,
+			m_no
+		FROM
+			likeit
+		WHERE
+			mt_no=#{mt_no} and m_no=#{m_no}
+	</select>
+
+	<select id="selectMeetingsDetail" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			mt_no,
+			mt_category,
+			mt_title,
+			mt_subject,
+			mt_content,
+			mt_rep_img,
+			mt_addr,
+			mt_m_sdate,
+			mt_m_edate,
+			mt_r_sdate,
+			mt_r_edate,
+			mt_total_pnum,
+			(mt_total_pnum - mt_current_pnum) as mt_permit_pnum,
+			m_no,
+			m_name as mt_name,
+			m_email as mt_email,
+			m_phone as mt_phone
+		FROM
+			meetings natural join members
+		WHERE
+			mt_no=#{mt_no}
+	</select>
+	
+	<select id="selectCmtList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			c_no,
+			c_content,
+			c_date,
+			m_no,
+			m_name as c_name
+		FROM
+			comments natural join members
+		WHERE
+			mt_no=#{mt_no}
+		ORDER BY
+			c_no DESC
+	</select>
+
+	<update id="updateMeetingsReadCount" parameterType="hashmap">
+        UPDATE 
+        	meetings
+        SET
+            mt_readcount=NVL(mt_readcount,0)+1
+        WHERE
+            mt_no=#{mt_no}
+	</update>
+	
+	<update id="updateMeetingsApplyforNum" parameterType="hashmap">
+        UPDATE 
+        	meetings
+        SET
+            mt_current_pnum=NVL(mt_current_pnum,0)+#{ma_snum}
+        WHERE
+            mt_no=#{mt_no}
+	</update>
+	
+	<update id="updateMeetings" parameterType="hashmap">
+        UPDATE
+        	meetings
+        SET
+			mt_category=#{mt_category},
+			mt_title=#{mt_title},
+			mt_subject=#{mt_subject},
+			mt_content=#{mt_content},
+			<if test="mt_rep_img != null">
+				mt_rep_img=#{mt_rep_img},
+			</if>
+			mt_addr=#{mt_addr},
+			mt_m_sdate=#{mt_m_sdate},
+			mt_m_edate=#{mt_m_edate},
+			mt_r_sdate=#{mt_r_sdate},
+			mt_r_edate=#{mt_r_edate},
+			mt_total_pnum=#{mt_total_pnum}
+        WHERE
+            mt_no=#{mt_no} and m_no=#{m_no}
+	</update>
+
+	<insert id="insertCmt" parameterType="hashmap">
+		INSERT INTO comments
+		(
+			c_no,
+			c_content,
+			c_date,
+			mt_no,
+			m_no
+		)
+		VALUES
+		(
+			comments_seq.nextval,
+			#{c_content},
+			sysdate,
+			#{mt_no},
+			#{m_no}
+		)
+	</insert>	
+	
+	<insert id="insertMeetings" parameterType="hashmap">
+		INSERT INTO meetings
+		VALUES
+		(
+			meetings_seq.nextval,
+			#{mt_category},
+			#{mt_title},
+			#{mt_subject},
+			#{mt_content},
+			#{mt_rep_img},
+			#{mt_addr},
+			#{mt_m_sdate},
+			#{mt_m_edate},
+			#{mt_r_sdate},
+			#{mt_r_edate},
+			#{mt_total_pnum},
+			0,
+			sysdate,
+			0,
+			#{m_no}
+		)
+	</insert>
+	
+	<insert id="insertLikeit" parameterType="hashmap">
+		INSERT INTO likeit
+		(
+			li_no,
+			li_date,
+			mt_no,
+			m_no
+		) 
+		VALUES
+		(
+			likeit_seq.nextval,
+			sysdate,
+			#{mt_no},
+			#{m_no}
+		)
+	</insert>
+	
+	<insert id="insertMeetingsApplyfor" parameterType="hashmap">
+		INSERT INTO meetingsapplyfor
+		VALUES
+		(
+			meetingsapplyfor_seq.nextval,
+			#{ma_snum},
+			sysdate,
+			#{mt_no},
+			#{m_no}
+		)
+	</insert>
+	
+	<delete id="deleteLikeit" parameterType="hashmap">
+		DELETE FROM
+			likeit
+		WHERE
+			mt_no=#{mt_no} and m_no=#{m_no}
+	</delete>	
+
+	<delete id="deleteCmt" parameterType="hashmap">
+		DELETE FROM 
+			comments 
+		WHERE c_no=#{c_no} and m_no=#{m_no}
+	</delete>
+
+	<delete id="deleteMeetings" parameterType="hashmap">
+		{call
+			declare
+			begin
+				DELETE FROM likeit WHERE mt_no=#{mt_no};
+				DELETE FROM comments WHERE mt_no=#{mt_no};
+				DELETE FROM meetingsapplyfor WHERE mt_no=#{mt_no};
+				DELETE FROM meetings WHERE mt_no=#{mt_no} and m_no=#{m_no};
+			end
+		}
+	</delete>	
 </mapper>

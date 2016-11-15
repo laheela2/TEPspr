@@ -32,7 +32,7 @@ public class MembersModel {
 	}
 
 	public String getM_email() {
-		return m_email;
+		return m_email.trim();
 	}
 
 	public void setM_email(String m_email) {
@@ -40,7 +40,7 @@ public class MembersModel {
 	}
 
 	public String getM_name() {
-		return m_name;
+		return m_name.trim();
 	}
 
 	public void setM_name(String m_name) {
@@ -48,7 +48,7 @@ public class MembersModel {
 	}
 
 	public String getM_password() {
-		return m_password;
+		return m_password.trim();
 	}
 
 	public void setM_password(String m_password) {
@@ -56,7 +56,7 @@ public class MembersModel {
 	}
 
 	public String getM_phone() {
-		return m_phone;
+		return m_phone.trim();
 	}
 
 	public void setM_phone(String m_phone) {

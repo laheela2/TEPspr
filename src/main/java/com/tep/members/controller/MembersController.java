@@ -6,9 +6,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,7 +94,7 @@ public class MembersController {
 
 		MembersModel m = membersService.selectFindEmail(mem);
 
-		if (StringUtils.isEmpty(m.getM_email())) {
+		if (m == null || StringUtils.isBlank(m.getM_email())) {
 			mav.setViewName("error/errorMemberFindEmail");
 			return mav;
 		} else {
@@ -115,7 +115,7 @@ public class MembersController {
 
 		MembersModel m = membersService.selectFindPassword(mem);
 
-		if (StringUtils.isEmpty(m.getM_password())) {
+		if (m == null || StringUtils.isBlank(m.getM_password())) {
 			mav.setViewName("error/errorMemberFindPassword");
 			return mav;
 		} else {

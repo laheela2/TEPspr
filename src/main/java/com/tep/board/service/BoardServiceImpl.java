@@ -4,19 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tep.board.dao.BoardDAO;
 import com.tep.commons.service.CommentsService;
 
-@Service("boardService")
+@Service
 public class BoardServiceImpl implements BoardService, CommentsService{
 	protected Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="boardDAO")
+	@Autowired
 	private BoardDAO boardDAO;
 
 	@Override

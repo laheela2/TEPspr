@@ -8,7 +8,7 @@ import com.tep.members.model.MembersModel;
 @Repository("membersDAO")
 public class MembersDAO extends AbstractDAO {
 	private final String NAMESPACE = "members.";
-
+	
 	public int insertMembers(MembersModel mem) {
 		return (int) insert(NAMESPACE+"insertMembers" , mem);
 	}
