@@ -106,7 +106,7 @@
 </tr>
 
 <tr>
-<td colspan="2"><textarea id="b_content" name="b_content"></textarea></td>
+<td colspan="2"><textarea name="b_content"></textarea></td>
 </tr>
 
 <tr>

@@ -20,7 +20,7 @@
 		)
 	</insert>
 
-	<select id="selectMEmailMembers" parameterType="membersModel" resultType="membersModel">
+	<select id="selectMEmailMembers" parameterType="string" resultType="membersModel">
 		SELECT
 			*
 		FROM

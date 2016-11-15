@@ -85,7 +85,7 @@ table.category td:HOVER, table.area td:HOVER, table.people td:HOVER, table.payme
     border: 0;
 }
 
-input[type=text].dtpicker_omview {
+input[type=text].dtpicker{
 	width:86px;
 	height: 20px;
 	font-size: x-small;

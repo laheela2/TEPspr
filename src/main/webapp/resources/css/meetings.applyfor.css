@@ -1,6 +1,6 @@
-@import url(/TEP/static/css/alertify.default.css);
-@import url(/TEP/static/css/openmeetview.css);
-
+#ma_snum{
+	height: 15px;
+}
 table.omds_header_table{
 	/* border-style: solid;
 	border-width: thin;
@@ -92,7 +92,6 @@ div.cancel_info {
 }
 table.omds_member_info{
 	width: 100%;
-	height: 100px;
 }
 table.omds_member_info td{
 	border-color: red;

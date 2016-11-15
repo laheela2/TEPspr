@@ -3,11 +3,11 @@ package com.tep.board.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +23,7 @@ import com.tep.commons.util.TepUtils;
 public class BoardController {
 	protected Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name = "boardService")
+	@Autowired
 	private BoardService boardService;
 	
     @RequestMapping(value={"/board","/board/list"}, method={RequestMethod.GET, RequestMethod.POST})
@@ -42,24 +42,12 @@ public class BoardController {
         return mv;
     }
     
-    @RequestMapping(value="/board/detail", method=RequestMethod.GET)
-    public ModelAndView boardDetail(CommandMap map) throws Exception{
-    	ModelAndView mv = new ModelAndView("boardDetail");
-    	
-    	Map<String, Object> result = boardService.selectBoardDetail(map.getMap(),false);
-    	
-    	mv.addObject("data",result.get("detail"));
-    	mv.addObject("cmtList", result.get("cmtList"));
-    	mv.addObject("currentPageNo", map.getCurrentPageNo());
-    	return mv;
-    }
-    
-    @RequestMapping(value="/board/detail", method=RequestMethod.POST)
+    @RequestMapping(value="/board/detail", method={RequestMethod.GET, RequestMethod.POST})
     public ModelAndView boardDetail(CommandMap map, HttpServletRequest request) throws Exception{
 		TepUtils.savePageURI(request);
 		ModelAndView mv = new ModelAndView("boardDetail");
 		
-		Map<String, Object> result = boardService.selectBoardDetail(map.getMap(),true);
+		Map<String, Object> result = boardService.selectBoardDetail(map.getMap(),request.getMethod().equals("POST"));
 		
 		mv.addObject("data",result.get("detail"));
 		mv.addObject("cmtList", result.get("cmtList"));

@@ -2,31 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
-<link href="/TEP/static/css/root.css" rel="stylesheet"/>
-<link rel="stylesheet" href="/TEP/static/css/openmeetsubscribe.css" type="text/css">
-<script type="text/javascript" src="/TEP/static/js/alertify.min.js"></script>
+<%@ include file="/WEB-INF/include/common-header.jspf" %>
+<link rel="stylesheet"  type="text/css" href="<c:url value="/resources/css/meetings.applyfor.css"/>">
 <script type="text/javascript">
 	function valueChk(){
 		var f = document.oms_form;
-		var limit = '<s:property value="detailData.o_permit_pnum"/>';
-		var num = document.getElementById("c_pnum");
-		
-		if(!f.s_name.value){
-			alertify.error("이름이 입력되지 않았습니다.");
-			f.s_name.focus();
-			return false;
-		}
-		if(!f.s_company.value){
-			alertify.error("소속이 입력되지 않았습니다.");
-			f.s_company.focus();
-			return false;
-		}
-		if(!f.s_phone.value){
-			alertify.error("전화번호가 입력되지 않았습니다.");
-			f.s_phone.focus();
-			return false;
-		}
+		var limit = '${applyData.MT_PERMIT_PNUM}';
+		var num = document.getElementById("ma_snum");
+
 		if(!num.value){
 			alertify.error("신청 인원이 입력되지 않았습니다.");
 			num.focus();
@@ -46,35 +29,33 @@
 <tr>
 <td>
 
-<s:form name="oms_form" action="omd_subscribe_insert" method="post" onsubmit="return valueChk();">
-<input type="hidden" name="o_no" value="<s:property value="detailData.o_no"/>">
-<input type="hidden" name="s_email" value="<s:property value="mData.m_email"/>">
+<form name="oms_form" action="<c:url value="/meetings/applyfor"/>" method="post" onsubmit="return valueChk();">
+<input type="hidden" name="mt_no" value="${applyData.MT_NO}"/>
 <div class="omds_title">신청하기</div>
 <table class="omds_header_table">
 <tr>
 
 <td width="15%" class="omds_header_table_td1">
-<div><img class="omds_header" src="<s:property value="detailData.o_rep_img"/>"></div>
+<div><img class="omds_header" src="${applyData.MT_REP_IMG }"></div>
 </td>
 
 <td width="85%" class="omds_header_table_td2">
-<div class="omds_header_subject"><s:property value="detailData.o_subject"/></div>
+<div class="omds_header_subject">${applyData.MT_TITLE }</div>
 <br>
 <table border="0">
 <tr>
-<td>모임기간 : <s:property value="detailData.o_meetdate"/></td>
+<td>모임기간 : ${applyData.MT_MEETDATE }</td>
 </tr>
 <tr>
-<td>모임소개 : <s:property value="detailData.o_title"/></td>
+<td>모임소개 : ${applyData.MT_SUBJECT }</td>
 </tr>
 <tr>
-<td>모임주소 : <s:property value="detailData.o_addr"/></td>
+<td>모임주소 : ${applyData.MT_ADDR }</td>
 </tr>
 <tr>
-<td>신청인원 : 총<s:property value="detailData.o_total_pnum"/>명&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<s:property value="detailData.o_permit_pnum"/>명 신청가능
-·
-<input type="number" id="c_pnum" name="o_current_pnum" size="1" class="om_detail_register_input" maxlength="4">명
+<td>신청인원 : 총${applyData.MT_TOTAL_PNUM }명&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;${applyData.MT_PERMIT_PNUM}명 신청가능
+
+<input type="number" id="ma_snum" name="ma_snum" size="1" maxlength="4">명
 
 </td>
 </tr>
@@ -83,28 +64,16 @@
 </tr>
 </table>
 
-<hr class="omds_hr">
-
-<div class="omds_title">신청자 정보 입력
-<span style="float:right;font-size:small;font-weight:normal;"><input type="checkbox" name="update_meminfo" value="true">기존회원정보변경</span>
-</div>
+<div class="omds_title">신청자 정보</div>
 <table class="omds_member_info">
-<tr>
-<td width="15%" align="right" class="omds_title_td">이름</td>
-<td width="35%"><input type="text" name="s_name" value="<s:property value="mData.m_name"/>" maxlength="10"></td>
-<td width="15%" align="right" class="omds_title_td">이메일</td>
-<td width="35%"><input type="text" value="<s:property value="mData.m_email"/>" disabled="disabled"></td>
-</tr>
-<tr>
-<td align="right" class="omds_title_td">소속</td>
-<td>
-<input type="text" name="s_company" value="<s:property value="mData.m_company"/>" maxlength="10">
-</td>
-<td align="right" class="omds_title_td">전화번호</td>
-<td>
-<input type="number" name="s_phone" value="<s:property value="mData.m_phone"/>" maxlength="16">
-</td>
-</tr>
+	<tr>
+		<td width="80px" align="center" class="omds_title_td">이름</td>
+		<td><input type="text" value="${applyData.MT_NAME }" disabled="disabled"></td>
+		<td width="80px" align="center" class="omds_title_td">이메일</td>
+		<td><input type="text" value="${applyData.MT_EMAIL}" disabled="disabled"></td>
+		<td width="80px" align="center" class="omds_title_td">전화번호</td>
+		<td><input type="text" value="${applyData.MT_PHONE}" disabled="disabled"></td>
+	</tr>
 </table>
  
 <div class="omds_btn">
@@ -112,7 +81,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" value="취소하기" onclick="javascript:history.back();">
 </div>
-</s:form>
+</form>
 
 </td>
 </tr>

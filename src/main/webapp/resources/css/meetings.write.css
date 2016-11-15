@@ -11,7 +11,7 @@ div.omf_info {
 	padding: 1%;
 }
 
-table.omf_table_root, div.map_wrap, textarea.ofm_o_title{
+table.mw_borderstyle, div.map_wrap, textarea.mw_boderstyle{
 	border-color: red;
 	border-style: solid;
 	border-width: thin;

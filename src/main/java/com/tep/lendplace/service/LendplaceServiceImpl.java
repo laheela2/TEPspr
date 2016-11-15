@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.tep.lendplace.dao.LendplaceDAO;
 
-
 @Service("lendplaceService")
 public class LendplaceServiceImpl implements LendplaceService {
 	protected Logger log = Logger.getLogger(this.getClass());

@@ -1,6 +1,5 @@
 $(function() {
-	// -- append by class just for lower strings count --
-	$('.dtpicker_omview').appendDtpicker({
+	$('.dtpicker').appendDtpicker({
 		"futureOnly" : false,
 		"autodateOnStart" : false,
 		"locale" : "ko",
@@ -9,14 +8,14 @@ $(function() {
 	});
 
 	$('#startdt').change(function() {
-		var de = new Date($('#startdt').handleDtpicker('getDate')); // constructor need to avoid linking object
+		var de = new Date($('#startdt').handleDtpicker('getDate'));
 		de.setDate(de.getDate());
-		$('#enddt').handleDtpicker('setMinDate', de); //set min end date is 7 day later then start date
+		$('#enddt').handleDtpicker('setMinDate', de);
 	});
 	$('#enddt').change(function() {
 		var ds = new Date($('#enddt').handleDtpicker('getDate'));
 		ds.setDate(ds.getDate());
-		$('#startdt').handleDtpicker('setMaxDate', ds); //set max end date is 7 day earlier then end date
+		$('#startdt').handleDtpicker('setMaxDate', ds);
 	});
 });
 
@@ -74,10 +73,6 @@ function searchSubmit() {
 		$('#searchAddr').val(area.substring(0, area.length - 1));
 	}
 
-	if($('#pay').val() != null){
-		$('#searchPay').val($('#pay').val());
-	}
-	
 	if($('#startdt').val() != null){
 		$('#searchMStart').val($('#startdt').val());
 	}

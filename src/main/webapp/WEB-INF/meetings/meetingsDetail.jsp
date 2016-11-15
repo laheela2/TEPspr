@@ -3,6 +3,10 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
+<link rel="stylesheet"  type="text/css" href="<c:url value="/resources/css/meetings.detail.css"/>">
+<script type="text/javascript">
+
+</script>
 </head>
 
 <body>
@@ -13,40 +17,39 @@
 <table style="width:100%;" border="0">
 	<tr>
 		<td style="font-weight: bold;font-size: large;font-family: sans-serif;">모임 상세보기</td>
-		<td align="right"><input id="backMeetingsListBtn" type="button" value="목록보기"></td>
+		<td align="right"><input type="button" value="목록보기" onclick="location.href='<c:url value="/meetings?currentPageNo=${currentPageNo}"/>'"></td>
 	</tr>
 </table>
 
 <table class="md_header_table">
 	<tr>
 		<td width="15%" class="md_header_table_td1">
-			<div><img class="md_header" src="${data.O_REP_IMG }"></div>
+			<div><img class="md_header" src="${data.MT_REP_IMG }"></div>
 			<dl class="md_header">
 				<dt class="md_header_dt">개설자 정보</dt>
 				<dd><hr class="md_hr"></dd>
-				<dd class="md_header_dd1">${data.O_NAME }</dd>
-				<dd class="md_header_dd2">＠&nbsp;${data.O_EMAIL }</dd>
-				<dd class="md_header_dd2">☏&nbsp;${data.O_PHONE }</dd>
-				<dd class="md_header_dd2">＃&nbsp;${data.O_COMPANY }</dd>
+				<dd class="md_header_dd1">${data.MT_NAME }</dd>
+				<dd class="md_header_dd2">＠&nbsp;${data.MT_EMAIL }</dd>
+				<dd class="md_header_dd2">☏&nbsp;${data.MT_PHONE }</dd>
 			</dl>
 			<hr class="md_hr">
 		</td>
 		<td width="85%" class="md_header_table_td2">
-			<div class="md_header_subject">${data.O_SUBJECT }</div>
+			<div class="md_header_subject">${data.MT_TITLE }</div>
 			<br/>
 			<table border="0">
 				<tr>
-					<td>모임기간 : ${data.O_MEETDATE }</td>
+					<td>모임기간 : ${data.MT_MEETDATE }</td>
 				</tr>
 				<tr>
-					<td>모임장소 : ${data.O_ADDR }</td>
+					<td>모임장소 : ${data.MT_ADDR }</td>
 				</tr>
 				<tr>
-					<td>신청인원 : 총${data.O_TOTAL_PNUM }명</td>
+					<td>신청인원 : 총${data.MT_TOTAL_PNUM }명</td>
 				</tr>
 			</table>
 			<hr class="md_hr">
-			<div>${data.O_TITLE }</div>
+			<div>${data.MT_SUBJECT }</div>
 			<br/>
 			<br/>
 			<table  align="right">
@@ -54,19 +57,13 @@
 					<td>
 						<table border="0" align="center" cellpadding=10  class="md_header_table_register" >
 							<tr>
-								<td colspan="2">신청기간 : ${data.O_REGISTERDATE }</td>
+								<td colspan="2">신청기간 : ${data.MT_REGISTERDATE }</td>
 							</tr>
 							<tr>
 								<td colspan="2"><hr class="md_hr"></td>
 							</tr>
 							<tr>
-								<td>총${data.O_TOTAL_PNUM }명&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;${data.O_PERMIT_PNUM }명 신청가능</td>
-								<td align="right">
-									<c:choose>
-										<c:when test="${data.O_PAYMENT <= 0 }">무료</c:when>
-										<c:otherwise>유료 : ${data.O_PAYMENT }원</c:otherwise>
-									</c:choose>
-								</td>
+								<td colspan="2">총${data.MT_TOTAL_PNUM }명&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;${data.MT_PERMIT_PNUM }명 신청가능</td>
 							</tr>
 						</table>	
 					</td>
@@ -74,11 +71,11 @@
 				<tr>
 					<td align="right">
 						<c:choose>
-							<c:when test="${data.O_PERMIT_PNUM <= 0 }">
+							<c:when test="${data.MT_PERMIT_PNUM <= 0 }">
 								<input type="button" value="신청마감" disabled="disabled" style="background-color: gray;">
 							</c:when>
 							<c:otherwise>
-								<input id="meetingsApplyforBtn" type="button" value="신청하기">
+								<input type="submit" value="신청하기" onclick="fn_meetingsApplyfor()">
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -98,7 +95,7 @@
 					<td align="center">
 						<div style="font-size: small;color:navy;">※ 접수 후에는 정식접수 안내를 위해 전화 또는 문자를 드리고 있습니다. (문의 070-4739-9697)</div>
 						<br/>
-						<div>${data.O_CONTENT }</div>
+						<div>${data.MT_CONTENT }</div>
 					</td>
 				</tr>
 			</table>
@@ -109,7 +106,7 @@
 			<div style="font-weight: bold;font-size: large;">지도보기</div>
 			<div id="map" style="width:100%;height:350px;" class="md_contet_map"></div>
 			
-			<script src="//apis.daum.net/maps/maps3.js?apikey=a18085cad4f8315645fc4a233bdb2875&libraries=services" onerror="alertify.log('지도 로드중 에러!')"></script>
+			<script src="//apis.daum.net/maps/maps3.js?apikey=a18085cad4f8315645fc4a233bdb2875&libraries=services"></script>
 			<script>
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				mapOption = {
@@ -135,7 +132,7 @@
 				var geocoder = new daum.maps.services.Geocoder();
 				
 				//주소로 좌표를 검색합니다
-				geocoder.addr2coord('${data.O_ADDR}', function(status, result) {
+				geocoder.addr2coord('${data.MT_ADDR}', function(status, result) {
 				
 				// 정상적으로 검색이 완료됐으면 
 				 if (status === daum.maps.services.Status.OK) {
@@ -150,7 +147,7 @@
 				
 				    // 인포윈도우로 장소에 대한 설명을 표시합니다
 				    var infowindow = new daum.maps.InfoWindow({
-				        content: '<div style="width:150px;text-align:center;padding:6px 0;">${data.O_ADDR}</div>'
+				        content: '<div style="width:150px;text-align:center;padding:6px 0;">${data.MT_ADDR}</div>'
 				    });
 				    infowindow.open(map, marker);
 				
@@ -165,9 +162,9 @@
 			<hr class="md_hr">
 			
 			<form action="<c:url value="/meetings/insertcmt"/>" onsubmit="return cmt_check();" method="post">
-				<input type="hidden" name="O_NO" value="${data.O_NO }">
+				<input type="hidden" name="mt_no" value="${data.MT_NO }">
 				<div style="padding-right:6px;padding-bottom:5px;">
-					<textarea id="cmt_content" name="C_CONTENT"  class="md_comments"></textarea>
+					<textarea id="cmt_content" name="c_content"  class="md_comments"></textarea>
 				</div>
 				<div align="right"><input type="submit" value="내용입력"></div>
 			</form>			
@@ -180,9 +177,8 @@
 				<!-- 댓글 삭제 -->
 				<c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == cmt.M_NO }">
 					<span style="float:right;">
-						<a href="#" name="deleteCmtBtn">삭제</a>
-						<input type="hidden" id="C_NO" value="${cmt.C_NO}">
-						<input type="hidden" id="O_NO" value="${cmt.O_NO}">
+						<a href="#this" name="deleteCmtBtn">삭제</a>
+						<input type="hidden" id="c_no" value="${cmt.C_NO}">
 					</span>
 				</c:if>
 				
@@ -212,7 +208,7 @@
 			<td><input id="deleteBtn" type="button" value="삭제하기"></td>
 		</c:if>
 		<td>
-			<input id="backMeetingsListBtn" type="button" value="뒤로가기">
+			<input type="button" value="뒤로가기" onclick="location.href='<c:url value="/meetings?currentPageNo=${currentPageNo}"/>'">
 		</td>
 	</tr>
 </table>
@@ -227,7 +223,9 @@
 	function cmt_check() {
 		var area = document.getElementById('cmt_content');
 	
-		sessionCheck("${sessionScope.session_m_email}");
+		if(!isLoginCheck("${sessionScope.session_m_email}")){
+			return false;
+		}
 		
 		if (!area.value) {
 			alertify.error("댓글에 내용이 입력되지 않았습니다.");
@@ -239,12 +237,6 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-    	$("#meetingsApplyforBtn").on("click",function(e){ // 신청하기
-    		e.preventDefault();
-    		sessionCheck("${sessionScope.session_m_no}");
-    		fn_meetingsApplyFor();
-    	});
-    	
         $("a[name='deleteCmtBtn']").on("click", function(e){ // 코멘트 삭제
             e.preventDefault();
             fn_deleteCmt($(this));
@@ -252,48 +244,46 @@
         
         $("#modifyBtn").on("click", function(e){ // 수정버튼
             e.preventDefault();
-            fn_boardModify();
+            fn_meetingsModify();
         });
         
         $("#deleteBtn").on("click", function(e){ // 삭제버튼
             e.preventDefault();
-            fn_boardDelete();
-        });
-        
-        $("#backMeetingsListBtn").on("click",function(e){ // 목록버튼
-        	e.preventDefault();
-        	var url = "<c:url value='/meetings?currentPageNo=${currentPageNo}'/>";
-        	$(location).attr("href",url);
+            fn_meetingsDelete();
         });
     });
     
-    function fn_meetingsApplyFor(){
-    	
+    function fn_meetingsApplyfor(){
+    	if(isLoginCheck("${sessionScope.session_m_email}")){
+    		var cs = new CustomSubmit();
+            cs.setUrl("<c:url value='/meetings/applyform' />");
+            cs.addParam("mt_no", '${data.MT_NO}');
+            cs.submit();
+    	}
     }
     
     function fn_deleteCmt(obj){
         var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/board/deletecmt' />");
-        cs.addParam("C_NO", obj.parent().find("#C_NO").val());
-        cs.addParam("O_NO", obj.parent().find("#O_NO").val());
+        cs.setUrl("<c:url value='/meetings/deletecmt' />");
+        cs.addParam("c_no", obj.parent().find("#c_no").val());
+        cs.addParam("mt_no", '${data.MT_NO }');
         cs.submit();
     }
     
-	function fn_boardModify(){
+	function fn_meetingsModify(){
 		var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/board/modify' />");
-        cs.addParam("B_NO", '${data.B_NO }');
+        cs.setUrl("<c:url value='/meetings/modify' />");
+        cs.addParam("mt_no", '${data.MT_NO }');
         cs.submit("GET");
 	}
 	
-	function fn_boardDelete(){
+	function fn_meetingsDelete(){
 		var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/board/delete' />");
-        cs.addParam("B_NO", '${data.B_NO }');
+        cs.setUrl("<c:url value='/meetings/delete' />");
+        cs.addParam("mt_no", '${data.MT_NO }');
         cs.submit();
 	}
 </script> 
-
 
 </body>
 </html>

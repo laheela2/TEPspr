@@ -14,7 +14,7 @@
 function cmt_check() {
 	var area = document.getElementById('cmt_content');
 
-	if(!sessionCheck("${sessionScope.session_m_email}")){
+	if(!isLoginCheck("${sessionScope.session_m_email}")){
 		return false;
 	}
 	
@@ -114,7 +114,7 @@ ${cmt.C_NAME }&nbsp;&nbsp;&nbsp;
 <!-- 댓글 삭제 -->
 <c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == cmt.M_NO }">
 	<span style="float:right;">
-		<a href="#" name="deleteCmtBtn">삭제</a>
+		<a href="#this" name="deleteCmtBtn">삭제</a>
 		<input type="hidden" id="c_no" value="${cmt.C_NO}">
 	</span>
 </c:if>

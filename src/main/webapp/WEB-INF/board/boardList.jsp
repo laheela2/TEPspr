@@ -34,7 +34,7 @@
 						</c:if>
 					</td>					
 					<td class="board_title">
-						<a href="#" name="title">${row.B_TITLE}</a>
+						<a href="#this" name="title">${row.B_TITLE}</a>
 						<input type="hidden" id="b_no" value="${row.B_NO}">
 					</td>
 					<td>${row.B_NAME}</td>
@@ -87,7 +87,7 @@
     $(document).ready(function(){
         $("#write").on("click", function(e){ // 글쓰기 버튼
             e.preventDefault();
-            if(sessionCheck('${sessionScope.session_m_email}')){
+            if(isLoginCheck('${sessionScope.session_m_email}')){
             	fn_boardWrite();
             };
         }); 
