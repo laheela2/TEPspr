@@ -40,9 +40,9 @@
 			<c:forEach items="${list }" var="row">
 				<tr>
 					<td>${row.MT_NO}</td>			
-					<td class="board_subject">
-						<a href="#" name="subject">${row.MT_SUBJECT}</a>
-						<input type="hidden" id="MT_NO" value="${row.MT_NO}">
+					<td class="board_title">
+						<a href="#" name="title">${row.MT_SUBJECT}</a>
+						<input type="hidden" id="mt_no" value="${row.MT_NO}">
 					</td>
 					<td>${sessionScope.session_m_name }</td>
 					<td><fmt:formatDate value="${row.MT_DATE}" pattern="yyyy.MM.dd"/></td>
@@ -89,16 +89,16 @@
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("a[name='subject']").on("click", function(e){ // 글상세보기
+        $("a[name='title']").on("click", function(e){ // 글상세보기
             e.preventDefault();
-            fn_boardDetail($(this));
+            fn_omeetDetail($(this));
         });
     });
     
-    function fn_boardDetail(obj){
+    function fn_omeetDetail(obj){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/mypageOmeetDetail' />");
-        cs.addParam("MT_NO", obj.parent().find("#MT_NO").val());
+        cs.addParam("mt_no", obj.parent().find("#mt_no").val());
         cs.submit();
     }
 </script> 

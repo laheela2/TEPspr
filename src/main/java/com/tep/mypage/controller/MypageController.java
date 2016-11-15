@@ -139,7 +139,6 @@ public class MypageController {
 		Map<String, Object> result = qnaService.selectQnaDetail(map.getMap());
 
 		mv.addObject("data", result.get("detail"));
-		mv.addObject("currentPageNo", map.getCurrentPageNo());
 		return mv;
     }
 	
