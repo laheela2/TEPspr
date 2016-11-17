@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tep.commons.common.CommandMap;
@@ -38,6 +39,29 @@ public class LendplaceController {
         mv.addObject("currentPageNo", map.getCurrentPageNo());
         
         return mv;
+    }
+    
+    @RequestMapping(value="/lendplace/detail", method={RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView lendplaceDetail(CommandMap map, HttpServletRequest request) throws Exception{
+    	TepUtils.savePageURI(request);
+    	ModelAndView mv = new ModelAndView("lendplaceDetail");
+    	
+    	Map<String, Object> result = lendplaceService.selectLendplaceDetail(map.getMap());
+    	
+    	mv.addObject("data",result.get("detail"));
+    	mv.addObject("currentPageNo", map.getCurrentPageNo());
+    	return mv;
+    }
+	
+    @RequestMapping("/lendplace/write")
+    public String lendplaceWriteForm(){
+    	return "lendplaceWrite";
+    }
+    
+    @RequestMapping(value="/lendplace/write", method=RequestMethod.POST)
+    public ModelAndView lendplaceWrite(CommandMap map, MultipartHttpServletRequest request) throws Exception{
+    	lendplaceService.insertLendplace(map.getMap(), request);
+    	return new ModelAndView("redirect:/lendplace");
     }
 
 }
