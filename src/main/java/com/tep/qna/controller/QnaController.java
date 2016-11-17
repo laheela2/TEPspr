@@ -31,7 +31,7 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView("qnaList");
 
 		List<Map<String, Object>> list = qnaService.selectQnaList(map.getMap());
-		PagingCalculator paging = new PagingCalculator("board", map.getCurrentPageNo(), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("qna", map.getCurrentPageNo(), list, 5, 3);
 		Map<String, Object> rMap = paging.getPagingList();
 
 		mv.addObject("list", rMap.get("list"));

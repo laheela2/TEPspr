@@ -35,35 +35,39 @@
 				<table class="om_img_base">
 					<tr>
 						<td colspan="2">
-							<a href="#" id="title"><img id="repIMG" src='${row.mt_rep_img }'/></a>
-							<input type="hidden" id="mt_no" value="${row.mt_no }">
+							<a href="#this" id="title" onclick="fn_meetingsDetail($(this))"><img id="repIMG" src='${row.MT_REP_IMG }'/></a>
+							<input type="hidden" id="mt_no" value="${row.MT_NO }">
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2" class="om_view_title">
-							<a href="#" id="title">${row.mt_title }</a>
-							<input type="hidden" id="mt_no" value="${row.mt_no }">
+							<a href="#this" id="title" onclick="fn_meetingsDetail($(this))">${row.MT_TITLE }</a>
+							<input type="hidden" id="mt_no" value="${row.MT_NO }">
 						</td>
 					</tr>
 					<tr>
 						<td align="center" id="likeitBtnTd">
-							<a href="#" id="likeitBtn">♡</a>
-							<input type="hidden" id="mt_no" value="${row.mt_no }">
-							<span id="likeitCount">${row.mt_likeit}</span>
+							<input type="hidden" id="mt_no" value="${row.MT_NO }">
+							<a href="#this" id="likeitBtn">♡</a>
+							<span id="likeitCount">
+								<c:choose>
+									<c:when test="${row.MT_LIKEIT == null || row.MT_LIKEIT <= 0}">0</c:when>
+									<c:otherwise>${row.MT_LIKEIT}</c:otherwise>
+								</c:choose>
+							</span>
 						</td>
+						
 					</tr>
 				</table>
 			</td>
 		</c:forEach>
 	</c:when>
-		
-		<c:otherwise>
-			<tr>
-				<td colspan="4">조회된 결과가 없습니다.</td>
-			</tr>
-		</c:otherwise>
-	
-	</c:choose>
+	<c:otherwise>
+		<tr>
+			<td width=100%><h3>조회된 게시물이 없습니다.</h3></td>
+		</tr>
+	</c:otherwise>
+</c:choose>
 
 <!-- 페이징 -->
 	<tr>
@@ -78,30 +82,16 @@
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#likeitBtn").on("click", function(e){ // 좋아요
-            e.preventDefault();
-            sessionCheck("${sessionScope.session_m_email}");
-            fn_meetingsLikeit($(this));
-        }); 
         $("#title").on("click", function(e){ // 모임 상세보기
             e.preventDefault();
             fn_meetingsDetail($(this));
         });
     });
-     
-    function fn_meetingsLikeit(obj){
-        var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/meetings/likeit' />");
-        cs.addParam("mt_no", obj.parent().find("#mt_no").val());
-        cs.addParam("currentPageNo", "${currentPageNo}");
-        cs.submit();
-    }
     
     function fn_meetingsDetail(obj){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/mypageOmeetDetail' />");
         cs.addParam("mt_no", obj.parent().find("#mt_no").val());
-        cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();
     }
 </script> 
