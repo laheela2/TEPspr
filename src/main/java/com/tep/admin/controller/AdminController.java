@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tep.admin.service.AdminService;
 import com.tep.commons.common.CommandMap;
+import com.tep.commons.common.TepConstants;
 import com.tep.commons.util.PagingCalculator2;
 
 @Controller
@@ -45,6 +47,27 @@ public class AdminController {
         mv.addObject("currentPageNo", map.getCurrentPageNo());
         
         return mv;
+    }
+   
+    @RequestMapping(value="/admin/members/modifyForm")
+    public ModelAndView memberModifyForm(CommandMap map) throws Exception{
+    	ModelAndView mv = new ModelAndView("adminMemberModifyForm");
+    	
+    	Map<String, Object> result = adminService.selectMemberModifyForm(map.getMap());
+    	mv.addObject("data", result);
+    	
+    	return mv;
+    }
+    
+    @RequestMapping(value="/admin/members/modify")
+    public ModelAndView memberModify(CommandMap map, @RequestParam Map<String, Object> params) throws Exception{
+    	System.out.println(params.get("m_phone"));
+    	System.out.println(params.get("m_name"));
+    	System.out.println(params.get("m_password"));
+    	System.out.println(params.get("m_email"));
+    	adminService.adminMemberModify(params);
+    	
+    	return new ModelAndView("redirect:/admin/members/list");
     }
     
     @RequestMapping(value="/admin/lendplace/form", method=RequestMethod.GET)

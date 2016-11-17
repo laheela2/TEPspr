@@ -37,5 +37,27 @@
 			sysdate
 		)
 	</insert>
+	
+	<select id="selectMemberModifyForm" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			m_no,
+			m_name,
+			m_email,
+			m_password,
+			m_phone,
+			to_char(M_DATE,'yyyy/MM/dd') as m_date
+		FROM
+			members
+		WHERE
+			m_no = #{m_no}
+	</select>
 
+	<update id="adminMemberModify" parameterType="hashmap">
+		UPDATE
+			members
+		SET
+			m_name=#{m_name}, m_password=#{m_password}, m_phone=#{m_phone}
+        WHERE
+        	m_email=#{m_email}
+	</update>
 </mapper>
