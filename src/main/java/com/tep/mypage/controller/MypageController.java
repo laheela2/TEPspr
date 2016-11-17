@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,7 @@ import com.tep.board.service.BoardService;
 import com.tep.commons.common.CommandMap;
 import com.tep.commons.util.PagingCalculator;
 import com.tep.commons.util.TepUtils;
+import com.tep.meetings.service.MeetingsService;
 @Controller
 public class MypageController {
 	Logger log = Logger.getLogger(this.getClass());
@@ -28,11 +30,14 @@ public class MypageController {
 	@Resource
 	private MypageService mypageService;
 	
-	@Resource(name = "boardService")
+	@Resource
 	private BoardService boardService;
 	
 	@Resource
 	private QnaService qnaService;
+	
+	@Resource
+	private MeetingsService meetingsService;
 	
 	//회원정보수정 패스워드 체크
 	@RequestMapping(value="/modifyPwChk")
@@ -185,11 +190,10 @@ public class MypageController {
 			TepUtils.savePageURI(request);
 			
 			ModelAndView mv = new ModelAndView("mypageOmeetDetail");
-			
-			Map<String, Object> result = boardService.selectBoardDetail(map.getMap(),true);
-			
+			Map<String, Object> result = meetingsService.selectMeetingsDetail(map.getMap(),request.getMethod().equals("POST"));
 			mv.addObject("data",result.get("detail"));
 			mv.addObject("cmtList", result.get("cmtList"));
+			mv.addObject("currentPageNo", map.getCurrentPageNo());
 			
 			return mv;
 	    }	

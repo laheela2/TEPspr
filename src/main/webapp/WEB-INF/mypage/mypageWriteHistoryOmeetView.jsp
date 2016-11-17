@@ -41,7 +41,7 @@
 				<tr>
 					<td>${row.MT_NO}</td>			
 					<td class="board_title">
-						<a href="#" name="title">${row.MT_SUBJECT}</a>
+						<a href="#" name="title">${row.MT_TITLE}</a>
 						<input type="hidden" id="mt_no" value="${row.MT_NO}">
 					</td>
 					<td>${sessionScope.session_m_name }</td>

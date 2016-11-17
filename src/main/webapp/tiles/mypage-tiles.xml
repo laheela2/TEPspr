@@ -36,6 +36,10 @@
 		<put-attribute name="title" value="TEP - 모임개설내역"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageWriteHistoryOmeetView.jsp"></put-attribute>
 	</definition>
+	<definition name="mypageOmeetDetail" extends=".mypage">
+		<put-attribute name="title" value="TEP - 모임개설내역"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/meetings/meetingsDetail.jsp"></put-attribute>
+	</definition>
 	
 	<definition name="mypageMeetHistoryView" extends=".mypage">
 		<put-attribute name="title" value="TEP - 모임참여내역"></put-attribute>
