@@ -14,4 +14,8 @@
 		<put-attribute name="mypageMenu" value="/tiles/layout/mypageMenu.jsp"/>
 		<put-attribute name="footer" value="/tiles/layout/footer.jsp" />
 	</definition>
+	
+	<definition name=".admin" template="/tiles/template/admin.jsp">
+		<put-attribute name="navigation" value="/tiles/layout/admin_navigation.jsp" />
+	</definition>
 </tiles-definitions>
