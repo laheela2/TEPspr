@@ -3,64 +3,39 @@
 
 <mapper namespace="admin">
 
-	<!-- <select id="" parameterType="" resultType="">
-        <![CDATA[
-            SELECT
-                IDX,
-                TITLE,
-                HIT_CNT,
-                CREA_DTM
-            FROM
-                BOARD
-            WHERE
-                DEL_GB = 'N'
-            ORDER BY IDX DESC
-        ]]>
+	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			m_no,
+			m_name,
+			m_email,
+			m_password,
+			m_phone,
+			to_char(M_DATE,'yyyy/MM/dd') as m_date
+		FROM
+			members
+		ORDER BY
+			m_no DESC
 	</select>
-
-	<insert id="" parameterType="">
-    <![CDATA[
-        INSERT INTO BOARD
-        (
-            IDX,
-            TITLE, 
-            CONTENTS, 
-            HIT_CNT, 
-            DEL_GB, 
-            CREA_DTM, 
-            CREA_ID
-        )
-        VALUES
-        (
-            SEQ_BOARD_IDX.NEXTVAL, 
-            #{TITLE}, 
-            #{CONTENTS}, 
-            0, 
-            'N', 
-            SYSDATE, 
-            'Admin'
-        )
-    ]]>
-	</insert>
-
-	<update id="" parameterType="">
-    <![CDATA[
-        UPDATE BOARD 
-        SET
-            HIT_CNT = NVL(HIT_CNT,0)+1
-        WHERE
-            IDX = #{IDX}    
-    ]]>
-	</update>
 	
-	<delete id="" parameterType="">
-    <![CDATA[
-        DELETE  
-        FROM 
-        	BOARD
-        WHERE
-            IDX = #{IDX}
-    ]]>	
-	</delete> -->
+	<insert id="insertLendplace" parameterType="hashmap">
+		INSERT INTO lendplace
+		VALUES
+		(
+			lendplace_seq.nextval,
+			#{l_name},
+			#{l_email},
+			#{l_phone},
+			#{l_title},
+			#{l_addr},
+			#{l_content},
+			#{l_rep_img},
+			#{l_pnum},
+			#{l_sdate},
+			#{l_edate},
+			0,
+			0,
+			sysdate
+		)
+	</insert>
 
 </mapper>
