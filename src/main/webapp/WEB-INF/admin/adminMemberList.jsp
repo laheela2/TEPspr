@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
-<title></title>
+<%@ include file="/WEB-INF/include/common-header.jspf" %>
 </head>
 <body>
 
@@ -38,7 +37,7 @@
 										<c:url var="viewURL" value="/admin/members/modifyForm" >
 											<c:param name="m_no" value="${row.M_NO }" />							
 										</c:url>
-										<c:url var="viewURL2" value="" >
+										<c:url var="viewURL2" value="/admin/members/delete" >
 											<c:param name="m_no" value="${row.M_NO }" />							
 										</c:url>
 											<c:choose>

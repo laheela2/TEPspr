@@ -60,12 +60,20 @@ public class AdminController {
     }
     
     @RequestMapping(value="/admin/members/modify")
-    public ModelAndView memberModify(CommandMap map, @RequestParam Map<String, Object> params) throws Exception{
+    public ModelAndView memberModify(@RequestParam Map<String, Object> params) throws Exception{
     	System.out.println(params.get("m_phone"));
     	System.out.println(params.get("m_name"));
     	System.out.println(params.get("m_password"));
     	System.out.println(params.get("m_email"));
     	adminService.adminMemberModify(params);
+    	
+    	return new ModelAndView("redirect:/admin/members/list");
+    }
+    
+    @RequestMapping(value="/admin/members/delete")
+    public ModelAndView memeberDelete(@RequestParam Map<String, Object> params) throws Exception{
+    	
+    	adminService.deleteMember(params);
     	
     	return new ModelAndView("redirect:/admin/members/list");
     }

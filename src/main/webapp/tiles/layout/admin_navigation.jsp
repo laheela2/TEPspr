@@ -34,6 +34,9 @@
                     <a href="<c:url value="/admin/members/list"/>"><i class="fa fa-users fa-fw"></i> 회원관리</a>
                 </li>
                 <li>
+                    <a href="<c:url value="/admin/members/list"/>"><i class="fa fa-users fa-fw"></i> 고객문의</a>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-institution fa-fw"></i> 장소관리<span class="fa arrow"></span></a>
                 	<ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
                           <li>

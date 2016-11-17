@@ -19,4 +19,6 @@ public interface AdminService {
 
 	void adminMemberModify(Map<String, Object> params) throws Exception;
 
+	void deleteMember(Map<String, Object> params) throws Exception;
+
 }

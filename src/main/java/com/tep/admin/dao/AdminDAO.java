@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import com.tep.commons.common.CommandMap;
 import com.tep.commons.dao.AbstractDAO;
 
 @Repository
@@ -33,6 +32,10 @@ public class AdminDAO extends AbstractDAO{
 
 	public void adminMemberModify(Map<String, Object> params) {
 		update("adminMemberModify", params);
+	}
+
+	public void deleteMember(Map<String, Object> params) {
+		delete("deleteMember", params);
 	}
 
 }

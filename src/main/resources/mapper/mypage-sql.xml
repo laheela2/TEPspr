@@ -110,6 +110,7 @@
 				DELETE FROM likeit WHERE m_no=#{m_no};
 				DELETE FROM meetings WHERE m_no=#{m_no};
 				DELETE FROM lendplaceapplyfor WHERE m_no=#{m_no};
+				DELETE FROM members WHERE m_no=#{m_no};
 			end
 		}
 	</delete>

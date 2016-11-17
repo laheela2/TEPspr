@@ -53,4 +53,9 @@ public class AdminServiceImpl implements AdminService{
 		adminDAO.adminMemberModify(params);
 	}
 
+	@Override
+	public void deleteMember(Map<String, Object> params) throws Exception {
+		adminDAO.deleteMember(params);
+	}
+
 }

@@ -60,4 +60,20 @@
         WHERE
         	m_email=#{m_email}
 	</update>
+	
+	<delete id="deleteMember" parameterType="hashmap">
+		{call
+			declare
+			begin
+				DELETE FROM comments WHERE m_no=#{m_no};
+				DELETE FROM board WHERE m_no=#{m_no};
+				DELETE FROM qna WHERE m_no=#{m_no};
+				DELETE FROM meetingsapplyfor WHERE m_no=#{m_no};
+				DELETE FROM likeit WHERE m_no=#{m_no};
+				DELETE FROM meetings WHERE m_no=#{m_no};
+				DELETE FROM lendplaceapplyfor WHERE m_no=#{m_no};
+				DELETE FROM members WHERE m_no=#{m_no};
+			end
+		}
+	</delete>
 </mapper>
