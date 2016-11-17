@@ -26,6 +26,36 @@
 		ORDER BY
 			l_no DESC
 	</select>
+	
+	<select id="selectLendplaceDetail" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			*			
+		FROM
+			lendplace
+		WHERE
+			l_no=#{l_no}
+	</select>
+	
+	<insert id="insertLendplace" parameterType="hashmap">
+		INSERT INTO lendplace
+		VALUES
+		(
+			lendplace_seq.nextval,
+			#{l_name},
+			#{l_email},
+			#{l_phone},
+			#{l_title},
+			#{l_addr},
+			#{l_content},
+			#{l_rep_img},
+			#{l_pnum},
+			#{l_sdate},
+			#{l_edate},
+			#{l_use_num},
+			0,
+			sysdate
+		)
+	</insert>	
 
 
 

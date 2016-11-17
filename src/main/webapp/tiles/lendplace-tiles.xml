@@ -5,9 +5,18 @@
 
 <tiles-definitions>
 	<definition name="lendplaceList" extends=".default">
-		<put-attribute name="title" value="TEP - 스승과 제자를 찾아보세요 ;)" />
+		<put-attribute name="title" value="TEP - 원하는 장소를 빌려보세요 ;)" />
 		<put-attribute name="body" value="/WEB-INF/lendplace/lendplaceList.jsp" />
 	</definition>
 	
+	<definition name="lendplaceDetail" extends=".default">
+		<put-attribute name="title" value="TEP - 장소 상세보기 ;)" />
+		<put-attribute name="body" value="/WEB-INF/lendplace/lendplaceDetail.jsp" />
+	</definition>
+	
+	<definition name="lendplaceWrite" extends=".default">
+		<put-attribute name="title" value="TEP - 관리자 장소등록" />
+		<put-attribute name="body" value="/WEB-INF/lendplace/lendplaceWrite.jsp" />
+	</definition>
 
 </tiles-definitions>
