@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Repository;
 
 import com.tep.commons.dao.AbstractDAO;
+import com.tep.members.model.MembersModel;
 
 @Repository("mypageDAO")
 public class MypageDAO extends AbstractDAO{
