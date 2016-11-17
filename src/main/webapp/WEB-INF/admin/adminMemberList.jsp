@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
-<title></title>
+<%@ include file="/WEB-INF/include/common-header.jspf" %>
 </head>
 <body>
 
@@ -35,6 +34,12 @@
 									</thead>
 									<tbody>
 										<c:forEach items="${list }" var="row" varStatus="stat">
+										<c:url var="viewURL" value="/admin/members/modifyForm" >
+											<c:param name="m_no" value="${row.M_NO }" />							
+										</c:url>
+										<c:url var="viewURL2" value="/admin/members/delete" >
+											<c:param name="m_no" value="${row.M_NO }" />							
+										</c:url>
 											<c:choose>
 												<c:when test="${stat.index%2==0 }">
 													<tr class="gradeA even" role="row">
@@ -44,7 +49,9 @@
 														<td>${row.M_PASSWORD }</td>
 														<td>${row.M_PHONE }</td>
 														<td>${row.M_DATE }</td>
-														<td><a href="">수정</a>/<a href="">삭제</a></td>
+														<td>
+															<a href="${viewURL}">수정</a>/<a href="${viewURL2}">삭제</a>
+														</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
@@ -55,7 +62,9 @@
 														<td>${row.M_PASSWORD }</td>
 														<td>${row.M_PHONE }</td>
 														<td>${row.M_DATE }</td>
-														<td><a href="">수정</a>/<a href="">삭제</a></td>
+														<td>
+															<a href="${viewURL}">수정</a>/<a href="${viewURL2}">삭제</a>
+														</td>
 													</tr>
 												</c:otherwise>
 											</c:choose>

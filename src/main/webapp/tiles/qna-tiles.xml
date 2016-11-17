@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<definition name="qnaList" extends=".default">
+		<put-attribute name="title" value="TEP - QnA ;)" />
+		<put-attribute name="body" value="/WEB-INF/qna/qnaList.jsp" />
+	</definition>
+	
+	<definition name="qnaWrite" extends=".default">
+		<put-attribute name="title" value="TEP - QnA 글쓰기 ;)" />
+		<put-attribute name="body" value="/WEB-INF/qna/qnaWrite.jsp" />
+	</definition>
+	
+	<definition name="qnaDetail" extends=".default">
+		<put-attribute name="title" value="TEP - QnA 상세보기 ;)" />
+		<put-attribute name="body" value="/WEB-INF/qna/qnaDetail.jsp" />
+	</definition>
+	
+	<definition name="qnaModify" extends=".default">
+		<put-attribute name="title" value="TEP - QnA 수정 페이지 ;)" />
+		<put-attribute name="body" value="/WEB-INF/qna/qnaModify.jsp" />
+	</definition>
+	<!--
+	<definition name="boardWrite" extends=".default">
+		<put-attribute name="title" value="TEP - 게시판 글쓰기 ;)" />
+		<put-attribute name="body" value="/WEB-INF/board/boardWrite.jsp" />
+	</definition>
+	
+	<definition name="boardModify" extends=".default">
+		<put-attribute name="title" value="TEP - 게시판 수정 페이지 ;)" />
+		<put-attribute name="body" value="/WEB-INF/board/boardModify.jsp" />
+	</definition> -->
+</tiles-definitions>

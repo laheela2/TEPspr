@@ -25,4 +25,17 @@ public class AdminDAO extends AbstractDAO{
 		insert("insertLendplace", map);
 	}
 
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectMemberModfiyForm(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("selectMemberModifyForm", map);
+	}
+
+	public void adminMemberModify(Map<String, Object> params) {
+		update("adminMemberModify", params);
+	}
+
+	public void deleteMember(Map<String, Object> params) {
+		delete("deleteMember", params);
+	}
+
 }

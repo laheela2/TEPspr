@@ -20,4 +20,8 @@
 		<put-attribute name="title" value="관리자 페이지 - 대시보드" />
 		<put-attribute name="body" value="/WEB-INF/admin/adminDashboard.jsp" />
 	</definition>
+	<definition name="adminMemberModifyForm" extends=".admin">
+		<put-attribute name="title" value="관리자 페이지 - 회원수정" />
+		<put-attribute name="body" value="/WEB-INF/admin/adminMemberModifyForm.jsp" />
+	</definition>
 </tiles-definitions>
