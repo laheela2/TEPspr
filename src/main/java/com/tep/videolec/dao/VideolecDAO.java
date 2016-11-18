@@ -27,4 +27,31 @@ public class VideolecDAO extends AbstractDAO{
 		delete("deleteVideolec", v_no);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectVideolecList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("selectVideolecList",map);
+	}
+
+	public void updateVideolecReadCount(Map<String, Object> map) {
+		update("updateVideolecReadCount", map);		
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectVideolecDetail(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("selectVideolecDetail",map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectCmtList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("selectCmtList",map);
+	}
+
+	public void insertComments(Map<String, Object> map) {
+		insert("insertCmt", map);
+	}
+
+	public void deleteComments(Map<String, Object> map) {
+		delete("deleteCmt", map);
+	}
+
 }

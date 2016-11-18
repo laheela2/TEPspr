@@ -19,6 +19,58 @@
 			v_no DESC
 	</select>
 	
+	<select id="selectVideolecList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			v_no,
+			v_video_id,
+			v_title
+		FROM
+			videolec
+		ORDER BY
+			v_no DESC
+	</select>
+
+	<select id="selectVideolecDetail" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			v_no,
+			v_category,
+			v_video_id,
+			v_title,
+			v_content,
+			v_recturer,
+			to_char(v_date,'yyyy/MM/dd hh:mm:ss') as v_date,
+			v_readcount,
+			v_list_id
+		FROM
+			videolec
+		WHERE
+			v_no=#{v_no}
+	</select>
+	
+	<select id="selectCmtList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			c_no,
+			c_content,
+			c_date,
+			m_no,
+			m_name as c_name
+		FROM
+			comments natural join members
+		WHERE
+			v_no=#{v_no}
+		ORDER BY
+			c_no DESC
+	</select>
+
+	<update id="updateVideolecReadCount" parameterType="hashmap">
+        UPDATE 
+        	videolec
+        SET
+            v_readcount=NVL(v_readcount,0)+1
+        WHERE
+            v_no=#{v_no}
+	</update>
+	
 	<insert id="insertVideolec" parameterType="hashmap">
 		INSERT INTO videolec
 		VALUES
@@ -40,6 +92,31 @@
 			</choose>
 		)
 	</insert>
+
+	<insert id="insertCmt" parameterType="hashmap">
+		INSERT INTO comments
+		(
+			c_no,
+			c_content,
+			c_date,
+			v_no,
+			m_no
+		)
+		VALUES
+		(
+			comments_seq.nextval,
+			#{c_content},
+			sysdate,
+			#{v_no},
+			#{m_no}
+		)
+	</insert>
+	
+	<delete id="deleteCmt" parameterType="hashmap">
+		DELETE FROM 
+			comments 
+		WHERE c_no=#{c_no} and m_no=#{m_no}
+	</delete>	
 	
 	<delete id="deleteVideolec" parameterType="int">
 		{call

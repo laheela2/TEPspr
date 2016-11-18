@@ -1,5 +1,6 @@
 package com.tep.videolec.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public class VideolecServiceImpl implements VideolecService {
 	protected Logger log = Logger.getLogger(this.getClass());
 	
 	@Autowired
-	private VideolecDAO videolecDao;
+	private VideolecDAO videolecDAO;
 	
 	@Override
 	public void insertVideolec(Map<String, Object> map) throws Exception {
@@ -40,17 +41,49 @@ public class VideolecServiceImpl implements VideolecService {
 			map.put("v_list_id", list_id);
 		}
 		
-		videolecDao.insertVideolec(map);
+		videolecDAO.insertVideolec(map);
 	}
 
 	@Override
 	public List<Map<String, Object>> selectAdminVideolecList() throws Exception {
-		return videolecDao.selectAdminVideolecList();
+		return videolecDAO.selectAdminVideolecList();
 	}
 
 	@Override
 	public void deleteVideolec(int v_no) throws Exception {
-		videolecDao.deleteVideolec(v_no);
+		videolecDAO.deleteVideolec(v_no);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectVideolecList(Map<String, Object> map) throws Exception {
+		return videolecDAO.selectVideolecList(map);
+	}
+
+	@Override
+	public Map<String, Object> selectVideolecDetail(Map<String, Object> map, boolean readcount) throws Exception {
+		if(readcount){
+			videolecDAO.updateVideolecReadCount(map);
+		}
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		Map<String, Object> detail = videolecDAO.selectVideolecDetail(map);
+		List<Map<String, Object>> cmtList = videolecDAO.selectCmtList(map);
+		
+		resultMap.put("detail", detail);
+		resultMap.put("cmtList", cmtList);
+		
+		return resultMap;
+	}
+	
+	@Override
+	public void insertComments(Map<String, Object> map) throws Exception {
+		videolecDAO.insertComments(map);
+		
+	}
+
+	@Override
+	public void deleteComments(Map<String, Object> map) throws Exception {
+		videolecDAO.deleteComments(map);
 	}
 
 }
