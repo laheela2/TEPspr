@@ -38,4 +38,34 @@ public class AdminDAO extends AbstractDAO{
 		delete("deleteMember", params);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectBoardList() {
+		return (List<Map<String, Object>>) selectList("selectBoardList");
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectMeetingsList() {
+		return (List<Map<String, Object>>) selectList("selectMeetingsList");
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectLendplaceList() {
+		return (List<Map<String, Object>>) selectList("selectLendplaceList");
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectQnaList() {
+		return (List<Map<String, Object>>) selectList("selectQnaList");
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectQnaList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("selectQnaList");
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> adminQnaDetail(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("adminQnaDetail", map);
+	}
+
 }
