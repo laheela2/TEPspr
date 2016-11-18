@@ -2,65 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="video">
-
-	<!-- <select id="" parameterType="" resultType="">
-        <![CDATA[
-            SELECT
-                IDX,
-                TITLE,
-                HIT_CNT,
-                CREA_DTM
-            FROM
-                BOARD
-            WHERE
-                DEL_GB = 'N'
-            ORDER BY IDX DESC
-        ]]>
+	<select id="selectAdminVideolecList" resultType="hashmap">
+		SELECT
+			v_no,
+			v_category,
+			v_video_id,
+			v_title,
+			v_content,
+			v_recturer,
+			to_char(v_date,'yyyy/MM/dd') as v_date,
+			v_readcount,
+			v_list_id
+		FROM
+			videolec
+		ORDER BY
+			v_no DESC
 	</select>
-
-	<insert id="" parameterType="">
-    <![CDATA[
-        INSERT INTO BOARD
-        (
-            IDX,
-            TITLE, 
-            CONTENTS, 
-            HIT_CNT, 
-            DEL_GB, 
-            CREA_DTM, 
-            CREA_ID
-        )
-        VALUES
-        (
-            SEQ_BOARD_IDX.NEXTVAL, 
-            #{TITLE}, 
-            #{CONTENTS}, 
-            0, 
-            'N', 
-            SYSDATE, 
-            'Admin'
-        )
-    ]]>
-	</insert>
-
-	<update id="" parameterType="">
-    <![CDATA[
-        UPDATE BOARD 
-        SET
-            HIT_CNT = NVL(HIT_CNT,0)+1
-        WHERE
-            IDX = #{IDX}    
-    ]]>
-	</update>
 	
-	<delete id="" parameterType="">
-    <![CDATA[
-        DELETE  
-        FROM 
-        	BOARD
-        WHERE
-            IDX = #{IDX}
-    ]]>	
-	</delete> -->
-
+	<insert id="insertVideolec" parameterType="hashmap">
+		INSERT INTO videolec
+		VALUES
+		(
+			videolec_seq.nextval,
+			#{v_category},
+			#{v_video_id},
+			#{v_title},
+			<choose>
+				<when test="v_content == null">null</when>
+				<otherwise>#{v_content},</otherwise>
+			</choose>
+			#{v_recturer},
+			sysdate,
+			0,
+			<choose>
+				<when test="v_list_id == null">null</when>
+				<otherwise>#{v_list_id}</otherwise>
+			</choose>
+		)
+	</insert>
+	
+	<delete id="deleteVideolec" parameterType="int">
+		{call
+			declare
+			begin
+				DELETE FROM comments WHERE v_no=#{v_no};
+				DELETE FROM videolec WHERE v_no=#{v_no};
+			end
+		}	
+	</delete>
 </mapper>

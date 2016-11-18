@@ -10,7 +10,7 @@
 			m_email,
 			m_password,
 			m_phone,
-			to_char(M_DATE,'yyyy/MM/dd') as m_date
+			to_char(m_date,'yyyy/MM/dd') as m_date
 		FROM
 			members
 		ORDER BY

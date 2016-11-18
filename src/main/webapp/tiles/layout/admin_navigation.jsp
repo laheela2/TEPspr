@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">TEP Admin</a>
+        <a class="navbar-brand" href="<c:url value="/admin"/>">TEP Admin</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -47,7 +47,18 @@
                           </li>
                       </ul>
                 </li>
-                
+                <li>
+                    <a href="#"><i class="fa fa-youtube-play fa-fw"></i> 영상관리<span class="fa arrow"></span></a>
+                	<ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                          <li>
+                              <a href="<c:url value="/admin/videolec/list"/>">목록</a>
+                          </li>
+                          <li>
+                              <a href="<c:url value="/admin/videolec/write"/>">등록</a>
+                          </li>
+                      </ul>
+                </li>
+
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
