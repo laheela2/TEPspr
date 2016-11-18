@@ -119,6 +119,15 @@ public class AdminController {
         return mv;
     }
     
+    @RequestMapping(value="/admin/qna/detail")
+    public ModelAndView adminQnaDetail(CommandMap map) throws Exception{
+    	ModelAndView mv = new ModelAndView("adminQnaDetail");
+    	Map<String, Object> result = adminService.adminQnaDetail(map.getMap());
+    	
+    	mv.addObject("data", result);
+    	return mv;
+    }
+    
     @RequestMapping(value="/admin/board/list")
     public ModelAndView adminBoardList(CommandMap map) throws Exception{
     	ModelAndView mv = new ModelAndView("adminBoardList");

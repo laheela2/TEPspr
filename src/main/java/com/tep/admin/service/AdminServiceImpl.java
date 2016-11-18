@@ -76,4 +76,9 @@ public class AdminServiceImpl implements AdminService{
 		return adminDAO.selectQnaList(map);
 	}
 
+	@Override
+	public Map<String, Object> adminQnaDetail(Map<String, Object> map) throws Exception {
+		return adminDAO.adminQnaDetail(map);
+	}
+
 }

@@ -33,9 +33,12 @@
 									</thead>
 									<tbody>
 										<c:forEach items="${list}" var="row" varStatus="stat">
+										<c:url var="viewURL" value="/admin/qna/detail" >
+											<c:param name="q_no" value="${row.Q_NO }" />							
+										</c:url>
 											<c:choose>
 												<c:when test="${stat.index%2==0 }">
-													<tr class="gradeA even" role="row">
+													<tr class="gradeA even" role="row" onclick="location.href='${viewURL}'">
 														<td>${row.Q_NO }</td>
 														<td>${row.Q_CATEGORY1 }</td>
 														<td>${row.Q_TITLE }</td>
@@ -45,7 +48,7 @@
 													</tr>
 												</c:when>
 												<c:otherwise>
-													<tr class="gradeA odd" role="row">
+													<tr class="gradeA odd" role="row" onclick="location.href='/tepspr/admin/qna/detail'">
 														<td>${row.Q_NO }</td>
 														<td>${row.Q_CATEGORY1 }</td>
 														<td>${row.Q_TITLE }</td>

@@ -125,4 +125,18 @@
 			qna natural join members
 	</select>
 	
+	<select id="adminQnaDetail" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			q_no,
+			q_category1,
+			q_category2,
+			q_title,
+			q_content,
+			q_date,
+			m_no
+		FROM
+			qna
+		WHERE
+			q_no=#{q_no}
+	</select>
 </mapper>

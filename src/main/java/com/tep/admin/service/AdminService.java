@@ -29,4 +29,6 @@ public interface AdminService {
 
 	List<Map<String, Object>> selectQnaList(Map<String, Object> map) throws Exception;
 
+	Map<String, Object> adminQnaDetail(Map<String, Object> map) throws Exception;
+
 }

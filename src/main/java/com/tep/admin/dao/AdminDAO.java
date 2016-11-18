@@ -63,4 +63,9 @@ public class AdminDAO extends AbstractDAO{
 		return (List<Map<String, Object>>) selectList("selectQnaList");
 	}
 
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> adminQnaDetail(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("adminQnaDetail", map);
+	}
+
 }
