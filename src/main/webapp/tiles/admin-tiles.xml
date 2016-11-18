@@ -32,4 +32,8 @@
 		<put-attribute name="title" value="관리자 페이지 - 게시판 리스트" />
 		<put-attribute name="body" value="/WEB-INF/admin/adminBoardList.jsp" />
 	</definition>
+	<definition name="adminMeetingsList" extends=".admin">
+		<put-attribute name="title" value="관리자 페이지 - 게시판 리스트" />
+		<put-attribute name="body" value="/WEB-INF/admin/adminMeetingsList.jsp" />
+	</definition>
 </tiles-definitions>

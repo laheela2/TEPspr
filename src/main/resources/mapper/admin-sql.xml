@@ -93,10 +93,15 @@
 	<select id="selectMeetingsList" parameterType="hashmap" resultType="hashmap">
 		SELECT
 			mt_no,
+			mt_category,
 			mt_title,
-			mt_rep_img
+			mt_subject,
+			mt_date,
+			m_name as mt_name
 		FROM
-			meetings
+			meetings natural join members
+		ORDER BY
+			mt_no DESC
 	</select>
 	<select id="selectLendplaceList" parameterType="hashmap" resultType="hashmap">
 		SELECT
