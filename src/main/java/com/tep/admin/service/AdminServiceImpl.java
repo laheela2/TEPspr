@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tep.admin.dao.AdminDAO;
+import com.tep.commons.common.CommandMap;
 import com.tep.commons.util.FileUploadComponent;
 import com.tep.commons.util.TepUtils;
 
@@ -40,6 +41,21 @@ public class AdminServiceImpl implements AdminService{
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		return null;
+	}
+
+	@Override
+	public Map<String, Object> selectMemberModifyForm(Map<String, Object> map) throws Exception {
+		return adminDAO.selectMemberModfiyForm(map);
+	}
+
+	@Override
+	public void adminMemberModify(Map<String, Object> params) throws Exception {
+		adminDAO.adminMemberModify(params);
+	}
+
+	@Override
+	public void deleteMember(Map<String, Object> params) throws Exception {
+		adminDAO.deleteMember(params);
 	}
 
 }

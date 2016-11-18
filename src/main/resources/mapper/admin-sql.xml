@@ -10,7 +10,7 @@
 			m_email,
 			m_password,
 			m_phone,
-			to_char(M_DATE,'yyyy/MM/dd') as m_date
+			to_char(m_date,'yyyy/MM/dd') as m_date
 		FROM
 			members
 		ORDER BY
@@ -37,5 +37,43 @@
 			sysdate
 		)
 	</insert>
+	
+	<select id="selectMemberModifyForm" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			m_no,
+			m_name,
+			m_email,
+			m_password,
+			m_phone,
+			to_char(M_DATE,'yyyy/MM/dd') as m_date
+		FROM
+			members
+		WHERE
+			m_no = #{m_no}
+	</select>
 
+	<update id="adminMemberModify" parameterType="hashmap">
+		UPDATE
+			members
+		SET
+			m_name=#{m_name}, m_password=#{m_password}, m_phone=#{m_phone}
+        WHERE
+        	m_email=#{m_email}
+	</update>
+	
+	<delete id="deleteMember" parameterType="hashmap">
+		{call
+			declare
+			begin
+				DELETE FROM comments WHERE m_no=#{m_no};
+				DELETE FROM board WHERE m_no=#{m_no};
+				DELETE FROM qna WHERE m_no=#{m_no};
+				DELETE FROM meetingsapplyfor WHERE m_no=#{m_no};
+				DELETE FROM likeit WHERE m_no=#{m_no};
+				DELETE FROM meetings WHERE m_no=#{m_no};
+				DELETE FROM lendplaceapplyfor WHERE m_no=#{m_no};
+				DELETE FROM members WHERE m_no=#{m_no};
+			end
+		}
+	</delete>
 </mapper>
