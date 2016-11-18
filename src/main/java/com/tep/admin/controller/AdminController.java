@@ -29,8 +29,16 @@ public class AdminController {
 	@RequestMapping(value={"/admin","/admin/dashboard"})
 	public ModelAndView dashboardView() throws Exception{
 		ModelAndView mv = new ModelAndView("adminDashboard");
-		Map<String, Object> result = adminService.selectDashboard();
-//		mv.addAllObjects("data")
+		List<Map<String, Object>> result1 = adminService.selectBoardList();
+		List<Map<String, Object>> result2 = adminService.selectMeetingsList();
+		List<Map<String, Object>> result3 = adminService.selectLendplaceList();
+		List<Map<String, Object>> result4 = adminService.selectQnaList();
+		
+		mv.addObject("data1", result1);
+		mv.addObject("data2", result2);
+		mv.addObject("data3", result3);
+		mv.addObject("data4", result4);
+		
 		return mv;
 	}
 	
@@ -94,5 +102,20 @@ public class AdminController {
     	ModelAndView mv = new ModelAndView("adminLendplaceList");
     	
     	return mv;
+    }
+    
+    @RequestMapping(value="/admin/qna/list", method={RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView qnaList(CommandMap map, HttpServletRequest request) throws Exception{
+        ModelAndView mv = new ModelAndView("adminQnaList");
+        
+        List<Map<String,Object>> list = adminService.selectQnaList(map.getMap());
+        PagingCalculator2 paging = new PagingCalculator2("admin/qna/list", map.getCurrentPageNo(), list, 5, 3);
+        Map<String, Object> rMap = paging.getPagingList();
+        
+        mv.addObject("list", rMap.get("list"));
+        mv.addObject("pagingHtml",rMap.get("pagingHtml"));
+        mv.addObject("currentPageNo", map.getCurrentPageNo());
+        
+        return mv;
     }
 }

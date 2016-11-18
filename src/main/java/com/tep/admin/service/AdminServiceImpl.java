@@ -37,13 +37,6 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Map<String, Object> selectDashboard() throws Exception {
-		Map<String, Object> result = new HashMap<String, Object>();
-		
-		return null;
-	}
-
-	@Override
 	public Map<String, Object> selectMemberModifyForm(Map<String, Object> map) throws Exception {
 		return adminDAO.selectMemberModfiyForm(map);
 	}
@@ -56,6 +49,31 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void deleteMember(Map<String, Object> params) throws Exception {
 		adminDAO.deleteMember(params);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectBoardList() throws Exception {
+		return adminDAO.selectBoardList();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectMeetingsList() throws Exception {
+		return adminDAO.selectMeetingsList();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectLendplaceList() throws Exception {
+		return adminDAO.selectLendplaceList();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectQnaList() throws Exception {
+		return adminDAO.selectQnaList();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectQnaList(Map<String, Object> map) throws Exception {
+		return adminDAO.selectQnaList(map);
 	}
 
 }

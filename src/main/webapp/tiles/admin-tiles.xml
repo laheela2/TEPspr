@@ -24,4 +24,8 @@
 		<put-attribute name="title" value="관리자 페이지 - 회원수정" />
 		<put-attribute name="body" value="/WEB-INF/admin/adminMemberModifyForm.jsp" />
 	</definition>
+	<definition name="adminQnaList" extends=".admin">
+		<put-attribute name="title" value="관리자 페이지 - 문의내역" />
+		<put-attribute name="body" value="/WEB-INF/admin/adminQnaList.jsp" />
+	</definition>
 </tiles-definitions>

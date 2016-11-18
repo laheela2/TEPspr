@@ -76,4 +76,45 @@
 			end
 		}
 	</delete>
+	
+	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			b_no,
+			b_kind,
+			b_title,
+			b_date,
+			b_readcount
+		FROM
+			board
+	</select>
+	<select id="selectMeetingsList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			mt_no,
+			mt_title,
+			mt_rep_img
+		FROM
+			meetings
+	</select>
+	<select id="selectLendplaceList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			l_no,
+			l_title,
+			l_addr,
+			l_rep_img,
+			l_pnum
+		FROM
+			lendplace
+	</select>
+	<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			q_no,
+			q_category1,
+			q_title,
+			q_content,
+			q_date,
+			m_name as q_name
+		FROM
+			qna natural join members
+	</select>
+	
 </mapper>
