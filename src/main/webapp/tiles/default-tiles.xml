@@ -18,4 +18,9 @@
 	<definition name=".admin" template="/tiles/template/admin.jsp">
 		<put-attribute name="navigation" value="/tiles/layout/admin_navigation.jsp" />
 	</definition>
+	
+	<definition name=".uni" template="/tiles/template/uni.jsp">
+		<put-attribute name="header" value="/tiles/layout/uni_header.jsp" />
+		<put-attribute name="footer" value="/tiles/layout/uni_footer.jsp" />
+	</definition>
 </tiles-definitions>
