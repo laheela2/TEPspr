@@ -124,7 +124,7 @@ public class AdminController {
     	ModelAndView mv = new ModelAndView("adminBoardList");
     	
     	List<Map<String, Object>> list = adminService.selectBoardList();
-    	PagingCalculator2 paging = new PagingCalculator2("admin/qna/list", map.getCurrentPageNo(), list, 5, 3);
+    	PagingCalculator2 paging = new PagingCalculator2("admin/board/list", map.getCurrentPageNo(), list, 5, 3);
         Map<String, Object> rMap = paging.getPagingList();
         
         mv.addObject("list", rMap.get("list"));
@@ -139,7 +139,7 @@ public class AdminController {
     	ModelAndView mv = new ModelAndView("adminMeetingsList");
     	
     	List<Map<String, Object>> list = adminService.selectMeetingsList();
-    	PagingCalculator2 paging = new PagingCalculator2("admin/qna/list", map.getCurrentPageNo(), list, 5, 3);
+    	PagingCalculator2 paging = new PagingCalculator2("admin/meetings/list", map.getCurrentPageNo(), list, 5, 3);
         Map<String, Object> rMap = paging.getPagingList();
         
         mv.addObject("list", rMap.get("list"));
