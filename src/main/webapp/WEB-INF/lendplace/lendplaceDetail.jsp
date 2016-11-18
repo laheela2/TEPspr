@@ -54,7 +54,7 @@
 
 <table  align="right">
 <tr><td align="right">
-<input type="button" name="lendplace_submit" value="장소사용 신청하기" onclick="return lp_check();">
+<input type="submit" name="lendplace_submit" value="장소사용 신청하기" onclick="fn_lendplaceApplyfor()">
 </td></tr>
 </table>
 
@@ -134,20 +134,12 @@ geocoder.addr2coord('${data.L_ADDR }', function(status, result) {
 });
 
 
-/* 장소사용 신청전 로그인 확인  */
-function lp_check(kind){
-	var session_id = '<s:property value="#session.session_m_email"/>';
-	
-	if(session_id == null || session_id.length <= 0){
-		alertify.error("로그인 상태가 아닙니다.");
-		return false;
-	}
-	if(session_id != null){
-		location.href='lendplaceBook.action?l_no=<s:property value="detailData.l_no"/>';
-	}
-}
 
 </script>
+
+
+
+
 
 
 <!-- 모임장소 추천안내 -->
@@ -160,7 +152,18 @@ function lp_check(kind){
 </td></tr>
 </table>
 
+<%@ include file="/WEB-INF/include/common-body.jspf" %>
 
+<script type="text/javascript">
+function fn_lendplaceApplyfor(){
+	if(isLoginCheck("${sessionScope.session_m_email}")){
+		var cs = new CustomSubmit();
+        cs.setUrl("<c:url value='/lendplace/applyform' />");
+        cs.addParam("l_no", '${data.L_NO}');
+        cs.submit();
+	}
+}
+</script>
 </td>
 </tr>
 </table>
