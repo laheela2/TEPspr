@@ -41,7 +41,7 @@
 														<td>${row.Q_TITLE }</td>
 														<td>${row.Q_CONTENT }</td>
 														<td>${row.Q_NAME}</td>
-														<td>${row.Q_DATE }</td>
+														<td><fmt:formatDate value="${row.Q_DATE}" pattern="yyyy.MM.dd"/></td>
 													</tr>
 												</c:when>
 												<c:otherwise>
@@ -51,7 +51,7 @@
 														<td>${row.Q_TITLE }</td>
 														<td>${row.Q_CONTENT }</td>
 														<td>${row.Q_NAME}</td>
-														<td>${row.Q_DATE }</td>
+														<td><fmt:formatDate value="${row.Q_DATE}" pattern="yyyy.MM.dd"/></td>
 													</tr>
 												</c:otherwise>
 											</c:choose>
