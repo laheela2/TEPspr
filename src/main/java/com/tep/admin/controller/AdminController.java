@@ -118,4 +118,19 @@ public class AdminController {
         
         return mv;
     }
+    
+    @RequestMapping(value="/admin/board/list")
+    public ModelAndView adminBoardList(CommandMap map, HttpServletRequest request) throws Exception{
+    	ModelAndView mv = new ModelAndView("adminBoardList");
+    	
+    	List<Map<String, Object>> list = adminService.selectBoardList();
+    	PagingCalculator2 paging = new PagingCalculator2("admin/qna/list", map.getCurrentPageNo(), list, 5, 3);
+        Map<String, Object> rMap = paging.getPagingList();
+        
+        mv.addObject("list", rMap.get("list"));
+        mv.addObject("pagingHtml",rMap.get("pagingHtml"));
+        mv.addObject("currentPageNo", map.getCurrentPageNo());
+    	
+    	return mv;
+    }
 }

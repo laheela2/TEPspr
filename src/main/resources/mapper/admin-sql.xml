@@ -83,9 +83,12 @@
 			b_kind,
 			b_title,
 			b_date,
-			b_readcount
+			b_readcount,
+			m_name as b_name
 		FROM
-			board
+			board natural join members
+		ORDER BY
+			b_no DESC
 	</select>
 	<select id="selectMeetingsList" parameterType="hashmap" resultType="hashmap">
 		SELECT

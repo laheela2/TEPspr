@@ -30,7 +30,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="#">
+				<a href="/tepspr/admin/board/list">
 					<div class="panel-footer">
 						<span class="pull-left">View List</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 						<div class="clearfix"></div>
@@ -51,7 +51,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="#">
+				<a href="/tepspr/admin/meetings/list">
 					<div class="panel-footer">
 						<span class="pull-left">View List</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 						<div class="clearfix"></div>
@@ -93,7 +93,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="#">
+				<a href="/tepspr/admin/qna/list">
 					<div class="panel-footer">
 						<span class="pull-left">View List</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 						<div class="clearfix"></div>
