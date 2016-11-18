@@ -57,7 +57,18 @@
 		)
 	</insert>	
 
-
+	<insert id="insertLendplaceApplyfor" parameterType="hashmap">
+		INSERT INTO lendplaceapplyfor
+		VALUES
+		(
+			lendplaceapplyfor_seq.nextval,
+			#{la_sdate},
+			#{la_edate},
+			sysdate,
+			#{l_no},
+			#{m_no}
+		)
+	</insert>
 
 
 

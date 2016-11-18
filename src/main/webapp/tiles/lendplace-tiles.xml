@@ -18,5 +18,10 @@
 		<put-attribute name="title" value="TEP - 관리자 장소등록" />
 		<put-attribute name="body" value="/WEB-INF/lendplace/lendplaceWrite.jsp" />
 	</definition>
+	
+	<definition name="lendplaceApplyfor" extends=".default">
+		<put-attribute name="title" value="TEP - 장소 신청하기" />
+		<put-attribute name="body" value="/WEB-INF/lendplace/lendplaceApplyfor.jsp" />
+	</definition>	
 
 </tiles-definitions>

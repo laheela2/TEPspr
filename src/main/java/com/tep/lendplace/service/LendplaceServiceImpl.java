@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,21 @@ public class LendplaceServiceImpl implements LendplaceService {
 		map.put("l_edate", TepUtils.dateParse(map.get("l_edate").toString()));
 		lendplaceDAO.insertLendplace(map);
 	}
+
+	@Override
+	public Map<String, Object> selectLendplaceApplyfor(Map<String, Object> map, HttpServletRequest request)
+			throws Exception {
+		Map<String, Object> result = lendplaceDAO.selectLendplaceDetail(map);
+		HttpSession session = request.getSession();
+		result.put("M_NAME", session.getAttribute(TepConstants.M_NAME));
+		result.put("M_EMAIL", session.getAttribute(TepConstants.M_EMAIL));
+		return result;
+	}
 	
+	@Override
+	public void insertLendplaceApplyfor(Map<String, Object> map) throws Exception {
+		lendplaceDAO.insertLendplaceApplyfor(map);
+		
+	}
 
 }

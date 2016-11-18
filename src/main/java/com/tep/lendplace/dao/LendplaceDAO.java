@@ -21,6 +21,11 @@ public class LendplaceDAO extends AbstractDAO {
 	}
 	
 	public void insertLendplace(Map<String, Object> map) {
-		insert("insertLendplace", map);
+		insert("lendplace.insertLendplace", map);
 	}
+	
+	public void insertLendplaceApplyfor(Map<String, Object> map) {
+		insert("insertLendplaceApplyfor", map);
+	}	
+	
 }
