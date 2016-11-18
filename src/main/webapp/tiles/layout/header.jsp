@@ -13,7 +13,8 @@
 	<span style="float:left;padding-left:10px;">
 	<a href="<c:url value="/meetings"/>">모임</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="<c:url value="/lendplace"/>">장소</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="<c:url value="/board"/>">게시판</a>
+	<a href="<c:url value="/board"/>">게시판</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="<c:url value="/videolec"/>">동영상</a>
 	</span>
 	<span>
 		<c:if test="${sessionScope.session_m_email == null }">

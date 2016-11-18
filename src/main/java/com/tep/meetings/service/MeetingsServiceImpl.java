@@ -46,7 +46,7 @@ public class MeetingsServiceImpl implements MeetingsService {
 			map.remove("searchWord");
 		}
 		
-		List<Map<String, Object>> resultList = (List<Map<String, Object>>)meetingsDAO.selectMeetingsList(map);
+		List<Map<String, Object>> resultList = meetingsDAO.selectMeetingsList(map);
 		for (int i = 0; i < resultList.size(); i++) {
 			int mt_no = Integer.parseInt(resultList.get(i).get("MT_NO").toString());
 			resultList.get(i).put("MT_LIKEIT", meetingsDAO.selectLikeitCount(mt_no));
