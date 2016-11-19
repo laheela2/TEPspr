@@ -8,18 +8,36 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 </head>
 <body>
-<br>
-	<table align="center" width="920" border="0" cellspacing="0" cellpadding="0">
-	<tr>
-	<td>
-	<table width=100%>
-		<tr height="25">
-			<td bgcolor="#FF2929" align="left" colspan="1" width="10"></td>
-			<td align="left" colspan="3">
-				<strong>&nbsp;&nbsp;답글내역</strong>
-			</td>
-		</tr>
-	</table>
+<div class="container">
+		<div class="row">
+	<div class="col-md-3">
+		<div class="panel panel-default sidebar-menu with-icons">
+
+			<div class="panel-heading">
+				<h3 class="panel-title">Categories</h3>
+			</div>
+
+			<div class="panel-body">
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active"><a href="mypageView">내 정보</a>
+					</li>
+					<li><a href="modifyPwChk">회원정보수정</a></li>
+					<li><a href="writeHistoryBoard">게시판내역</a></li>
+					<li><a href="cmtHistory">답글내역</a></li>
+					<li><a href="writeHistoryOmeet">모임개설내역</a></li>
+					<li><a href="meetHistory">모임참여내역</a></li>
+					<li><a href="qnaHistory">문의내역</a></li>
+					<li><a href="mypageDeleteForm">회원탈퇴</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- *** MENUS AND FILTERS END *** -->
+	</div>
+<div class="col-md-9">
+<div class="table-responsive">
+	<div class="heading">
+		<h3>답글내역</h3>
+	</div>
 	<br>
 <table class="board" align=center cellspacing=0 border="0">
 	<tr class="board_head_tr">
@@ -61,6 +79,10 @@
 
 
 </table>
+</div>
+</div>
+</div>
+</div>
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">

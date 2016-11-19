@@ -8,20 +8,36 @@
 <script src="<c:url value="/resources/js/meetings.list.js"/>"></script>
 </head>
 <body>
-<br>
+<div class="container">
+		<div class="row">
+	<div class="col-md-3">
+		<div class="panel panel-default sidebar-menu with-icons">
 
-<table border="0" width=900px cellpadding=15 align=center>
-<tr>
-<td>
+			<div class="panel-heading">
+				<h3 class="panel-title">Categories</h3>
+			</div>
 
-<table width=100%>
-
-	<tr height="25">
-			<td bgcolor="#FF2929" align="left" colspan="1" width="10"></td>
-			<td align="left" colspan="5"><strong>&nbsp;&nbsp;모임참여내역</strong></td>
-	</tr>
-
-</table>
+			<div class="panel-body">
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active"><a href="mypageView">내 정보</a>
+					</li>
+					<li><a href="modifyPwChk">회원정보수정</a></li>
+					<li><a href="writeHistoryBoard">게시판내역</a></li>
+					<li><a href="cmtHistory">답글내역</a></li>
+					<li><a href="writeHistoryOmeet">모임개설내역</a></li>
+					<li><a href="meetHistory">모임참여내역</a></li>
+					<li><a href="qnaHistory">문의내역</a></li>
+					<li><a href="mypageDeleteForm">회원탈퇴</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- *** MENUS AND FILTERS END *** -->
+	</div>
+<div class="col-md-9">
+<div class="table-responsive">
+	<div class="heading">
+		<h3>모임참여내역</h3>
+	</div>
 <br>
 <c:choose>
 	<c:when test="${fn:length(list) > 0 }">
@@ -75,9 +91,12 @@
 			${pagingHtml }
 		</td>
 	</tr>
+</div>
+</div>
+</div>
+</div>
 
 
-</table>
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
