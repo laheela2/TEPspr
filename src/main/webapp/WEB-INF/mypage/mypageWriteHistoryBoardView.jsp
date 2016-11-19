@@ -104,10 +104,11 @@
 											</select>
 										</td>
 										<td>
-											<input type="text" name="searchWordB" size="33" maxlength="15" />
+											<input type="text"  style="height:31px;" name="searchWordB" size="33" maxlength="15" />
+											
 										</td>
 										<td>
-											<input type="submit" value="검색" />
+											<button class="btn btn-default" type="submit"><i class="fa fa-send"></i></button>
 										</td>
 									</tr>
 								</table>
