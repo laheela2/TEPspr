@@ -5,7 +5,7 @@
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
 <script type="text/javascript">
 	$(function(){
-		  $('#navigation').find('#nav_main').addClass('active');
+		  $('#navigation').find('#nav_home').addClass('active');
 	});
 </script>
 </head>
@@ -109,12 +109,12 @@ _________________________________________________________ -->
 
 						<div class="col-sm-6">
 							<h3>
-								<a href="#" onclick="fn_videolecDetailLink()">${data.V_TITLE }</a>
+								<a href="#this" onclick="fn_videolecDetailLink()">${data.V_TITLE }</a>
 							</h3>
 							<p class="lead">${data.V_CONTENT}</p>
 							<p>게시자 : ${data.V_RECTURER }</p>
 							<p class="buttons">
-								<a href="#" class="btn btn-template-main" onclick="fn_videolecDetailLink('${data.V_NO}')">보기</a>
+								<a href="#this" class="btn btn-template-main" onclick="fn_videolecDetailLink('${data.V_NO}')">보기</a>
 							</p>
 						</div>
 					</div>
@@ -135,19 +135,19 @@ _________________________________________________________ -->
 								<div class="bg"></div>
 								<div class="name">
 									<h3>
-										<a href="#" onclick="fn_meetingsDetailLink('${row.MT_NO}')">${row.MT_TITLE }</a>
+										<a href="#this" onclick="fn_meetingsDetailLink('${row.MT_NO}')">${row.MT_TITLE }</a>
 									</h3>
 								</div>
 								<div class="text">
 									<p class="hidden-sm">${row.MT_SUBJECT }</p>
 									<p class="buttons">
-										<a href="#" class="btn btn-template-transparent-primary" onclick="fn_meetingsDetailLink('${row.MT_NO}')">보기</a>
+										<a href="#this" class="btn btn-template-transparent-primary" onclick="fn_meetingsDetailLink('${row.MT_NO}')">보기</a>
 										<c:choose>
 											<c:when test="${row.MT_PERMIT_PNUM <= 0 }">
-												<a href="#" class="btn btn-template-transparent-primary" onclick="fn_meetingsApplyforDisable()">신청</a>
+												<a href="#this" class="btn btn-template-transparent-primary" onclick="fn_meetingsApplyforDisable()">신청</a>
 											</c:when>
 											<c:otherwise>
-												<a href="#" class="btn btn-template-transparent-primary" onclick="fn_meetingsApplyfor('${row.MT_NO}')">신청</a>
+												<a href="#this" class="btn btn-template-transparent-primary" onclick="fn_meetingsApplyfor('${row.MT_NO}')">신청</a>
 											</c:otherwise>
 										</c:choose>
 									</p>

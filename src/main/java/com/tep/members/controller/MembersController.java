@@ -9,14 +9,16 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tep.commons.common.TepConstants;
 import com.tep.members.model.MembersModel;
 import com.tep.members.service.MembersService;
+import com.tep.members.validator.MembersValidator;
 
 @Controller
 public class MembersController {
@@ -25,43 +27,74 @@ public class MembersController {
 	@Resource(name = "membersService")
 	private MembersService membersService;
 
-	@RequestMapping(value = { "/agreement", "/agreement/form" })
-	public String agreementForm() {
-		return "agreementForm";
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String accountForm() {
+		return "accountForm";
 	}
 
-	@RequestMapping(value = { "/members", "/members/form" }, method = RequestMethod.GET)
-	public String membersForm() {
-		return "membersForm";
-	}
-
-	@RequestMapping(value = "/members/insert", method = RequestMethod.POST)
-	public ModelAndView insertMembers(MembersModel mem, HttpServletRequest request) throws Exception {
-
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView login(MembersModel mem, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		if ((session != null && session.getAttribute(TepConstants.DUPLICATION_CHECK) == null) || (session != null && session.getAttribute(TepConstants.DUPLICATION_CHECK).equals("reject"))) {
-			mav.setViewName("error/errorEmailDuplication");
+
+		MembersModel result = membersService.selectMembersLogin(mem);
+		if (result == null) {
+			mav.setViewName("error/errorLoginPassword");
 			return mav;
 		}
 
-		MembersModel m = membersService.insertMembers(mem);
+		HttpSession session = request.getSession();
+		session.setAttribute(TepConstants.M_EMAIL, result.getM_email());
+		session.setAttribute(TepConstants.M_NAME, result.getM_name());
+		session.setAttribute(TepConstants.M_NO, result.getM_no());
 
+		mav.setViewName("loginSuccess");
+		return mav;
+	}
+
+	@RequestMapping(value = "/logout")
+	public ModelAndView logout(MembersModel mem, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		Enumeration<?> valueNames = session.getAttributeNames();
+		while (valueNames.hasMoreElements()) {
+			String sessionKey = (String) valueNames.nextElement();
+			log.debug("remove sessionKey : " + sessionKey);
+			session.removeAttribute(sessionKey);
+		}
+
+		session.invalidate();
+		return new ModelAndView("redirect:/main");
+	}
+	
+	@RequestMapping(value = "/members/insert", method = RequestMethod.POST)
+	public ModelAndView insertMembers(@ModelAttribute("mem") MembersModel mem, BindingResult bindingResult, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		new MembersValidator().validate(mem, bindingResult);
+		if (membersService.selectMEmailMembers(mem.getM_email()) != null) {
+			bindingResult.rejectValue("m_email", "email.duplication");
+		}
+		
+		if(bindingResult.hasErrors()){
+			mv.setViewName("loginForm");
+			return mv;
+		}
+
+		MembersModel m = membersService.insertMembers(mem);
 		if (m != null) {
 			session.setAttribute(TepConstants.M_EMAIL, m.getM_email());
 			session.setAttribute(TepConstants.M_NAME, m.getM_name());
 			session.setAttribute(TepConstants.M_NO, m.getM_no());
 		}
 
-		if (session.getAttribute(TepConstants.DUPLICATION_CHECK) != null) {
-			session.removeAttribute(TepConstants.DUPLICATION_CHECK);
-		}
-
-		mav.setViewName("membersSuccess");
-		return mav;
+		mv.setViewName("registerSuccess");
+		return mv;
 	}
 
-	@RequestMapping(value = { "/members/duplication" }, method = RequestMethod.GET)
+	@RequestMapping("aaa")
+	public String aa(){
+		return "registerSuccess";
+	}
+	
+/*	@RequestMapping(value = { "/members/duplication" }, method = RequestMethod.GET)
 	public ModelAndView selectEmailCheck(@RequestParam(value="m_email") String m_email, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView("members/membersEmailCheck");
 		MembersModel m = membersService.selectMEmailMembers(m_email);
@@ -80,7 +113,7 @@ public class MembersController {
 			mav.addObject("m_email", m_email);
 		}
 		return mav;
-	}
+	}*/
 
 	@RequestMapping(value = "/members/find/email", method = RequestMethod.GET)
 	public ModelAndView findEmailForm() {
@@ -126,41 +159,5 @@ public class MembersController {
 
 	}
 
-	@RequestMapping(value = { "/login", "/login/form" }, method = RequestMethod.GET)
-	public String loginForm() {
-		return "loginForm";
-	}
-
-	@RequestMapping(value = { "/login", "/login/form" }, method = RequestMethod.POST)
-	public ModelAndView login(MembersModel mem, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView();
-
-		MembersModel result = membersService.selectMembersLogin(mem);
-		if (result == null) {
-			mav.setViewName("error/errorLoginPassword");
-			return mav;
-		}
-
-		HttpSession session = request.getSession();
-		session.setAttribute(TepConstants.M_EMAIL, result.getM_email());
-		session.setAttribute(TepConstants.M_NAME, result.getM_name());
-		session.setAttribute(TepConstants.M_NO, result.getM_no());
-
-		mav.setViewName("loginSuccess");
-		return mav;
-	}
-
-	@RequestMapping(value = "/logout")
-	public ModelAndView logout(MembersModel mem, HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		Enumeration<?> valueNames = session.getAttributeNames();
-		while (valueNames.hasMoreElements()) {
-			String sessionKey = (String) valueNames.nextElement();
-			log.debug("remove sessionKey : " + sessionKey);
-			session.removeAttribute(sessionKey);
-		}
-
-		session.invalidate();
-		return new ModelAndView("redirect:/meetings");
-	}
+	
 }
