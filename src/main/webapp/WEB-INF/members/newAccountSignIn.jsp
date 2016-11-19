@@ -42,7 +42,7 @@
 	                    <hr>
 						
 						<spring:hasBindErrors name="mem"/>
-	                    <form action="<c:url value="/members/insert"/>" method="post">
+	                    <form action="<c:url value="/register"/>" method="post">
 	                        <div class="form-group">
 	                            <label for="name-login">이름</label>&nbsp;&nbsp;&nbsp;
 	                            <form:errors cssClass="text-danger bg-danger small" path="mem.m_name"/>
@@ -79,19 +79,22 @@
 	
 	                    <hr>
 	
-	                    <form:form action="login" method="post" commandName="MembersModel">
+						<spring:hasBindErrors name="login"/>
+	                    <form action="<c:url value="/login"/>" method="post">
 	                        <div class="form-group">
-	                            <label for="email">이메일</label>
-	                            <input type="text" class="form-control" id="email" name="m_email">
+	                            <label for="email">이메일</label>&nbsp;&nbsp;&nbsp;
+	                            <form:errors cssClass="text-danger bg-danger small" path="login.m_email"/>
+	                            <input type="text" class="form-control" id="email" name="m_email" value="${login.m_email }">
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="password">비밀번호</label>
-	                            <input type="password" class="form-control" id="password" name="m_password">
+	                            <label for="password">비밀번호</label>&nbsp;&nbsp;&nbsp;
+	                            <form:errors cssClass="text-danger bg-danger small" path="login.m_password"/>
+	                            <input type="password" class="form-control" id="password" name="m_password" value="${login.m_password }">
 	                        </div>
 	                        <div class="text-center">
 	                            <button type="submit" class="btn btn-template-main"><i class="fa fa-sign-in"></i> 로그인</button>
 	                        </div>
-	                    </form:form>
+	                    </form>
 	                </div>
 	            </div>
 	

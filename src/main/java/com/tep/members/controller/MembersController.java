@@ -18,7 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tep.commons.common.TepConstants;
 import com.tep.members.model.MembersModel;
 import com.tep.members.service.MembersService;
-import com.tep.members.validator.MembersValidator;
+import com.tep.members.validator.LoginValidator;
+import com.tep.members.validator.RegisterValidator;
 
 @Controller
 public class MembersController {
@@ -33,22 +34,31 @@ public class MembersController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView login(MembersModel mem, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView login(@ModelAttribute("login") MembersModel mem, BindingResult bindingResult, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
 
 		MembersModel result = membersService.selectMembersLogin(mem);
-		if (result == null) {
-			mav.setViewName("error/errorLoginPassword");
-			return mav;
+		new LoginValidator().validate(mem, bindingResult);
+		if(bindingResult.hasErrors()){
+			mv.setViewName("accountForm");
+			return mv;
+		} else if (membersService.selectMEmailMembers(mem.getM_email()) == null) {
+			bindingResult.rejectValue("m_email", "login.email.notfound");
+			mv.setViewName("accountForm");
+			return mv;
+		} else if(result == null){
+			bindingResult.rejectValue("m_password", "login.password.invalid");
+			mem.setM_password("");
+			mv.setViewName("accountForm");
+			return mv;
 		}
 
-		HttpSession session = request.getSession();
 		session.setAttribute(TepConstants.M_EMAIL, result.getM_email());
 		session.setAttribute(TepConstants.M_NAME, result.getM_name());
 		session.setAttribute(TepConstants.M_NO, result.getM_no());
 
-		mav.setViewName("loginSuccess");
-		return mav;
+		mv.setViewName("loginSuccess");
+		return mv;
 	}
 
 	@RequestMapping(value = "/logout")
@@ -65,12 +75,12 @@ public class MembersController {
 		return new ModelAndView("redirect:/main");
 	}
 	
-	@RequestMapping(value = "/members/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView insertMembers(@ModelAttribute("mem") MembersModel mem, BindingResult bindingResult, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		new MembersValidator().validate(mem, bindingResult);
+		new RegisterValidator().validate(mem, bindingResult);
 		if (membersService.selectMEmailMembers(mem.getM_email()) != null) {
-			bindingResult.rejectValue("m_email", "email.duplication");
+			bindingResult.rejectValue("m_email", "reg.email.duplication");
 		}
 		
 		if(bindingResult.hasErrors()){
@@ -89,14 +99,9 @@ public class MembersController {
 		return mv;
 	}
 
-	@RequestMapping("aaa")
-	public String aa(){
-		return "registerSuccess";
-	}
-	
 /*	@RequestMapping(value = { "/members/duplication" }, method = RequestMethod.GET)
 	public ModelAndView selectEmailCheck(@RequestParam(value="m_email") String m_email, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView("members/membersEmailCheck");
+		ModelAndView mv = new ModelAndView("members/membersEmailCheck");
 		MembersModel m = membersService.selectMEmailMembers(m_email);
 
 		int chk = -1;
@@ -104,15 +109,15 @@ public class MembersController {
 		if (m == null) {
 			chk = 0;
 			session.setAttribute(TepConstants.DUPLICATION_CHECK, "allow");
-			mav.addObject("CheckNum", chk);
-			mav.addObject("m_email", m_email);
+			mv.addObject("CheckNum", chk);
+			mv.addObject("m_email", m_email);
 		} else {
 			chk = 1;
 			session.setAttribute(TepConstants.DUPLICATION_CHECK, "reject");
-			mav.addObject("CheckNum", chk);
-			mav.addObject("m_email", m_email);
+			mv.addObject("CheckNum", chk);
+			mv.addObject("m_email", m_email);
 		}
-		return mav;
+		return mv;
 	}*/
 
 	@RequestMapping(value = "/members/find/email", method = RequestMethod.GET)
@@ -123,17 +128,17 @@ public class MembersController {
 	@RequestMapping(value = "/members/find/email", method = RequestMethod.POST)
 	public ModelAndView selectFindEmail(MembersModel mem, HttpServletRequest request) throws Exception {
 
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mv = new ModelAndView();
 
 		MembersModel m = membersService.selectFindEmail(mem);
 
 		if (m == null || StringUtils.isBlank(m.getM_email())) {
-			mav.setViewName("error/errorMemberFindEmail");
-			return mav;
+			mv.setViewName("error/errorMemberFindEmail");
+			return mv;
 		} else {
-			mav.addObject("email", m.getM_email());
-			mav.setViewName("members/membersFindEmailResult");
-			return mav;
+			mv.addObject("email", m.getM_email());
+			mv.setViewName("members/membersFindEmailResult");
+			return mv;
 		}
 	}
 
@@ -144,17 +149,17 @@ public class MembersController {
 
 	@RequestMapping(value = "/members/find/password", method = RequestMethod.POST)
 	public ModelAndView selectFindPassword(MembersModel mem, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mv = new ModelAndView();
 
 		MembersModel m = membersService.selectFindPassword(mem);
 
 		if (m == null || StringUtils.isBlank(m.getM_password())) {
-			mav.setViewName("error/errorMemberFindPassword");
-			return mav;
+			mv.setViewName("error/errorMemberFindPassword");
+			return mv;
 		} else {
-			mav.addObject("password", m.getM_password());
-			mav.setViewName("members/membersFindPasswordResult");
-			return mav;
+			mv.addObject("password", m.getM_password());
+			mv.setViewName("members/membersFindPasswordResult");
+			return mv;
 		}
 
 	}

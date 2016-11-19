@@ -7,7 +7,7 @@ import org.springframework.validation.Validator;
 
 import com.tep.members.model.MembersModel;
 
-public class MembersValidator implements Validator {
+public class RegisterValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> cls) {
@@ -31,19 +31,19 @@ public class MembersValidator implements Validator {
 		if(StringUtils.isBlank(name)){
 			errors.rejectValue("m_name", "required");
 		} else if(name.matches(num_regex)){
-			errors.rejectValue("m_name", "name.form.invalid");
+			errors.rejectValue("m_name", "reg.name.invalid");
 		}
 		
 		if(StringUtils.isBlank(email)){
 			errors.rejectValue("m_email", "required");
 		} else if(!mem.getM_email().matches(email_regex)){
-			errors.rejectValue("m_email", "email.form.invalid");
+			errors.rejectValue("m_email", "reg.email.invalid");
 		}
 		
 		if(StringUtils.isBlank(phone)){
 			errors.rejectValue("m_phone", "required");
 		} else if(!mem.getM_phone().matches(phone_regex)){
-			errors.rejectValue("m_phone", "phone.form.invalid");
+			errors.rejectValue("m_phone", "reg.phone.invalid");
 		}
 		
 	}
