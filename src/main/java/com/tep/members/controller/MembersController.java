@@ -30,7 +30,7 @@ public class MembersController {
 		return "agreementForm";
 	}
 
-	@RequestMapping(value = { "/members", "/members/form" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/members", "/members/form" }, method = RequestMethod.GET)
 	public String membersForm() {
 		return "membersForm";
 	}
