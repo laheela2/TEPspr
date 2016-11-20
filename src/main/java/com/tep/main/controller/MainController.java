@@ -13,10 +13,15 @@ import com.tep.main.service.MainService;
 @Controller
 public class MainController {
 	protected Logger log = Logger.getLogger(this.getClass());
-	
+
 	@Autowired
 	private MainService mainService;
-	
+
+	@RequestMapping("/aaa")
+	public String aaa(){
+		return "aaa";
+	}
+
 	@RequestMapping("/main")
 	public ModelAndView main() throws Exception{
 		ModelAndView mv = new ModelAndView("main");

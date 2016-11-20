@@ -6,6 +6,7 @@
 		SELECT
 			mt_no,
 			mt_title,
+			CONCAT(SUBSTR(mt_subject,1,20),'...') as mt_subject,
 			mt_rep_img,
 			(mt_total_pnum - mt_current_pnum) as mt_permit_pnum
 		FROM

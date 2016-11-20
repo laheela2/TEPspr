@@ -4,8 +4,8 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="meetingsList" extends=".default">
-		<put-attribute name="title" value="TEP - 모임개설 목록" />
+	<definition name="meetingsList" extends=".uni">
+		<put-attribute name="title" value="TEP - 모임 목록" />
 		<put-attribute name="body" value="/WEB-INF/meetings/meetingsList.jsp" />
 	</definition>
 	

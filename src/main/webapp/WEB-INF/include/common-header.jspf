@@ -13,10 +13,8 @@
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/alertify.core.css'/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/alertify.default.css'/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/js/dtpicker/jquery.simple-dtpicker.css'/>"/>
  
 <!-- jQuery -->
+<script src="<c:url value='/resources/bootstrap/uni/js/jquery-1.11.0.min.js'/>"></script>
 <script src="<c:url value='/resources/js/alertify.min.js'/>"></script>
-<script src="<c:url value='/resources/js/dtpicker/jquery-1.7.1.js'/>"></script>
-<script src="<c:url value='/resources/js/dtpicker/jquery.simple-dtpicker.js'/>"></script>
 <script src="<c:url value='/resources/js/common.js'/>" charset="utf-8"></script>

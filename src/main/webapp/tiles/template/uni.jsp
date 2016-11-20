@@ -29,6 +29,9 @@
 
     <!-- Custom stylesheet - for your changes -->
     <link href="<c:url value='/resources/bootstrap/uni/css/custom.css'/>" rel="stylesheet">
+    
+    <!-- DatePicker stylesheet -->
+    <link href="<c:url value='/resources/bootstrap/uni/css/simple-dtpicker.css'/>" rel="stylesheet">
 
     <!-- Responsivity for older IE -->
     <!--[if lt IE 9]>
@@ -65,12 +68,8 @@
 
     <!-- #### JAVASCRIPT FILES ### -->
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="<c:url value='/resources/bootstrap/uni/js/jquery-1.11.0.min.js'/>"><\/script>')
-    </script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+    <script src="<c:url value='/resources/bootstrap/uni/js/jquery-1.11.0.min.js'/>"></script>
+    <script src="<c:url value='/resources/bootstrap/uni/js/bootstrap.min.js'/>"></script>
     <script src="<c:url value='/resources/bootstrap/uni/js/jquery.cookie.js'/>"></script>
     <script src="<c:url value='/resources/bootstrap/uni/js/waypoints.min.js'/>"></script>
     <script src="<c:url value='/resources/bootstrap/uni/js/jquery.counterup.min.js'/>"></script>

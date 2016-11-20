@@ -21,13 +21,13 @@ import com.tep.meetings.dao.MeetingsDAO;
 @Service
 public class MeetingsServiceImpl implements MeetingsService {
 	protected Logger log = Logger.getLogger(this.getClass());
-	
+
 	@Autowired
 	private MeetingsDAO meetingsDAO;
-	
+
 	@Autowired
 	private FileUploadComponent fileUploadComp;
-	
+
 	@Override
 	public List<Map<String, Object>> selectMeetingsList(Map<String, Object> map) throws Exception {
 		if(map.get("searchCategory") == null || StringUtils.isBlank(map.get("searchCategory").toString())){
@@ -45,12 +45,12 @@ public class MeetingsServiceImpl implements MeetingsService {
 		if(map.get("searchWord") == null || StringUtils.isBlank(map.get("searchWord").toString())){
 			map.remove("searchWord");
 		}
-		
+
 		List<Map<String, Object>> resultList = meetingsDAO.selectMeetingsList(map);
-		for (int i = 0; i < resultList.size(); i++) {
-			int mt_no = Integer.parseInt(resultList.get(i).get("MT_NO").toString());
-			resultList.get(i).put("MT_LIKEIT", meetingsDAO.selectLikeitCount(mt_no));
-		}
+//		for (int i = 0; i < resultList.size(); i++) {
+//			int mt_no = Integer.parseInt(resultList.get(i).get("MT_NO").toString());
+//			resultList.get(i).put("MT_LIKEIT", meetingsDAO.selectLikeitCount(mt_no));
+//		}
 		return resultList;
 	}
 
@@ -82,17 +82,17 @@ public class MeetingsServiceImpl implements MeetingsService {
 		if(readcount){
 			meetingsDAO.updateMeetingsReadCount(map);
 		}
-		
+
 		Map<String, Object> resultMap = new HashMap<>();
 		Map<String, Object> detail = meetingsDAO.selectMeetingsDetail(map);
 		List<Map<String, Object>> cmtList = meetingsDAO.selectCmtList(map);
-		
+
 		detail.put("MT_MEETDATE", TepUtils.dateFormat(detail.get("MT_M_SDATE"),detail.get("MT_M_EDATE")));
 		detail.put("MT_REGISTERDATE", TepUtils.dateFormat(detail.get("MT_R_SDATE"),detail.get("MT_R_EDATE")));
-		
+
 		resultMap.put("detail", detail);
 		resultMap.put("cmtList", cmtList);
-		
+
 		return resultMap;
 	}
 
@@ -142,7 +142,7 @@ public class MeetingsServiceImpl implements MeetingsService {
 		result.put("MT_NAME", session.getAttribute(TepConstants.M_NAME));
 		result.put("MT_EMAIL", session.getAttribute(TepConstants.M_EMAIL));
 		result.put("MT_MEETDATE", TepUtils.dateFormat(result.get("MT_M_SDATE"),result.get("MT_M_EDATE")));
-		
+
 		return result;
 	}
 

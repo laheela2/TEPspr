@@ -963,14 +963,11 @@ fieldset[disabled] .btn-template-primary.active {
   text-decoration: none;
   background-color: #eeeeee;
 }
-.panel.sidebar-menu ul.tag-cloud {
+.panel.sidebar-menu table.category, .panel.sidebar-menu table.area {
   list-style: none;
   padding-left: 0;
 }
-.panel.sidebar-menu ul.tag-cloud li {
-  display: inline-block;
-}
-.panel.sidebar-menu ul.tag-cloud li a {
+.panel.sidebar-menu table.category td, .panel.sidebar-menu table.area td {
   display: inline-block;
   padding: 5px;
   border: solid 1px #eeeeee;
@@ -982,10 +979,13 @@ fieldset[disabled] .btn-template-primary.active {
   font-weight: 700;
   font-size: 12px;
 }
-.panel.sidebar-menu ul.tag-cloud li a:hover {
+.panel.sidebar-menu table.category td:hover, .panel.sidebar-menu table.area td:hover {
   color: #da4d4d;
   text-decoration: none;
   border-color: #da4d4d;
+}
+.panelSidebarMenuSelect {
+  background-color: #dbdbdb;
 }
 .panel.sidebar-menu ul.popular,
 .panel.sidebar-menu ul.recent {
