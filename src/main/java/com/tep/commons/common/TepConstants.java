@@ -30,9 +30,4 @@ public interface TepConstants {
 	 * save page loading uri
 	 */
 	String SAVEURI = "save_current_page_uri";
-	
-	/**
-	 * 회원 가입시 이메일 중복확인 세션저장 키
-	 */
-	String DUPLICATION_CHECK = "duplication_email_check";
 }

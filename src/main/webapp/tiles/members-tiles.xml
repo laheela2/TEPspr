@@ -4,29 +4,24 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
 
-	<definition name="agreementForm" extends=".default">
-		<put-attribute name="title" value="TEPspr - 회원가입약관"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/members/agreementForm.jsp"></put-attribute>
+	<definition name="accountForm" extends=".uni">
+		<put-attribute name="title" value="TEP - 회원가입 / 로그인"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/members/newAccountSignIn.jsp"></put-attribute>
 	</definition>
 
-	<definition name="membersForm" extends=".default">
-		<put-attribute name="title" value="TEPspr - 회원가입폼"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/members/membersForm.jsp"></put-attribute>
+	<definition name="registerSuccess" extends=".uni">
+		<put-attribute name="title" value="TEP - 가입성공"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/members/registerSuccess.jsp"></put-attribute>
 	</definition>
 
-	<definition name="membersSuccess" extends=".default">
-		<put-attribute name="title" value="TEPspr- 회원가입성공"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/members/membersSuccess.jsp"></put-attribute>
-	</definition>
-
-	<definition name="loginForm" extends=".default">
-		<put-attribute name="title" value="TEPspr - 로그인폼"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/members/loginForm.jsp"></put-attribute>
-	</definition>
-
-	<definition name="loginSuccess" extends=".default">
-		<put-attribute name="title" value="TEPspr - 로그인성공"></put-attribute>
+	<definition name="loginSuccess" extends=".uni">
+		<put-attribute name="title" value="TEP - 로그인성공"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/members/loginSuccess.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="findAccount" extends=".uni">
+		<put-attribute name="title" value="TEP - 이메일 / 비번 찾기"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/members/findAccount.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>

@@ -40,7 +40,7 @@ public class MembersModel {
 	}
 
 	public String getM_name() {
-		return m_name.trim();
+		return m_name;
 	}
 
 	public void setM_name(String m_name) {
@@ -48,7 +48,7 @@ public class MembersModel {
 	}
 
 	public String getM_password() {
-		return m_password.trim();
+		return m_password;
 	}
 
 	public void setM_password(String m_password) {
@@ -56,7 +56,7 @@ public class MembersModel {
 	}
 
 	public String getM_phone() {
-		return m_phone.trim();
+		return m_phone;
 	}
 
 	public void setM_phone(String m_phone) {
