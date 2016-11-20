@@ -88,13 +88,14 @@ public class MypageController {
 		//
 		map.put("m_no", session.getAttribute("session_m_no"));
 		List<Map<String, Object>> list = mypageService.writeHistoryBoard(map.getMap());
-		PagingCalculator paging = new PagingCalculator("mypage", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
-
+		//PagingCalculator paging = new PagingCalculator("writeHistoryBoard", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("writeHistoryBoard", map.getCurrentPageNo(), list, 5, 3);
 		Map<String, Object> rMap = paging.getPagingList();
 
 		mv.addObject("list", rMap.get("list"));
 		mv.addObject("pagingHtml", rMap.get("pagingHtml"));
-
+		mv.addObject("currentPageNo", map.getCurrentPageNo());
+		
 		return mv;
 	}
 
@@ -120,12 +121,13 @@ public class MypageController {
 
 		map.put("m_no", session.getAttribute("session_m_no"));
 		List<Map<String, Object>> list = mypageService.qnaHistory(map.getMap());
-		PagingCalculator paging = new PagingCalculator("mypage", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("qnaHistory", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
 
 		mv.addObject("list", rMap.get("list"));
 		mv.addObject("pagingHtml", rMap.get("pagingHtml"));
+		mv.addObject("currentPageNo", map.getCurrentPageNo());
 
 		return mv;
 	}
@@ -148,7 +150,7 @@ public class MypageController {
 
 		map.put("m_no", session.getAttribute("session_m_no"));
 		List<Map<String, Object>> list = mypageService.cmtHistory(map.getMap());
-		PagingCalculator paging = new PagingCalculator("mypage", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("cmtHistory", map.getCurrentPageNo(), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
 
@@ -166,12 +168,13 @@ public class MypageController {
 
 		map.put("m_no", session.getAttribute("session_m_no"));
 		List<Map<String, Object>> list = mypageService.writeHistoryOmeet(map.getMap());
-		PagingCalculator paging = new PagingCalculator("mypage", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("writeHistoryOmeet", map.getCurrentPageNo(), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
 
 		mv.addObject("list", rMap.get("list"));
 		mv.addObject("pagingHtml", rMap.get("pagingHtml"));
+		mv.addObject("currentPageNo", map.getCurrentPageNo());
 
 		return mv;
 	}
@@ -199,12 +202,13 @@ public class MypageController {
 			list.add((Map<String, Object>) mypageService.meetHistory(data.get("MT_NO")));
 		}
 
-		PagingCalculator paging = new PagingCalculator("mypage", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("meetHistory", map.getCurrentPageNo(), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
 
 		mv.addObject("list", rMap.get("list"));
 		mv.addObject("pagingHtml", rMap.get("pagingHtml"));
+		mv.addObject("currentPageNo", map.getCurrentPageNo());
 
 		return mv;
 	}

@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
 </head>
 <body>
-	<div class="container">
+<!-- 	<div class="container">
 		<div class="row">
 	<div class="col-md-3">
 		<div class="panel panel-default sidebar-menu with-icons">
@@ -29,8 +29,8 @@
 				</ul>
 			</div>
 		</div>
-		<!-- *** MENUS AND FILTERS END *** -->
-	</div>
+		*** MENUS AND FILTERS END ***
+	</div> -->
 <div class="col-md-9">
 <div class="table-responsive">
 	<div class="heading">
@@ -69,13 +69,5 @@
 	</div>
 	</div>
 	</div>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 </body>
 </html>

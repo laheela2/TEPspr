@@ -8,38 +8,44 @@
 <script src="<c:url value="/resources/js/meetings.list.js"/>"></script>
 </head>
 <body>
-<div class="container">
-		<div class="row">
-	<div class="col-md-3">
-		<div class="panel panel-default sidebar-menu with-icons">
-
-			<div class="panel-heading">
-				<h3 class="panel-title">Categories</h3>
-			</div>
-
-			<div class="panel-body">
-				<ul class="nav nav-pills nav-stacked">
-					<li class="active"><a href="mypageView">내 정보</a>
-					</li>
-					<li><a href="modifyPwChk">회원정보수정</a></li>
-					<li><a href="writeHistoryBoard">게시판내역</a></li>
-					<li><a href="cmtHistory">답글내역</a></li>
-					<li><a href="writeHistoryOmeet">모임개설내역</a></li>
-					<li><a href="meetHistory">모임참여내역</a></li>
-					<li><a href="qnaHistory">문의내역</a></li>
-					<li><a href="mypageDeleteForm">회원탈퇴</a></li>
-				</ul>
-			</div>
-		</div>
-		<!-- *** MENUS AND FILTERS END *** -->
-	</div>
 <div class="col-md-9">
 <div class="table-responsive">
 	<div class="heading">
 		<h3>모임참여내역</h3>
 	</div>
 <br>
+<table>
 <c:choose>
+	<c:when test="${fn:length(list) > 0 }">
+		<c:forEach items="${list}" var="row" varStatus="status">
+			
+			<c:if test="${status.index%3 == 0}">
+			<tr></tr>
+			</c:if>
+
+	<div class="col-sm-4">
+		<div class="box-image">
+			<div class="image">
+				<a href="#this" id="title" onclick="fn_meetingsDetail($(this))"><img id="repIMG" src='${row.MT_REP_IMG }'/></a>
+				<input type="hidden" id="mt_no" value="${row.MT_NO }">
+			</div>
+		<div class="bg"></div>
+		<div class="name">
+			<h3><a href="#this" id="title" onclick="fn_meetingsDetail($(this))">${row.MT_TITLE }</a></h3>
+			<input type="hidden" id="mt_no" value="${row.MT_NO }"> 
+		</div>
+ 		<div class="text">
+			<p class="buttons">
+				<a href="#this" onclick="fn_meetingsDetail($(this))" class="btn btn-template-transparent-primary">View</a>
+				<a href="#this" onclick="fn_meetingsDetail($(this))" class="btn btn-template-transparent-primary">Website</a>
+				<input type="hidden" id="mt_no" value="${row.MT_NO }"> 
+			</p>
+		</div>
+		</div>
+	<!-- /.box-image -->
+	</div>
+</c:forEach></c:when>
+<%-- <c:choose>
 	<c:when test="${fn:length(list) > 0 }">
 		<c:forEach items="${list}" var="row" varStatus="status">
 			
@@ -77,20 +83,20 @@
 				</table>
 			</td>
 		</c:forEach>
-	</c:when>
+	</c:when> --%>
 	<c:otherwise>
-		<tr>
+		<tr align="center">
 			<td width=100%><h3>조회된 게시물이 없습니다.</h3></td>
 		</tr>
 	</c:otherwise>
 </c:choose>
-
 <!-- 페이징 -->
-	<tr>
+	<%-- <tr>
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
 			${pagingHtml }
 		</td>
-	</tr>
+	</tr> --%>
+	</table><br><br>
 </div>
 </div>
 </div>

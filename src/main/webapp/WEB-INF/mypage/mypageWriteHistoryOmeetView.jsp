@@ -8,47 +8,23 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 </head>
 <body>
-<div class="container">
-		<div class="row">
-	<div class="col-md-3">
-		<div class="panel panel-default sidebar-menu with-icons">
-
-			<div class="panel-heading">
-				<h3 class="panel-title">Categories</h3>
-			</div>
-
-			<div class="panel-body">
-				<ul class="nav nav-pills nav-stacked">
-					<li class="active"><a href="mypageView">내 정보</a>
-					</li>
-					<li><a href="modifyPwChk">회원정보수정</a></li>
-					<li><a href="writeHistoryBoard">게시판내역</a></li>
-					<li><a href="cmtHistory">답글내역</a></li>
-					<li><a href="writeHistoryOmeet">모임개설내역</a></li>
-					<li><a href="meetHistory">모임참여내역</a></li>
-					<li><a href="qnaHistory">문의내역</a></li>
-					<li><a href="mypageDeleteForm">회원탈퇴</a></li>
-				</ul>
-			</div>
-		</div>
-		<!-- *** MENUS AND FILTERS END *** -->
-	</div>
 <div class="col-md-9">
 <div class="table-responsive">
 	<div class="heading">
 		<h3>모임개설내역</h3>
 	</div>
 	<br>
-
-<table class="board" align=center cellspacing=0 border="0">
-
-	<tr class="board_head_tr">
-			<td>번호</td>
-			<td width="55%">제목</td>
-			<td>작성자</td>
-			<td>등록일</td>
-			<td>조회수</td>
-	</tr>
+<table class="table">
+		<thead>
+			<tr align="center">
+				<td>번호</td>
+				<td width="55%">제목</td>
+				<td>작성자</td>
+				<td>등록일</td>
+				<td>조회수</td>
+            </tr>
+        </thead>
+	<tbody>
 	<c:choose>
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
@@ -66,7 +42,7 @@
 		</c:when>
 		
 		<c:otherwise>
-			<tr>
+			<tr align="center">
 				<td colspan="4">조회된 결과가 없습니다.</td>
 			</tr>
 		</c:otherwise>
@@ -91,8 +67,12 @@
 			<option value="1">제목+내용</option>
 		</select>
 		</td>
-		<td><input type="text" name="searchWord" size="33" maxlength="15" /></td>
-		<td><input type="submit" value="검색" /></td>
+		<td>
+			<input type="text"  style="height:31px;" name="searchWordB" size="33" maxlength="15" />
+		</td>
+		<td>
+			<button class="btn btn-default" type="submit"><i class="fa fa-send"></i></button>
+		</td>
 		</tr>
 		</table>
 	</form>
