@@ -120,7 +120,7 @@ public class MembersController {
 				mem.setMessage("입력한 정보와 일치하는 이메일이 없습니다.");
 				return mv;
 			} else {
-				mem.setMessage("이메일을 찾았습니다. : "+m.getM_email());
+				mem.setMessage("찾은 이메일 : <b>"+m.getM_email()+"</b>");
 				return mv;
 			}
 		}
@@ -139,7 +139,7 @@ public class MembersController {
 				mem.setMessage("입력한 정보와 일치하는 비번이 없습니다.");
 				return mv;
 			} else {
-				mem.setMessage("비밀번호를 찾았습니다. : "+m.getM_password());
+				mem.setMessage("찾은 비밀번호 : <b>"+m.getM_password()+"</b>");
 				return mv;
 			}
 		}

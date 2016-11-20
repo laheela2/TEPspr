@@ -1,12 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
+<%@ include file="/WEB-INF/include/common-header.jspf" %>
 <script type="text/javascript"> $(function(){ $('#navigation').find('#nav_home').addClass('active'); });</script>
 </head>
 <body>
