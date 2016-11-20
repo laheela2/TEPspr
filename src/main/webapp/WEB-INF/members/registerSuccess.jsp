@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/common-header.jspf" %>
+<script type="text/javascript"> $(function(){ $('#navigation').find('#nav_home').addClass('active'); });</script>
 <script type="text/javascript">
 	window.onload = function () {
 		var msg = [
@@ -20,13 +20,19 @@
 </head>
 <body>
 
-
 <div id="heading-breadcrumbs">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>회원가입 / 로그인</h1>
+                <h1>회원가입</h1>
             </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>회원가입 / 로그인</li>
+                </ul>
+            </div>            
         </div>
     </div>
 </div>

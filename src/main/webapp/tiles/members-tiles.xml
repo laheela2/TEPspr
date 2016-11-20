@@ -18,5 +18,10 @@
 		<put-attribute name="title" value="TEP - 로그인성공"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/members/loginSuccess.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="findAccount" extends=".uni">
+		<put-attribute name="title" value="TEP - 이메일 / 비번 찾기"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/members/findAccount.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

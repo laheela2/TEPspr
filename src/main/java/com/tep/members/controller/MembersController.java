@@ -3,7 +3,6 @@ package com.tep.members.controller;
 import java.util.Enumeration;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
@@ -62,8 +61,7 @@ public class MembersController {
 	}
 
 	@RequestMapping(value = "/logout")
-	public ModelAndView logout(MembersModel mem, HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
+	public ModelAndView logout(MembersModel mem, HttpSession session) throws Exception {
 		Enumeration<?> valueNames = session.getAttributeNames();
 		while (valueNames.hasMoreElements()) {
 			String sessionKey = (String) valueNames.nextElement();
@@ -99,35 +97,13 @@ public class MembersController {
 		return mv;
 	}
 
-/*	@RequestMapping(value = { "/members/duplication" }, method = RequestMethod.GET)
-	public ModelAndView selectEmailCheck(@RequestParam(value="m_email") String m_email, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("members/membersEmailCheck");
-		MembersModel m = membersService.selectMEmailMembers(m_email);
-
-		int chk = -1;
-		HttpSession session = request.getSession();
-		if (m == null) {
-			chk = 0;
-			session.setAttribute(TepConstants.DUPLICATION_CHECK, "allow");
-			mv.addObject("CheckNum", chk);
-			mv.addObject("m_email", m_email);
-		} else {
-			chk = 1;
-			session.setAttribute(TepConstants.DUPLICATION_CHECK, "reject");
-			mv.addObject("CheckNum", chk);
-			mv.addObject("m_email", m_email);
-		}
-		return mv;
-	}*/
-
-	@RequestMapping(value = "/members/find/email", method = RequestMethod.GET)
-	public ModelAndView findEmailForm() {
-		return new ModelAndView("members/membersFindEmailForm");
+	@RequestMapping(value = "/find/account", method = RequestMethod.GET)
+	public String findAccount() {
+		return "findAccount";
 	}
 
-	@RequestMapping(value = "/members/find/email", method = RequestMethod.POST)
-	public ModelAndView selectFindEmail(MembersModel mem, HttpServletRequest request) throws Exception {
-
+	@RequestMapping(value = "/find/account/email", method = RequestMethod.POST)
+	public ModelAndView findAccountEmail(@ModelAttribute("email") MembersModel mem, BindingResult bindingResult) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		MembersModel m = membersService.selectFindEmail(mem);
@@ -142,13 +118,8 @@ public class MembersController {
 		}
 	}
 
-	@RequestMapping(value = "/members/find/password", method = RequestMethod.GET)
-	public ModelAndView findPasswordForm() {
-		return new ModelAndView("members/membersFindPasswordForm");
-	}
-
-	@RequestMapping(value = "/members/find/password", method = RequestMethod.POST)
-	public ModelAndView selectFindPassword(MembersModel mem, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/find/account/pw", method = RequestMethod.POST)
+	public ModelAndView findAccountPassword(@ModelAttribute("pw") MembersModel mem, BindingResult bindingResult) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		MembersModel m = membersService.selectFindPassword(mem);
@@ -163,6 +134,5 @@ public class MembersController {
 		}
 
 	}
-
 	
 }

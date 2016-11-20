@@ -3,15 +3,9 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<script type="text/javascript">
-	$(function(){
-		  $('#navigation').find('#nav_home').addClass('active');
-	});
-</script>
+<script type="text/javascript"> $(function(){ $('#navigation').find('#nav_home').addClass('active'); });</script>
 </head>
 <body>
-
-
 
 <section>
 	<!-- *** HOMEPAGE CAROUSEL ***

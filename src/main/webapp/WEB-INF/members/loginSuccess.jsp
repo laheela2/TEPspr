@@ -1,39 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/common-header.jspf"%>
-<style type="text/css">
-table.login_table {
-	border-style: solid;
-	border-color: red;
-	border-width: thin;
-	padding: 3%;
-}
-
-td.login_name {
-	text-align: center;
-	font-family: sans-serif;
-	font-weight: bold;
-	font-size: 19px;
-}
-
-b.login_msg{
-	font-family: sans-serif;
-	color: olive;
-}
-
-td.login_btn_grp {
-	padding-top: 30px;
-	text-align: center;
-}
-
-input.login_btn {
-	width: 100px;
-	height: 50px;
-}
-</style>
-
 <script type="text/javascript">
 	window.onload = function () {
 		var msg = [
@@ -48,38 +17,84 @@ input.login_btn {
 		           ];
 		var rnum = Math.floor(Math.random() * msg.length);
 		
-		document.getElementById("login_msg").innerHTML = "<b class='login_msg'>"+msg[rnum]+"</b>";
+		document.getElementById("login_msg").innerHTML = msg[rnum];
 	}
 </script>
 
 </head>
 <body>
-	<br>
-	<c:set var="savePageURI" value="${sessionScope.save_current_page_uri}"/>
-	<table class="login_table" align=center>
 	
-		<tr>
-			<td class="login_name">
-				${sessionScope.session_m_name }님
-			</td>
-		</tr>
-		<tr>
-			<td id="login_msg" align="center" height="30"></td>
-		</tr>
-	
-		<tr>
-			<td class="login_btn_grp">
-				<input class="login_btn" type="button" value="마이페이지" onclick="location.href='<c:url value="/mypageView"/>'">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input class="login_btn" type="button" value="메인으로" onclick="location.href='<c:url value="/meetings"/>'">
-				<c:if test="${savePageURI != null }">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input class="login_btn" type="button" value="이전 페이지" onclick="location.href='<c:url value="${savePageURI}"/>'">
-				</c:if>
-			</td>
-		</tr>
-	
-	</table>
-	<br>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>로그인</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>회원가입 / 로그인</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div class="container" id="contact">
+        <section>
+            <div class="row">
+                <div class="col-md-12">
+                    <section>
+                        <div class="heading col-lg-12" align="center">
+                            <h2>${sessionScope.session_m_name }님</h2>
+                        </div>
+                        <p class="lead col-lg-12" id="login_msg" align="center"></p>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+		<c:set var="savePageURI" value="${sessionScope.save_current_page_uri}"/>
+        <section>
+            <div class="row">
+                <div class="${savePageURI != null ? 'col-md-4':'col-md-6' }">
+                    <div class="box-simple">
+                        <div class="icon" onclick="location.href='<c:url value="/mypageView"/>'">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </div>
+                        <h3>마이페이지</h3>
+                    </div>
+                </div>
+
+                <div class="${savePageURI != null ? 'col-md-4':'col-md-6' }">
+                    <div class="box-simple">
+                        <div class="icon" onclick="location.href='<c:url value="/main"/>'">
+                            <i class="fa fa-home"></i>
+                        </div>
+                        <h3>홈</h3>
+                    </div>
+                </div>
+               	
+               	<c:if test="${savePageURI != null }">
+	                <div class="col-md-4">
+	                    <div class="box-simple">
+	                        <div class="icon" onclick="location.href='<c:url value="${savePageURI}"/>'">
+	                            <i class="fa fa-reply"></i>
+	                        </div>
+	                        <h3>이전페이지</h3>
+	                    </div>
+	                </div>
+                </c:if>
+            </div>
+
+        </section>
+
+    </div>
+    <!-- /#contact.container -->
+</div>
+<!-- /#content -->	
+
 </body>
 </html>

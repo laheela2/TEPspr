@@ -14,14 +14,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>회원가입 / 로그인</h1>
+                <h1>이메일 / 비번 찾기</h1>
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
                     <li><a href="<c:url value="/main"/>">홈</a>
                     </li>
-                    <li>회원가입 / 로그인</li>
+                    <li>이메일 / 비번 찾기</li>
                 </ul>
+
             </div>
         </div>
     </div>
@@ -33,35 +34,24 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="box">
-                    <h2 class="text-uppercase">회원가입</h2>
+                    <h2 class="text-uppercase">이메일 찾기</h2>
 
-                    <p class="lead">아직 회원등록을 하지 않으셨나요?</p>
-                    <p>재능을 공유 해보세요. <br>개인이 가지고 있는 다양한 재능을 펼칠 수 있습니다.</p>
+                    <p class="lead">가입시에 등록했던 이름과 전화번호를 입력해주세요.</p>
 
-					<spring:hasBindErrors name="mem"/>
+					<spring:hasBindErrors name="email"/>
                     <form action="<c:url value="/register"/>" method="post">
                         <div class="form-group">
                             <label for="name-login">이름</label>&nbsp;&nbsp;&nbsp;
-                            <form:errors cssClass="text-danger bg-danger small" path="mem.m_name"/>
-                            <input type="text" class="form-control" id="name-login" name="m_name" value="${mem.m_name }"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="email-login">이메일</label>&nbsp;&nbsp;&nbsp;
-                            <form:errors cssClass="text-danger bg-danger small" path="mem.m_email"/>
-                            <input type="text" class="form-control" id="email-login" name="m_email" value="${mem.m_email }"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="password-login">비밀번호</label>&nbsp;&nbsp;&nbsp;
-                            <form:errors cssClass="text-danger bg-danger small" path="mem.m_password"/>
-                            <input type="password" class="form-control" id="password-login" name="m_password" value="${mem.m_password }"/>
+                            <form:errors cssClass="text-danger bg-danger small" path="email.m_name"/>
+                            <input type="text" class="form-control" id="name-login" name="m_name" value="${email.m_name }"/>
                         </div>
                         <div class="form-group">
                             <label for="phone-login">전화번호</label>&nbsp;&nbsp;&nbsp;
-                            <form:errors cssClass="text-danger bg-danger small" path="mem.m_phone"/>
-                            <input type="text" class="form-control" id="phone-login" name="m_phone" value="${mem.m_phone }"/>
+                            <form:errors cssClass="text-danger bg-danger small" path="email.m_phone"/>
+                            <input type="text" class="form-control" id="phone-login" name="m_phone" value="${email.m_phone }"/>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-template-main"><i class="fa fa-user-md"></i> 가입</button>
+                            <button type="submit" class="btn btn-template-main"><i class="fa fa-user-md"></i> 찾기</button>
                         </div>
                     </form>
                 </div>
@@ -73,6 +63,8 @@
 
                     <p class="lead">이미 회원 인가요?</p>
                     <p class="text-muted">다양한 활동이 많이 준비되어있습니다. 많은 참여부탁드립니다.</p>
+
+                    <hr>
 
 					<spring:hasBindErrors name="login"/>
                     <form action="<c:url value="/login"/>" method="post">

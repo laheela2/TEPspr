@@ -71,13 +71,13 @@
                             <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">홈 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                	<a href="<c:url value="/meetings"/>">목록으로 보기</a>
+                                	<a href="<c:url value="/login"/>">회원가입 / 로그인</a>
                                 </li>
                                 <li>
-                                	<a href="">지도로 보기</a>
+                                	<a href="<c:url value="/find/account"/>">이메일 / 비번 찾기</a>
                                 </li>
                                 <li>
-                                	<a href="<c:url value="/board"/>">게시판</a>
+                                	<a href="<c:url value="/board"/>">마이페이지</a>
                                 </li>
                             </ul>
                         </li>
