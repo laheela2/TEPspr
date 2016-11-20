@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tep.commons.common.TepConstants;
 import com.tep.members.model.MembersModel;
 import com.tep.members.service.MembersService;
+import com.tep.members.validator.FindEmailValidator;
+import com.tep.members.validator.FindPasswordValidator;
 import com.tep.members.validator.LoginValidator;
 import com.tep.members.validator.RegisterValidator;
 
@@ -79,6 +81,9 @@ public class MembersController {
 		new RegisterValidator().validate(mem, bindingResult);
 		if (membersService.selectMEmailMembers(mem.getM_email()) != null) {
 			bindingResult.rejectValue("m_email", "reg.email.duplication");
+		} else if(membersService.selectFindEmail(mem) != null){
+			bindingResult.reject("");
+			mem.setMessage("이름과 전화번호가 동일한 사용자가 이미 가입되어 있습니다.<br/> 관리자에게 문의 부탁드립니다.");
 		}
 		
 		if(bindingResult.hasErrors()){
@@ -104,35 +109,40 @@ public class MembersController {
 
 	@RequestMapping(value = "/find/account/email", method = RequestMethod.POST)
 	public ModelAndView findAccountEmail(@ModelAttribute("email") MembersModel mem, BindingResult bindingResult) throws Exception {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("findAccount");
 
-		MembersModel m = membersService.selectFindEmail(mem);
-
-		if (m == null || StringUtils.isBlank(m.getM_email())) {
-			mv.setViewName("error/errorMemberFindEmail");
+		new FindEmailValidator().validate(mem, bindingResult);
+		if(bindingResult.hasErrors()){
 			return mv;
 		} else {
-			mv.addObject("email", m.getM_email());
-			mv.setViewName("members/membersFindEmailResult");
-			return mv;
+			MembersModel m = membersService.selectFindEmail(mem);
+			if (m == null || StringUtils.isBlank(m.getM_email())) {
+				mem.setMessage("입력한 정보와 일치하는 이메일이 없습니다.");
+				return mv;
+			} else {
+				mem.setMessage("이메일을 찾았습니다. : "+m.getM_email());
+				return mv;
+			}
 		}
 	}
 
 	@RequestMapping(value = "/find/account/pw", method = RequestMethod.POST)
 	public ModelAndView findAccountPassword(@ModelAttribute("pw") MembersModel mem, BindingResult bindingResult) throws Exception {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("findAccount");
 
-		MembersModel m = membersService.selectFindPassword(mem);
-
-		if (m == null || StringUtils.isBlank(m.getM_password())) {
-			mv.setViewName("error/errorMemberFindPassword");
+		new FindPasswordValidator().validate(mem, bindingResult);
+		if(bindingResult.hasErrors()){
 			return mv;
 		} else {
-			mv.addObject("password", m.getM_password());
-			mv.setViewName("members/membersFindPasswordResult");
-			return mv;
+			MembersModel m = membersService.selectFindPassword(mem);
+			if (m == null || StringUtils.isBlank(m.getM_password())) {
+				mem.setMessage("입력한 정보와 일치하는 비번이 없습니다.");
+				return mv;
+			} else {
+				mem.setMessage("비밀번호를 찾았습니다. : "+m.getM_password());
+				return mv;
+			}
 		}
-
 	}
 	
 }

@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,10 +37,21 @@
                 <div class="box">
                     <h2 class="text-uppercase">이메일 찾기</h2>
 
-                    <p class="lead">가입시에 등록했던 이름과 전화번호를 입력해주세요.</p>
+                    <p class="text-muted">등록한 이름과 전화번호를 입력해주세요.</p>
+
+					<hr>
 
 					<spring:hasBindErrors name="email"/>
-                    <form action="<c:url value="/register"/>" method="post">
+					<c:if test="${fn:length(email.message) > 0}">
+						<div class="alert alert-info alert-dismissible" role="alert">
+						    <button type="button" class="close" data-dismiss="alert">
+						    	<span aria-hidden="true">×</span>
+						    	<span class="sr-only">Close</span>
+						    </button>
+						    ${email.message }
+						</div>
+					</c:if>
+                    <form action="<c:url value="/find/account/email"/>" method="post">
                         <div class="form-group">
                             <label for="name-login">이름</label>&nbsp;&nbsp;&nbsp;
                             <form:errors cssClass="text-danger bg-danger small" path="email.m_name"/>
@@ -51,7 +63,7 @@
                             <input type="text" class="form-control" id="phone-login" name="m_phone" value="${email.m_phone }"/>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-template-main"><i class="fa fa-user-md"></i> 찾기</button>
+                            <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i> 찾기</button>
                         </div>
                     </form>
                 </div>
@@ -59,27 +71,40 @@
 
             <div class="col-md-6">
                 <div class="box">
-                    <h2 class="text-uppercase">로그인</h2>
+                    <h2 class="text-uppercase">비번 찾기</h2>
 
-                    <p class="lead">이미 회원 인가요?</p>
-                    <p class="text-muted">다양한 활동이 많이 준비되어있습니다. 많은 참여부탁드립니다.</p>
+					<p class="text-muted">등록한 이름, 이메일, 전화번호를 입력해주세요.</p>
 
-                    <hr>
+					<hr>
 
-					<spring:hasBindErrors name="login"/>
-                    <form action="<c:url value="/login"/>" method="post">
+					<spring:hasBindErrors name="pw"/>
+					<c:if test="${fn:length(pw.message) > 0}">
+						<div class="alert alert-info alert-dismissible" role="alert">
+						    <button type="button" class="close" data-dismiss="alert">
+						    	<span aria-hidden="true">×</span>
+						    	<span class="sr-only">Close</span>
+						    </button>
+						    ${pw.message }
+						</div>
+					</c:if>	
+                    <form action="<c:url value="/find/account/pw"/>" method="post">
                         <div class="form-group">
-                            <label for="email">이메일</label>&nbsp;&nbsp;&nbsp;
-                            <form:errors cssClass="text-danger bg-danger small" path="login.m_email"/>
-                            <input type="text" class="form-control" id="email" name="m_email" value="${login.m_email }">
+                            <label for="name-login">이름</label>&nbsp;&nbsp;&nbsp;
+                            <form:errors cssClass="text-danger bg-danger small" path="pw.m_name"/>
+                            <input type="text" class="form-control" id="name-login" name="m_name" value="${pw.m_name }"/>
                         </div>
                         <div class="form-group">
-                            <label for="password">비밀번호</label>&nbsp;&nbsp;&nbsp;
-                            <form:errors cssClass="text-danger bg-danger small" path="login.m_password"/>
-                            <input type="password" class="form-control" id="password" name="m_password" value="${login.m_password }">
+                            <label for="email-login">이메일</label>&nbsp;&nbsp;&nbsp;
+                            <form:errors cssClass="text-danger bg-danger small" path="pw.m_email"/>
+                            <input type="text" class="form-control" id="email-login" name="m_email" value="${pw.m_email }"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone-login">전화번호</label>&nbsp;&nbsp;&nbsp;
+                            <form:errors cssClass="text-danger bg-danger small" path="pw.m_phone"/>
+                            <input type="text" class="form-control" id="phone-login" name="m_phone" value="${pw.m_phone }"/>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-template-main"><i class="fa fa-sign-in"></i> 로그인</button>
+                            <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i> 찾기</button>
                         </div>
                     </form>
                 </div>
