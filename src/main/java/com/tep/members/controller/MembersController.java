@@ -82,7 +82,7 @@ public class MembersController {
 		}
 		
 		if(bindingResult.hasErrors()){
-			mv.setViewName("loginForm");
+			mv.setViewName("accountForm");
 			return mv;
 		}
 
