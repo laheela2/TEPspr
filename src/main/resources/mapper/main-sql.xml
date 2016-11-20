@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main">
+	<select id="videoRecommend" resultType="hashmap">
+		SELECT 
+			* 
+		FROM 
+			(
+				SELECT
+					v_no,
+					v_video_id,
+					v_title,
+					v_content,
+					v_recturer,
+					ROW_NUMBER() OVER (ORDER BY v_readcount DESC) AS rnum
+				FROM 
+					videolec
+			)
+		WHERE
+			rnum=1
+	</select>
+	
+	<select id="meetingsRecommend" resultType="hashmap">
+		SELECT 
+			* 
+		FROM 
+			(
+				SELECT
+					mt_no,
+					mt_title,
+					mt_subject,
+					mt_rep_img,
+					(mt_total_pnum - mt_current_pnum) as mt_permit_pnum,
+					ROW_NUMBER() OVER (ORDER BY mt_readcount DESC) AS rnum
+				FROM 
+					meetings
+			)
+		WHERE
+			rnum BETWEEN 1 and 6
+	</select>
+</mapper>

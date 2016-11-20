@@ -12,15 +12,15 @@ $(function() {
 	$('#enddt').change(function() {
 		var endR = new Date($('#enddt').handleDtpicker('getDate'));
 		$('#startdt').handleDtpicker('setMaxDate', endR);
-		endR.setDate(endR.getDate() + 1);
+		endR.setDate(endR.getDate());
 		$('#startdt2').handleDtpicker('setMinDate', endR);
 	});
 	$('#startdt2').change(function() {
 		var startM = new Date($('#startdt2').handleDtpicker('getDate'));
 		$('#enddt2').handleDtpicker('setMinDate', startM);
-		startM.setDate(startM.getDate() - 1);
+		startM.setDate(startM.getDate());
 		$('#enddt').handleDtpicker('setMaxDate', startM)
-		startM.setDate(startM.getDate() - 1);
+		startM.setDate(startM.getDate());
 		$('#startdt').handleDtpicker('setMaxDate', startM)
 	});
 	$('#enddt2').change(function() {
