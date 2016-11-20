@@ -44,7 +44,7 @@
 									</div>
 								</div>
 								<div class="col-sm-7 col-lg-6" align="right">
-									<button type="submit" class="btn btn-default">답변하기</button>
+									<button type="button" class="btn btn-default">답변하기</button>
 								</div>
 							</form>
 						</div>

@@ -17,11 +17,11 @@
 	</div>
 	<div class="container">
 		<div class="row">
-	<div class="col-md-3" style="float:right;">
+	<div class="col-md-3" ><!-- style="float:right;" -->
 		<div class="panel panel-default sidebar-menu with-icons">
 
 			<div class="panel-heading" >
-				<h3 class="panel-title" style="float:right;">Categories</h3>
+				<h3 class="panel-title">Categories</h3>
 				<br><br>
 			</div>
 
