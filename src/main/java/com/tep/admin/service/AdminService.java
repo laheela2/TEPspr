@@ -31,4 +31,6 @@ public interface AdminService {
 
 	Map<String, Object> adminQnaDetail(Map<String, Object> map) throws Exception;
 
+	void adminDeleteMeetings(int mt_no) throws Exception;
+
 }

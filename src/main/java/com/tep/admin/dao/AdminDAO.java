@@ -68,4 +68,8 @@ public class AdminDAO extends AbstractDAO{
 		return (Map<String, Object>) selectOne("adminQnaDetail", map);
 	}
 
+	public void adminDeleteMeetings(int mt_no) {
+		delete("adminDeleteMeetings", mt_no);
+	}
+
 }

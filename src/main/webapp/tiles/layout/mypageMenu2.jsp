@@ -17,17 +17,17 @@
 	</div>
 	<div class="container">
 		<div class="row">
-	<div class="col-md-3">
+	<div class="col-md-3" style="float:right;">
 		<div class="panel panel-default sidebar-menu with-icons">
 
-			<div class="panel-heading">
-				<h3 class="panel-title">Categories</h3>
+			<div class="panel-heading" >
+				<h3 class="panel-title" style="float:right;">Categories</h3>
+				<br><br>
 			</div>
 
-			<div class="panel-body">
-				<ul class="nav nav-pills nav-stacked">
-					<li class="active"><a href="mypageView">내 정보</a>
-					</li>
+			<div class="panel-body" >
+				<ul class="nav nav-pills nav-stacked" >
+					<li class="active" ><a href="mypageView">내 정보</a></li>
 					<li><a href="modifyPwChk">회원정보수정</a></li>
 					<li><a href="writeHistoryBoard">게시판내역</a></li>
 					<li><a href="cmtHistory">답글내역</a></li>

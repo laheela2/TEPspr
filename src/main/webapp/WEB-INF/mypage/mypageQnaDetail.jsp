@@ -12,10 +12,13 @@
 </script>
 </head>
 <body>
+<div class="col-md-9">
+<div class="heading">
+	<h3>Q&A</h3>
+</div>
 <table style="width:890px;" border="0" align=center>
 <tr>
-<td style="font-weight: bold;font-size: large;font-family: sans-serif;">Q&A</td>
-<td align="right"><input type="button" value="목록보기" id="backQnaListBtn"></td>
+<td align="right"><input type="button" value="목록보기" onclick="javascript:location.href('javascript:history.back();')"></td>
 </tr>
 </table>
 
@@ -55,7 +58,8 @@ ${data.Q_CATEGORY2}
 </tr>
 </c:if>
 </table>
-
+</div>
+</div></div>
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
     $(document).ready(function(){

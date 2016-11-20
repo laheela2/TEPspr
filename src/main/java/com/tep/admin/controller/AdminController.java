@@ -157,4 +157,11 @@ public class AdminController {
     	
     	return mv;
     }
+    
+    @RequestMapping(value="/admin/meetings/delete" , method=RequestMethod.POST)
+	public ModelAndView videolecWrite(@RequestParam int mt_no) throws Exception{
+		adminService.adminDeleteMeetings(mt_no);
+		return new ModelAndView("redirect:/admin/meetings/list");
+	}
+    
 }

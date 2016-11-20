@@ -81,4 +81,9 @@ public class AdminServiceImpl implements AdminService{
 		return adminDAO.adminQnaDetail(map);
 	}
 
+	@Override
+	public void adminDeleteMeetings(int mt_no) throws Exception {
+		adminDAO.adminDeleteMeetings(mt_no);
+	}
+
 }

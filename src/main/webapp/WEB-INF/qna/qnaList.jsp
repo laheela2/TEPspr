@@ -75,8 +75,8 @@
     $(document).ready(function(){
         $("#write").on("click", function(e){ // 글쓰기 버튼
             e.preventDefault();
-            if(sessionCheck('${sessionScope.session_m_email}')){
-            	fn_boardWrite();
+            if(isLoginCheck('${sessionScope.session_m_email}')){
+            	fn_qnaWrite();
             };
         }); 
          
@@ -86,7 +86,7 @@
         });
     });
      
-    function fn_boardWrite(){
+    function fn_qnaWrite(){
         var cs = new CustomSubmit();
         cs.setUrl("<c:url value='/qna/write' />");
         cs.addParam("currentPageNo", "${currentPageNo}");

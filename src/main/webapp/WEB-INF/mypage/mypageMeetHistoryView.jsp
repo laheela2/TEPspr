@@ -13,7 +13,6 @@
 	<div class="heading">
 		<h3>모임참여내역</h3>
 	</div>
-<br>
 <table>
 <c:choose>
 	<c:when test="${fn:length(list) > 0 }">
@@ -31,13 +30,12 @@
 			</div>
 		<div class="bg"></div>
 		<div class="name">
-			<h3><a href="#this" id="title" onclick="fn_meetingsDetail($(this))">${row.MT_TITLE }</a></h3>
+			<h3>${row.MT_TITLE }</a></h3>
 			<input type="hidden" id="mt_no" value="${row.MT_NO }"> 
 		</div>
  		<div class="text">
 			<p class="buttons">
 				<a href="#this" onclick="fn_meetingsDetail($(this))" class="btn btn-template-transparent-primary">View</a>
-				<a href="#this" onclick="fn_meetingsDetail($(this))" class="btn btn-template-transparent-primary">Website</a>
 				<input type="hidden" id="mt_no" value="${row.MT_NO }"> 
 			</p>
 		</div>

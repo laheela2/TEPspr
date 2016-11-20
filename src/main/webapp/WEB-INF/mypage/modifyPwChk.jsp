@@ -4,21 +4,22 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<script language="javascript">
+<script>
 	function check() {
-		if (document.modifyPwChk.password.value == "") {
-			alert("비밀번호를 입력하세요");
-			document.modifyPwChk.m_password.focus();
+		var join = document.userinput
+		if (join.m_password.value == "") {
+			alertify.error("비밀번호를 입력하세요");
+			join.m_password.focus();
 			return false;
-		}
-		return true;
+		} else
+			join.submit();
 	}
 </script>
 
 </head>
 <body>
 	<div class="col-md-9">
-	<form name="modifyPwChk" action="mypageModifyForm" method="post" onsubmit="return check();">
+	<form name="userinput" action="mypageModifyForm" method="post">
 		<div class="heading">
 			<h3>회원정보수정</h3>
 		</div>
@@ -55,7 +56,7 @@
 		<br>
 
 		<div class="text-center">
-			<button type="submit" class="btn btn-template-main"><i class="fa fa-sign-in"></i> Next </button>
+			<button type="button" class="btn btn-template-main" onclick="check();"><i class="fa fa-sign-in"></i> Next </button>
 		</div>
 </form>
 </div>

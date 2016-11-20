@@ -139,4 +139,16 @@
 		WHERE
 			q_no=#{q_no}
 	</select>
+	
+	<delete id="adminDeleteMeetings" parameterType="int">
+		{call
+			declare
+			begin
+				DELETE FROM likeit WHERE mt_no=#{mt_no};
+				DELETE FROM comments WHERE mt_no=#{mt_no};
+				DELETE FROM meetingsapplyfor WHERE mt_no=#{mt_no};
+				DELETE FROM meetings WHERE mt_no=#{mt_no};
+			end
+		}
+	</delete>
 </mapper>
