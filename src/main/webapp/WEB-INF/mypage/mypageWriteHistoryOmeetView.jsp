@@ -8,6 +8,27 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 </head>
 <body>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>모임개설 내역</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
 <div class="col-md-9">
 <div class="table-responsive">
 	<div class="heading">
@@ -81,8 +102,7 @@
 </table>
 </div>
 </div>
-</div>
-</div>
+</div></section></div></div>
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">

@@ -4,74 +4,74 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="mypageHome" extends=".mypage2">
+	<definition name="mypageHome" extends=".uni">
 		<put-attribute name="title" value="TEP - 회원정보"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageHome.jsp"></put-attribute>
 	</definition>
 
-	<definition name="mypageWriteHistoryBoardView" extends=".mypage2">
+	<definition name="mypageWriteHistoryBoardView" extends=".uni">
 		<put-attribute name="title" value="TEP - 내가쓴글내역" />
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageWriteHistoryBoardView.jsp" />
 	</definition>
-	<definition name="mypageBoardDetail" extends=".mypage2">
+	<definition name="mypageBoardDetail" extends=".uni">
 		<put-attribute name="title" value="TEP - 상세보기"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageBoardDetail.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="mypageQnaHistoryView" extends=".mypage2">
+	<definition name="mypageQnaHistoryView" extends=".uni">
 		<put-attribute name="title" value="TEP - 문의내역"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageQnaHistoryView.jsp"></put-attribute>
 	</definition>
-	<definition name="mypageQnaDetail" extends=".mypage2">
+	<definition name="mypageQnaDetail" extends=".uni">
 		<put-attribute name="title" value="TEP - 상세보기"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageQnaDetail.jsp"></put-attribute>
 	</definition>
 
-	<definition name="mypageCmtHistoryView" extends=".mypage2">
+	<definition name="mypageCmtHistoryView" extends=".uni">
 		<put-attribute name="title" value="TEP - 답글내역"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageCmtHistoryView.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="mypageWriteHistoryOmeetView" extends=".mypage2">
+	<definition name="mypageWriteHistoryOmeetView" extends=".uni">
 		<put-attribute name="title" value="TEP - 모임개설내역"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageWriteHistoryOmeetView.jsp"></put-attribute>
 	</definition>
-	<definition name="mypageOmeetDetail" extends=".mypage2">
+	<definition name="mypageOmeetDetail" extends=".uni">
 		<put-attribute name="title" value="TEP - 모임개설내역"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageMeetingsDetail.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="mypageMeetHistoryView" extends=".mypage2">
+	<definition name="mypageMeetHistoryView" extends=".uni">
 		<put-attribute name="title" value="TEP - 모임참여내역"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageMeetHistoryView.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="modifyPwChk" extends=".mypage2">
+	<definition name="modifyPwChk" extends=".uni">
 		<put-attribute name="title" value="TEP - 회원수정  비밀번호  확인"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/modifyPwChk.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="mypagePasswordError" extends=".mypage2">
+	<definition name="mypagePasswordError" extends=".uni">
 		<put-attribute name="title" value="TEP - 비밀번호 오류"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/passwordError.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="mypageModifyForm" extends=".mypage2">
+	<definition name="mypageModifyForm" extends=".uni">
 		<put-attribute name="title" value="TEP - 회원정보수정"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageModifyForm.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="mypageModifyResult" extends=".mypage2">
+	<definition name="mypageModifyResult" extends=".uni">
 		<put-attribute name="title" value="TEP - 회원정보수정 결과"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/modifyResult.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="mypageDeleteForm" extends=".mypage2">
+	<definition name="mypageDeleteForm" extends=".uni">
 		<put-attribute name="title" value="TEP - 회원탈퇴"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/mypageDeleteForm.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="mypageDeleteResult" extends=".mypage2">
+	<definition name="mypageDeleteResult" extends=".uni">
 		<put-attribute name="title" value="TEP - 회원탈퇴"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/deleteResult.jsp"></put-attribute>
 	</definition>

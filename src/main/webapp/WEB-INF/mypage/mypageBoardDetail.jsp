@@ -27,17 +27,38 @@ function cmt_check() {
 </script>
 </head>
 <body>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>상세보기</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
 <div class="col-md-9">
 <div class="heading">
 	<h3>게시판</h3>
 </div>
 <table style="width:890px;" border="0" align=center>
 <tr>
-<td align="right"><input type="button" value="목록보기" onclick="javascript:location.href('javascript:history.back();')"></td>
+<td align="right"><input type="button" class="btn btn-template-main" value="목록보기" onclick="javascript:location.href('javascript:history.back();')"></td>
 </tr>
 </table>
 
-<table class="boardwrite" align=center border="0">
+<table class="table" align=center border="0">
 
 <tr>
 <td class="bw_title">종&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;류</td>
@@ -89,8 +110,8 @@ ${data.B_FAV_AREA}
 <c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.M_NO }">
 <tr>
 <td colspan="2" align="right" style="border:none;">
-<input type="button" value="수정" id="modifyBtn">
-<input type="button" value="삭제" id="deleteBtn">
+<input type="button" class="btn btn-template-main" value="수정" id="modifyBtn">
+<input type="button" class="btn btn-template-main" value="삭제" id="deleteBtn">
 </td>
 </tr>
 </c:if>
@@ -100,12 +121,6 @@ ${data.B_FAV_AREA}
 <!-- 댓글 -->
 <div style="font-weight: bold;font-size:small;padding-top: 10px">댓글(${fn:length(cmtList)})</div>
 <hr class="om_detail_hr">
-
-<form action="<c:url value="/board/insertcmt"/>" onsubmit="return cmt_check();" method="post">
-	<input type="hidden" name="b_no" value="${data.B_NO }">
-	<div style="padding-right:6px;padding-bottom:5px;"><textarea id="cmt_content" name="c_content"></textarea></div>
-	<div align="right"><input type="submit" value="내용입력"></div>
-</form>
 
 <c:forEach items="${cmtList }" var="cmt">
 <hr />
@@ -124,13 +139,13 @@ ${cmt.C_NAME }&nbsp;&nbsp;&nbsp;
 </div>
 <div style="padding-top:5px; padding-left:13px;font-family: monospace;font-size: x-small;">${cmt.C_CONTENT }</div>
 </c:forEach>
-
+<table class="table"><td></td></table>
 </td>
 </tr>
 
 </table>
 </div>
-</div></div>
+</div></section></div></div>
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
     $(document).ready(function(){

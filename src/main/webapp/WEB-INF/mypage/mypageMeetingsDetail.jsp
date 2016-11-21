@@ -10,13 +10,16 @@
 </head>
 
 <body>
+<%@ include file="/WEB-INF/include/mypage1.jspf" %>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
 <div class="col-md-9">
 <div class="heading">
 	<h3>모임</h3>
 </div>
-<table width=930px border="0" align=center>
-<tr>
-<td>
 
 <table style="width:100%;" border="0">
 	<tr>
@@ -212,12 +215,10 @@
 		</c:if>
 	</tr>
 </table>
-
 </td>
 </tr>
-</table>
 </div>
-</div></div>
+</div></section></div></div>
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script>

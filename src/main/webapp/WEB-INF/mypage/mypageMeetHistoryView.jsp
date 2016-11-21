@@ -8,6 +8,27 @@
 <script src="<c:url value="/resources/js/meetings.list.js"/>"></script>
 </head>
 <body>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>모임참여내역</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
 <div class="col-md-9">
 <div class="table-responsive">
 	<div class="heading">
@@ -97,8 +118,7 @@
 	</table><br><br>
 </div>
 </div>
-</div>
-</div>
+</div></section></div></div>
 
 
 

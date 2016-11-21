@@ -15,9 +15,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div id="content">
+	<div class="container features-buttons">
+	<section>
 		<div class="row">
-	<div class="col-md-3" ><!-- style="float:right;" -->
+	<div class="col-md-3" >
 		<div class="panel panel-default sidebar-menu with-icons">
 
 			<div class="panel-heading" >
@@ -40,5 +42,6 @@
 		</div>
 		<!-- *** MENUS AND FILTERS END *** -->
 	</div>
+	<!-- </div></section></div></div> -->
 </body>
 </html>

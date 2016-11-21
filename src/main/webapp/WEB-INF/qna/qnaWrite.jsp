@@ -3,7 +3,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/board.write.css"/>">
 <script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
 <script>
 	window.onload = function() {
@@ -29,9 +28,24 @@
 </script>
 </head>
 <body>
-
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Q&A</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>Q&A 글쓰기</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <form id="writeForm" action="<c:url value="/qna/write"/>" method="post" onsubmit="return fn_validation();">
-<table class="boardwrite" align=center border="0">
+<table class="table" align=center border="0">
 
 <tr>
 <td class="bw_title">카테고리</td>

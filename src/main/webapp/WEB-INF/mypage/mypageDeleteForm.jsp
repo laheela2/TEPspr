@@ -4,7 +4,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 <script>
 	function check() {
 		var join = document.userinput
@@ -30,6 +29,27 @@
 </script>
 </head>
 <body>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>회원탈퇴</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
 <div class="col-md-9">
 <div class="table-responsive">
 	<div class="heading">
@@ -37,39 +57,23 @@
 	</div>
 	<br>
 	<form name="userinput" action="mypageDeleteResult" method="post">
-		<table align="center" width="265" border="0" cellspacing="0" cellpadding="0">
-
-			<tr bgcolor="#FF2929">
-				<td height="1"></td>
-			</tr>
-
-			<tr height="20">
-				<td></td>
-			</tr>
+		<table class="table" align="center" width="265" >
 
 			<tr align="center">
 				<td align="center">
 					<font size="2">비밀번호를 입력하세요</font><br> <br>
-					<input type="text" name="m_password" maxlength="20" />
+					<input type="text" name="m_password" maxlength="20" /><br><br>
+					<font style="font-family: sans-serif;font-size: xx-small;color: navy;font-weight: bold;padding-top:13px;padding-bottom:13px;">*비밀번호를 입력하는 즉시 회원탈퇴가 진행됨으로 신중하게 입력하시기 바랍니다.</font>
 				</td>
 			</tr>
 
-			<tr height="20">
-				<td style="font-family: sans-serif;font-size: xx-small;color: navy;font-weight: bold;padding-top:13px;padding-bottom:13px;">*비밀번호를 입력하는 즉시 회원탈퇴가 진행됨으로 신중하게 입력하시기 바랍니다.</td>
-			</tr>
-
-			<tr bgcolor="#FF2929">
-				<td height="1"></td>
-			</tr>
-
 		</table>
-
-		<br>
+		<table class="table"><td></td></table>
 		<div class="text-center">
 			<button type="button" class="btn btn-template-main" onclick="check();"><i class="fa fa-sign-in"></i> Next </button>
 		</div>
 	</form>
-</div></div></div></div>
-		<br> <br>
+</div></div>
+</div></section></div></div>
 </body>
 </html>

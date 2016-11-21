@@ -4,9 +4,29 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
 </head>
 <body>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>Q&A 내역</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
 <div class="col-md-9">
 <div class="table-responsive">
 	<div class="heading">
@@ -30,7 +50,7 @@
 				<tr align="center">
 					<td>${row.Q_NO}</td>
 					<td>${row.Q_CATEGORY1}</td>
-					<td class="board_title">
+					<td>
 						<a href="#" name="title">${row.Q_TITLE}</a>
 						<input type="hidden" id="q_no" value="${row.Q_NO}">
 					</td>
@@ -65,9 +85,10 @@
 		</select>
 		</td>
 		<td>
-			<input type="text"  style="height:31px;" name="searchWordB" size="33" maxlength="15" />
+			<input type="text"  style="height:31px;" name="searchWord" size="33" maxlength="15" />
 		</td>
 		<td>
+		<br>
 			<button class="btn btn-default" type="submit"><i class="fa fa-send"></i></button>
 		</td>
 		</tr>
@@ -78,7 +99,7 @@
 </table>
 </div>
 </div>
-</div></div>
+</div></section></div></div>
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">

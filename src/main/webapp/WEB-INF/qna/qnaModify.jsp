@@ -3,7 +3,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/board.write.css"/>">
 <script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
 <script>
 	window.onload = function() {
@@ -33,8 +32,31 @@
 	}
 </script>
 </head>
-
 <body>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Q&A</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>Q&A 수정</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="heading">
+				<h3>Q&A 수정</h3>
+			</div>
 <form name="mForm" action='<c:url value="/qna/modify"/>' method="post" onsubmit="return fn_validation();">
 <input type="hidden" name="q_no" value="${data.Q_NO}">
 <table class="boardwrite" align=center border="0">
@@ -91,6 +113,6 @@
 
 </table>
 </form>
-
+</div></div></div></div>
 </body>
 </html>

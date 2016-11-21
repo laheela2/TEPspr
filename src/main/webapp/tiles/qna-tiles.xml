@@ -23,14 +23,4 @@
 		<put-attribute name="title" value="TEP - QnA 수정 페이지 ;)" />
 		<put-attribute name="body" value="/WEB-INF/qna/qnaModify.jsp" />
 	</definition>
-	<!--
-	<definition name="boardWrite" extends=".default">
-		<put-attribute name="title" value="TEP - 게시판 글쓰기 ;)" />
-		<put-attribute name="body" value="/WEB-INF/board/boardWrite.jsp" />
-	</definition>
-	
-	<definition name="boardModify" extends=".default">
-		<put-attribute name="title" value="TEP - 게시판 수정 페이지 ;)" />
-		<put-attribute name="body" value="/WEB-INF/board/boardModify.jsp" />
-	</definition> -->
 </tiles-definitions>

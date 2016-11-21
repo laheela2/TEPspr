@@ -4,25 +4,51 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
 </head>
 <body>
-<table class="board" align=center cellspacing=0 border="0">
-	<tr class="board_head_tr">
-		<td>번호</td>
-		<td>카테고리</td>
-		<td width="55%">제목</td>
-		<td>작성자</td>
-		<td>등록일</td>
-	</tr>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Q&A</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>Q&A 리스트</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="heading">
+				<h3>Q&A</h3>
+			</div>
+<table class="table">
+	<thead>
+		<tr align="center">
+			<td>번호</td>
+			<td>카테고리</td>
+			<td width="55%">제목</td>
+			<td>작성자</td>
+			<td>등록일</td>
+		</tr>
+	</thead>
 
 	<c:choose>
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
-				<tr>
+				<tr align="center">
 					<td>${row.Q_NO}</td>
 					<td>${row.Q_CATEGORY1}</td>				
-					<td class="board_title">
+					<td class="board_title" align="left">
 						<a href="#" name="title">${row.Q_TITLE}</a>
 						<input type="hidden" id="q_no" value="${row.Q_NO}">
 					</td>
@@ -60,15 +86,19 @@
 			<option value="2">작성자</option>
 		</select>
 		</td>
-		<td><input type="text" name="searchWord" size="33" maxlength="15" /></td>
-		<td><input type="submit" value="검색" /></td>
+		<td>
+			<input type="text"  style="height:31px;" name="searchWord" size="33" maxlength="15" />
+		</td>
+		<td>
+			<button class="btn btn-default" type="submit"><i class="fa fa-send"></i></button>
+		</td>
 		</tr>
 		</table>
 	</form>
 </td>
 </tr>
 </table>
-
+</div></div></div></div>
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">

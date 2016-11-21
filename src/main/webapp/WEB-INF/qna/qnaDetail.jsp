@@ -12,12 +12,29 @@
 </script>
 </head>
 <body>
-<table style="width:890px;" border="0" align=center>
-<tr>
-<td style="font-weight: bold;font-size: large;font-family: sans-serif;">Q&A</td>
-<td align="right"><input type="button" value="목록보기" id="backQnaListBtn"></td>
-</tr>
-</table>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Q&A</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>Q&A 상세보기</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="heading">
+				<h3>Q&A 상세보기</h3>
+			</div>
 
 <table class="boardwrite" align=center border="0">
 
@@ -55,7 +72,7 @@ ${data.Q_CATEGORY2}
 </tr>
 </c:if>
 </table>
-
+</div></div></div></div>
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
     $(document).ready(function(){
