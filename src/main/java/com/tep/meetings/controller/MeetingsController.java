@@ -93,9 +93,18 @@ public class MeetingsController {
     }
 
     @RequestMapping(value="/meetings/modify", method=RequestMethod.POST)
-    public ModelAndView meetingsModify(CommandMap map, MultipartHttpServletRequest request) throws Exception{
-    	meetingsService.updateMeetings(map.getMap(), request);
-    	return new ModelAndView("redirect:/meetings/detail?mt_no="+map.get("mt_no"));
+    public ModelAndView meetingsModify(@ModelAttribute("meet") MeetingsModel meet, BindingResult bindingResult, MultipartHttpServletRequest request) throws Exception{
+    	log.debug("meet : "+meet.getMt_addr());
+    	log.debug("meet : "+meet.getMt_category());
+    	log.debug("meet : "+meet.getMt_content());
+    	ModelAndView mv = new ModelAndView("redirect:/meetings/detail?mt_no="+meet.getMt_no());
+    	new MeetingsValidator().validate(meet, bindingResult);
+    	if(bindingResult.hasErrors()){
+    		return mv;
+    	}
+
+    	meetingsService.updateMeetings(meet, request);
+    	return mv;
     }
 
     @RequestMapping(value="/meetings/delete", method=RequestMethod.POST)

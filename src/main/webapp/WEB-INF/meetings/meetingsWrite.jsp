@@ -159,6 +159,7 @@
 								<p class="col-md-12">
 									<form:errors cssClass="text-danger bg-danger small" path="meet.mt_content"/>
 									<textarea name="mt_content">${meet.mt_content}</textarea>
+									<br/>
 								</p>
 							</div>
 							

@@ -22,7 +22,7 @@ public interface MeetingsService extends CommentsService{
 
 	Map<String, Object> selectMeetingsModify(Map<String, Object> map) throws Exception;
 
-	void updateMeetings(Map<String, Object> map, MultipartHttpServletRequest request) throws Exception;
+	void updateMeetings(MeetingsModel meet, MultipartHttpServletRequest request) throws Exception;
 
 	void deleteMeetings(Map<String, Object> map) throws Exception;
 

@@ -4,18 +4,29 @@
 <head>
 <%@include file="/WEB-INF/include/common-header.jspf"%>
 <link rel="stylesheet" href="<c:url value="/resources/css/meetings.write.css"/>">
-<script src="<c:url value="/resources/js/meetings.write.js"/>"></script>
+<script src="<c:url value="/resources/js/meetings.modify.js"/>"></script>
 <script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
 <script>
 	window.onload = function() {
 		CKEDITOR.replace('mt_content');
+		
+		var f = document.meetingsModifyForm;
+		f.mt_category.value='${data.MT_CATEGORY}';
+		f.mt_title.value='${data.MT_TITLE}';
+		f.mt_msdate.value='${data.MT_M_SDATE}';
+		f.mt_medate.value='${data.MT_M_EDATE}';
+		f.mt_rsdate.value='${data.MT_R_SDATE}';
+		f.mt_redate.value='${data.MT_R_EDATE}';
+		f.mt_addr.value='${data.MT_ADDR}';
+		f.mt_subject.value='${data.MT_SUBJECT}';
+		f.mt_total_pnum.value='${data.MT_TOTAL_PNUM}';
 	}
 </script>
 </head>
 
 <body>
-
-<form name="omf_form" action="<c:url value="/meetings/write"/>" method="post" enctype="multipart/form-data" theme="simple">
+<form name="meetingsModifyForm" action="<c:url value="/meetings/modify"/>" method="post" enctype="multipart/form-data" theme="simple">
+<input type="hidden" name="mt_no" value="${data.MT_NO }">
 	<table class="mw_borderstyle" border="0" width=890px align=center>
 		<tr>
 			<td width="200px" class="td_title">카테고리/모임명</td>
@@ -146,7 +157,7 @@
 
 		<tr>
 			<td colspan="2" align="center">
-				<textarea name="mt_content"></textarea>
+				<textarea name="mt_content">${data.MT_CONTENT}</textarea>
 			</td>
 		</tr>
 
@@ -155,7 +166,9 @@
 				<!-- 신청문의/연락처 설정-->
 				<div style="font-weight: bold; font-size: small; padding-top: 30px">신청문의/연락처 설정</div>
 				<div class="omf_info">
-					* 기본 연락처와 이메일 정보는 회원가입시 입력한 정보로 자동 설정됩니다.<br> * 다른 사람의 전화번호를 입력했을 경우, 개인정보 도용으로 처벌 받을 수 있습니다.<br> * TEP은 신청자와 개설자 간의 분쟁에 책임지지 않습니다.<br>
+					* 기본 연락처와 이메일 정보는 회원가입시 입력한 정보로 자동 설정됩니다.<br> 
+					* 다른 사람의 전화번호를 입력했을 경우, 개인정보 도용으로 처벌 받을 수 있습니다.<br> 
+					* TEP은 신청자와 개설자 간의 분쟁에 책임지지 않습니다.<br>
 				</div>
 			</td>
 		</tr>
@@ -168,9 +181,9 @@
 
 		<tr>
 			<td colspan="2" align="center" style="padding-bottom: 11px;">
-				<input type="button" value="모임개설" onclick="return valueCheck();">
+				<input type="button" value="저장하기" onclick="return valueCheck();">
 				&nbsp;&nbsp;&nbsp;
-				<input type="button" value="취소하기" onclick="location.href='<c:url value="/meetings"/>'">
+				<input type="button" value="취소하기" onclick="history.back();">
 			</td>
 		</tr>
 

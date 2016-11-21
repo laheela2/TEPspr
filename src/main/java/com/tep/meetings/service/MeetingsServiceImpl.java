@@ -130,17 +130,18 @@ public class MeetingsServiceImpl implements MeetingsService {
 	}
 
 	@Override
-	public void updateMeetings(Map<String, Object> map, MultipartHttpServletRequest request) throws Exception {
+	public void updateMeetings(MeetingsModel meet, MultipartHttpServletRequest request) throws Exception {
 		String uploadFilePath = fileUploadComp.saveFile(request.getFile("file"));
 		if(uploadFilePath != null){
-			map.put("mt_rep_img", uploadFilePath);
+			meet.setMt_rep_img(uploadFilePath);
 		}
-		map.put("mt_m_sdate", TepUtils.dateParse(map.get("mt_msdate").toString()));
-		map.put("mt_m_edate", TepUtils.dateParse(map.get("mt_medate").toString()));
-		map.put("mt_r_sdate", TepUtils.dateParse(map.get("mt_rsdate").toString()));
-		map.put("mt_r_edate", TepUtils.dateParse(map.get("mt_redate").toString()));
-		map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
-		meetingsDAO.updateMeetings(map);
+
+		meet.setMt_r_sdate(TepUtils.dateParse(meet.getMt_rsdate()));
+		meet.setMt_r_edate(TepUtils.dateParse(meet.getMt_redate()));
+		meet.setMt_m_sdate(TepUtils.dateParse(meet.getMt_msdate()));
+		meet.setMt_m_edate(TepUtils.dateParse(meet.getMt_medate()));
+		meet.setM_no(Integer.parseInt(request.getSession().getAttribute(TepConstants.M_NO).toString()));
+    	meetingsDAO.updateMeetings(meet);
 	}
 
 	@Override

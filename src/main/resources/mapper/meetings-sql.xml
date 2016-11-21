@@ -127,7 +127,7 @@
             mt_no=#{mt_no}
 	</update>
 	
-	<update id="updateMeetings" parameterType="hashmap">
+	<update id="updateMeetings" parameterType="meetingsModel">
         UPDATE
         	meetings
         SET

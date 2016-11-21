@@ -68,8 +68,8 @@ public class MeetingsDAO extends AbstractDAO{
 		delete("deleteCmt", map);
 	}
 
-	public void updateMeetings(Map<String, Object> map) {
-		update("updateMeetings",map);
+	public void updateMeetings(MeetingsModel meet) {
+		update("updateMeetings",meet);
 	}
 
 	public void deleteMeetings(Map<String, Object> map) {
