@@ -3,7 +3,6 @@
 
 <configuration>
 
-	<!-- mybatis 기본 세팅 -->
 	<settings>
 		<setting name="cacheEnabled" value="true" />
 		<setting name="lazyLoadingEnabled" value="false" />
@@ -15,10 +14,8 @@
 	</settings>
 
 	<typeAliases>
-	
-		<!-- members -->
 		<typeAlias type="com.tep.members.model.MembersModel" alias="membersModel" />
-		
+		<typeAlias type="com.tep.meetings.model.MeetingsModel" alias="meetingsModel" />
 	</typeAliases>
 
 </configuration>

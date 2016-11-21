@@ -8,8 +8,7 @@
 </head>
 <body>
 
-<!-- *** COPYRIGHT ***
-_________________________________________________________ -->
+<!-- *** COPYRIGHT *** -->
 
 <div id="copyright">
 	<div class="container">

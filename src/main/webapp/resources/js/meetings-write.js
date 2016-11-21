@@ -29,10 +29,15 @@ $(function() {
 	});
 });
 
-function valueCheck() {
-	var f = document.omf_form;
+function valueChk(){
+	var f = document.meetingsWriteForm;
 	var content = CKEDITOR.instances.mt_content;
-
+	
+	if (!f.mt_category.value) {
+		alertify.error('카테고리가 입력되지 않았습니다.');
+		f.mt_category.focus();
+		return false;
+	}
 	if (!f.mt_title.value) {
 		alertify.error('모임명이 입력되지 않았습니다.');
 		f.mt_title.focus();

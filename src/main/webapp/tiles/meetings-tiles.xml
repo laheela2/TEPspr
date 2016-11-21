@@ -19,7 +19,7 @@
 		<put-attribute name="body" value="/WEB-INF/meetings/meetingsApplyfor.jsp" />
 	</definition>
 	
-	<definition name="meetingsWrite" extends=".default">
+	<definition name="meetingsWrite" extends=".uni">
 		<put-attribute name="title" value="TEP - 모임 개설하기" />
 		<put-attribute name="body" value="/WEB-INF/meetings/meetingsWrite.jsp" />
 	</definition>

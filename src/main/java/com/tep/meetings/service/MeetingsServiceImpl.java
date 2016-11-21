@@ -17,6 +17,7 @@ import com.tep.commons.common.TepConstants;
 import com.tep.commons.util.FileUploadComponent;
 import com.tep.commons.util.TepUtils;
 import com.tep.meetings.dao.MeetingsDAO;
+import com.tep.meetings.model.MeetingsModel;
 
 @Service
 public class MeetingsServiceImpl implements MeetingsService {
@@ -55,15 +56,15 @@ public class MeetingsServiceImpl implements MeetingsService {
 	}
 
 	@Override
-	public void insertMeetings(Map<String, Object> map, MultipartHttpServletRequest request) throws Exception {
+	public void insertMeetings(MeetingsModel meet, MultipartHttpServletRequest request) throws Exception {
 		String uploadFilePath = fileUploadComp.saveFile(request.getFile("file"));
-		map.put("mt_rep_img", uploadFilePath);
-		map.put("mt_m_sdate", TepUtils.dateParse(map.get("mt_msdate").toString()));
-		map.put("mt_m_edate", TepUtils.dateParse(map.get("mt_medate").toString()));
-		map.put("mt_r_sdate", TepUtils.dateParse(map.get("mt_rsdate").toString()));
-		map.put("mt_r_edate", TepUtils.dateParse(map.get("mt_redate").toString()));
-		map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
-    	meetingsDAO.insertMeetings(map);
+		meet.setMt_rep_img(uploadFilePath);
+		meet.setMt_r_sdate(TepUtils.dateParse(meet.getMt_rsdate()));
+		meet.setMt_r_edate(TepUtils.dateParse(meet.getMt_redate()));
+		meet.setMt_m_sdate(TepUtils.dateParse(meet.getMt_msdate()));
+		meet.setMt_m_edate(TepUtils.dateParse(meet.getMt_medate()));
+		meet.setM_no(Integer.parseInt(request.getSession().getAttribute(TepConstants.M_NO).toString()));
+    	meetingsDAO.insertMeetings(meet);
 	}
 
 	@Override
@@ -153,6 +154,7 @@ public class MeetingsServiceImpl implements MeetingsService {
 		HttpSession session = request.getSession();
 		result.put("MT_NAME", session.getAttribute(TepConstants.M_NAME));
 		result.put("MT_EMAIL", session.getAttribute(TepConstants.M_EMAIL));
+		result.put("MT_PHONE", session.getAttribute(TepConstants.M_PHONE));
 		result.put("MT_MEETDATE", TepUtils.dateFormat(result.get("MT_M_SDATE"),result.get("MT_M_EDATE")));
 
 		return result;

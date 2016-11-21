@@ -167,7 +167,7 @@
 		)
 	</insert>	
 	
-	<insert id="insertMeetings" parameterType="hashmap">
+	<insert id="insertMeetings" parameterType="meetingsModel">
 		INSERT INTO meetings
 		VALUES
 		(

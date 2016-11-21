@@ -5,7 +5,6 @@
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
 <script type="text/javascript"> $(function(){ $('#navigation').find('#nav_meetings').addClass('active'); });</script>
 <script src="<c:url value="/resources/js/meetings-list.js"/>"></script>
-</style>
 </head>
 
 <body>
@@ -155,12 +154,10 @@
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
-							<label>시작날짜</label>
-							<input type="text" class="form-control dtpicker" id="startdt">
+							<input type="text" class="form-control dtpicker" id="startdt" placeholder="시작 날짜를 선택해 주세요.">
 						</div>
 						<div class="form-group">
-							<label>종료날짜</label>
-							<input type="text" class="form-control dtpicker" id="enddt">
+							<input type="text" class="form-control dtpicker" id="enddt" placeholder="종료 날짜를 선택해 주세요.">
 						</div>
 						<p class="text-primary" style="font-size: x-small;font-weight: bold;">시작과 종료를 모두 선택해야 검색됩니다.</p>
 					</div>

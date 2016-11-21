@@ -44,11 +44,11 @@ public class MembersController {
 			mv.setViewName("accountForm");
 			return mv;
 		} else if (membersService.selectMEmailMembers(mem.getM_email()) == null) {
-			bindingResult.rejectValue("m_email", "login.email.notfound");
+			mem.setMessage("이메일이 맞지 않거나, 존재하지 않습니다.");
 			mv.setViewName("accountForm");
 			return mv;
 		} else if(result == null){
-			bindingResult.rejectValue("m_password", "login.password.invalid");
+			mem.setMessage("비밀번호가 맞지 않습니다.");
 			mem.setM_password("");
 			mv.setViewName("accountForm");
 			return mv;
@@ -56,6 +56,7 @@ public class MembersController {
 
 		session.setAttribute(TepConstants.M_EMAIL, result.getM_email());
 		session.setAttribute(TepConstants.M_NAME, result.getM_name());
+		session.setAttribute(TepConstants.M_PHONE, result.getM_phone());
 		session.setAttribute(TepConstants.M_NO, result.getM_no());
 
 		mv.setViewName("loginSuccess");
@@ -74,7 +75,7 @@ public class MembersController {
 		session.invalidate();
 		return new ModelAndView("redirect:/main");
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView insertMembers(@ModelAttribute("mem") MembersModel mem, BindingResult bindingResult, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -85,7 +86,7 @@ public class MembersController {
 			bindingResult.reject("");
 			mem.setMessage("이름과 전화번호가 동일한 사용자가 이미 가입되어 있습니다.<br/> 관리자에게 문의 부탁드립니다.");
 		}
-		
+
 		if(bindingResult.hasErrors()){
 			mv.setViewName("accountForm");
 			return mv;
@@ -144,5 +145,5 @@ public class MembersController {
 			}
 		}
 	}
-	
+
 }

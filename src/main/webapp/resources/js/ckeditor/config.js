@@ -9,8 +9,8 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 	
 	config.height=300;
-	config.width=876;
-	config.uiColor='#FF9999';
+	config.width='100%';
+	config.uiColor='#ECECEC';
 	config.enterMode=CKEDITOR.ENTER_BR;
 	config.extraPlugins = 'youtube';
 	
