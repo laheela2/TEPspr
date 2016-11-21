@@ -90,7 +90,7 @@
 	                            			</button>
 										</c:when>
 										<c:otherwise>
-											<button type="button" class="btn btn-template-main" onclick="fn_meetingsApplyfor('${data.M_NO}');">
+											<button type="button" class="btn btn-template-main" onclick="fn_meetingsApplyfor('${data.MT_NO}');">
 												<i class="fa fa-send-o"></i> 신청하기
 											</button>
 										</c:otherwise>
