@@ -4,7 +4,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
 </head>
 <body>
 <div id="heading-breadcrumbs">
@@ -15,7 +14,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/main"/>">홈</a>
+                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
                     </li>
                     <li>게시판 내역</li>
                 </ul>
@@ -63,7 +62,7 @@
 							<font class="board_title_kind">[일반게시물]</font>
 						</c:if>
 						</td>					
-						<td class="board_title">
+						<td align="left">
 							<a href="#" name="title">${row.B_TITLE}</a>
 							<input type="hidden" id="b_no" value="${row.B_NO}">
 						</td>
@@ -80,12 +79,6 @@
 		</c:otherwise>
 	</c:choose>
 	<!-- 페이징 -->
-	<tr>
-		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
-			${pagingHtml }
-		</td>
-	</tr>
-	
 	<!-- 게시판 검색 -->
 					<tr>
 						<td colspan="6" align="center">

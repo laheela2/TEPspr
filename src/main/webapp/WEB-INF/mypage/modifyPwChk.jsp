@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/main"/>">홈</a>
+                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
                     </li>
                     <li>패스워드 확인</li>
                 </ul>

@@ -73,7 +73,8 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/main"/>">홈</a>
+                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
+                    <li><a href="<c:url value="/modifyPwChk"/>">패스워드체크</a>
                     </li>
                     <li>회원정보수정</li>
                 </ul>
@@ -92,7 +93,7 @@
 	</div>
 	<br>
 	<div class="box clearfix">
-	<form action="mypageModifyResult" name="userinput" method="post">
+	<form action="mypageModifyResult" name="userinput" method="post"  > 
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group">

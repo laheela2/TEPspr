@@ -15,7 +15,7 @@
 	</definition>
 	<definition name="mypageBoardDetail" extends=".uni">
 		<put-attribute name="title" value="TEP - 상세보기"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/mypage/mypageBoardDetail.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/board/boardDetail.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="mypageQnaHistoryView" extends=".uni">
@@ -24,7 +24,7 @@
 	</definition>
 	<definition name="mypageQnaDetail" extends=".uni">
 		<put-attribute name="title" value="TEP - 상세보기"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/mypage/mypageQnaDetail.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/qna/qnaDetail.jsp"></put-attribute>
 	</definition>
 
 	<definition name="mypageCmtHistoryView" extends=".uni">
@@ -38,7 +38,7 @@
 	</definition>
 	<definition name="mypageOmeetDetail" extends=".uni">
 		<put-attribute name="title" value="TEP - 모임개설내역"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/mypage/mypageMeetingsDetail.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/meetings/meetingsDetail.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="mypageMeetHistoryView" extends=".uni">

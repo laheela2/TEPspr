@@ -4,8 +4,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 </head>
 <body>
 <div id="heading-breadcrumbs">
@@ -16,7 +14,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/main"/>">홈</a>
+                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
                     </li>
                     <li>모임개설 내역</li>
                 </ul>
@@ -51,7 +49,7 @@
 			<c:forEach items="${list }" var="row">
 				<tr>
 					<td>${row.MT_NO}</td>			
-					<td class="board_title">
+					<td align="left">
 						<a href="#" name="title">${row.MT_TITLE}</a>
 						<input type="hidden" id="mt_no" value="${row.MT_NO}">
 					</td>
@@ -92,6 +90,7 @@
 			<input type="text"  style="height:31px;" name="searchWordB" size="33" maxlength="15" />
 		</td>
 		<td>
+		<br>
 			<button class="btn btn-default" type="submit"><i class="fa fa-send"></i></button>
 		</td>
 		</tr>

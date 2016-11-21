@@ -3,6 +3,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/board.write.css"/>">
 <script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
 <script>
 	window.onload = function() {
@@ -45,7 +46,7 @@
     </div>
 </div>
 <form id="writeForm" action="<c:url value="/qna/write"/>" method="post" onsubmit="return fn_validation();">
-<table class="table" align=center border="0">
+<table class="boardwrite" align=center border="0">
 
 <tr>
 <td class="bw_title">카테고리</td>

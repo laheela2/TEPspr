@@ -50,7 +50,7 @@
 				<tr align="center">
 					<td>${row.Q_NO}</td>
 					<td>${row.Q_CATEGORY1}</td>
-					<td>
+					<td align="left">
 						<a href="#" name="title">${row.Q_TITLE}</a>
 						<input type="hidden" id="q_no" value="${row.Q_NO}">
 					</td>
