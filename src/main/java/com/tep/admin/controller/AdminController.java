@@ -123,8 +123,8 @@ public class AdminController {
     public ModelAndView adminQnaDetail(CommandMap map) throws Exception{
     	ModelAndView mv = new ModelAndView("adminQnaDetail");
     	Map<String, Object> result = adminService.adminQnaDetail(map.getMap());
-    	
-    	mv.addObject("data", result);
+    	mv.addObject("data",result.get("detail"));
+		mv.addObject("answer", result.get("answer"));
     	return mv;
     }
     
@@ -164,4 +164,9 @@ public class AdminController {
 		return new ModelAndView("redirect:/admin/meetings/list");
 	}
     
+    @RequestMapping(value="/admin/answer")
+	public ModelAndView adminAnswer(CommandMap map, HttpServletRequest request) throws Exception{
+		adminService.adminAnswer(map.getMap());
+		return new ModelAndView("redirect:/admin/qna/list");
+	}
 }

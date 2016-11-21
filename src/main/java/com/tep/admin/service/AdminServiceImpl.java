@@ -78,12 +78,26 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public Map<String, Object> adminQnaDetail(Map<String, Object> map) throws Exception {
-		return adminDAO.adminQnaDetail(map);
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		Map<String, Object> detail = adminDAO.adminQnaDetail(map);
+		Map<String, Object> answer = adminDAO.adminSelectAnswer(map);
+		
+		resultMap.put("detail", detail);
+		resultMap.put("answer", answer);
+		
+		return resultMap;
+		
 	}
 
 	@Override
 	public void adminDeleteMeetings(int mt_no) throws Exception {
 		adminDAO.adminDeleteMeetings(mt_no);
+	}
+
+	@Override
+	public void adminAnswer(Map<String, Object> map) throws Exception {
+		adminDAO.adminAnswer(map);
 	}
 
 }

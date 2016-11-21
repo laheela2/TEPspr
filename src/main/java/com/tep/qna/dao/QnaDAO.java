@@ -32,4 +32,9 @@ public class QnaDAO extends AbstractDAO{
 		delete("qna.deleteQna", map);
 	}
 
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectAnswer(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("qna.selectAnswer",map);
+	}
+
 }

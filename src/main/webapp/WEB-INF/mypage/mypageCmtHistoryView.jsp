@@ -73,7 +73,7 @@
 <!-- 페이징 -->
 	<tr>
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
-			${pagingHtml }
+			<ul class="pagination">${pagingHtml}</ul>
 		</td>
 	</tr>
 

@@ -62,7 +62,12 @@ ${data.Q_CATEGORY2}
 <textarea id="q_content" disabled="disabled">${data.Q_CONTENT}</textarea>
 </td>
 </tr>
-
+<c:if test="${fn:length(answer) > 0}">
+<tr>
+<td class="bw_title">답&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;변</td>
+<td class="bw_content">${answer.A_CONTENT}</td>
+</tr>
+</c:if>
 <c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.M_NO }">
 <tr>
 <td colspan="2" align="right" style="border:none;">

@@ -74,4 +74,15 @@
 		WHERE q_no=#{q_no} and m_no=#{m_no}
 	</delete>
 	
+	<select id="selectAnswer" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			a_no,
+			a_content,
+			a_date,
+			q_no
+		FROM
+			answer
+		WHERE
+			q_no=#{q_no}
+	</select>
 </mapper>

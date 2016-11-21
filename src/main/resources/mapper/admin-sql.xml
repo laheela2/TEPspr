@@ -151,4 +151,33 @@
 			end
 		}
 	</delete>
+	
+	<insert id="adminAnswerInsert" parameterType="hashmap">
+		INSERT INTO answer
+		(
+			a_no,
+			a_content,
+			a_date,
+			q_no
+		)
+		VALUES
+		(
+			answer_seq.nextval,
+			#{a_content},
+			sysdate,
+			#{q_no}
+		)
+	</insert>
+	
+	<select id="selectAnswer" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			a_no,
+			a_content,
+			a_date,
+			q_no
+		FROM
+			answer
+		WHERE
+			q_no=#{q_no}
+	</select>
 </mapper>

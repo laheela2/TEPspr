@@ -48,6 +48,9 @@
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
 				<tr align="center">
+					<c:if test="${fn:length(answer) > 0}">
+					<td style="font-color:red;">[답변]${row.Q_NO}</td>
+					</c:if>
 					<td>${row.Q_NO}</td>
 					<td>${row.Q_CATEGORY1}</td>
 					<td align="left">
@@ -68,7 +71,7 @@
 <!-- 페이징 -->
 	<tr>
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
-			${pagingHtml }
+			<ul class="pagination">${pagingHtml}</ul>
 		</td>
 	</tr>
 
@@ -85,7 +88,7 @@
 		</select>
 		</td>
 		<td>
-			<input type="text"  style="height:31px;" name="searchWord" size="33" maxlength="15" />
+			<input type="text"  style="height:32.3px;" name="searchWord" size="33" maxlength="15" />
 		</td>
 		<td>
 		<br>

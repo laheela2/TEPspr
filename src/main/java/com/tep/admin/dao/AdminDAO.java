@@ -72,4 +72,14 @@ public class AdminDAO extends AbstractDAO{
 		delete("adminDeleteMeetings", mt_no);
 	}
 
+	public void adminAnswer(Map<String, Object> map) {
+		insert("adminAnswerInsert", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> adminSelectAnswer(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("selectAnswer", map);
+	}
+
+
 }

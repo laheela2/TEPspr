@@ -33,4 +33,6 @@ public interface AdminService {
 
 	void adminDeleteMeetings(int mt_no) throws Exception;
 
+	void adminAnswer(Map<String, Object> map) throws Exception;
+
 }

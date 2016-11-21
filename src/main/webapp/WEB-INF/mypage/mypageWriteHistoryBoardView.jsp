@@ -79,6 +79,11 @@
 		</c:otherwise>
 	</c:choose>
 	<!-- 페이징 -->
+	<tr>
+		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
+			<ul class="pagination">${pagingHtml}</ul>
+		</td>
+	</tr>
 	<!-- 게시판 검색 -->
 					<tr>
 						<td colspan="6" align="center">
@@ -92,7 +97,7 @@
 											</select>
 										</td>
 										<td>
-											<input type="text"  style="height:31px;" name="searchWordB" size="33" maxlength="15" />
+											<input type="text"  style="height:32.3px;" name="searchWordB" size="33" maxlength="15" />
 										</td>
 										<td>
 										<br>

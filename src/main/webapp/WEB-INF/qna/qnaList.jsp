@@ -67,11 +67,11 @@
 <!-- 페이징 -->
 	<tr>
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
-			${pagingHtml }
-			<input type="button" value="글쓰기" id="write" style="float:right;margin-top: -6px;">
+			<ul class="pagination">${pagingHtml}</ul>
+			<!-- <input type="button" value="글쓰기" id="write" style="float:right;margin-top: -6px;"> -->
+			<button type="button" class="btn btn-danger" style="float:right;" onclick="fn_qnaWrite();"> 글 쓰 기 </button>
 		</td>
 	</tr>
-
 <!-- 게시판 검색 -->
 <tr>
 
@@ -87,10 +87,12 @@
 		</select>
 		</td>
 		<td>
-			<input type="text"  style="height:31px;" name="searchWord" size="33" maxlength="15" />
+			<input type="text"  style="height:32.3px;" name="searchWord" size="33" maxlength="15" />
 		</td>
 		<td>
-			<button class="btn btn-default" type="submit"><i class="fa fa-send"></i></button>
+			<button type="submit" class="btn btn-template-main">
+				<i class="fa fa-search"></i>
+			</button>
 		</td>
 		</tr>
 		</table>

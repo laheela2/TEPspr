@@ -48,7 +48,7 @@
 													</tr>
 												</c:when>
 												<c:otherwise>
-													<tr class="gradeA odd" role="row" onclick="location.href='/tepspr/admin/qna/detail'">
+													<tr class="gradeA odd" role="row" onclick="location.href='${viewURL}'">
 														<td>${row.Q_NO }</td>
 														<td>${row.Q_CATEGORY1 }</td>
 														<td>${row.Q_TITLE }</td>

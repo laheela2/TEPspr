@@ -1,6 +1,7 @@
 package com.tep.mypage.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -118,13 +119,18 @@ public class MypageController {
 		TepUtils.savePageURI(request);
 
 		ModelAndView mv = new ModelAndView("mypageQnaHistoryView");
-
 		map.put("m_no", session.getAttribute("session_m_no"));
+		
+		List<Map<String, Object>> sublist = new ArrayList<>();
 		List<Map<String, Object>> list = mypageService.qnaHistory(map.getMap());
+		
+		for (Map<String, Object> data : list) {
+			sublist.add((Map<String, Object>) mypageService.qnaAnswerCk(data.get("Q_NO")));
+		}
+		
 		PagingCalculator paging = new PagingCalculator("qnaHistory", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
-
 		mv.addObject("list", rMap.get("list"));
 		mv.addObject("pagingHtml", rMap.get("pagingHtml"));
 		mv.addObject("currentPageNo", map.getCurrentPageNo());
@@ -139,6 +145,7 @@ public class MypageController {
 		Map<String, Object> result = qnaService.selectQnaDetail(map.getMap());
 
 		mv.addObject("data", result.get("detail"));
+		mv.addObject("answer", result.get("answer"));
 		return mv;
 	}
 
