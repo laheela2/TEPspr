@@ -3,7 +3,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<script type="text/javascript"> $(function(){ $('#navigation').find('#nav_home').addClass('active'); });</script>
+<script type="text/javascript"> $(function(){ $('#navigation').find('#nav_meetings').addClass('active'); });</script>
 <script src="<c:url value="/resources/js/meetings-list.js"/>"></script>
 </style>
 </head>

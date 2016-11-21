@@ -69,7 +69,7 @@ public class MeetingsServiceImpl implements MeetingsService {
 	@Override
 	public void insertLikeit(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
-		Map<String, Object> resultMap = meetingsDAO.selectLikeit(map);
+		Map<String, Object> resultMap = meetingsDAO.selectLikeitExist(map);
 		if(resultMap == null){
 			meetingsDAO.insertLikeit(map);
 		} else {
@@ -86,12 +86,24 @@ public class MeetingsServiceImpl implements MeetingsService {
 		Map<String, Object> resultMap = new HashMap<>();
 		Map<String, Object> detail = meetingsDAO.selectMeetingsDetail(map);
 		List<Map<String, Object>> cmtList = meetingsDAO.selectCmtList(map);
+		List<Map<String, Object>> recList = meetingsDAO.meetingsRecommend();
 
+		if(map.get("m_no") != null && !StringUtils.isEmpty(map.get("m_no").toString())){
+			Map<String, Object> likeit = meetingsDAO.selectLikeitExist(map);
+			if(likeit != null){
+				detail.put("MT_LIKEIT",likeit.get("M_NO"));
+			} else {
+				detail.put("MT_LIKEIT", null);
+			}
+		} else {
+			detail.put("MT_LIKEIT", null);
+		}
 		detail.put("MT_MEETDATE", TepUtils.dateFormat(detail.get("MT_M_SDATE"),detail.get("MT_M_EDATE")));
 		detail.put("MT_REGISTERDATE", TepUtils.dateFormat(detail.get("MT_R_SDATE"),detail.get("MT_R_EDATE")));
 
 		resultMap.put("detail", detail);
 		resultMap.put("cmtList", cmtList);
+		resultMap.put("recList", recList);
 
 		return resultMap;
 	}

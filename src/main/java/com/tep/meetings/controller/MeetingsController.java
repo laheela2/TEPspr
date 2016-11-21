@@ -53,16 +53,18 @@ public class MeetingsController {
     @RequestMapping(value="/meetings/likeit", method=RequestMethod.POST)
     public ModelAndView meetingsLikeit(CommandMap map, HttpServletRequest request) throws Exception{
     	meetingsService.insertLikeit(map.getMap(),request);
-    	return new ModelAndView("redirect:/meetings?mt_no="+map.get("mt_no"));
+    	return new ModelAndView("redirect:/meetings/detail?mt_no="+map.get("mt_no"));
     }
 
     @RequestMapping(value="/meetings/detail", method={RequestMethod.GET, RequestMethod.POST})
     public ModelAndView meetngsDetail(CommandMap map, HttpServletRequest request) throws Exception{
 		TepUtils.savePageURI(request);
 		ModelAndView mv = new ModelAndView("meetingsDetail");
+		map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
 		Map<String, Object> result = meetingsService.selectMeetingsDetail(map.getMap(),request.getMethod().equals("POST"));
 		mv.addObject("data",result.get("detail"));
 		mv.addObject("cmtList", result.get("cmtList"));
+		mv.addObject("recList", result.get("recList"));
 		mv.addObject("currentPageNo", map.getCurrentPageNo());
 		return mv;
     }
