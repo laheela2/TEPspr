@@ -96,7 +96,9 @@
 										</td>
 										<td>
 										<br>
-											<button class="btn btn-default" type="submit"><i class="fa fa-send"></i></button>
+											<button type="submit" class="btn btn-template-main">
+										<i class="fa fa-search"></i>
+									</button>
 										</td>
 									</tr>
 								</table>
