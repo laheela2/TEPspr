@@ -4,17 +4,17 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="meetingsList" extends=".default">
-		<put-attribute name="title" value="TEP - 모임개설 목록" />
+	<definition name="meetingsList" extends=".uni">
+		<put-attribute name="title" value="TEP - 모임 목록" />
 		<put-attribute name="body" value="/WEB-INF/meetings/meetingsList.jsp" />
 	</definition>
 	
-	<definition name="meetingsDetail" extends=".default">
+	<definition name="meetingsDetail" extends=".uni">
 		<put-attribute name="title" value="TEP - 모임개설 상세정보" />
 		<put-attribute name="body" value="/WEB-INF/meetings/meetingsDetail.jsp" />
 	</definition>
 	
-	<definition name="meetingsApplyfor" extends=".default">
+	<definition name="meetingsApplyfor" extends=".uni">
 		<put-attribute name="title" value="TEP - 모임 신청하기" />
 		<put-attribute name="body" value="/WEB-INF/meetings/meetingsApplyfor.jsp" />
 	</definition>

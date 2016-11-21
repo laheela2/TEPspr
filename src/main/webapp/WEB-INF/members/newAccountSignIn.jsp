@@ -1,11 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
+<%@ include file="/WEB-INF/include/common-header.jspf" %>
 <script type="text/javascript"> $(function(){ $('#navigation').find('#nav_home').addClass('active'); });</script>
 </head>
 <body>
@@ -38,7 +35,18 @@
                     <p class="lead">아직 회원등록을 하지 않으셨나요?</p>
                     <p>재능을 공유 해보세요. <br>개인이 가지고 있는 다양한 재능을 펼칠 수 있습니다.</p>
 
+					<hr>
+
 					<spring:hasBindErrors name="mem"/>
+					<c:if test="${fn:length(mem.message) > 0}">
+						<div class="alert alert-danger alert-dismissible" role="alert">
+						    <button type="button" class="close" data-dismiss="alert">
+						    	<span aria-hidden="true">×</span>
+						    	<span class="sr-only">Close</span>
+						    </button>
+						    ${mem.message}
+						</div>
+					</c:if>						
                     <form action="<c:url value="/register"/>" method="post">
                         <div class="form-group">
                             <label for="name-login">이름</label>&nbsp;&nbsp;&nbsp;
@@ -73,7 +81,9 @@
 
                     <p class="lead">이미 회원 인가요?</p>
                     <p class="text-muted">다양한 활동이 많이 준비되어있습니다. 많은 참여부탁드립니다.</p>
-
+					
+					<hr>
+					
 					<spring:hasBindErrors name="login"/>
                     <form action="<c:url value="/login"/>" method="post">
                         <div class="form-group">

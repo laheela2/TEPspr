@@ -23,6 +23,16 @@ public class MembersModel {
 	// 가입날짜
 	private Date m_date;
 	
+	private String message;
+	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	public int getM_no() {
 		return m_no;
 	}
@@ -32,7 +42,7 @@ public class MembersModel {
 	}
 
 	public String getM_email() {
-		return m_email.trim();
+		return m_email;
 	}
 
 	public void setM_email(String m_email) {

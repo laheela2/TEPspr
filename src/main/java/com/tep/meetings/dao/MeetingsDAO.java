@@ -13,10 +13,15 @@ public class MeetingsDAO extends AbstractDAO{
 	public MeetingsDAO() {
 		setNameSpace("meetings.");
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectMeetingsList(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("selectList",map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> meetingsRecommend() {
+		return (List<Map<String, Object>>) selectList("meetingsRecommend");
 	}
 
 	public int selectLikeitCount(int mt_no){
@@ -32,7 +37,7 @@ public class MeetingsDAO extends AbstractDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectLikeit(Map<String, Object> map) {
+	public Map<String, Object> selectLikeitExist(Map<String, Object> map) {
 		return (Map<String, Object>)selectOne("selectLikeitExist",map);
 	}
 

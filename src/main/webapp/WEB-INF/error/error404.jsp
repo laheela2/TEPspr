@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -10,11 +9,9 @@
     <meta name="googlebot" content="index,follow,snippet,archive">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><tiles:getAsString name="title"/></title>
+    <title>Error 404</title>
 
    <meta name="keywords" content="">
-
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap and Font Awesome css -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -29,15 +26,12 @@
 
     <!-- Custom stylesheet - for your changes -->
     <link href="<c:url value='/resources/bootstrap/uni/css/custom.css'/>" rel="stylesheet">
-    
-    <!-- DatePicker stylesheet -->
-    <link href="<c:url value='/resources/bootstrap/uni/css/simple-dtpicker.css'/>" rel="stylesheet">
 
     <!-- Responsivity for older IE -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+	<![endif]-->
 
     <!-- Favicon and apple touch icons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -58,18 +52,46 @@
 <body>
 
     <div id="all">
+    <%@ include file="/tiles/layout/uni_header.jsp" %>
 
-		<tiles:insertAttribute name="header"/>
-		<tiles:insertAttribute name="body"/>
-		<tiles:insertAttribute name="footer"/>
-
+        <div id="heading-breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1>Error 404</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div id="content">
+		    <div class="container">
+		        <div class="col-sm-6 col-sm-offset-3" id="error-page">
+		            <div class="box">
+		                <h3>죄송합니다. <br>이 페이지는 더 이상 존재하지 않습니다.</h3>
+		                <h4 class="text-muted">Error 404 - 페이지를 찾을수 없습니다.</h4>
+		                <p class="buttons"><a href="<c:url value="/main"/>" class="btn btn-template-main"><i class="fa fa-home"></i> 홈으로</a>
+		                </p>
+		            </div>
+		        </div>
+		        <!-- /.col-sm-6 -->
+		    </div>
+		    <!-- /.container -->
+		</div>
+		<!-- /#content -->		
+		
+   	<%@ include file="/tiles/layout/uni_footer.jsp" %>		
     </div>
     <!-- /#all -->
 
     <!-- #### JAVASCRIPT FILES ### -->
 
-    <script src="<c:url value='/resources/bootstrap/uni/js/jquery-1.11.0.min.js'/>"></script>
-    <script src="<c:url value='/resources/bootstrap/uni/js/bootstrap.min.js'/>"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="<c:url value='/resources/bootstrap/uni/js/jquery-1.11.0.min.js'/>"><\/script>')
+    </script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
     <script src="<c:url value='/resources/bootstrap/uni/js/jquery.cookie.js'/>"></script>
     <script src="<c:url value='/resources/bootstrap/uni/js/waypoints.min.js'/>"></script>
     <script src="<c:url value='/resources/bootstrap/uni/js/jquery.counterup.min.js'/>"></script>

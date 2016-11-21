@@ -6,6 +6,7 @@
 		SELECT
 			mt_no,
 			mt_title,
+			CONCAT(SUBSTR(mt_subject,1,20),'...') as mt_subject,
 			mt_rep_img,
 			(mt_total_pnum - mt_current_pnum) as mt_permit_pnum
 		FROM
@@ -26,6 +27,25 @@
 		</where>
 		ORDER BY
 			mt_no DESC
+	</select>
+
+	<select id="meetingsRecommend" resultType="hashmap">
+		SELECT 
+			* 
+		FROM 
+			(
+				SELECT
+					mt_no,
+					mt_title,
+					CONCAT(SUBSTR(mt_subject,1,13),'...') as mt_subject,
+					mt_rep_img,
+					(mt_total_pnum - mt_current_pnum) as mt_permit_pnum,
+					ROW_NUMBER() OVER (ORDER BY mt_readcount DESC) AS rnum
+				FROM 
+					meetings
+			)
+		WHERE
+			rnum BETWEEN 1 and 4
 	</select>
 	
 	<select id="selectLikeitCount" parameterType="int" resultType="int">
@@ -73,7 +93,7 @@
 		WHERE
 			mt_no=#{mt_no}
 	</select>
-	
+
 	<select id="selectCmtList" parameterType="hashmap" resultType="hashmap">
 		SELECT
 			c_no,

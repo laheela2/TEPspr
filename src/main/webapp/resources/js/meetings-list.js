@@ -3,7 +3,7 @@ $(function() {
 		"futureOnly" : false,
 		"autodateOnStart" : false,
 		"locale" : "ko",
-		"dateFormat": "YY/MM/DD",
+		"dateFormat": "YYYY-MM-DD",
 		"dateOnly": true	
 	});
 
@@ -21,23 +21,10 @@ $(function() {
 
 $(document).ready(function() {
 	$('.category').find("td").click(function() {
-		$(this).toggleClass("category_select");
+		$(this).toggleClass('panelSidebarMenuSelect');
 	});
 	$('.area').find("td").click(function() {
-		$(this).toggleClass("category_select");
-	});
-});
-
-$(function() {
-	$('#searchbox').keypress(function(event) {
-		if (event.keyCode == 13) {
-			searchSubmit();
-		}
-	});
-	
-	$('.btnEventSearch').click(function(event) {
-		searchSubmit();
-		event.preventDefault();
+		$(this).toggleClass('panelSidebarMenuSelect');
 	});
 });
 
@@ -45,21 +32,17 @@ function searchSubmit() {
 	var category = "";
 	var area = "";
 
-	/* if (!$('#searchbox').val()) {
-		return false;
-	} */
-
-	if ($('.category').find("td").hasClass("category_select")) {
+	if ($('.category').find("td").hasClass("panelSidebarMenuSelect")) {
 		$('.category').find("td").each(function(i) {
-			if ($(this).hasClass("category_select")) {
+			if ($(this).hasClass("panelSidebarMenuSelect")) {
 				category += $(this).text() + "|";
 			}
 		});
 	}
 
-	if ($('.area').find("td").hasClass("category_select")) {
+	if ($('.area').find("td").hasClass("panelSidebarMenuSelect")) {
 		$('.area').find("td").each(function(i) {
-			if ($(this).hasClass("category_select")) {
+			if ($(this).hasClass("panelSidebarMenuSelect")) {
 				area += $(this).text() + "|";
 			}
 		});
@@ -80,6 +63,4 @@ function searchSubmit() {
 	if($('#enddt').val() != null){
 		$('#searchMEnd').val($('#enddt').val());
 	}
-	
-	document.search_form.submit();
 }
