@@ -4,12 +4,12 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="lendplaceList" extends=".default">
+	<definition name="lendplaceList" extends=".uni">
 		<put-attribute name="title" value="TEP - 원하는 장소를 빌려보세요 ;)" />
 		<put-attribute name="body" value="/WEB-INF/lendplace/lendplaceList.jsp" />
 	</definition>
 	
-	<definition name="lendplaceDetail" extends=".default">
+	<definition name="lendplaceDetail" extends=".uni">
 		<put-attribute name="title" value="TEP - 장소 상세보기 ;)" />
 		<put-attribute name="body" value="/WEB-INF/lendplace/lendplaceDetail.jsp" />
 	</definition>
