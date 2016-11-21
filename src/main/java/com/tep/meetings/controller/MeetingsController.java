@@ -108,7 +108,7 @@ public class MeetingsController {
     public ModelAndView meetingsApplyForm(CommandMap map, HttpServletRequest request) throws Exception{
     	ModelAndView mv = new ModelAndView("meetingsApplyfor");
     	Map<String, Object> result = meetingsService.selectMeetingsApplyfor(map.getMap(), request);
-    	mv.addObject("applyData",result);
+    	mv.addObject("data",result);
     	return mv;
     }
 

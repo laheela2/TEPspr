@@ -59,7 +59,7 @@
 													<a href="#this" class="btn btn-template-transparent-primary" onclick="fn_meetingsApplyforDisable()">신청</a>
 												</c:when>
 												<c:otherwise>
-													<a href="#this" class="btn btn-template-transparent-primary" onclick="fn_meetingsApplyfor('${row.MT_NO}')">신청</a>
+													<a href="#this" class="btn btn-template-transparent-primary" onclick="fn_meetingsApplyform('${row.MT_NO}')">신청</a>
 												</c:otherwise>
 											</c:choose>
 										</p>
@@ -190,12 +190,11 @@
     	alertify.error("신청 마감된 모임입니다.");
     }
     
-    function fn_meetingsApplyfor(mt_no){
-    	if(isLoginCheck("${sessionScope.session_m_email}")){
+    function fn_meetingsApplyform(mt_no){
+		if(isLoginCheck("${sessionScope.session_m_email}")){
 	        var cs = new CustomSubmit();
-	        cs.setUrl("<c:url value='/meetings/applyfor' />");
+	        cs.setUrl("<c:url value='/meetings/applyform' />");
 	        cs.addParam("mt_no", mt_no);
-	        cs.addParam("currentPageNo", "${currentPageNo}");
 	        cs.submit();
         }
     }
