@@ -3,7 +3,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/board.write.css"/>">
 <script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
 <script>
 	window.onload = function() {
@@ -54,12 +53,12 @@
 				<h3>Q&A 글쓰기</h3>
 			</div>
 <form id="writeForm" action="<c:url value="/qna/write"/>" method="post" onsubmit="return fn_validation();">
-<table class="boardwrite" align=center border="0">
+<table class="table" align=center border="0">
 
 <tr>
-<td class="bw_title">카테고리</td>
+<td><h5>카테고리</h5></td>
 <td>
-<select name="q_category1">
+<select name="q_category1" class="form-control">
 	<option value="문의하기">문의하기</option>
 	<option value="신고하기">신고하기</option>
 </select>
@@ -67,9 +66,9 @@
 </tr>
 
 <tr>
-<td class="bw_title">세부 카테고리</td>
+<td><h5>세부 카테고리</h5></td>
 <td>
-<select name="q_category2">
+<select name="q_category2" class="form-control">
 	<optgroup label="문의하기">
 	<option value="광고">광고</option>
 	<option value="기능">기능</option>
@@ -90,8 +89,8 @@
 </tr>
 
 <tr>
-<td class="bw_title">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</td>
-<td><input id="q_title" type="text" name="q_title" maxlength="50"></td>
+<td><h5>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</h5></td>
+<td><input id="q_title" type="text" name="q_title" maxlength="50" class="form-control"></td>
 </tr>
 
 <tr>
@@ -100,12 +99,13 @@
 
 <tr>
 <td colspan="2" align="right" style="border:none;">
-<input type="submit" value="저장">
-<input type="button" value="취소" onclick="location.href='<c:url value="/qna"/>'">
+<button type="submit" class="btn btn-danger"> 저 장 </button>
+<button type="button" class="btn btn-danger" onclick="location.href='<c:url value="/qna"/>'"> 취 소 </button>
 </td>
 </tr>
 
 </table>
+<br>
 </form>
 </div></div></div></div>
 

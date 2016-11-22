@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
+                    <li><a href="<c:url value="/mypage/View"/>">마이페이지</a>
                     </li>
                     <li>회원탈퇴</li>
                 </ul>
@@ -56,14 +56,14 @@
 		<h3>회원탈퇴</h3>
 	</div>
 	<br>
-	<form name="userinput" action="mypageDeleteResult" method="post">
+	<form name="userinput" action="mypage/DeleteResult" method="post">
 		<table class="table" align="center" width="265" >
 
 			<tr align="center">
 				<td align="center">
 					<font size="2">비밀번호를 입력하세요</font><br> <br>
 					<input type="text" name="m_password" maxlength="20" /><br><br>
-					<font style="font-family: sans-serif;font-size: xx-small;color: navy;font-weight: bold;padding-top:13px;padding-bottom:13px;">*비밀번호를 입력하는 즉시 회원탈퇴가 진행됨으로 신중하게 입력하시기 바랍니다.</font>
+					<font style="font-family: sans-serif;font-size: xx-small;color: navy;font-weight: bold;padding-top:13px;padding-bottom:13px;">*비밀번호를 입력하면 회원탈퇴가 진행됩니다.</font>
 				</td>
 			</tr>
 

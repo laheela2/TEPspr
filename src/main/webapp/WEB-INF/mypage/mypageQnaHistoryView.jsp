@@ -48,10 +48,12 @@
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
 				<tr align="center">
-					<c:if test="${fn:length(answer) > 0}">
-					<td style="font-color:red;">[답변]${row.Q_NO}</td>
+					<td>
+					<c:if test="${row.A_NO > 0}">
+					[답변]
 					</c:if>
-					<td>${row.Q_NO}</td>
+					${row.Q_NO}
+					</td>
 					<td>${row.Q_CATEGORY1}</td>
 					<td align="left">
 						<a href="#" name="title">${row.Q_TITLE}</a>
@@ -117,7 +119,7 @@
     
     function fn_qnaDetail(obj){
         var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/mypageQnaDetail' />");
+        cs.setUrl("<c:url value='/mypage/QnaDetail' />");
         cs.addParam("q_no", obj.parent().find("#q_no").val());
         cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();

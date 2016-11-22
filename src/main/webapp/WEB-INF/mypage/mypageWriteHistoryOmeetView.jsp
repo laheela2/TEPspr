@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
+                    <li><a href="<c:url value="/mypage/View"/>">마이페이지</a>
                     </li>
                     <li>모임개설 내역</li>
                 </ul>
@@ -77,7 +77,7 @@
 <!-- 게시판 검색 -->
 <tr>
 <td colspan="6" align="center">
-<form method="post" action="<c:url value='/writeHistoryOmeet'/>">
+<form method="post" action="<c:url value='/mypage/writeHistoryOmeet'/>">
 		<table>
 		<tr>
 		<td>
@@ -116,7 +116,7 @@
     
     function fn_omeetDetail(obj){
         var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/mypageOmeetDetail' />");
+        cs.setUrl("<c:url value='/mypage/OmeetDetail' />");
         cs.addParam("mt_no", obj.parent().find("#mt_no").val());
         cs.submit();
     }

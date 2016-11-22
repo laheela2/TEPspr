@@ -59,12 +59,12 @@
 			</div>
 <form name="mForm" action='<c:url value="/qna/modify"/>' method="post" onsubmit="return fn_validation();">
 <input type="hidden" name="q_no" value="${data.Q_NO}">
-<table class="boardwrite" align=center border="0">
+<table class="table" align=center border="0">
 
 <tr>
-<td class="bw_title">카테고리</td>
+<td><h5>카테고리</h5></td>
 <td>
-<select name="q_category1">
+<select name="q_category1" class="form-control">
 	<option value="문의하기">문의하기</option>
 	<option value="신고하기">신고하기</option>
 </select>
@@ -72,9 +72,9 @@
 </tr>
 
 <tr>
-<td class="bw_title">세부 카테고리</td>
+<td><h5>세부 카테고리</h5></td>
 <td>
-<select name="q_category2">
+<select name="q_category2" class="form-control">
 	<optgroup label="문의하기">
 	<option value="광고">광고</option>
 	<option value="기능">기능</option>
@@ -95,12 +95,12 @@
 </tr>
 
 <tr>
-<td class="bw_title">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</td>
-<td><input id="b_title" type="text" name="q_title" size="100%"></td>
+<td><h5>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</h5></td>
+<td ><input id="b_title" type="text" name="q_title" size="100%" class="form-control"></td>
 </tr>
 
 <tr>
-<td class="bw_title">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</td>
+<td><h5>내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</h5></td>
 <td><textarea name="q_content">${data.Q_CONTENT }</textarea></td>
 </tr>
 

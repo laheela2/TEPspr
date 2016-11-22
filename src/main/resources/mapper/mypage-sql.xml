@@ -20,7 +20,7 @@
 
 	<!-- 게시판 글쓴 내역 검색포함 -->
 	<select id="writeHistoryBoard" parameterType="hashmap" resultType="hashmap">
-		SELECT b_no, b_title, b_readcount, b_date FROM board
+		SELECT b_no, b_title, b_kind, b_readcount, b_date FROM board
 		<where>
 			<if test="searchKeyB != null and searchKeyB == 0">
 				B_TITLE like '%' || #{searchWordB} || '%' and m_no = #{m_no}
@@ -38,6 +38,20 @@
 	</select>
 	
 	<!-- qna 내역 -->
+	<!-- <select id="qnaHistory" parameterType="hashmap" resultType="hashmap">
+		SELECT q_no, q_category1, q_title, q_content, q_date, a_no FROM QNA natural join ANSWER
+		<where>
+        	<if test="searchKey != null and searchKey == 0">
+				Q_TITLE like '%' || #{searchWord} || '%' and m_no = #{m_no}
+			</if>
+			<if test="searchKey != null and searchKey == 1">
+				Q_TITLE like '%' || #{searchWord} || '%' or Q_CONTENT like '%' ||#{searchWord} || '%' and m_no = #{m_no}
+			</if>
+			<if test="searchKey == null">
+				m_no = #{m_no}
+			</if>
+		</where>
+	</select> -->
 	<select id="qnaHistory" parameterType="hashmap" resultType="hashmap">
 		SELECT q_no, q_category1, q_title, q_content, q_date FROM QNA
 		<where>
@@ -52,7 +66,6 @@
 			</if>
 		</where>
 	</select>
-	
 	<!-- 답글 내역 -->
 	<select id="cmtHistory" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
