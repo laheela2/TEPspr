@@ -38,22 +38,22 @@
 <table class="table" align=center border="0">
 
 <tr>
-<td>카테고리</td>
-<td  class="form-control">
+<td><h5>카테고리</h5></td>
+<td>
 ${data.Q_CATEGORY1}
 </td>
 </tr>
 
 <tr>
-<td>세부카테고리</td>
-<td  class="form-control">
+<td><h5>세부카테고리</h5></td>
+<td width="80%">
 ${data.Q_CATEGORY2}
 </td>
 </tr>
 
 <tr>
-<td>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</td>
-<td class="form-control">${data.Q_TITLE}</td>
+<td><h5>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</h5></td>
+<td>${data.Q_TITLE}</td>
 </tr>
 
 <tr>
@@ -63,15 +63,15 @@ ${data.Q_CATEGORY2}
 </tr>
 <c:if test="${fn:length(answer) > 0}">
 <tr>
-<td>답&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;변</td>
+<td><h5>답&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;변</h5></td>
 <td>${answer.A_CONTENT}</td>
 </tr>
 </c:if>
 <c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.M_NO }">
 <tr>
 <td colspan="2" align="right" style="border:none;">
-<input type="button" value="수정" id="modifyBtn">
-<input type="button" value="삭제" id="deleteBtn">
+<input type="button" value="수정" id="modifyBtn" ><!-- style="background-color:red; color:white;"  -->
+<input type="button" value="삭제" id="deleteBtn" >
 <%-- <input type="button" class="btn btn-danger" id="modifyBtn" value="수정" onclick="fn_qnaModify('${row.Q_NO}')">
 <input type="button" class="btn btn-danger" id="deleteBtn" value="삭제" onclick="fn_qnaDelete('${row.Q_NO}')"> --%>
 </td>

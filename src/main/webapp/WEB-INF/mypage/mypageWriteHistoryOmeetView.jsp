@@ -81,7 +81,7 @@
 		<table>
 		<tr>
 		<td>
-		<select name="searchKey">
+		<select name="searchKey" class="form-control">
 			<option value="0" selected="selected">제목</option>
 			<option value="1">제목+내용</option>
 		</select>
