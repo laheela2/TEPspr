@@ -32,7 +32,7 @@
 							<a href="<c:url value="/logout"/>">
 								<i class="fa fa-sign-out"></i> <span class="hidden-xs text-uppercase">로그아웃</span>
 							</a>
-							<a href="<c:url value="/mypageView"/>">
+							<a href="<c:url value="/mypage/view"/>">
 								<i class="fa fa-pencil-square-o"></i> <span class="hidden-xs text-uppercase">마이페이지</span>
 							</a>
 						</c:if>
@@ -55,7 +55,7 @@
 
 					<a class="navbar-brand home" href="<c:url value="/main"/>">
 						<img src="<c:url value="/resources/bootstrap/uni/img/logo.png"/>" alt="Tep logo" class="hidden-xs hidden-sm">
-						<img src="<c:url value="/resources/bootstrap/uni/img/logo-small.png"/>" alt="Tep logo" class="visible-xs visible-sm">
+						<img src="<c:url value="/resources/bootstrap/uni/img/logo.png"/>" alt="Tep logo" class="visible-xs visible-sm">
 						<span class="sr-only">TEP - 홈으로</span>
 					</a>
 					<div class="navbar-buttons">

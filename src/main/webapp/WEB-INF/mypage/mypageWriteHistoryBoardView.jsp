@@ -87,13 +87,13 @@
 								<table>
 									<tr>
 										<td>
-											<select name="searchKeyB">
+											<select name="searchKeyB" class="form-control">
 												<option value="0" selected="selected">제목</option>
 												<option value="1">제목+내용</option>
 											</select>
 										</td>
 										<td>
-											<input type="text"  style="height:32.3px;" name="searchWordB" size="33" maxlength="15" />
+											<input type="text"  style="height:32.3px;" name="searchWordB" size="33" maxlength="15" class="form-control"/>
 										</td>
 										<td>
 										<br>
