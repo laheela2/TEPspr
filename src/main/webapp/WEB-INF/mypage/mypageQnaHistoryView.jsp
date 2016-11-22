@@ -38,8 +38,8 @@
 		<thead>
 			<tr align="center">
 				<td>번호</td>
-				<td>카테고리</td>
-				<td width="55%">제목</td>
+				<td>제목</td>
+				<td width="55%">내용</td>
 				<td>등록일</td>
             </tr>
         </thead>
@@ -48,13 +48,12 @@
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
 				<tr align="center">
-					<c:if test="${fn:length(answer) > 0}">
-					<td style="font-color:red;">[답변]${row.Q_NO}</td>
-					</c:if>
-					<td>${row.Q_NO}</td>
-					<td>${row.Q_CATEGORY1}</td>
+					<td>
+					${row.Q_NO}
+					</td>
+					<td>${row.Q_TITLE}</td>
 					<td align="left">
-						<a href="#" name="title">${row.Q_TITLE}</a>
+						<a href="#" name="title">${row.Q_CONTENT}</a>
 						<input type="hidden" id="q_no" value="${row.Q_NO}">
 					</td>
 					<td><fmt:formatDate value="${row.Q_DATE}" pattern="yyyy.MM.dd"/></td>
@@ -82,7 +81,7 @@
 		<table>
 		<tr>
 		<td>
-		<select name="searchKey">
+		<select name="searchKey" class="form-control"class="form-control">
 			<option value="0" selected="selected">제목</option>
 			<option value="1">제목+내용</option>
 		</select>
@@ -117,7 +116,7 @@
     
     function fn_qnaDetail(obj){
         var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/mypageQnaDetail' />");
+        cs.setUrl("<c:url value='/mypage/QnaDetail' />");
         cs.addParam("q_no", obj.parent().find("#q_no").val());
         cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();

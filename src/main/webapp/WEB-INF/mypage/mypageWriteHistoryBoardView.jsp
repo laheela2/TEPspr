@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
+                    <li><a href="<c:url value="/mypage/View"/>">마이페이지</a>
                     </li>
                     <li>게시판 내역</li>
                 </ul>
@@ -51,17 +51,13 @@
 					<c:forEach items="${list }" var="row">
 					<tr align="center">
 						<td>${row.B_NO}</td>
-						<td class="board_kind">
-						<c:if test="${row.B_KIND == 1 }">
-							<font class="board_title_kind">[스승찾아요]</font>
-						</c:if>
-						<c:if test="${row.B_KIND == 2 }">
-							<font class="board_title_kind">[제자찾아요]</font>
-						</c:if>
-						<c:if test="${row.B_KIND != 1 || row.B_KIND != 2}">
-							<font class="board_title_kind">[일반게시물]</font>
-						</c:if>
-						</td>					
+						<td>
+						<span class="label label-danger">
+							<c:if test="${row.B_KIND == 0}">일반게시물</c:if>
+							<c:if test="${row.B_KIND == 1 }">스승찾아요</c:if>
+							<c:if test="${row.B_KIND == 2 }">제자찾아요</c:if>
+							</span>
+						</td>				
 						<td align="left">
 							<a href="#" name="title">${row.B_TITLE}</a>
 							<input type="hidden" id="b_no" value="${row.B_NO}">
@@ -87,7 +83,7 @@
 	<!-- 게시판 검색 -->
 					<tr>
 						<td colspan="6" align="center">
-							<form method="post" action="<c:url value='/writeHistoryBoard'/>">
+							<form method="post" action="<c:url value='/mypage/writeHistoryBoard'/>">
 								<table>
 									<tr>
 										<td>
@@ -128,7 +124,7 @@
     
     function fn_boardDetail(obj){
         var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/mypageBoardDetail' />");
+        cs.setUrl("<c:url value='/mypage/BoardDetail' />");
         cs.addParam("b_no", obj.parent().find("#b_no").val());
         cs.addParam("currentPageNo", "${currentPageNo}");
         cs.submit();

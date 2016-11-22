@@ -47,7 +47,7 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "/qna/write", method = RequestMethod.POST)
-	public ModelAndView boardWrite(CommandMap map, HttpServletRequest request) throws Exception {
+	public ModelAndView qnaWrite(CommandMap map, HttpServletRequest request) throws Exception {
 		map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
 		qnaService.insertQna(map.getMap());
 		return new ModelAndView("redirect:/qna");
@@ -78,7 +78,7 @@ public class QnaController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/qna/modify", method=RequestMethod.GET)
+	@RequestMapping(value="/qna/modify")
     public ModelAndView qnaModify(CommandMap map) throws Exception{
     	ModelAndView mv = new ModelAndView("qnaModify");
     	
@@ -87,12 +87,12 @@ public class QnaController {
     	return mv;
     }
     
-    @RequestMapping(value="/qna/modify", method=RequestMethod.POST)
+    @RequestMapping(value="/qna/modify/result")
     public ModelAndView qnaModify(CommandMap map, HttpServletRequest request) throws Exception{
     	map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
     	
     	qnaService.updateQna(map.getMap());
-    	return new ModelAndView("redirect:/qna/detail?q_no="+map.get("q_no"));
+    	return new ModelAndView("redirect:/qna");
     }
 	
     @RequestMapping(value="/qna/delete", method=RequestMethod.POST)

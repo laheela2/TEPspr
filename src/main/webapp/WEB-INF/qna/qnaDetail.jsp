@@ -3,7 +3,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/board.write.css"/>">
 <script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
 <script>
 	window.onload = function() {
@@ -36,47 +35,51 @@
 				<h3>Q&A 상세보기</h3>
 			</div>
 
-<table class="boardwrite" align=center border="0">
+<table class="table" align=center border="0">
 
 <tr>
-<td class="bw_title">카테고리</td>
-<td  class="bw_content">
+<td><h5>카테고리</h5></td>
+<td>
 ${data.Q_CATEGORY1}
 </td>
 </tr>
 
 <tr>
-<td class="bw_title">세부카테고리</td>
-<td  class="bw_content">
+<td><h5>세부카테고리</h5></td>
+<td width="80%">
 ${data.Q_CATEGORY2}
 </td>
 </tr>
 
 <tr>
-<td class="bw_title">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</td>
-<td class="bw_content">${data.Q_TITLE}</td>
+<td><h5>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</h5></td>
+<td>${data.Q_TITLE}</td>
 </tr>
 
 <tr>
-<td colspan="2">
-<textarea id="q_content" disabled="disabled">${data.Q_CONTENT}</textarea>
+<td colspan="2" >
+<textarea id="q_content" disabled="disabled" >${data.Q_CONTENT}</textarea>
 </td>
 </tr>
 <c:if test="${fn:length(answer) > 0}">
 <tr>
-<td class="bw_title">답&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;변</td>
-<td class="bw_content">${answer.A_CONTENT}</td>
+<td><h5>답&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;변</h5></td>
+<td>${answer.A_CONTENT}</td>
 </tr>
 </c:if>
+<tr><td></td><td></td></tr>
 <c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.M_NO }">
 <tr>
 <td colspan="2" align="right" style="border:none;">
-<input type="button" value="수정" id="modifyBtn">
-<input type="button" value="삭제" id="deleteBtn">
+<input type="button" value="수정" id="modifyBtn" ><!-- style="background-color:red; color:white;"  -->
+<input type="button" value="삭제" id="deleteBtn" >
+<%-- <input type="button" class="btn btn-danger" id="modifyBtn" value="수정" onclick="fn_qnaModify('${row.Q_NO}')">
+<input type="button" class="btn btn-danger" id="deleteBtn" value="삭제" onclick="fn_qnaDelete('${row.Q_NO}')"> --%>
 </td>
 </tr>
 </c:if>
 </table>
+<br>
 </div></div></div></div>
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">

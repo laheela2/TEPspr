@@ -10,7 +10,7 @@
 
 		<div class="panel-body">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="<c:url value="/mypage/View"/>">내 정보</a></li>
+				<li class="active"><a href="<c:url value="/mypage/view"/>">내 정보</a></li>
 				<li><a href="<c:url value="/mypage/modifyPwChk"/>">회원정보수정</a></li>
 				<li><a href="<c:url value="/mypage/writeHistoryBoard"/>">게시판내역</a></li>
 				<li><a href="<c:url value="/mypage/cmtHistory"/>">답글내역</a></li>

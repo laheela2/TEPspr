@@ -4,7 +4,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 </head>
 <body>
@@ -16,7 +15,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
+                    <li><a href="<c:url value="/mypage/View"/>">마이페이지</a>
                     </li>
                     <li>답글내역</li>
                 </ul>
@@ -51,10 +50,11 @@
 			<c:forEach items="${list }" var="row">
 				<tr align="center">
 					<td>${row.C_NO}</td>			
-					<td class="board_title">
+					<td align="left">
 							<a href="#" name="content">${row.C_CONTENT}</a>
 							<input type="hidden" id="b_no" value="${row.B_NO}">
 							<input type="hidden" id="mt_no" value="${row.MT_NO}">
+							<input type="hidden" id="v_no" value="${row.V_NO}">
 					</td>
 					<td>${sessionScope.session_m_name }</td>
 					<td><fmt:formatDate value="${row.C_DATE}" pattern="yyyy.MM.dd"/></td>
@@ -91,18 +91,23 @@
             fn_boardDetail($(this));
         });
     });
-    
     function fn_boardDetail(obj){
         var cs = new CustomSubmit();
-        if($("#b_no").length > 0){
-        	cs.setUrl("<c:url value='/mypageBoardDetail' />");
+        if(obj.parent().find("#b_no").val() > 0){
+        	cs.setUrl("<c:url value='/mypage/BoardDetail' />");
        	 	cs.addParam("b_no", obj.parent().find("#b_no").val());
        		cs.addParam("currentPageNo", "${currentPageNo}");
         	cs.submit();
         }
-        else{
-        	cs.setUrl("<c:url value='/mypageOmeetDetail' />");
+        else if(obj.parent().find("#mt_no").val() > 0){
+        	cs.setUrl("<c:url value='/mypage/OmeetDetail' />");
             cs.addParam("mt_no", obj.parent().find("#mt_no").val());
+            cs.addParam("currentPageNo", "${currentPageNo}");
+            cs.submit();
+        }
+        else{
+        	cs.setUrl("<c:url value='/videolec/detail' />");
+            cs.addParam("v_no", obj.parent().find("#v_no").val());
             cs.addParam("currentPageNo", "${currentPageNo}");
             cs.submit();
         }

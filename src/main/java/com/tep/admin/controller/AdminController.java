@@ -131,8 +131,7 @@ public class AdminController {
     public ModelAndView adminQnaDetail(CommandMap map) throws Exception{
     	ModelAndView mv = new ModelAndView("adminQnaDetail");
     	Map<String, Object> result = adminService.adminQnaDetail(map.getMap());
-    	mv.addObject("data",result.get("detail"));
-		mv.addObject("answer", result.get("answer"));
+    	mv.addObject("data",result);
     	return mv;
     }
     
