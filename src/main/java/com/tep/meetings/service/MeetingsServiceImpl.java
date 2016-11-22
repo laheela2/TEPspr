@@ -58,7 +58,7 @@ public class MeetingsServiceImpl implements MeetingsService {
 	@Override
 	public void insertMeetings(MeetingsModel meet, MultipartHttpServletRequest request) throws Exception {
 		String uploadFilePath = fileUploadComp.saveFile(request.getFile("file"));
-		meet.setMt_rep_img(uploadFilePath);
+		meet.setMt_rep_img(fileUploadComp.getProjectPath());
 		meet.setMt_r_sdate(TepUtils.dateParse(meet.getMt_rsdate()));
 		meet.setMt_r_edate(TepUtils.dateParse(meet.getMt_redate()));
 		meet.setMt_m_sdate(TepUtils.dateParse(meet.getMt_msdate()));
