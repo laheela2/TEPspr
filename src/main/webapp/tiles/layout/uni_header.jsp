@@ -77,132 +77,84 @@
 
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown" id="nav_home">
-                            <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">홈 <b class="caret"></b></a>
+                            <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none;"><i class="fa fa-home"></i>홈 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                	<a href="<c:url value="/login"/>">회원가입 / 로그인</a>
+                                	<a href="<c:url value="/login"/>"><i class="fa fa-male"></i>회원가입 / 로그인</a>
                                 </li>
                                 <li>
-                                	<a href="<c:url value="/find/account"/>">이메일 / 비번 찾기</a>
+                                	<a href="<c:url value="/find/account"/>"><i class="fa fa-envelope-o"></i>이메일 / 비번 찾기</a>
                                 </li>
                                 <li>
-                                	<a href="#this" onclick="fn_mypage_link();">마이페이지</a>
+                                	<a href="#this" onclick="fn_mypage_link();"><i class="fa fa-edit"></i>마이페이지</a>
                                 </li>
                             </ul>
                         </li>
 						<li class="dropdown" id="nav_meetings">
-                            <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">모임 <b class="caret"></b></a>
+                            <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none;"><i class="fa fa-users"></i>모임 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                	<a href="<c:url value="/meetings"/>">목록으로 보기</a>
+                                	<a href="<c:url value="/meetings"/>"><i class="fa fa-list"></i>목록으로 보기</a>
                                 </li>
                                 <li>
-                                	<a href="">지도로 보기</a>
+                                	<a href=""><i class="fa fa-map-marker"></i>지도로 보기</a>
                                 </li>
                                 <li>
-                                	<a href="<c:url value="/board"/>">게시판</a>
+                                	<a href="<c:url value="/board"/>"><i class="fa fa-table"></i>게시판</a>
                                 </li>
                                 <li>
-                                	<a href="#" onclick="fn_meetingsWrite();">모임 개설하기</a>
+                                	<a href="#" onclick="fn_meetingsWrite();"><i class="fa fa-send"></i>모임 개설하기</a>
                                 </li>
                             </ul>
                         </li>					
 						<li id="nav_lendplace">
-							<a href="<c:url value="/lendplace"/>">장소</a>
+							<a href="<c:url value="/lendplace"/>" style="text-decoration: none;"><i class="fa fa-building"></i>장소</a>
 						</li>
 						<li id="nav_videolec">
-							<a href="<c:url value="/videolec"/>">영상</a>
+							<a href="<c:url value="/videolec"/>" style="text-decoration: none;"><i class="fa fa-youtube-play"></i>영상</a>
 						</li>
 						
 						<!-- ========== FULL WIDTH MEGAMENU ================== -->
 						<li class="dropdown use-yamm yamm-fw" id="nav_all">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
-								전체 <b class="caret"></b>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200" style="text-decoration: none;">
+								<i class="fa fa-info"></i>전체 <b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
 								<li>
 									<div class="yamm-content">
 										<div class="row">
-											<div class="col-sm-3">
-												<h5>Home</h5>
+											<div class="col-lg-6">
+												<h3><i class="fa fa-home"></i>  홈</h3>
 												<ul>
-													<li><a href="index.html">Option 1: Default Page</a></li>
-													<li><a href="index2.html">Option 2: Application</a></li>
-													<li><a href="index3.html">Option 3: Startup</a></li>
-													<li><a href="index4.html">Option 4: Agency</a></li>
-													<li><a href="index5.html">Option 5: Portfolio</a></li>
+													<li><a href="<c:url value="/login"/>"><i class="fa fa-male"></i>회원가입 / 로그인</a></li>
+													<li><a href="<c:url value="/find/account"/>"><i class="fa fa-envelope-o"></i>이메일 / 비번 찾기</a></li>
+													<li><a href="#this" onclick="fn_mypage_link();"><i class="fa fa-edit"></i>마이페이지</a></li>
 												</ul>
-												<h5>About</h5>
+												<br/>
+												<h3><i class="fa fa-support"></i>  About</h3>
 												<ul>
 													<li><a href="about.html">About us</a></li>
 													<li><a href="team.html">Our team</a></li>
-													<li><a href="team-member.html">Team member</a></li>
 													<li><a href="services.html">Services</a></li>
 												</ul>
-												<h5>Marketing</h5>
-												<ul>
-													<li><a href="packages.html">Packages</a></li>
-												</ul>
 											</div>
-											<div class="col-sm-3">
-												<h5>Portfolio</h5>
+											<div class="col-lg-6">
+												<h3><i class="fa fa-users"></i>  모임</h3>
 												<ul>
-													<li><a href="portfolio-2.html">2 columns</a></li>
-													<li><a href="portfolio-no-space-2.html">2 columns with negative space</a></li>
-													<li><a href="portfolio-3.html">3 columns</a></li>
-													<li><a href="portfolio-no-space-3.html">3 columns with negative space</a></li>
-													<li><a href="portfolio-4.html">4 columns</a></li>
-													<li><a href="portfolio-no-space-4.html">4 columns with negative space</a></li>
-													<li><a href="portfolio-detail.html">Portfolio - detail</a></li>
-													<li><a href="portfolio-detail-2.html">Portfolio - detail 2</a></li>
+													<li><a href="<c:url value="/meetings"/>"><i class="fa fa-list"></i>목록으로 보기</a></li>
+													<li><a href=""><i class="fa fa-map-marker"></i>지도로 보기</a></li>
+													<li><a href="<c:url value="/board"/>"><i class="fa fa-table"></i>게시판</a></li>
+													<li><a href="#" onclick="fn_meetingsWrite();"><i class="fa fa-send"></i>모임 개설하기</a></li>
 												</ul>
-												<h5>User pages</h5>
+												<br/>
+												<h3><i class="fa fa-building"></i>  장소</h3>
 												<ul>
-													<li><a href="customer-register.html">Register / login</a></li>
-													<li><a href="customer-orders.html">Orders history</a></li>
-													<li><a href="customer-order.html">Order history detail</a></li>
-													<li><a href="customer-wishlist.html">Wishlist</a></li>
-													<li><a href="customer-account.html">Customer account / change password</a></li>
+													<li><a href="<c:url value="/lendplace"/>" style="text-decoration: none;"><i class="fa fa-list"></i>장소목록</a></li>
 												</ul>
-											</div>
-											<div class="col-sm-3">
-												<h5>Shop</h5>
+												<br/>
+												<h3><i class="fa fa-youtube-play"></i>  영상</h3>
 												<ul>
-													<li><a href="shop-category.html">Category - sidebar right</a></li>
-													<li><a href="shop-category-left.html">Category - sidebar left</a></li>
-													<li><a href="shop-category-full.html">Category - full width</a></li>
-													<li><a href="shop-detail.html">Product detail</a></li>
-												</ul>
-												<h5>Shop - order process</h5>
-												<ul>
-													<li><a href="shop-basket.html">Shopping cart</a></li>
-													<li><a href="shop-checkout1.html">Checkout - step 1</a></li>
-													<li><a href="shop-checkout2.html">Checkout - step 2</a></li>
-													<li><a href="shop-checkout3.html">Checkout - step 3</a></li>
-													<li><a href="shop-checkout4.html">Checkout - step 4</a></li>
-												</ul>
-											</div>
-											<div class="col-sm-3">
-												<h5>Contact</h5>
-												<ul>
-													<li><a href="contact.html">Contact</a></li>
-													<li><a href="contact2.html">Contact - version 2</a></li>
-													<li><a href="contact3.html">Contact - version 3</a></li>
-												</ul>
-												<h5>Pages</h5>
-												<ul>
-													<li><a href="text.html">Text page</a></li>
-													<li><a href="text-left.html">Text page - left sidebar</a></li>
-													<li><a href="text-full.html">Text page - full width</a></li>
-													<li><a href="faq.html">FAQ</a></li>
-													<li><a href="404.html">404 page</a></li>
-												</ul>
-												<h5>Blog</h5>
-												<ul>
-													<li><a href="blog.html">Blog listing big</a></li>
-													<li><a href="blog-medium.html">Blog listing medium</a></li>
-													<li><a href="blog-small.html">Blog listing small</a></li>
-													<li><a href="blog-post.html">Blog Post</a></li>
+													<a href="<c:url value="/videolec"/>" style="text-decoration: none;"><i class="fa fa-list"></i>영상목록</a>
 												</ul>
 											</div>
 										</div>

@@ -31,12 +31,8 @@
 			<section>
 				<div class="row">
 					<div class="col-md-12">
-						<!-- <div class="heading">
-							<h2>Portfolio</h2>
-						</div> -->
-
-						<div class="col-md-12 text-right">
-							<p class="lead"><ul class="pagination">${pagingHtml}</ul></p>
+						<div class="heading">
+							<h3>다양한 강의 영상으로 배움을 실천 해보세요.<i class="fa fa-heart"></i></h3>
 						</div>
 					</div>
 				</div>
@@ -66,8 +62,10 @@
 							<!-- /.box-image -->
 						</div>
 					</c:forEach>
+				</div>
 
-
+				<div class="col-md-12 text-center">
+					<ul class="pagination pagination-lg">${pagingHtml}</ul>
 				</div>
 			</section>
 

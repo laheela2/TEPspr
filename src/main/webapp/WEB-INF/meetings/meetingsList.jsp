@@ -28,7 +28,17 @@
 
 <div id="content">
     <div class="container">
-        <div class="row">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="heading">
+						<h3>
+							다양한 모임에 참여 하거나, 직접 개설 해보세요.<i class="fa fa-users"></i>
+						</h3>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
             <!-- *** LEFT COLUMN ***-->
 
             <div class="col-md-9" id="blog-listing-small">
@@ -76,7 +86,7 @@
 				</div>
 
 				<div class="col-lg-12" align="center">
-					<ul class="pagination">${pagingHtml}</ul>
+					<ul class="pagination pagination-lg">${pagingHtml}</ul>
 				</div>
 
 			</div>
@@ -89,7 +99,7 @@
 
 				<!-- *** MENUS AND WIDGETS *** -->
 				<div class="panel panel-default sidebar-menu">
-					<button type="button" class="btn btn-lg btn-template-primary" onclick="fn_meetingsWrite();"> 모 임 개 설 하 기 </button>
+					<button type="button" class="btn btn-lg btn-template-primary" onclick="fn_meetingsWrite();"><i class="fa fa-send-o"></i> 모 임 개 설 하 기 </button>
 				</div>
 	
 				<div class="panel panel-default sidebar-menu">

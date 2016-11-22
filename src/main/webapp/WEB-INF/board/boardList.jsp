@@ -87,7 +87,7 @@
 					</div>
 
 					<div class="col-lg-12" align="center">
-						<ul class="pagination">${pagingHtml}</ul>
+						<ul class="pagination pagination-lg">${pagingHtml}</ul>
 					</div>
 					
 					<!-- /.panel-body -->
