@@ -188,7 +188,6 @@ public class MypageController {
 		Map<String, Object> result = meetingsService.selectMeetingsDetail(map.getMap(), request.getMethod().equals("POST"));
 		mv.addObject("data", result.get("detail"));
 		mv.addObject("cmtList", result.get("cmtList"));
-		mv.addObject("currentPageNo", map.getCurrentPageNo());
 
 		return mv;
 	}

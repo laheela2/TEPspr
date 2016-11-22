@@ -22,8 +22,7 @@
         </div>
     </div>
 </div>
-
-
+                                    
 <div id="content">
     <div class="container">
         <div class="row">
@@ -35,26 +34,40 @@
 	<thead>
 		<tr align="center">
 			<td>번호</td>
-			<td>카테고리</td>
-			<td width="55%">제목</td>
+			<td>제목</td>
+			<td width="50%">내용</td>
 			<td>작성자</td>
 			<td>등록일</td>
+			<td>수정/삭제</td>
 		</tr>
 	</thead>
 
 	<c:choose>
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
+
 				<tr align="center">
 					<td>${row.Q_NO}</td>
-					<td>${row.Q_CATEGORY1}</td>				
-					<td class="board_title" align="left">
-						<a href="#" name="title">${row.Q_TITLE}</a>
-						<input type="hidden" id="q_no" value="${row.Q_NO}">
+					<td>${row.Q_TITLE}</td>				
+					<td align="left">
+						<a data-toggle="collapse" data-parent="#accordion" href="#faq1" class="" aria-expanded="true">${row.Q_CONTENT}</a>
 					</td>
+					
 					<td>${row.Q_NAME}</td>
 					<td><fmt:formatDate value="${row.Q_DATE}" pattern="yyyy.MM.dd"/></td>
+					<td>
+					<c:if test="${row.Q_NAME == sessionScope.session_m_name}">
+						<a href="#this" onclick="fn_qnaModify('${row.Q_NO}');" class="btn btn-template-main btn-sm">수정</a>
+						<a href="#this" onclick="fn_qnaDelete('${row.Q_NO}');" class="btn btn-template-main btn-sm">삭제</a>
+					</c:if>
+                    </td>
 				</tr>
+				<c:if test="${row.Q_ANSWER != 'false' }">
+				<tr align="center">
+				<td colspan="6" id="faq1" class="" aria-expanded="true" style="">
+						<p>답변내용 : ${row.Q_ANSWER}</p>
+				</td>
+				</tr></c:if>
 			</c:forEach>
 		</c:when>
 		<c:otherwise>
@@ -68,7 +81,6 @@
 	<tr>
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
 			<ul class="pagination">${pagingHtml}</ul>
-			<!-- <input type="button" value="글쓰기" id="write" style="float:right;margin-top: -6px;"> -->
 			<button type="button" class="btn btn-danger" style="float:right;" onclick="fn_qnaWrite();"> 글 쓰 기 </button>
 		</td>
 	</tr>
@@ -111,11 +123,6 @@
             	fn_qnaWrite();
             };
         }); 
-         
-        $("a[name='title']").on("click", function(e){ // 글상세보기
-            e.preventDefault();
-            fn_boardDetail($(this));
-        });
     });
      
     function fn_qnaWrite(){
@@ -125,12 +132,18 @@
         cs.submit("GET");
     }
     
-    function fn_boardDetail(obj){
+    function fn_qnaModify(q_no){
         var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/qna/detail' />");
-        cs.addParam("q_no", obj.parent().find("#q_no").val());
-        cs.addParam("currentPageNo", "${currentPageNo}");
+        cs.setUrl("<c:url value='/qna/modify' />");
+        cs.addParam("q_no", q_no);
         cs.submit();
+    }
+    
+    function fn_qnaDelete(q_no){
+    	 var cs = new CustomSubmit();
+         cs.setUrl("<c:url value='/qna/delete' />");
+         cs.addParam("q_no", q_no);
+         cs.submit();
     }
 </script> 
 

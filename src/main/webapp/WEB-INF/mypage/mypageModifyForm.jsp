@@ -93,7 +93,7 @@
 	</div>
 	<br>
 	<div class="box clearfix">
-	<form action="mypage/ModifyResult" name="userinput" method="post"  > 
+	<form action="<c:url value="/mypage/ModifyResult"/>" name="userinput" method="post"  > 
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group">

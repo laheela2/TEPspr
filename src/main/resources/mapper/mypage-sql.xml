@@ -38,22 +38,8 @@
 	</select>
 	
 	<!-- qna 내역 -->
-	<!-- <select id="qnaHistory" parameterType="hashmap" resultType="hashmap">
-		SELECT q_no, q_category1, q_title, q_content, q_date, a_no FROM QNA natural join ANSWER
-		<where>
-        	<if test="searchKey != null and searchKey == 0">
-				Q_TITLE like '%' || #{searchWord} || '%' and m_no = #{m_no}
-			</if>
-			<if test="searchKey != null and searchKey == 1">
-				Q_TITLE like '%' || #{searchWord} || '%' or Q_CONTENT like '%' ||#{searchWord} || '%' and m_no = #{m_no}
-			</if>
-			<if test="searchKey == null">
-				m_no = #{m_no}
-			</if>
-		</where>
-	</select> -->
 	<select id="qnaHistory" parameterType="hashmap" resultType="hashmap">
-		SELECT q_no, q_category1, q_title, q_content, q_date FROM QNA
+		SELECT q_no, q_lock, q_title, q_content, q_answer, q_date FROM QNA
 		<where>
         	<if test="searchKey != null and searchKey == 0">
 				Q_TITLE like '%' || #{searchWord} || '%' and m_no = #{m_no}

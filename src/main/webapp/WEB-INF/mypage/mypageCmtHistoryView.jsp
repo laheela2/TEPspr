@@ -91,23 +91,22 @@
             fn_boardDetail($(this));
         });
     });
-    
     function fn_boardDetail(obj){
         var cs = new CustomSubmit();
-        if($("#b_no") != null){
+        if(obj.parent().find("#b_no").val() > 0){
         	cs.setUrl("<c:url value='/mypage/BoardDetail' />");
        	 	cs.addParam("b_no", obj.parent().find("#b_no").val());
        		cs.addParam("currentPageNo", "${currentPageNo}");
         	cs.submit();
         }
-        else if($("mt_no") != null){
+        else if(obj.parent().find("#mt_no").val() > 0){
         	cs.setUrl("<c:url value='/mypage/OmeetDetail' />");
             cs.addParam("mt_no", obj.parent().find("#mt_no").val());
             cs.addParam("currentPageNo", "${currentPageNo}");
             cs.submit();
         }
         else{
-        	cs.setUrl("<c:url value='/mypage/VideoDetail' />");
+        	cs.setUrl("<c:url value='/videolec/detail' />");
             cs.addParam("v_no", obj.parent().find("#v_no").val());
             cs.addParam("currentPageNo", "${currentPageNo}");
             cs.submit();

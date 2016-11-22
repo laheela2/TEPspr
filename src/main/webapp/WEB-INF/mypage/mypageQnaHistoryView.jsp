@@ -38,8 +38,8 @@
 		<thead>
 			<tr align="center">
 				<td>번호</td>
-				<td>카테고리</td>
-				<td width="55%">제목</td>
+				<td>제목</td>
+				<td width="55%">내용</td>
 				<td>등록일</td>
             </tr>
         </thead>
@@ -49,14 +49,11 @@
 			<c:forEach items="${list }" var="row">
 				<tr align="center">
 					<td>
-					<c:if test="${row.A_CONTENT > 0}">
-					[답변]
-					</c:if>
 					${row.Q_NO}
 					</td>
-					<td>${row.Q_CATEGORY1}</td>
+					<td>${row.Q_TITLE}</td>
 					<td align="left">
-						<a href="#" name="title">${row.Q_TITLE}</a>
+						<a href="#" name="title">${row.Q_CONTENT}</a>
 						<input type="hidden" id="q_no" value="${row.Q_NO}">
 					</td>
 					<td><fmt:formatDate value="${row.Q_DATE}" pattern="yyyy.MM.dd"/></td>

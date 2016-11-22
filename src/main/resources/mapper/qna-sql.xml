@@ -6,10 +6,12 @@
 	<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
 		SELECT
 			q_no,
-			q_category1,
+			q_lock,
 			q_title,
 			q_content,
+			q_answer,
 			q_date,
+			m_no,
 			m_name as q_name
 		FROM
 			qna natural join members
@@ -33,10 +35,10 @@
 		VALUES
 		(
 			qna_seq.nextval,
-			#{q_category1},
-			#{q_category2},
 			#{q_title},
 			#{q_content},
+			#{q_lock},
+			#{q_answer},
 			sysdate,
 			#{m_no}
 		)
@@ -45,10 +47,10 @@
 	<select id="selectQnaDetail" parameterType="hashmap" resultType="hashmap">
 		SELECT
 			q_no,
-			q_category1,
-			q_category2,
+			q_lock,
 			q_title,
 			q_content,
+			q_answer,
 			q_date,
 			m_no
 		FROM
@@ -61,10 +63,9 @@
         UPDATE
         	qna
         SET
-            q_category1=#{q_category1},
-            q_category2=#{q_category2},
-			q_title=#{q_title},
-			q_content=#{q_content}
+            q_title=#{q_title},
+            q_content=#{q_content},
+			q_lock=#{q_lock}
         WHERE
             q_no=#{q_no} and m_no=#{m_no}
 	</update>
@@ -73,16 +74,4 @@
 		DELETE FROM qna 
 		WHERE q_no=#{q_no} and m_no=#{m_no}
 	</delete>
-	
-	<select id="selectAnswer" parameterType="hashmap" resultType="hashmap">
-		SELECT
-			a_no,
-			a_content,
-			a_date,
-			q_no
-		FROM
-			answer
-		WHERE
-			q_no=#{q_no}
-	</select>
 </mapper>

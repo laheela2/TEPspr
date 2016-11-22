@@ -73,7 +73,7 @@ public class AdminDAO extends AbstractDAO{
 	}
 
 	public void adminAnswer(Map<String, Object> map) {
-		insert("adminAnswerInsert", map);
+		update("adminAnswer", map);
 	}
 
 	@SuppressWarnings("unchecked")

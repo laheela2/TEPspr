@@ -24,11 +24,11 @@
 									<thead>
 										<tr role="row">
 											<th style="width: 100.2px;">번호</th>
-											<th style="width: 118px;">카테고리</th>
 											<th style="width: 232.2px;">제목</th>
 											<th style="width: 298.2px;">내용</th>
 											<th style="width: 151.2px;">작성자</th>
 											<th style="width: 145px;">작성일</th>
+											<th style="width: 118px;">답변</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -40,21 +40,21 @@
 												<c:when test="${stat.index%2==0 }">
 													<tr class="gradeA even" role="row" onclick="location.href='${viewURL}'">
 														<td>${row.Q_NO }</td>
-														<td>${row.Q_CATEGORY1 }</td>
 														<td>${row.Q_TITLE }</td>
 														<td>${row.Q_CONTENT }</td>
 														<td>${row.Q_NAME}</td>
 														<td><fmt:formatDate value="${row.Q_DATE}" pattern="yyyy.MM.dd"/></td>
+														<td>${row.Q_ANSWER }</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
 													<tr class="gradeA odd" role="row" onclick="location.href='${viewURL}'">
 														<td>${row.Q_NO }</td>
-														<td>${row.Q_CATEGORY1 }</td>
 														<td>${row.Q_TITLE }</td>
 														<td>${row.Q_CONTENT }</td>
 														<td>${row.Q_NAME}</td>
 														<td><fmt:formatDate value="${row.Q_DATE}" pattern="yyyy.MM.dd"/></td>
+														<td>${row.Q_ANSWER }</td>
 													</tr>
 												</c:otherwise>
 											</c:choose>
