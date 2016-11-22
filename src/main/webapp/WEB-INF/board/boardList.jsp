@@ -89,6 +89,26 @@
 
 				<div class="col-md-12" align="center">
 					<form method="post" action="<c:url value='/board'/>">
+						<table>
+							<tr>
+								<td>
+									<select name="searchKey" class="form-control">
+										<option value="0" selected="selected">제목</option>
+										<option value="1">제목+내용</option>
+										<option value="2">작성자</option>
+									</select>
+								</td>
+								<td>
+									<input type="text" name="searchWord" size="33" maxlength="15" value="${searchWord }"/>
+								</td>
+								<td>
+									<input type="submit" value="검색" />
+								</td>
+							</tr>
+						</table>
+					</form>
+
+					<form method="post" action="<c:url value='/board'/>">
 						<div class="col-md-4">
 							<select name="searchKey" class="form-control">
 								<option value="0" selected="selected">제목</option>
