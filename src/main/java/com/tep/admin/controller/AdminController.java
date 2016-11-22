@@ -151,6 +151,13 @@ public class AdminController {
     	return mv;
     }
     
+    @RequestMapping(value="/admin/board/delete" , method=RequestMethod.POST)
+	public ModelAndView adminBoardDelete(@RequestParam int b_no) throws Exception{
+		adminService.adminBoardDelete(b_no);
+		return new ModelAndView("redirect:/admin/board/list");
+	}
+    
+    
     @RequestMapping(value="/admin/lendplace/delete" , method=RequestMethod.POST)
 	public ModelAndView adminLendplaceDelete(@RequestParam int l_no) throws Exception{
 		adminService.adminLendplaceDelete(l_no);

@@ -39,12 +39,12 @@ public class MypageController {
 	@Resource
 	private MeetingsService meetingsService;
 
-	@RequestMapping(value = "/modifyPwChk")
+	@RequestMapping(value = "/mypage/modifyPwChk")
 	public String modifyPwChk() {
 		return "modifyPwChk";
 	}
 
-	@RequestMapping(value = "/mypageView")
+	@RequestMapping(value = "/mypage/View")
 	public ModelAndView mypageHome(HttpSession session) throws Exception {
 		if (session.getAttribute("session_m_no") == null) {
 			return new ModelAndView("redirect:/login");
@@ -81,7 +81,7 @@ public class MypageController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/writeHistoryBoard")
+	@RequestMapping(value = "/mypage/writeHistoryBoard")
 	public ModelAndView writeHistoryBoard(CommandMap map, HttpSession session, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
 
@@ -114,7 +114,7 @@ public class MypageController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/qnaHistory")
+	@RequestMapping(value = "/mypage/qnaHistory")
 	public ModelAndView qnaHistory(CommandMap map, HttpSession session, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
 
@@ -144,7 +144,7 @@ public class MypageController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/cmtHistory")
+	@RequestMapping(value = "/mypage/cmtHistory")
 	public ModelAndView cmtHistory(CommandMap map, HttpSession session, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
 
@@ -162,7 +162,7 @@ public class MypageController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/writeHistoryOmeet")
+	@RequestMapping(value = "/mypage/writeHistoryOmeet")
 	public ModelAndView writeHistoryOmeet(CommandMap map, HttpSession session, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
 
@@ -194,7 +194,7 @@ public class MypageController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/meetHistory")
+	@RequestMapping(value = "/mypage/meetHistory")
 	public ModelAndView meetHistory(CommandMap map, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("mypageMeetHistoryView");
 		List<Map<String, Object>> list = new ArrayList<>();
@@ -215,7 +215,7 @@ public class MypageController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/mypageDeleteForm")
+	@RequestMapping(value = "/mypage/deleteForm")
 	public String mypageDeleteForm() {
 		return "mypageDeleteForm";
 	}

@@ -85,5 +85,9 @@ public class AdminDAO extends AbstractDAO{
 		delete("adminLendplaceDelete", l_no);
 	}
 
+	public void adminBoardDelete(int b_no) {
+		delete("adminBoardDelete", b_no);
+	}
+
 
 }

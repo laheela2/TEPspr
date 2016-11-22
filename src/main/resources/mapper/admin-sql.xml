@@ -194,4 +194,14 @@
 			end
 		}
 	</delete>
+	
+	<delete id="adminBoardDelete" parameterType="hashmap">
+		{call
+			declare
+			begin
+				DELETE FROM comments WHERE b_no=#{b_no};
+				DELETE FROM board WHERE b_no=#{b_no}
+			end
+		}
+	</delete>
 </mapper>

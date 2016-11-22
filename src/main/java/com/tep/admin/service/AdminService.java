@@ -37,4 +37,6 @@ public interface AdminService {
 
 	void adminLendplaceDelete(int l_no) throws Exception;
 
+	void adminBoardDelete(int b_no) throws Exception;
+
 }

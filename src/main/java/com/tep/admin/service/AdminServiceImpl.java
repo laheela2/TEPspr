@@ -105,4 +105,9 @@ public class AdminServiceImpl implements AdminService{
 		adminDAO.adminLendplaceDelete(l_no);
 	}
 
+	@Override
+	public void adminBoardDelete(int b_no) throws Exception {
+		adminDAO.adminBoardDelete(b_no);
+	}
+
 }
