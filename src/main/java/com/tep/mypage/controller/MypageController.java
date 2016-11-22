@@ -123,7 +123,6 @@ public class MypageController {
 		
 		List<Map<String, Object>> list = mypageService.qnaHistory(map.getMap());
 		
-		
 		PagingCalculator paging = new PagingCalculator("qnaHistory", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
@@ -133,23 +132,7 @@ public class MypageController {
 
 		return mv;
 	}
-/*
- 		ModelAndView mv = new ModelAndView("mypageMeetHistoryView");
-		List<Map<String, Object>> list = new ArrayList<>();
-		List<Map<String, Object>> sublist = mypageService.subscribeHistory(session.getAttribute("session_m_no"));
-
-		for (Map<String, Object> data : sublist) {
-			list.add((Map<String, Object>) mypageService.meetHistory(data.get("MT_NO")));
-		}
-
-		PagingCalculator paging = new PagingCalculator("meetHistory", map.getCurrentPageNo(), list, 5, 3);
-
-		Map<String, Object> rMap = paging.getPagingList();
-
-		mv.addObject("list", rMap.get("list"));
-		mv.addObject("pagingHtml", rMap.get("pagingHtml"));
-		mv.addObject("currentPageNo", map.getCurrentPageNo());
- * */
+	
 	@RequestMapping(value = "/mypageQnaDetail")
 	public ModelAndView qnaDetail(CommandMap map, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
