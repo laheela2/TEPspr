@@ -1,7 +1,6 @@
 package com.tep.mypage.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tep.mypage.service.MypageService;
-import com.tep.qna.service.QnaService;
 import com.tep.board.service.BoardService;
 import com.tep.commons.common.CommandMap;
 import com.tep.commons.util.PagingCalculator;
 import com.tep.commons.util.TepUtils;
 import com.tep.meetings.service.MeetingsService;
+import com.tep.mypage.service.MypageService;
+import com.tep.qna.service.QnaService;
 
 @Controller
 public class MypageController {
@@ -44,7 +43,7 @@ public class MypageController {
 		return "modifyPwChk";
 	}
 
-	@RequestMapping(value = "/mypage/View")
+	@RequestMapping(value = "/mypage/view")
 	public ModelAndView mypageHome(HttpSession session) throws Exception {
 		if (session.getAttribute("session_m_no") == null) {
 			return new ModelAndView("redirect:/login");
@@ -96,7 +95,7 @@ public class MypageController {
 		mv.addObject("list", rMap.get("list"));
 		mv.addObject("pagingHtml", rMap.get("pagingHtml"));
 		mv.addObject("currentPageNo", map.getCurrentPageNo());
-		
+
 		return mv;
 	}
 
@@ -120,9 +119,9 @@ public class MypageController {
 
 		ModelAndView mv = new ModelAndView("mypageQnaHistoryView");
 		map.put("m_no", session.getAttribute("session_m_no"));
-		
+
 		List<Map<String, Object>> list = mypageService.qnaHistory(map.getMap());
-		
+
 		PagingCalculator paging = new PagingCalculator("qnaHistory", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
@@ -132,7 +131,7 @@ public class MypageController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/mypageQnaDetail")
 	public ModelAndView qnaDetail(CommandMap map, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
@@ -201,7 +200,7 @@ public class MypageController {
 		List<Map<String, Object>> sublist = mypageService.subscribeHistory(session.getAttribute("session_m_no"));
 
 		for (Map<String, Object> data : sublist) {
-			list.add((Map<String, Object>) mypageService.meetHistory(data.get("MT_NO")));
+			list.add(mypageService.meetHistory(data.get("MT_NO")));
 		}
 
 		PagingCalculator paging = new PagingCalculator("meetHistory", map.getCurrentPageNo(), list, 5, 3);

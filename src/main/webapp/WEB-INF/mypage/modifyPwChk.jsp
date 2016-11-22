@@ -40,7 +40,7 @@
 			<div class="row">
 <%@ include file="/WEB-INF/include/mypage2.jspf" %>
 	<div class="col-md-9">
-	<form name="userinput" action="mypageModifyForm" method="post">
+	<form name="userinput" action="<c:url value="/mypageModifyForm"/>" method="post">
 		<div class="heading">
 			<h3>회원정보수정</h3>
 		</div>
