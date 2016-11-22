@@ -20,18 +20,6 @@
 						<div class="col-lg-12">
 							<form role="form" enctype="multipart/form-data" theme="simple">
 								<div class="form-group col-lg-12">
-									<label class="col-sm-2">카테고리</label>
-									<div class="col-lg-8">
-										<input class="form-control" value="${data.Q_CATEGORY1}">
-									</div>
-								</div>
-								<div class="form-group col-lg-12">
-									<label class="col-sm-2">세부카테고리</label>
-									<div class="col-lg-8">
-										<input class="form-control" value="${data.Q_CATEGORY2}">
-									</div>
-								</div>
-								<div class="form-group col-lg-12">
 									<label class="col-sm-2">제목</label>
 									<div class="col-lg-8">
 										<input class="form-control" value="${data.Q_TITLE}">
@@ -40,25 +28,15 @@
 								<div class="form-group col-lg-12">
 									<label class="col-sm-2">내용</label>
 									<div class="col-lg-8">
-										<input class="form-control" type="text" value="${data.Q_CONTENT}">
+										<input class="form-control" value="${data.Q_CONTENT}">
 									</div>
 								</div>
 							</form>
-							 <c:choose>
-							<c:when test="${fn:length(answer) > 0}">
+							<form action="<c:url value='/admin/answer'/>" method="post">
 							<div class="form-group col-lg-12">
 									<label class="col-sm-2">답변</label>
 									<div class="col-lg-8">
-										<input class="form-control" type="text" value="${answer.A_CONTENT}">
-									</div>
-								</div>
-							</c:when>
-							<c:otherwise>
-							<form action="/tepspr/admin/answer" method="post">
-							<div class="form-group col-lg-12">
-									<label class="col-sm-2">답변</label>
-									<div class="col-lg-8">
-										<textarea class="col-sm-7 col-lg-12" id="a_content" name="a_content"></textarea>
+										<textarea class="col-sm-7 col-lg-12" id="q_answer" name="q_answer"></textarea>
 									</div>
 								</div>
 								<div class="col-sm-7 col-lg-12" align="center">
@@ -66,8 +44,6 @@
 								</div>
 								<input type="hidden" id="q_no" name="q_no" value="${data.Q_NO}">
 							</form>
-							</c:otherwise>
-							</c:choose>
 						</div>
 					</div>
 					<!-- /.row (nested) -->

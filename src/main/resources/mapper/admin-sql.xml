@@ -120,22 +120,25 @@
 	<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
 		SELECT
 			q_no,
-			q_category1,
+			q_lock,
 			q_title,
 			q_content,
+			q_answer,
 			q_date,
 			m_name as q_name
 		FROM
 			qna natural join members
+		ORDER BY
+			q_no DESC
 	</select>
 	
 	<select id="adminQnaDetail" parameterType="hashmap" resultType="hashmap">
 		SELECT
 			q_no,
-			q_category1,
-			q_category2,
+			q_lock,
 			q_title,
 			q_content,
+			q_answer,
 			q_date,
 			m_no
 		FROM
@@ -156,22 +159,12 @@
 		}
 	</delete>
 	
-	<insert id="adminAnswerInsert" parameterType="hashmap">
-		INSERT INTO answer
-		(
-			a_no,
-			a_content,
-			a_date,
-			q_no
-		)
-		VALUES
-		(
-			answer_seq.nextval,
-			#{a_content},
-			sysdate,
-			#{q_no}
-		)
-	</insert>
+	<update id="adminAnswer" parameterType="hashmap">
+			UPDATE qna SET
+				q_answer = #{q_answer}
+			WHERE
+				q_no = #{q_no}	
+	</update>
 	
 	<select id="selectAnswer" parameterType="hashmap" resultType="hashmap">
 		SELECT
@@ -200,7 +193,7 @@
 			declare
 			begin
 				DELETE FROM comments WHERE b_no=#{b_no};
-				DELETE FROM board WHERE b_no=#{b_no}
+				DELETE FROM board WHERE b_no=#{b_no};
 			end
 		}
 	</delete>

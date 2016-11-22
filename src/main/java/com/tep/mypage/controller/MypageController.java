@@ -56,7 +56,7 @@ public class MypageController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/mypageModifyForm")
+	@RequestMapping(value = "/mypage/ModifyForm")
 	public ModelAndView mypageModifyForm(@RequestParam Map<String, String> param, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("mypageModifyForm");
 
@@ -70,7 +70,7 @@ public class MypageController {
 		return new ModelAndView("mypagePasswordError");
 	}
 
-	@RequestMapping(value = "/mypageModifyResult")
+	@RequestMapping(value = "/mypage/ModifyResult")
 	public ModelAndView mypageModifyResult(@RequestParam Map<String, Object> params, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("mypageModifyResult");
 
@@ -89,7 +89,7 @@ public class MypageController {
 		map.put("m_no", session.getAttribute("session_m_no"));
 		List<Map<String, Object>> list = mypageService.writeHistoryBoard(map.getMap());
 		//PagingCalculator paging = new PagingCalculator("writeHistoryBoard", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
-		PagingCalculator paging = new PagingCalculator("writeHistoryBoard", map.getCurrentPageNo(), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("mypage/writeHistoryBoard", map.getCurrentPageNo(), list, 5, 3);
 		Map<String, Object> rMap = paging.getPagingList();
 
 		mv.addObject("list", rMap.get("list"));
@@ -99,7 +99,7 @@ public class MypageController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/mypageBoardDetail")
+	@RequestMapping(value = "/mypage/BoardDetail")
 	public ModelAndView boardDetail(CommandMap map, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
 
@@ -121,8 +121,8 @@ public class MypageController {
 		map.put("m_no", session.getAttribute("session_m_no"));
 
 		List<Map<String, Object>> list = mypageService.qnaHistory(map.getMap());
-
-		PagingCalculator paging = new PagingCalculator("qnaHistory", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
+		
+		PagingCalculator paging = new PagingCalculator("mypage/qnaHistory", map.get("currentPage") == null ? 1 : Integer.parseInt(map.get("currentPage").toString()), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
 		mv.addObject("list", rMap.get("list"));
@@ -131,8 +131,8 @@ public class MypageController {
 
 		return mv;
 	}
-
-	@RequestMapping(value = "/mypageQnaDetail")
+	
+	@RequestMapping(value = "/mypage/QnaDetail")
 	public ModelAndView qnaDetail(CommandMap map, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
 		ModelAndView mv = new ModelAndView("mypageQnaDetail");
@@ -151,7 +151,7 @@ public class MypageController {
 
 		map.put("m_no", session.getAttribute("session_m_no"));
 		List<Map<String, Object>> list = mypageService.cmtHistory(map.getMap());
-		PagingCalculator paging = new PagingCalculator("cmtHistory", map.getCurrentPageNo(), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("mypage/cmtHistory", map.getCurrentPageNo(), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
 
@@ -169,7 +169,7 @@ public class MypageController {
 
 		map.put("m_no", session.getAttribute("session_m_no"));
 		List<Map<String, Object>> list = mypageService.writeHistoryOmeet(map.getMap());
-		PagingCalculator paging = new PagingCalculator("writeHistoryOmeet", map.getCurrentPageNo(), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("mypage/writeHistoryOmeet", map.getCurrentPageNo(), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
 
@@ -180,7 +180,7 @@ public class MypageController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/mypageOmeetDetail")
+	@RequestMapping(value = "/mypage/OmeetDetail")
 	public ModelAndView mypageOmeetDetail(CommandMap map, HttpServletRequest request) throws Exception {
 		TepUtils.savePageURI(request);
 
@@ -188,7 +188,6 @@ public class MypageController {
 		Map<String, Object> result = meetingsService.selectMeetingsDetail(map.getMap(), request.getMethod().equals("POST"));
 		mv.addObject("data", result.get("detail"));
 		mv.addObject("cmtList", result.get("cmtList"));
-		mv.addObject("currentPageNo", map.getCurrentPageNo());
 
 		return mv;
 	}
@@ -203,7 +202,7 @@ public class MypageController {
 			list.add(mypageService.meetHistory(data.get("MT_NO")));
 		}
 
-		PagingCalculator paging = new PagingCalculator("meetHistory", map.getCurrentPageNo(), list, 5, 3);
+		PagingCalculator paging = new PagingCalculator("mypage/meetHistory", map.getCurrentPageNo(), list, 5, 3);
 
 		Map<String, Object> rMap = paging.getPagingList();
 
@@ -219,7 +218,7 @@ public class MypageController {
 		return "mypageDeleteForm";
 	}
 
-	@RequestMapping(value = "/mypageDeleteResult")
+	@RequestMapping(value = "/mypage/DeleteResult")
 	public ModelAndView mypageDeleteResult(@RequestParam Map<String, String> param, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("mypageDeleteResult");
 		ModelAndView mv2 = new ModelAndView("mypagePasswordError");

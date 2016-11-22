@@ -65,12 +65,12 @@
 		</div>
 	</c:otherwise>
 </c:choose>
-				
+</table>				
 	<!-- 페이징 -->
 	<div class="col-lg-12" align="center">
 		<ul class="pagination">${pagingHtml}</ul>
 	</div>
-</table>
+
 <br>
 </div>
 </div>
@@ -81,7 +81,7 @@
 <script type="text/javascript">
 function fn_meetingsDetail(mt_no){
     var cs = new CustomSubmit();
-    cs.setUrl("<c:url value='/mypageOmeetDetail' />");
+    cs.setUrl("<c:url value='/mypage/OmeetDetail' />");
     cs.addParam("mt_no", mt_no);
     cs.addParam("currentPageNo", "${currentPageNo}");
     cs.submit();
