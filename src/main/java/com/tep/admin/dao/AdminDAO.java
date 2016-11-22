@@ -81,5 +81,9 @@ public class AdminDAO extends AbstractDAO{
 		return (Map<String, Object>) selectOne("selectAnswer", map);
 	}
 
+	public void adminLendplaceDelete(int l_no) {
+		delete("adminLendplaceDelete", l_no);
+	}
+
 
 }

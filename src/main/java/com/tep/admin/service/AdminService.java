@@ -35,4 +35,6 @@ public interface AdminService {
 
 	void adminAnswer(Map<String, Object> map) throws Exception;
 
+	void adminLendplaceDelete(int l_no) throws Exception;
+
 }

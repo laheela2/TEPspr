@@ -109,9 +109,13 @@
 			l_title,
 			l_addr,
 			l_rep_img,
-			l_pnum
+			l_pnum,
+			l_date,
+			l_name
 		FROM
 			lendplace
+		ORDER BY
+			l_no DESC
 	</select>
 	<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
 		SELECT
@@ -180,4 +184,14 @@
 		WHERE
 			q_no=#{q_no}
 	</select>
+	
+	<delete id="adminLendplaceDelete" parameterType="int">
+		{call
+			declare
+			begin
+				DELETE FROM lendplaceapplyfor WHERE l_no=#{l_no};
+				DELETE FROM lendplace WHERE l_no=#{l_no};
+			end
+		}
+	</delete>
 </mapper>

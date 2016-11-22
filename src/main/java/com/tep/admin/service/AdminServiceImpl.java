@@ -100,4 +100,9 @@ public class AdminServiceImpl implements AdminService{
 		adminDAO.adminAnswer(map);
 	}
 
+	@Override
+	public void adminLendplaceDelete(int l_no) throws Exception {
+		adminDAO.adminLendplaceDelete(l_no);
+	}
+
 }
