@@ -24,7 +24,7 @@
 	            </div>
 	            <div class="col-md-6">
 	                <ul class="breadcrumb">
-	                    <li><a href="<c:url value="/main"/>">홈</a></li>
+	                    <li><a href="<c:url value="/meetings"/>">모임</a></li>
 	                    <li>모임 개설하기</li>
 	                </ul>
 	

@@ -12,11 +12,11 @@
 		<put-attribute name="title" value="관리자페이지 - 동영상 목록" />
 		<put-attribute name="body" value="/WEB-INF/videolec/adminVideolecList.jsp" />
 	</definition>
-	<definition name="videolecList" extends=".default">
+	<definition name="videolecList" extends=".uni">
 		<put-attribute name="title" value="TEP - 동영상 강의 목록" />
 		<put-attribute name="body" value="/WEB-INF/videolec/videolecList.jsp" />
 	</definition>	
-	<definition name="videolecDetail" extends=".default">
+	<definition name="videolecDetail" extends=".uni">
 		<put-attribute name="title" value="TEP - 동영상 강의 상세보기" />
 		<put-attribute name="body" value="/WEB-INF/videolec/videolecDetail.jsp" />
 	</definition>	

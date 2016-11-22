@@ -9,7 +9,7 @@ import com.tep.commons.dao.AbstractDAO;
 
 @Repository
 public class VideolecDAO extends AbstractDAO{
-	
+
 	public VideolecDAO(){
 		setNameSpace("video.");
 	}
@@ -32,8 +32,13 @@ public class VideolecDAO extends AbstractDAO{
 		return (List<Map<String, Object>>) selectList("selectVideolecList",map);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectVideoRecommendList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("selectVideoRecommendList",map);
+	}
+
 	public void updateVideolecReadCount(Map<String, Object> map) {
-		update("updateVideolecReadCount", map);		
+		update("updateVideolecReadCount", map);
 	}
 
 	@SuppressWarnings("unchecked")

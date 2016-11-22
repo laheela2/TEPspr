@@ -34,7 +34,6 @@
 				</div>
 				<div class="col-md-6">
 					<ul class="breadcrumb">
-	                    <li><a href="<c:url value="/main"/>">홈</a></li>
 	                    <li><a href="<c:url value="/meetings"/>">모임목록</a></li>
 	                    <li><a href="javascript:history.back();">모임상세</a></li>
 	                    <li>모임 신청하기</li>

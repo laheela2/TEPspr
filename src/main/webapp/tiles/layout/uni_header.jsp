@@ -4,6 +4,13 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
+<script type="text/javascript">
+	function fn_mypage_link(){
+		if(isLoginCheck('${sessionScope.session_m_email}')){
+			location.href='<c:url value="/mypage/view"/>';
+		}
+	}
+</script>
 </head>
 <body>
 
@@ -79,7 +86,7 @@
                                 	<a href="<c:url value="/find/account"/>">이메일 / 비번 찾기</a>
                                 </li>
                                 <li>
-                                	<a href="<c:url value="/board"/>">마이페이지</a>
+                                	<a href="#this" onclick="fn_mypage_link();">마이페이지</a>
                                 </li>
                             </ul>
                         </li>

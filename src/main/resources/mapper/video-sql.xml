@@ -23,11 +23,38 @@
 		SELECT
 			v_no,
 			v_video_id,
-			v_title
+			v_title,
+			CONCAT(SUBSTR(v_content,1,20),'...') as v_content,
+			v_list_id
 		FROM
 			videolec
 		ORDER BY
 			v_no DESC
+	</select>
+
+	<select id="selectVideoRecommendList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			*
+		FROM
+			(
+				SELECT
+					v_no,
+					v_category,
+					v_video_id,
+					v_title,
+					v_content,
+					v_recturer,
+					v_date,
+					v_readcount,
+					v_list_id,
+					ROW_NUMBER() OVER (ORDER BY v_readcount DESC) AS rnum
+				FROM
+					videolec
+				WHERE
+					v_category=#{V_CATEGORY}
+			)
+		WHERE
+			rnum BETWEEN 1 AND 4
 	</select>
 
 	<select id="selectVideolecDetail" parameterType="hashmap" resultType="hashmap">

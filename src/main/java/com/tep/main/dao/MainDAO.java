@@ -9,7 +9,7 @@ import com.tep.commons.dao.AbstractDAO;
 
 @Repository
 public class MainDAO extends AbstractDAO{
-	
+
 	public MainDAO(){
 		setNameSpace("main.");
 	}

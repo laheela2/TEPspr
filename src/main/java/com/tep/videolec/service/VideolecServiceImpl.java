@@ -13,10 +13,10 @@ import com.tep.videolec.dao.VideolecDAO;
 @Service
 public class VideolecServiceImpl implements VideolecService {
 	protected Logger log = Logger.getLogger(this.getClass());
-	
+
 	@Autowired
 	private VideolecDAO videolecDAO;
-	
+
 	@Override
 	public void insertVideolec(Map<String, Object> map) throws Exception {
 		String url = map.get("v_url").toString();
@@ -40,7 +40,7 @@ public class VideolecServiceImpl implements VideolecService {
 			map.put("v_video_id", video_id);
 			map.put("v_list_id", list_id);
 		}
-		
+
 		videolecDAO.insertVideolec(map);
 	}
 
@@ -64,21 +64,23 @@ public class VideolecServiceImpl implements VideolecService {
 		if(readcount){
 			videolecDAO.updateVideolecReadCount(map);
 		}
-		
+
 		Map<String, Object> resultMap = new HashMap<>();
 		Map<String, Object> detail = videolecDAO.selectVideolecDetail(map);
 		List<Map<String, Object>> cmtList = videolecDAO.selectCmtList(map);
-		
+		List<Map<String, Object>> recList = videolecDAO.selectVideoRecommendList(detail);
+
 		resultMap.put("detail", detail);
 		resultMap.put("cmtList", cmtList);
-		
+		resultMap.put("recList", recList);
+
 		return resultMap;
 	}
-	
+
 	@Override
 	public void insertComments(Map<String, Object> map) throws Exception {
 		videolecDAO.insertComments(map);
-		
+
 	}
 
 	@Override
