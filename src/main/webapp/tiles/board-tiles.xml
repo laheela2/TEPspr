@@ -19,7 +19,7 @@
 		<put-attribute name="body" value="/WEB-INF/board/boardWrite.jsp" />
 	</definition>
 	
-	<definition name="boardModify" extends=".default">
+	<definition name="boardModify" extends=".uni">
 		<put-attribute name="title" value="TEP - 게시판 수정 페이지" />
 		<put-attribute name="body" value="/WEB-INF/board/boardModify.jsp" />
 	</definition>
