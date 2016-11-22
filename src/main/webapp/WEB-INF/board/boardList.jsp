@@ -26,10 +26,17 @@
 	<div id="content">
 		<div class="container">
 			<div class="row">
-
+				
+				
 				<div class="panel panel-default">
-					<div class="panel-heading">스승과 제자 및 일반으로 게시물을 분리해 서로의 정보를 교환후 모임을 개설해 보세요.<i class="fa fa-smile-o"></i></div>
-					<!-- /.panel-heading -->
+					<div class="panel-heading">이곳은 재능을 나누고자 하는 사람, 배움을 얻고 싶은 사람 사이를 이어주는 매칭 게시판 입니다.<i class="fa fa-smile-o"></i></div>
+					<br/>
+					<div class="text-right">
+					<button type="button" class="btn btn-template-main" onclick="fn_boardWrite();">
+						<i class="fa fa-pencil"></i> 글쓰기
+					</button>
+					</div>
+					
 					<div class="panel-body">
 						<div class="table-responsive">
 							<table class="table table-hover">
@@ -86,8 +93,7 @@
 					<!-- /.panel-body -->
 				</div>
 
-
-				<div class="col-md-12" align="center">
+				<div class="col-lg-12" align="center">
 					<form method="post" action="<c:url value='/board'/>">
 						<table>
 							<tr>
@@ -99,33 +105,19 @@
 									</select>
 								</td>
 								<td>
-									<input type="text" name="searchWord" size="33" maxlength="15" value="${searchWord }"/>
+									<input type="text" name="searchWord" size="19" maxlength="15" value="${searchWord }" class="form-control"/>
 								</td>
 								<td>
-									<input type="submit" value="검색" />
+									<button type="submit" class="btn btn-template-main">
+										<i class="fa fa-search"></i>
+									</button>
 								</td>
 							</tr>
 						</table>
+						<br/>
 					</form>
-
-					<form method="post" action="<c:url value='/board'/>">
-						<div class="col-md-4">
-							<select name="searchKey" class="form-control">
-								<option value="0" selected="selected">제목</option>
-								<option value="1">제목+내용</option>
-								<option value="2">작성자</option>
-							</select>
-						</div>
-						<div class="col-md-4">
-							<input type="text" class="form-control" id="searchbox" name="searchWord" value="${searchWord }" maxlength="15">
-							<span class="input-group-btn">
-								<button type="submit" class="btn btn-template-main">
-									<i class="fa fa-search"></i>
-								</button>
-							</span>
-						</div>						
-					</form>				
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -133,15 +125,6 @@
 
 <%@ include file="/WEB-INF/include/common-body.jspf"%>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#write").on("click", function(e){ // 글쓰기 버튼
-            e.preventDefault();
-            if(isLoginCheck('${sessionScope.session_m_email}')){
-            	fn_boardWrite();
-            };
-        }); 
-    });
-     
     function fn_boardWrite(){
     	if(isLoginCheck('${sessionScope.session_m_email}')){
 	        var cs = new CustomSubmit();

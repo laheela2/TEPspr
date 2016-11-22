@@ -237,7 +237,7 @@
 										</c:if>
 									</h5>
 									<p class="posted" style="font-size: x-small;">
-										<i class="fa fa-clock-o"></i> ${cmt.C_DATE }
+										<i class="fa fa-clock-o"></i> <fmt:formatDate value="${cmt.C_DATE}" pattern="yy/MM/dd hh:mm:ss"/>
 									</p>
 									<p>${cmt.C_CONTENT }</p>
 								</div>
