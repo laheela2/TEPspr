@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
-<title></title>
+<%@ include file="/WEB-INF/include/common-header.jspf" %>
 </head>
 <body>
 
@@ -22,8 +21,11 @@
 				<div class="col-xs-7">
 					<div class="login">
 						<c:if test="${sessionScope.session_m_email == null }">
-							<a href="<c:url value="/login"/>">
+							<a href="#" data-toggle="modal" data-target="#login-modal">
 								<i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">로그인</span>
+							</a>
+							<a href="<c:url value="/login"/>">
+								<i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">회원가입</span>
 							</a>
 						</c:if>
 						<c:if test="${sessionScope.session_m_email != null }">
@@ -92,6 +94,9 @@
                                 </li>
                                 <li>
                                 	<a href="<c:url value="/board"/>">게시판</a>
+                                </li>
+                                <li>
+                                	<a href="#" onclick="fn_meetingsWrite();">모임 개설하기</a>
                                 </li>
                             </ul>
                         </li>					
@@ -235,6 +240,57 @@
 	<!-- *** NAVBAR END *** -->
 
 </header>
+
+<!-- *** LOGIN MODAL *** -->
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="Login">로그인</h4>
+			</div>
+			<div class="modal-body">
+				<form action="<c:url value="/login"/>" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" id="email_modal" placeholder="이메일" name="m_email">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="password_modal" placeholder="비밀번호" name="m_password">
+					</div>
+
+					<p class="text-center">
+						<button class="btn btn-template-main">
+							<i class="fa fa-sign-in"></i> 로그인
+						</button>
+					</p>
+				</form>
+
+				<p class="text-center text-muted">아직 회원이 아니신가요?</p>
+				<p class="text-center text-muted">
+					<a href="<c:url value="/login"/>"><strong>지금 등록하세요.</strong></a>
+					<br>다양한 모임이 당신을 기다리고 있습니다.
+				</p>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- *** LOGIN MODAL END *** -->
+
+	<%@ include file="/WEB-INF/include/common-body.jspf" %>
+<script type="text/javascript">
+	function fn_meetingsWrite() {
+		if (isLoginCheck("${sessionScope.session_m_email}")) {
+			var cs = new CustomSubmit();
+			cs.setUrl("<c:url value='/meetings/write' />");
+			cs.submit("GET");
+		}
+	}
+</script>
+
 
 </body>
 </html>

@@ -28,7 +28,7 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-				    <a href="<c:url value="/admin/dashboard"/>" class="active"><i class="fa fa-dashboard fa-fw"></i> 대시보드</a>
+				    <a href="<c:url value="/admin/dashboard"/>"><i class="fa fa-dashboard fa-fw"></i> 대시보드</a>
 				</li>
                 <li>
                     <a href="<c:url value="/admin/members/list"/>"><i class="fa fa-users fa-fw"></i> 회원관리</a>
@@ -37,26 +37,16 @@
                     <a href="<c:url value="/admin/qna/list"/>"><i class="fa fa-comments fa-fw"></i> 고객문의</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-institution fa-fw"></i> 장소관리<span class="fa arrow"></span></a>
-                	<ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                          <li>
-                              <a href="<c:url value="/admin/lendplace/list"/>">목록</a>
-                          </li>
-                          <li>
-                              <a href="<c:url value="/admin/lendplace/form"/>">등록</a>
-                          </li>
-                      </ul>
+                    <a href="<c:url value="/admin/lendplace/list"/>"><i class="fa fa-institution fa-fw"></i> 장소목록</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-youtube-play fa-fw"></i> 영상관리<span class="fa arrow"></span></a>
-                	<ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                          <li>
-                              <a href="<c:url value="/admin/videolec/list"/>">목록</a>
-                          </li>
-                          <li>
-                              <a href="<c:url value="/admin/videolec/write"/>">등록</a>
-                          </li>
-                      </ul>
+                    <a href="<c:url value="/admin/lendplace/form"/>"><i class="fa fa-institution fa-fw"></i> 장소등록</a>
+                </li>
+                <li>
+                    <a href="<c:url value="/admin/videolec/list"/>"><i class="fa fa-youtube-play fa-fw"></i> 영상목록</a>
+                </li>
+                <li>
+                    <a href="<c:url value="/admin/videolec/write"/>"><i class="fa fa-youtube-play fa-fw"></i> 영상등록</a>
                 </li>
 				<li>
                     <a href="<c:url value="/admin/meetings/list"/>"><i class="fa fa-users fa-fw"></i> 모임관리</a>

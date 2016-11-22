@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -17,7 +19,9 @@ import com.tep.commons.common.CommandMap;
 import com.tep.commons.common.TepConstants;
 import com.tep.commons.util.PagingCalculator;
 import com.tep.commons.util.TepUtils;
+import com.tep.meetings.model.MeetingsModel;
 import com.tep.meetings.service.MeetingsService;
+import com.tep.meetings.validator.MeetingsValidator;
 
 @Controller
 public class MeetingsController {
@@ -45,9 +49,20 @@ public class MeetingsController {
     }
 
     @RequestMapping(value="/meetings/write", method=RequestMethod.POST)
-    public ModelAndView meetingsWrite(CommandMap map, MultipartHttpServletRequest request) throws Exception{
-    	meetingsService.insertMeetings(map.getMap(), request);
-    	return new ModelAndView("redirect:/meetings");
+    public ModelAndView meetingsWrite(@ModelAttribute("meet") MeetingsModel meet, BindingResult bindingResult, MultipartHttpServletRequest request) throws Exception{
+    	ModelAndView mv = new ModelAndView("meetingsWrite");
+    	new MeetingsValidator().validate(meet, bindingResult);
+    	if(request.getFile("file") == null || request.getFile("file").isEmpty()){
+    		bindingResult.rejectValue("mt_rep_img", "required");
+    	}
+
+    	if(bindingResult.hasErrors()){
+    		return mv;
+    	}
+
+    	meetingsService.insertMeetings(meet, request);
+    	mv.setViewName("redirect:/meetings");
+    	return mv;
     }
 
     @RequestMapping(value="/meetings/likeit", method=RequestMethod.POST)
@@ -78,9 +93,18 @@ public class MeetingsController {
     }
 
     @RequestMapping(value="/meetings/modify", method=RequestMethod.POST)
-    public ModelAndView meetingsModify(CommandMap map, MultipartHttpServletRequest request) throws Exception{
-    	meetingsService.updateMeetings(map.getMap(), request);
-    	return new ModelAndView("redirect:/meetings/detail?mt_no="+map.get("mt_no"));
+    public ModelAndView meetingsModify(@ModelAttribute("meet") MeetingsModel meet, BindingResult bindingResult, MultipartHttpServletRequest request) throws Exception{
+    	log.debug("meet : "+meet.getMt_addr());
+    	log.debug("meet : "+meet.getMt_category());
+    	log.debug("meet : "+meet.getMt_content());
+    	ModelAndView mv = new ModelAndView("redirect:/meetings/detail?mt_no="+meet.getMt_no());
+    	new MeetingsValidator().validate(meet, bindingResult);
+    	if(bindingResult.hasErrors()){
+    		return mv;
+    	}
+
+    	meetingsService.updateMeetings(meet, request);
+    	return mv;
     }
 
     @RequestMapping(value="/meetings/delete", method=RequestMethod.POST)

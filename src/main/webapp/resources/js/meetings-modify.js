@@ -12,15 +12,15 @@ $(function() {
 	$('#enddt').change(function() {
 		var endR = new Date($('#enddt').handleDtpicker('getDate'));
 		$('#startdt').handleDtpicker('setMaxDate', endR);
-		endR.setDate(endR.getDate() + 1);
+		endR.setDate(endR.getDate());
 		$('#startdt2').handleDtpicker('setMinDate', endR);
 	});
 	$('#startdt2').change(function() {
 		var startM = new Date($('#startdt2').handleDtpicker('getDate'));
 		$('#enddt2').handleDtpicker('setMinDate', startM);
-		startM.setDate(startM.getDate() - 1);
+		startM.setDate(startM.getDate());
 		$('#enddt').handleDtpicker('setMaxDate', startM)
-		startM.setDate(startM.getDate() - 1);
+		startM.setDate(startM.getDate());
 		$('#startdt').handleDtpicker('setMaxDate', startM)
 	});
 	$('#enddt2').change(function() {
@@ -29,10 +29,15 @@ $(function() {
 	});
 });
 
-function valueCheck() {
+function valueChk() {
 	var f = document.meetingsModifyForm;
 	var content = CKEDITOR.instances.mt_content;
 
+	if (!f.mt_category.value) {
+		alertify.error('카테고리가 입력되지 않았습니다.');
+		f.mt_category.focus();
+		return false;
+	}	
 	if (!f.mt_title.value) {
 		alertify.error('모임명이 입력되지 않았습니다.');
 		f.mt_title.focus();

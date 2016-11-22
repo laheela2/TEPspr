@@ -122,7 +122,7 @@
 							<h3>위치</h3>
 						</div>
 
-						<div id="map" style="width:100%;height:350px;" class="md_contet_map"></div>
+						<div id="map" style="width:100%;height:350px;"></div>
 						
 						<script src="//apis.daum.net/maps/maps3.js?apikey=a18085cad4f8315645fc4a233bdb2875&libraries=services"></script>
 						<script>

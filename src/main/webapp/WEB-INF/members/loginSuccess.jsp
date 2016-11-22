@@ -47,10 +47,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <section>
-                        <div class="heading col-lg-12" align="center">
+                        <div class="heading col-md-12" align="center">
                             <h2>${sessionScope.session_m_name }님</h2>
                         </div>
-                        <p class="lead col-lg-12" id="login_msg" align="center"></p>
+                        <p class="lead col-md-12" id="login_msg" align="center"></p>
                     </section>
                 </div>
             </div>

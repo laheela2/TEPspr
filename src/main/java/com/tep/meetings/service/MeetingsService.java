@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tep.commons.service.CommentsService;
+import com.tep.meetings.model.MeetingsModel;
 
 public interface MeetingsService extends CommentsService{
 
 	List<Map<String, Object>> selectMeetingsList(Map<String, Object> map) throws Exception;
 
-	void insertMeetings(Map<String, Object> map, MultipartHttpServletRequest request) throws Exception;
+	void insertMeetings(MeetingsModel meet, MultipartHttpServletRequest request) throws Exception;
 
 	void insertLikeit(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
@@ -21,7 +22,7 @@ public interface MeetingsService extends CommentsService{
 
 	Map<String, Object> selectMeetingsModify(Map<String, Object> map) throws Exception;
 
-	void updateMeetings(Map<String, Object> map, MultipartHttpServletRequest request) throws Exception;
+	void updateMeetings(MeetingsModel meet, MultipartHttpServletRequest request) throws Exception;
 
 	void deleteMeetings(Map<String, Object> map) throws Exception;
 

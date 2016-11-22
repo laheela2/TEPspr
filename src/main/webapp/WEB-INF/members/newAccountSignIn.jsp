@@ -85,6 +85,15 @@
 					<hr>
 					
 					<spring:hasBindErrors name="login"/>
+					<c:if test="${fn:length(login.message) > 0}">
+						<div class="alert alert-danger alert-dismissible" role="alert">
+						    <button type="button" class="close" data-dismiss="alert">
+						    	<span aria-hidden="true">×</span>
+						    	<span class="sr-only">Close</span>
+						    </button>
+						    ${login.message}
+						</div>
+					</c:if>
                     <form action="<c:url value="/login"/>" method="post">
                         <div class="form-group">
                             <label for="email">이메일</label>&nbsp;&nbsp;&nbsp;

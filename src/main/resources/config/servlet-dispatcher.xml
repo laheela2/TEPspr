@@ -23,13 +23,6 @@
 		</argument-resolvers>
 	</annotation-driven>
 	
-	<interceptors>
-        <interceptor>
-            <mapping path="/**"/>
-            <beans:bean id="loggerInterceptor" class="com.tep.commons.logger.LoggerInterceptor"/>
-        </interceptor>
-    </interceptors>
-
 	<aop:aspectj-autoproxy />
     <beans:bean id="loggerAspect" class="com.tep.commons.logger.LoggerAspect"/>
 	

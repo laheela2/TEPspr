@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.tep.commons.dao.AbstractDAO;
+import com.tep.meetings.model.MeetingsModel;
 
 @Repository
 public class MeetingsDAO extends AbstractDAO{
@@ -28,8 +29,8 @@ public class MeetingsDAO extends AbstractDAO{
 		return (int) selectOne("selectLikeitCount", mt_no);
 	}
 
-	public void insertMeetings(Map<String, Object> map) {
-		insert("insertMeetings", map);
+	public void insertMeetings(MeetingsModel meet) {
+		insert("insertMeetings", meet);
 	}
 
 	public void insertLikeit(Map<String, Object> map) {
@@ -67,8 +68,8 @@ public class MeetingsDAO extends AbstractDAO{
 		delete("deleteCmt", map);
 	}
 
-	public void updateMeetings(Map<String, Object> map) {
-		update("updateMeetings",map);
+	public void updateMeetings(MeetingsModel meet) {
+		update("updateMeetings",meet);
 	}
 
 	public void deleteMeetings(Map<String, Object> map) {
