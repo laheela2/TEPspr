@@ -67,6 +67,7 @@ ${data.Q_CATEGORY2}
 <td>${answer.A_CONTENT}</td>
 </tr>
 </c:if>
+<tr><td></td><td></td></tr>
 <c:if test="${sessionScope.session_m_no != null && sessionScope.session_m_no == data.M_NO }">
 <tr>
 <td colspan="2" align="right" style="border:none;">

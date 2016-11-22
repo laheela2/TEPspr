@@ -49,7 +49,7 @@
 			<c:forEach items="${list }" var="row">
 				<tr align="center">
 					<td>
-					<c:if test="${row.A_NO > 0}">
+					<c:if test="${row.A_CONTENT > 0}">
 					[답변]
 					</c:if>
 					${row.Q_NO}
