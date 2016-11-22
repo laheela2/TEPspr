@@ -72,7 +72,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="#">
+				<a href="/tepspr/admin/lendplace/list">
 					<div class="panel-footer">
 						<span class="pull-left">View List</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 						<div class="clearfix"></div>

@@ -101,6 +101,14 @@ public class AdminController {
     public ModelAndView lendplaceList(CommandMap map) throws Exception{
     	ModelAndView mv = new ModelAndView("adminLendplaceList");
     	
+    	List<Map<String,Object>> list = adminService.selectLendplaceList();
+    	PagingCalculator2 paging = new PagingCalculator2("admin/lendplace/list", map.getCurrentPageNo(), list, 5, 3);
+        Map<String, Object> rMap = paging.getPagingList();
+        
+        mv.addObject("list", rMap.get("list"));
+        mv.addObject("pagingHtml",rMap.get("pagingHtml"));
+        mv.addObject("currentPageNo", map.getCurrentPageNo());
+        
     	return mv;
     }
     
@@ -123,8 +131,8 @@ public class AdminController {
     public ModelAndView adminQnaDetail(CommandMap map) throws Exception{
     	ModelAndView mv = new ModelAndView("adminQnaDetail");
     	Map<String, Object> result = adminService.adminQnaDetail(map.getMap());
-    	
-    	mv.addObject("data", result);
+    	mv.addObject("data",result.get("detail"));
+		mv.addObject("answer", result.get("answer"));
     	return mv;
     }
     
@@ -143,6 +151,19 @@ public class AdminController {
     	return mv;
     }
     
+    @RequestMapping(value="/admin/board/delete" , method=RequestMethod.POST)
+	public ModelAndView adminBoardDelete(@RequestParam int b_no) throws Exception{
+		adminService.adminBoardDelete(b_no);
+		return new ModelAndView("redirect:/admin/board/list");
+	}
+    
+    
+    @RequestMapping(value="/admin/lendplace/delete" , method=RequestMethod.POST)
+	public ModelAndView adminLendplaceDelete(@RequestParam int l_no) throws Exception{
+		adminService.adminLendplaceDelete(l_no);
+		return new ModelAndView("redirect:/admin/lendplace/list");
+	}
+    
     @RequestMapping(value="/admin/meetings/list")
     public ModelAndView adminMeetingsList(CommandMap map) throws Exception{
     	ModelAndView mv = new ModelAndView("adminMeetingsList");
@@ -157,4 +178,16 @@ public class AdminController {
     	
     	return mv;
     }
+    
+    @RequestMapping(value="/admin/meetings/delete" , method=RequestMethod.POST)
+	public ModelAndView videolecWrite(@RequestParam int mt_no) throws Exception{
+		adminService.adminDeleteMeetings(mt_no);
+		return new ModelAndView("redirect:/admin/meetings/list");
+	}
+    
+    @RequestMapping(value="/admin/answer")
+	public ModelAndView adminAnswer(CommandMap map, HttpServletRequest request) throws Exception{
+		adminService.adminAnswer(map.getMap());
+		return new ModelAndView("redirect:/admin/qna/list");
+	}
 }

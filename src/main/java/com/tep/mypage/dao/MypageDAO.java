@@ -84,6 +84,11 @@ public class MypageDAO extends AbstractDAO{
 		delete("mypage.memDeleteLendplaceBook", object);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> qnaAnswerCk(Object object) {
+		return (List<Map<String, Object>>) selectList("mypage.selectAnswer", object);
+	}
+
 
 
 

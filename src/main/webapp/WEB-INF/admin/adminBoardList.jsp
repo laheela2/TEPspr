@@ -23,12 +23,13 @@
 								<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
 									<thead>
 										<tr role="row">
-											<th style="width: 100.2px;">번호</th>
+											<th style="width: 90.2px;">번호</th>
 											<th style="width: 128px;">카테고리</th>
 											<th style="width: 298.2px;">제목</th>
-											<th style="width: 151.2px;">작성자</th>
-											<th style="width: 151.2px;">작성일</th>
-											<th style="width: 145px;">조회수</th>
+											<th style="width: 141.2px;">작성자</th>
+											<th style="width: 141.2px;">작성일</th>
+											<th style="width: 90px;">조회수</th>
+											<th style="width: 85px;">삭제</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -52,6 +53,7 @@
 														<td>${row.B_NAME }</td>
 														<td><fmt:formatDate value="${row.B_DATE}" pattern="yyyy.MM.dd"/></td>
 														<td>${row.B_READCOUNT }</td>
+														<td><button type="button" class="btn btn-outline btn-danger" onclick="fn_delete('${row.B_NO }');">삭제</button></td>
 													</tr>
 												</c:when>
 												<c:otherwise>
@@ -72,6 +74,7 @@
 														<td>${row.B_NAME }</td>
 														<td><fmt:formatDate value="${row.B_DATE}" pattern="yyyy.MM.dd"/></td>
 														<td>${row.B_READCOUNT }</td>
+														<td><button type="button" class="btn btn-outline btn-danger" onclick="fn_delete('${row.B_NO }');">삭제</button></td>
 													</tr>
 												</c:otherwise>
 											</c:choose>
@@ -96,6 +99,14 @@
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
-
+<%@ include file="/WEB-INF/include/common-body.jspf" %>
+<script type="text/javascript">
+	function fn_delete(bno){
+		var cs = new CustomSubmit();
+        cs.setUrl("<c:url value='/admin/board/delete' />");
+        cs.addParam("b_no", bno);
+        cs.submit();
+	}
+</script> 
 </body>
 </html>

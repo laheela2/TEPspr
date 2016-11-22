@@ -34,21 +34,37 @@
                     <a href="<c:url value="/admin/members/list"/>"><i class="fa fa-users fa-fw"></i> 회원관리</a>
                 </li>
                 <li>
-                    <a href="<c:url value="/admin/qna/list"/>"><i class="fa fa-pencil fa-fw"></i> 고객문의</a>
+                    <a href="<c:url value="/admin/qna/list"/>"><i class="fa fa-comments fa-fw"></i> 고객문의</a>
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-institution fa-fw"></i> 장소관리<span class="fa arrow"></span></a>
+                	<ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                	<li>
                     <a href="<c:url value="/admin/lendplace/list"/>"><i class="fa fa-institution fa-fw"></i> 장소목록</a>
-                </li>
-                <li>
+               		</li>
+                	<li>
                     <a href="<c:url value="/admin/lendplace/form"/>"><i class="fa fa-institution fa-fw"></i> 장소등록</a>
+                	</li>
+                    </ul>
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-institution fa-fw"></i> 영상관리<span class="fa arrow"></span></a>
+                	<ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                	<li>
                     <a href="<c:url value="/admin/videolec/list"/>"><i class="fa fa-youtube-play fa-fw"></i> 영상목록</a>
                 </li>
                 <li>
                     <a href="<c:url value="/admin/videolec/write"/>"><i class="fa fa-youtube-play fa-fw"></i> 영상등록</a>
                 </li>
-
+                    </ul>
+                </li>
+                
+				<li>
+                    <a href="<c:url value="/admin/meetings/list"/>"><i class="fa fa-users fa-fw"></i> 모임관리</a>
+                </li>
+                <li>
+                    <a href="<c:url value="/admin/board/list"/>"><i class="fa fa-comments fa-fw"></i> 게시판관리</a>
+                </li>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

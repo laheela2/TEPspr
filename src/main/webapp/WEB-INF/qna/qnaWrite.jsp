@@ -29,7 +29,30 @@
 </script>
 </head>
 <body>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Q&A</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>Q&A 글쓰기</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="heading">
+				<h3>Q&A 글쓰기</h3>
+			</div>
 <form id="writeForm" action="<c:url value="/qna/write"/>" method="post" onsubmit="return fn_validation();">
 <table class="boardwrite" align=center border="0">
 
@@ -84,6 +107,7 @@
 
 </table>
 </form>
+</div></div></div></div>
 
 </body>
 </html>

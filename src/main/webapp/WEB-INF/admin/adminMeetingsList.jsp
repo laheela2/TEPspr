@@ -23,12 +23,13 @@
 								<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
 									<thead>
 										<tr role="row">
-											<th style="width: 100.2px;">번호</th>
+											<th style="width: 80.2px;">번호</th>
 											<th style="width: 128px;">카테고리</th>
 											<th style="width: 238.2px;">제목</th>
-											<th style="width: 231.2px;">소제목</th>
-											<th style="width: 151.2px;">작성자</th>
-											<th style="width: 125px;">작성일</th>
+											<th style="width: 231.2px;">내용</th>
+											<th style="width: 111.2px;">작성자</th>
+											<th style="width: 115px;">작성일</th>
+											<th style="width: 70px;">삭제</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -42,6 +43,7 @@
 														<td>${row.MT_SUBJECT }</td>
 														<td>${row.MT_NAME }</td>
 														<td><fmt:formatDate value="${row.MT_DATE}" pattern="yyyy.MM.dd"/></td>
+														<td><button type="button" class="btn btn-outline btn-danger" onclick="fn_delete('${row.MT_NO }');">삭제</button></td>
 													</tr>
 												</c:when>
 												<c:otherwise>
@@ -52,6 +54,7 @@
 														<td>${row.MT_SUBJECT }</td>
 														<td>${row.MT_NAME }</td>
 														<td><fmt:formatDate value="${row.MT_DATE}" pattern="yyyy.MM.dd"/></td>
+														<td><button type="button" class="btn btn-outline btn-danger" onclick="fn_delete('${row.MT_NO }');">삭제</button></td>
 													</tr>
 												</c:otherwise>
 											</c:choose>
@@ -76,6 +79,16 @@
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
+	
+<%@ include file="/WEB-INF/include/common-body.jspf" %>
+<script type="text/javascript">
+	function fn_delete(mtno){
+		var cs = new CustomSubmit();
+        cs.setUrl("<c:url value='/admin/videolec/delete' />");
+        cs.addParam("mt_no", mtno);
+        cs.submit();
+	}
+</script> 
 
 </body>
 </html>

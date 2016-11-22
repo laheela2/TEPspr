@@ -3,40 +3,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script language="javascript">
+<%@ include file="/WEB-INF/include/common-header.jspf"%>
+<script>
 	function check() {
-		if (document.modifyPwChk.password.value == "") {
-			alert("비밀번호를 입력하세요");
-			document.modifyPwChk.m_password.focus();
+		var join = document.userinput
+		if (join.m_password.value == "") {
+			alertify.error("비밀번호를 입력하세요");
+			join.m_password.focus();
 			return false;
-		}
-		return true;
+		} else
+			join.submit();
 	}
 </script>
 
 </head>
 <body>
-	<form name="modifyPwChk" action="mypageModifyForm" method="post" onsubmit="return check();">
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
+                    </li>
+                    <li>패스워드 확인</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
+	<div class="col-md-9">
+	<form name="userinput" action="mypageModifyForm" method="post">
+		<div class="heading">
+			<h3>회원정보수정</h3>
+		</div>
 		<br>
-		<table align="center" width="920" border="0" cellspacing="0" cellpadding="0">
-			<tr height="25">
-				<td bgcolor="#FF2929" align="left" colspan="1" width="10"></td>
-				<td align="left" colspan="3">
-					<strong>&nbsp;&nbsp;회원정보 수정</strong>
-				</td>
-			</tr>
-		</table>
-		<br>
 
-		<table align="center" width="265" border="0" cellspacing="0" cellpadding="0">
+		<table class="table" align="center" width="265" >
 
-			<tr bgcolor="#FF2929">
-				<td height="1"></td>
-			</tr>
-
-			<tr height="20">
-				<td></td>
-			</tr>
 
 			<tr align="center">
 				<td align="center">
@@ -45,29 +56,13 @@
 					<input type="password" name="m_password" maxlength="20" />
 				</td>
 			</tr>
-
-			<tr height="20">
-				<td></td>
-			</tr>
-
-			<tr bgcolor="#FF2929">
-				<td height="1"></td>
-			</tr>
-
 		</table>
-
-		<br>
-
-		<table align="center" width="265" border="0" cellspacing="0" cellpadding="0">
-
-			<tr>
-				<td align="center">
-					<input type="submit" value="수   정" class="inputb" style="width: 130px;" />
-				</td>
-			</tr>
-
-		</table>
-
-		<br> <br>
+		<div class="text-center">
+			<button type="button" class="btn btn-template-main" onclick="check();"><i class="fa fa-sign-in"></i> Next </button>
+		</div>
+		<table class="table"><td></td></table>
+</form>
+</div>
+</div></section></div></div>
 </body>
 </html>

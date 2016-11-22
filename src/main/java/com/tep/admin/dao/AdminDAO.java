@@ -68,4 +68,26 @@ public class AdminDAO extends AbstractDAO{
 		return (Map<String, Object>) selectOne("adminQnaDetail", map);
 	}
 
+	public void adminDeleteMeetings(int mt_no) {
+		delete("adminDeleteMeetings", mt_no);
+	}
+
+	public void adminAnswer(Map<String, Object> map) {
+		insert("adminAnswerInsert", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> adminSelectAnswer(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("selectAnswer", map);
+	}
+
+	public void adminLendplaceDelete(int l_no) {
+		delete("adminLendplaceDelete", l_no);
+	}
+
+	public void adminBoardDelete(int b_no) {
+		delete("adminBoardDelete", b_no);
+	}
+
+
 }

@@ -115,5 +115,15 @@
 		}
 	</delete>
 	<!-- 회원탈퇴 완료 -->
-	
+	<select id="selectAnswer" parameterType="Integer" resultType="hashmap">
+		SELECT
+			a_no,
+			a_content,
+			a_date,
+			q_no
+		FROM
+			answer
+		WHERE
+			q_no=#{q_no}
+	</select>
 </mapper>

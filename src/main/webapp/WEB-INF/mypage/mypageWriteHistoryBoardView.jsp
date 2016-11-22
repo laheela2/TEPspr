@@ -4,41 +4,54 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
 </head>
 <body>
-
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
+                    </li>
+                    <li>게시판 내역</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
+<div class="col-md-9">
+	<div class="heading">
+		<h3>게시판내역</h3>
+	</div>
 <br>
-	
-	<table align="center" width="920" border="0" cellspacing="0" cellpadding="0">
-		<tr>
-			<td>
-				<table width=100%>
-					<tr height="25">
-						<td bgcolor="#FF2929" align="left" colspan="1" width="10"></td>
-						<td align="left" colspan="3">
-							<strong>&nbsp;&nbsp;게시판내역</strong>
-						</td>
-					</tr>
-				</table>
-				<br>
 
-<table class="board" align=center cellspacing=0 border="0">
-	<tr class="board_head_tr">
-		<td>번호</td>
-		<td>종류</td>
-		<td width="55%">제목</td>
-		<td>작성자</td>
-		<td>등록일</td>
-		<td>조회수</td>
-	</tr>
-
-	<c:choose>
-		<c:when test="${fn:length(list) > 0}">
-			<c:forEach items="${list }" var="row">
-				<tr>
-					<td>${row.B_NO}</td>
-					<td class="board_kind">
+	<table class="table">
+		<thead>
+			<tr align="center">
+				<td>번호</td>
+				<td>종류</td>
+				<td width="50%">제목</td>
+				<td>작성자</td>
+				<td>등록일</td>
+				<td>조회수</td>
+            </tr>
+        </thead>
+        
+		<tbody>
+			<c:choose>
+				<c:when test="${fn:length(list) > 0}">
+					<c:forEach items="${list }" var="row">
+					<tr align="center">
+						<td>${row.B_NO}</td>
+						<td class="board_kind">
 						<c:if test="${row.B_KIND == 1 }">
 							<font class="board_title_kind">[스승찾아요]</font>
 						</c:if>
@@ -48,32 +61,30 @@
 						<c:if test="${row.B_KIND != 1 || row.B_KIND != 2}">
 							<font class="board_title_kind">[일반게시물]</font>
 						</c:if>
-					</td>					
-					<td class="board_title">
-						<a href="#" name="title">${row.B_TITLE}</a>
-						<input type="hidden" id="b_no" value="${row.B_NO}">
-					</td>
-					<td>${sessionScope.session_m_name }</td>
-					<td><fmt:formatDate value="${row.B_DATE}" pattern="yyyy.MM.dd"/></td>
-					<td>${row.B_READCOUNT}</td>
-				</tr>
-			</c:forEach>
-		</c:when>
-		<c:otherwise>
-			<tr>
+						</td>					
+						<td align="left">
+							<a href="#" name="title">${row.B_TITLE}</a>
+							<input type="hidden" id="b_no" value="${row.B_NO}">
+						</td>
+						<td>${sessionScope.session_m_name }</td>
+						<td><fmt:formatDate value="${row.B_DATE}" pattern="yyyy.MM.dd"/></td>
+						<td>${row.B_READCOUNT}</td>
+					</tr>
+					</c:forEach>
+				</c:when>
+			<c:otherwise>
+			<tr align="center">
 				<td colspan="4">조회된 결과가 없습니다.</td>
 			</tr>
 		</c:otherwise>
 	</c:choose>
-
-<!-- 페이징 -->
+	<!-- 페이징 -->
 	<tr>
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
-			${pagingHtml }
+			<ul class="pagination">${pagingHtml}</ul>
 		</td>
 	</tr>
-	
-<!-- 게시판 검색 -->
+	<!-- 게시판 검색 -->
 					<tr>
 						<td colspan="6" align="center">
 							<form method="post" action="<c:url value='/writeHistoryBoard'/>">
@@ -86,18 +97,25 @@
 											</select>
 										</td>
 										<td>
-											<input type="text" name="searchWordB" size="33" maxlength="15" />
+											<input type="text"  style="height:32.3px;" name="searchWordB" size="33" maxlength="15" />
 										</td>
 										<td>
-											<input type="submit" value="검색" />
+										<br>
+											<button type="submit" class="btn btn-template-main">
+										<i class="fa fa-search"></i>
+									</button>
 										</td>
 									</tr>
 								</table>
 							</form>
 						</td>
 					</tr>
-
-</table>
+	
+				
+		</tbody>
+	</table>
+	</div>
+</div></section></div></div>
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">

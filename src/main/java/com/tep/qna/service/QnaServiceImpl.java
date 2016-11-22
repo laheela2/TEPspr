@@ -32,8 +32,9 @@ public class QnaServiceImpl implements QnaService{
 	public Map<String, Object> selectQnaDetail(Map<String, Object> map) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 		Map<String, Object> detail = qnaDAO.selectQnaDetail(map);
+		Map<String, Object> answer = qnaDAO.selectAnswer(map);
 		resultMap.put("detail", detail);
-		
+		resultMap.put("answer", answer);
 		return resultMap;
 	}
 

@@ -4,96 +4,88 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<link rel="stylesheet"  type="text/css" href="<c:url value="/resources/css/meetings.list.css"/>">
-<script src="<c:url value="/resources/js/meetings.list.js"/>"></script>
+<script type="text/javascript"> $(function(){ $('#navigation').find('#nav_meetings').addClass('active'); });</script>
+<script src="<c:url value="/resources/js/meetings-list.js"/>"></script>
 </head>
 <body>
-<br>
-
-<table border="0" width=900px cellpadding=15 align=center>
-<tr>
-<td>
-
-<table width=100%>
-
-	<tr height="25">
-			<td bgcolor="#FF2929" align="left" colspan="1" width="10"></td>
-			<td align="left" colspan="5"><strong>&nbsp;&nbsp;모임참여내역</strong></td>
-	</tr>
-
-</table>
-<br>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a>
+                    </li>
+                    <li>모임참여내역</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
+<div class="col-md-9">
+<div class="table-responsive">
+	<div class="heading">
+		<h3>모임참여내역</h3>
+	</div>
+<table>
 <c:choose>
 	<c:when test="${fn:length(list) > 0 }">
-		<c:forEach items="${list}" var="row" varStatus="status">
-			
-			<c:if test="${status.index%3 == 0}">
-			<tr>
-			</c:if>
-			
-			<td width="33%" align="center">
-				<table class="om_img_base">
-					<tr>
-						<td colspan="2">
-							<a href="#this" id="title" onclick="fn_meetingsDetail($(this))"><img id="repIMG" src='${row.MT_REP_IMG }'/></a>
-							<input type="hidden" id="mt_no" value="${row.MT_NO }">
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" class="om_view_title">
-							<a href="#this" id="title" onclick="fn_meetingsDetail($(this))">${row.MT_TITLE }</a>
-							<input type="hidden" id="mt_no" value="${row.MT_NO }">
-						</td>
-					</tr>
-					<tr>
-						<td align="center" id="likeitBtnTd">
-							<input type="hidden" id="mt_no" value="${row.MT_NO }">
-							<a href="#this" id="likeitBtn">♡</a>
-							<span id="likeitCount">
-								<c:choose>
-									<c:when test="${row.MT_LIKEIT == null || row.MT_LIKEIT <= 0}">0</c:when>
-									<c:otherwise>${row.MT_LIKEIT}</c:otherwise>
-								</c:choose>
-							</span>
-						</td>
-						
-					</tr>
-				</table>
-			</td>
+		<c:forEach items="${list }" var="row">
+			<div class="col-sm-4">
+				<div class="box-image">
+					<div class="image">
+						<img src="${row.MT_REP_IMG }" alt="" class="img-responsive">
+					</div>
+					<div class="bg"></div>
+					<div class="name">
+						<h3>
+							<a href="#this" onclick="fn_meetingsDetail('${row.MT_NO}')">${row.MT_TITLE }</a>
+						</h3>
+					</div>
+					<div class="text">
+						<p class="hidden-sm">${row.MT_SUBJECT }</p>
+						<p class="buttons">
+						<a href="#this" class="btn btn-template-transparent-primary" onclick="fn_meetingsDetail('${row.MT_NO}')">보기</a>
+						</p>
+					</div>
+				</div>
+			</div>
 		</c:forEach>
 	</c:when>
 	<c:otherwise>
-		<tr>
-			<td width=100%><h3>조회된 게시물이 없습니다.</h3></td>
-		</tr>
+		<div class="col-sm-12" align="center">
+			<h4>등록된 게시물이 없습니다.</h4>
+		</div>
 	</c:otherwise>
 </c:choose>
-
-<!-- 페이징 -->
-	<tr>
-		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
-			${pagingHtml }
-		</td>
-	</tr>
-
-
+				
+	<!-- 페이징 -->
+	<div class="col-lg-12" align="center">
+		<ul class="pagination">${pagingHtml}</ul>
+	</div>
 </table>
+<br>
+</div>
+</div>
+</div></section></div></div>
+
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#title").on("click", function(e){ // 모임 상세보기
-            e.preventDefault();
-            fn_meetingsDetail($(this));
-        });
-    });
-    
-    function fn_meetingsDetail(obj){
-        var cs = new CustomSubmit();
-        cs.setUrl("<c:url value='/mypageOmeetDetail' />");
-        cs.addParam("mt_no", obj.parent().find("#mt_no").val());
-        cs.submit();
-    }
+function fn_meetingsDetail(mt_no){
+    var cs = new CustomSubmit();
+    cs.setUrl("<c:url value='/mypageOmeetDetail' />");
+    cs.addParam("mt_no", mt_no);
+    cs.addParam("currentPageNo", "${currentPageNo}");
+    cs.submit();
+}
 </script> 
 
 </body>

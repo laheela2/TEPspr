@@ -38,6 +38,8 @@ public interface MypageService {
 
 	void memDeleteLendplaceBook(Object object) throws Exception;
 
+	List<Map<String, Object>> qnaAnswerCk(Object object) throws Exception;
+
 
 
 

@@ -8,30 +8,48 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 </head>
 <body>
-<br>
-	<table align="center" width="920" border="0" cellspacing="0" cellpadding="0">
-	<tr>
-	<td>
-	<table width=100%>
-		<tr height="25">
-			<td bgcolor="#FF2929" align="left" colspan="1" width="10"></td>
-			<td align="left" colspan="3">
-				<strong>&nbsp;&nbsp;답글내역</strong>
-			</td>
-		</tr>
-	</table>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
+                    </li>
+                    <li>답글내역</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
+<div class="col-md-9">
+<div class="table-responsive">
+	<div class="heading">
+		<h3>답글내역</h3>
+	</div>
 	<br>
-<table class="board" align=center cellspacing=0 border="0">
-	<tr class="board_head_tr">
-			<td>번호</td>
-			<td width="55%">내용</td>
-			<td>작성자</td>
-			<td>등록일</td>
-	</tr>
+<table class="table">
+		<thead>
+			<tr align="center">
+				<td>번호</td>
+				<td width="50%">내용</td>
+				<td>작성자</td>
+				<td>등록일</td>
+            </tr>
+        </thead>
+        
+    <tbody>
 	<c:choose>
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
-				<tr>
+				<tr align="center">
 					<td>${row.C_NO}</td>			
 					<td class="board_title">
 							<a href="#" name="content">${row.C_CONTENT}</a>
@@ -45,7 +63,7 @@
 		</c:when>
 		
 		<c:otherwise>
-			<tr>
+			<tr align="center">
 				<td colspan="4">조회된 결과가 없습니다.</td>
 			</tr>
 		</c:otherwise>
@@ -55,12 +73,15 @@
 <!-- 페이징 -->
 	<tr>
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
-			${pagingHtml }
+			<ul class="pagination">${pagingHtml}</ul>
 		</td>
 	</tr>
 
 
 </table>
+</div>
+</div>
+</div></section></div></div>
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">

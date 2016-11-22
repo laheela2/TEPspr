@@ -107,6 +107,12 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 
+	@Override
+	public List<Map<String, Object>> qnaAnswerCk(Object object) throws Exception {
+		return mypageDAO.qnaAnswerCk(object);
+	}
+
+
 
 
 }

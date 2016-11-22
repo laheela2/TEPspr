@@ -1,0 +1,25 @@
+<%@ page pageEncoding="UTF-8"%>
+<div class="col-md-3">
+	<div class="panel panel-default sidebar-menu with-icons">
+
+		<div class="panel-heading">
+			<h3 class="panel-title">Categories</h3>
+			<br>
+			<br>
+		</div>
+
+		<div class="panel-body">
+			<ul class="nav nav-pills nav-stacked">
+				<li class="active"><a href="<c:url value="/mypage/View"/>">내 정보</a></li>
+				<li><a href="<c:url value="/mypage/modifyPwChk"/>">회원정보수정</a></li>
+				<li><a href="<c:url value="/mypage/writeHistoryBoard"/>">게시판내역</a></li>
+				<li><a href="<c:url value="/mypage/cmtHistory"/>">답글내역</a></li>
+				<li><a href="<c:url value="/mypage/writeHistoryOmeet"/>">모임개설내역</a></li>
+				<li><a href="<c:url value="/mypage/meetHistory"/>">모임참여내역</a></li>
+				<li><a href="<c:url value="/mypage/qnaHistory"/>">문의내역</a></li>
+				<li><a href="<c:url value="/mypage/deleteForm"/>">회원탈퇴</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- *** MENUS AND FILTERS END *** -->
+</div>

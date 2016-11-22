@@ -4,43 +4,52 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.list.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
 </head>
 <body>
-<br>
-	
-	<table align="center" width="920" border="0" cellspacing="0" cellpadding="0">
-	<tr>
-	<td>
-	
-	<table width=100%>
-
-		<tr height="25">
-			<td bgcolor="#FF2929" align="left" colspan="1" width="10"></td>
-			<td align="left" colspan="3">
-				<strong>&nbsp;&nbsp;모임개설내역</strong>
-			</td>
-		</tr>
-
-	</table>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Mypage</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/mypageView"/>">마이페이지</a>
+                    </li>
+                    <li>모임개설 내역</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+	<div class="container features-buttons">
+		<section>
+			<div class="row">
+<%@ include file="/WEB-INF/include/mypage2.jspf" %>
+<div class="col-md-9">
+<div class="table-responsive">
+	<div class="heading">
+		<h3>모임개설내역</h3>
+	</div>
 	<br>
-
-<table class="board" align=center cellspacing=0 border="0">
-
-	<tr class="board_head_tr">
-			<td>번호</td>
-			<td width="55%">제목</td>
-			<td>작성자</td>
-			<td>등록일</td>
-			<td>조회수</td>
-	</tr>
+<table class="table">
+		<thead>
+			<tr align="center">
+				<td>번호</td>
+				<td width="55%">제목</td>
+				<td>작성자</td>
+				<td>등록일</td>
+				<td>조회수</td>
+            </tr>
+        </thead>
+	<tbody>
 	<c:choose>
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list }" var="row">
 				<tr>
 					<td>${row.MT_NO}</td>			
-					<td class="board_title">
+					<td align="left">
 						<a href="#" name="title">${row.MT_TITLE}</a>
 						<input type="hidden" id="mt_no" value="${row.MT_NO}">
 					</td>
@@ -52,7 +61,7 @@
 		</c:when>
 		
 		<c:otherwise>
-			<tr>
+			<tr align="center">
 				<td colspan="4">조회된 결과가 없습니다.</td>
 			</tr>
 		</c:otherwise>
@@ -62,7 +71,7 @@
 <!-- 페이징 -->
 	<tr>
 		<td colspan="6" width="100%" align="center" style="padding-top:20px;padding-bottom:10px">
-			${pagingHtml }
+			<ul class="pagination">${pagingHtml}</ul>
 		</td>
 	</tr>
 <!-- 게시판 검색 -->
@@ -77,14 +86,24 @@
 			<option value="1">제목+내용</option>
 		</select>
 		</td>
-		<td><input type="text" name="searchWord" size="33" maxlength="15" /></td>
-		<td><input type="submit" value="검색" /></td>
+		<td>
+			<input type="text"  style="height:32.3px;" name="searchWordB" size="33" maxlength="15" />
+		</td>
+		<td>
+		<br>
+			<button type="submit" class="btn btn-template-main">
+										<i class="fa fa-search"></i>
+									</button>
+		</td>
 		</tr>
 		</table>
 	</form>
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div></section></div></div>
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
