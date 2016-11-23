@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/mypage/View"/>">마이페이지</a>
+                    <li><a href="<c:url value="/mypage/view"/>">마이페이지</a>
                     </li>
                     <li>모임개설 내역</li>
                 </ul>
@@ -62,7 +62,7 @@
 		
 		<c:otherwise>
 			<tr align="center">
-				<td colspan="4">조회된 결과가 없습니다.</td>
+				<td colspan="5">조회된 결과가 없습니다.</td>
 			</tr>
 		</c:otherwise>
 	
