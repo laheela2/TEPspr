@@ -28,13 +28,16 @@
 			#{l_title},
 			#{l_addr},
 			#{l_content},
-			#{l_rep_img},
+			#{l_image1},
 			#{l_pnum},
 			#{l_sdate},
 			#{l_edate},
 			0,
 			0,
-			sysdate
+			sysdate,
+			#{l_image2},
+			#{l_image3},
+			#{l_image4}
 		)
 	</insert>
 	
@@ -90,6 +93,7 @@
 		ORDER BY
 			b_no DESC
 	</select>
+	
 	<select id="selectMeetingsList" parameterType="hashmap" resultType="hashmap">
 		SELECT
 			mt_no,
@@ -103,20 +107,16 @@
 		ORDER BY
 			mt_no DESC
 	</select>
+
 	<select id="selectLendplaceList" parameterType="hashmap" resultType="hashmap">
 		SELECT
-			l_no,
-			l_title,
-			l_addr,
-			l_rep_img,
-			l_pnum,
-			l_date,
-			l_name
+			*
 		FROM
 			lendplace
 		ORDER BY
 			l_no DESC
 	</select>
+	
 	<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
 		SELECT
 			q_no,

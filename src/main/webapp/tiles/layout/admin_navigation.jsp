@@ -40,7 +40,7 @@
 								<i class="fa fa-list fa-fw"></i> 장소목록
 							</a></li>
 						<li><a href="<c:url value="/admin/lendplace/form"/>">
-								<i class="fa fa-pencli fa-fw"></i> 장소등록
+								<i class="fa fa-pencil fa-fw"></i> 장소등록
 							</a></li>
 					</ul></li>
 				<li><a href="#">

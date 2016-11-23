@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tep.admin.dao.AdminDAO;
 import com.tep.commons.util.FileUploadComponent;
-import com.tep.commons.util.TepUtils;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -27,10 +26,20 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public void insertLendplace(Map<String, Object> map, MultipartHttpServletRequest request) throws Exception {
-		String uploadFilePath = fileUploadComp.saveFile(request.getFile("file"));
-		map.put("l_rep_img", fileUploadComp.getProjectPath());
-		map.put("l_sdate", TepUtils.dateParse(map.get("l_sdate").toString()));
-		map.put("l_edate", TepUtils.dateParse(map.get("l_edate").toString()));
+		String uploadFilePath1 = fileUploadComp.saveFile(request.getFile("file1"));
+		map.put("l_image1", fileUploadComp.getProjectPath());
+
+		String uploadFilePath2 = fileUploadComp.saveFile(request.getFile("file2"));
+		map.put("l_image2", fileUploadComp.getProjectPath());
+
+		String uploadFilePath3 = fileUploadComp.saveFile(request.getFile("file3"));
+		map.put("l_image3", fileUploadComp.getProjectPath());
+
+		String uploadFilePath4 = fileUploadComp.saveFile(request.getFile("file4"));
+		map.put("l_image4", fileUploadComp.getProjectPath());
+
+//		map.put("l_sdate", TepUtils.dateParse(map.get("l_sdate").toString()));
+//		map.put("l_edate", TepUtils.dateParse(map.get("l_edate").toString()));
 		adminDAO.insertLendplace(map);
 	}
 
