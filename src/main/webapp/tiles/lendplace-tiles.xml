@@ -19,7 +19,7 @@
 		<put-attribute name="body" value="/WEB-INF/lendplace/lendplaceWrite.jsp" />
 	</definition>
 	
-	<definition name="lendplaceApplyfor" extends=".default">
+	<definition name="lendplaceApplyfor" extends=".uni">
 		<put-attribute name="title" value="TEP - 장소 신청하기" />
 		<put-attribute name="body" value="/WEB-INF/lendplace/lendplaceApplyfor.jsp" />
 	</definition>	

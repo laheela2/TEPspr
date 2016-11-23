@@ -45,6 +45,20 @@ public class TepUtils {
 		SimpleDateFormat ef = new SimpleDateFormat("yyyy년 MM월 dd일 (EEE) HH시 mm분",Locale.KOREAN);
 		return sf.format(start)+" ~ "+ef.format(end);
 	}
+
+	/**
+	 * @param start ; 대관시작시간
+	 * @param end ; 대관종료시간
+	 * @return 9시 00분 ~ 18시 30분
+	 */	
+	public static String timeFormat(Object start, Object end){
+		if(start == null || end == null){
+			return null;
+		}
+		SimpleDateFormat sf = new SimpleDateFormat("HH시 mm분",Locale.KOREAN);
+		SimpleDateFormat ef = new SimpleDateFormat("HH시 mm분",Locale.KOREAN);
+		return sf.format(start)+" ~ "+ef.format(end);
+	}	
 	
 	/**
 	 * @param 다음의 형식을 같는 문자열  2016-09-05 00:30

@@ -3,111 +3,176 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<link rel="stylesheet"  type="text/css" href="<c:url value="/resources/css/meetings.detail.css"/>">
 <script src="<c:url value="/resources/js/lendplace.write.js"/>"></script>
+<script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
 <script type="text/javascript">
 
 </script>
 </head>
 <body>
-<table width=930px border="0" align=center>
-<tr>
-<td>
 
-<table style="width:100%;" border="0">
-	<tr>
-		<td style="font-weight: bold;font-size: large;font-family: sans-serif;">장소 상세보기</td>
-		<td align="right"><input type="button" value="목록보기" onclick="location.href='<c:url value="/lendplace?currentPageNo=${currentPageNo}"/>'"></td>
-	</tr>
-</table>
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>장소 신청하기</h1>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a></li>
+                    <li><a href="<c:url value="/lendplace"/>">장소</a></li>
+                    <li><a href="javascript:history.back();">장소 상세보기</a></li>
+                    <li>장소 신청하기</li>
+                </ul>
 
-<table class="md_header_table">
-<tr>
-
-<td width="15%" class="md_header_table_td1">
-<div><img class="md_header" src="${applyData.L_REP_IMG }" ></div>
-</td>
-
-<td width="85%" class="md_header_table_td2">
-
-<div class="md_header_subject">${applyData.L_TITLE }</div>
-<br>
-<table border="0">
-<tr>
-<td>주소 : ${applyData.L_ADDR }</td>
-</tr>
-<tr>
-<td>수용인원 : ${applyData.L_PNUM }명</td>
-</tr>
-<tr>
-<td>대관시간 : ${applyData.L_SDATE }~${applyData.L_EDATE }</td>
-</tr>
-<tr>
-<td>대관금액 : 원</td>
-</tr>
-<tr>
-<td>대여횟수 : ${applyData.L_USE_NUM }번</td>
-</tr>
-</table>
-<hr class="md_hr">
+            </div>
+        </div>
+    </div>
+</div>
 
 
+<div id="content">
+    <div class="container">
+    
+<section>
 
-<table  align="right">
-</table>
+	<div class="row text-center">
 
-</td>
-</tr>
-</table>
 
-<!-- 위쪽과 아래쪽 테이블 분기선 -->
-<hr class="md_hr">
-
-<form name="applyForm" action="<c:url value="/lendplace/applyfor"/>" method="post" theme="simple">
-<table class="md_content">
-<tr><td>
-
-		<table border="0" align=center cellpadding=5 width=500px>
-		<input type="hidden" name="l_no" value="${applyData.L_NO}">
-			<tr>
-				<td align=right><font color="red">*</font> 신청하는 장소&nbsp;&nbsp; </td>
-				<td><b>${applyData.L_TITLE}</b></td>
-			</tr>
+		<div class="col-md-8 col-md-offset-2">
 			
-			<tr>
-				<td align=right><font color="red">*</font> 신청시간&nbsp;&nbsp;</td>
-				<td><input type="text" class="dtpicker" name="la_sdate" id="startdt" size="13" />&nbsp;~&nbsp;<input type="text" class="dtpicker" name="la_edate" id="enddt" size="13"  />
-				</td>
-			</tr>
+			<form name="applyForm" action="<c:url value="/lendplace/applyfor"/>" method="post" enctype="multipart/form-data" theme="simple">
+				<div class="row">
+					<input type="hidden" name="l_no" value="${applyData.L_NO}">
+					<div class="col-sm-6">
+						<div class="box payment-method">
 
-			<tr>
-				<td align=right><font color="red">*</font> 신청자 이름&nbsp;&nbsp;</td>
-				<td><input type="text" value="${applyData.M_NAME }" /></td>
-			</tr>
-			<tr>
-				<td align=right><font color="red">*</font> 신청자 전화번호&nbsp;&nbsp;</td>
-				<td><input type="number" value="${applyData.M_PHONE }" /></td>
-			</tr>
-			<tr>
-				<td align=right><font color="red">*</font> 신청자 이메일&nbsp;&nbsp;</td>
-				<td><input type="text" value="${applyData.M_EMAIL }" /></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-				<input type="button" value="취소" onclick="javascript:history.back();">&nbsp;&nbsp;&nbsp;
-				<input type="submit" value="접수완료" style="width:130px;">
-				</td>
-			</tr>
-		</table>
+								<h4>신청장소</h4>
 
-</td></tr>
-</table>
-</form>
+							<p>${applyData.L_TITLE }</p>
+
+						</div>
+					</div>	
+					
+					<div class="col-sm-6">
+						<div class="col-sm-6">
+							<div class="box payment-method">
+	
+								<h4>신청 시작시간</h4>
+	
+								<input type="text" class="form-control dtpicker" name="la_sdate" id="startdt">
+	
+							</div>
+						</div>	
+						<div class="col-sm-6">
+							<div class="box payment-method">
+	
+								<h4>신청 종료시간</h4>
+	
+								<input type="text" class="form-control dtpicker" name="la_edate" id="enddt">
+	
+							</div>
+						</div>	
+					</div>
+					
+					<div class="col-sm-6">
+						<div class="box payment-method">
+
+							<h4>신청자 이름</h4>
+
+							<p>${applyData.M_NAME }</p>
+
+						</div>
+					</div>	
+					<div class="col-sm-6">
+						<div class="box payment-method">
+
+							<h4>신청자 이메일</h4>
+
+							<p>${applyData.M_EMAIL }</p>
+
+						</div>
+					</div>	
+					
+
+					<div class="col-sm-12 text-center">
+						<button type="button" class="btn btn-template-main" onclick="javascript:history.back();"><i class="fa fa-reply"></i> 취소</button>
+						<button type="button" class="btn btn-template-main" onclick="return valueCheck2();"><i class="fa fa-star"></i> 접수완료</button>
+					</div>
+				</div>
+				<!-- /.row -->
+			</form>
+
+		</div>
+	</div>
+	<!-- /.row -->
+
+</section>
+
+        <div class="row portfolio-project">
+        
+			<section>
+
+				<div class="col-sm-8">
+					<div class="project owl-carousel">
+						<div class="item">
+							<img src="<c:url value="/resources/bootstrap/uni/img/main-slider1.jpg"/>" alt="" class="img-responsive">
+						</div>
+						<div class="item">
+							<img class="img-responsive" src="<c:url value="/resources/bootstrap/uni/img/main-slider2.jpg"/>" alt="">
+						</div>
+						<div class="item">
+							<img class="img-responsive" src="<c:url value="/resources/bootstrap/uni/img/main-slider3.jpg"/>" alt="">
+						</div>
+						<div class="item">
+							<img class="img-responsive" src="<c:url value="/resources/bootstrap/uni/img/main-slider4.jpg"/>" alt="">
+						</div>
+					</div>
+					<!-- /.project owl-slider -->
+
+				</div>
+
+				<div class="col-sm-4">
+					<div class="project-more">
+						<h4>장소명</h4>
+						<p>${applyData.L_TITLE }</p>
+						<h4>주소</h4>
+						<p>${applyData.L_ADDR }</p>
+						<h4>수용인원</h4>
+						<p>${applyData.L_PNUM }명</p>
+						<h4>대관시간</h4>
+						<p>${applyData.L_DATE }</p>
+					</div>
+				</div>
+
+			</section>        
+        
+
+			<section>
+
+				<div class="col-sm-12">
+
+					<div class="heading">
+						<h3>장소정보</h3>
+					</div>
+
+					<p>${applyData.L_CONTENT }</p>
+					
+				</div>
+			</section>
 
 
-</td>
-</tr>
-</table>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+
+</div>
+<!-- /#content -->
+
+
+
+
 </body>
 </html>

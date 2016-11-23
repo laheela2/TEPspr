@@ -70,3 +70,19 @@ function valueCheck() {
 	
 	f.submit();
 }
+
+function valueCheck2() {
+	var f = document.applyForm;
+	
+	if (!f.la_sdate.value) {
+		alertify.error('신청 시작시간이 지정되지 않았습니다.');
+		f.la_sdate.focus();
+		return false;
+	} else if (!f.la_edate.value) {
+		alertify.error('신청 종료시간이 지정되지 않았습니다.');
+		f.la_edate.focus();
+		return false;
+	}
+	
+	f.submit();
+}

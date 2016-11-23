@@ -3,8 +3,8 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf" %>
-<link rel="stylesheet"  type="text/css" href="<c:url value="/resources/css/meetings.list.css"/>">
-<script src="<c:url value="/resources/js/meetings.list.js"/>"></script>
+<%-- <link rel="stylesheet"  type="text/css" href="<c:url value="/resources/css/meetings.list.css"/>"> --%>
+<script src="<c:url value="/resources/js/lendplace-list.js"/>"></script>
 
 </head>
 
@@ -13,15 +13,6 @@
 
 <%@ include file="/WEB-INF/include/common-body.jspf" %>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#write").on("click", function(e){ // 모임 개설
-            e.preventDefault();
-	        if(isLoginCheck("${sessionScope.session_m_email}")){
-            	fn_meetingsWrite();
-	        }
-        });
-    });
-     
     
     function fn_lendplaceDetail(obj){
         var cs = new CustomSubmit();
@@ -32,6 +23,22 @@
     }
 </script> 
 
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>장소</h1>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a></li>
+                    <li>장소</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="content">
 	<div class="container">
@@ -42,9 +49,6 @@
 
 
 <div class="col-md-9">
-	<div class="heading">
-		<h2>장소</h2>
-	</div>
 
 	<p class="lead">모임 목적에 맞는 장소를 선택해 보세요.</p>
                        
@@ -53,11 +57,7 @@
 
 		<c:choose>
 			<c:when test="${fn:length(list) > 0 }">
-				<c:forEach items="${list}" var="row" varStatus="status">
-					
-					<c:if test="${status.index%3 == 0}">
-					<tr>
-					</c:if>
+				<c:forEach items="${list }" var="row">	
 					
 					<div class="col-sm-4">
 						<div class="box-image">
@@ -94,10 +94,10 @@
                         
 </div>                      
                                       
-                  
-<tr>
-<td colspan="3" class="paging">${pagingHtml }</td>
-</tr>  
+	<div class="col-lg-12" align="center">
+		<ul class="pagination">${pagingHtml}</ul>
+	</div>
+
 
 </div>
 
@@ -114,86 +114,55 @@ _________________________________________________________ -->
 	<!-- *** MENUS AND WIDGETS ***
  _________________________________________________________ -->
 	<div class="panel panel-default sidebar-menu">
-
 		<div class="panel-heading">
 			<h3 class="panel-title">장소 키워드 검색</h3>
 		</div>
-
+	
 		<div class="panel-body">
 			<form role="search">
+			<form role="search" name="search_form" action="<c:url value="/lendplace"/>" method="post"  onsubmit="searchSubmit();">		
+				<input id="currentPageNo" type="hidden" name="currentPageNo" value="${currentPageNo }">
+				<input id="searchCate" type="hidden" name="searchCategory" value="${searchCategory }">
+				<input id="searchAddr" type="hidden" name="searchAddr" value="${searchAddr }">
+				
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="예) 역삼동, 음향, 주차 등">
+					<input type="text" class="form-control" id="searchbox" name="searchWord" value="${searchWord }" placeholder="예) 강남, 마이크, 주차 등">
 						<span class="input-group-btn">
-
+	
 							<button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
-
+	
 						</span>
 				</div>
 			</form>
 		</div>
 	</div>
 
-
 	<div class="panel sidebar-menu">
 		<div class="panel-heading">
 			<h3 class="panel-title">수용인원</h3>
 		</div>
-
 		<div class="panel-body">
-			<ul class="tag-cloud">
-				<li><a href="#"><i class="fa fa-tags"></i> 0~20명</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 20~50명</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 50~100명</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 100명이상</a> 
-				</li>
-			</ul>
+			<table class="category">
+				<tr><td>0~20명</td><td>20~50명</td></tr>
+				<tr><td>50~100명</td><td>100명이상</td></tr>
+			</table>
 		</div>
 	</div>
-
+	
 	<div class="panel sidebar-menu">
 		<div class="panel-heading">
 			<h3 class="panel-title">지역</h3>
 		</div>
-
 		<div class="panel-body">
-			<ul class="tag-cloud">
-				<li><a href="#"><i class="fa fa-tags"></i> 서울</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 부산|울산|경남</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 인천|경기</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 대전|충청|세종</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 광주|전라</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 강원</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 대구|경북</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 제주</a> 
-				</li>
-			</ul>
-		</div>
-	</div>                        
-
-	<div class="panel sidebar-menu">
-		<div class="panel-heading">
-			<h3 class="panel-title">유/무료</h3>
-		</div>
-
-		<div class="panel-body">
-			<ul class="tag-cloud">
-				<li><a href="#"><i class="fa fa-tags"></i> 유료</a> 
-				</li>
-				<li><a href="#"><i class="fa fa-tags"></i> 무료</a> 
-				</li>
-			</ul>
+			<table class="area">
+				<tr><td>서울</td><td>부산|울산|경남</td></tr>
+				<tr><td>인천|경기</td><td>대전|충청|세종</td></tr>
+				<tr><td>광주|전라</td><td>강원</td></tr>
+				<tr><td>대구|경북</td><td>제주</td></tr>
+			</table>
 		</div>
 	</div>
+
 	<!-- *** MENUS AND FILTERS END *** -->
 
 </div>
