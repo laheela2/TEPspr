@@ -55,7 +55,7 @@
 									<p class="hidden-sm">${row.V_CONTENT }</p>
 									<p class="buttons">
 										<a href="#this" class="btn btn-template-transparent-primary" onclick="fn_videolecDetail('${row.V_NO }')"><i class="fa fa-eye"></i> View</a>
-										<a href="https://www.youtube.com/watch?v=${row.V_VIDEO_ID}&list=${row.V_LIST_ID}" class="btn btn-template-transparent-primary"><i class="fa fa-youtube"></i>Youtube</a>
+										<a href="https://www.youtube.com/watch?v=${row.V_VIDEO_ID}&list=${row.V_LIST_ID}" target="_blank" class="btn btn-template-transparent-primary"><i class="fa fa-youtube"></i>Youtube</a>
 									</p>
 								</div>
 							</div>

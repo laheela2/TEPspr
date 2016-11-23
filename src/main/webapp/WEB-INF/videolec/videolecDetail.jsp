@@ -98,7 +98,7 @@
 								<div class="text">
 									<p class="buttons">
 										<a href="#this" class="btn btn-template-transparent-primary" onclick="fn_videolecDetail('${row.V_NO }')"><i class="fa fa-eye"></i> 보기</a>
-										<a href="https://www.youtube.com/watch?v=${row.V_VIDEO_ID}&list=${row.V_LIST_ID}" class="btn btn-template-transparent-primary"><i class="fa fa-youtube"></i>유튜브</a>
+										<a href="https://www.youtube.com/watch?v=${row.V_VIDEO_ID}&list=${row.V_LIST_ID}" target="_blank" class="btn btn-template-transparent-primary"><i class="fa fa-youtube"></i>유튜브</a>
 									</p>
 								</div>
 							</div>

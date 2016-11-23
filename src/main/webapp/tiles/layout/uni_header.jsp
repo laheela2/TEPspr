@@ -88,6 +88,9 @@
                                 <li>
                                 	<a href="#this" onclick="fn_mypage_link();"><i class="fa fa-edit"></i>마이페이지</a>
                                 </li>
+                                <li>
+                                	<a href="<c:url value="/qna"/>"><i class="fa fa-question-circle"></i>Qna</a>
+                               	</li>
                             </ul>
                         </li>
 						<li class="dropdown" id="nav_meetings">
@@ -123,39 +126,36 @@
 								<li>
 									<div class="yamm-content">
 										<div class="row">
-											<div class="col-lg-6">
-												<h3><i class="fa fa-home"></i>  홈</h3>
+											<div class="col-lg-3">
+												<h4><i class="fa fa-home"></i>  홈</h4>
 												<ul>
 													<li><a href="<c:url value="/login"/>"><i class="fa fa-male"></i>회원가입 / 로그인</a></li>
 													<li><a href="<c:url value="/find/account"/>"><i class="fa fa-envelope-o"></i>이메일 / 비번 찾기</a></li>
 													<li><a href="#this" onclick="fn_mypage_link();"><i class="fa fa-edit"></i>마이페이지</a></li>
-												</ul>
-												<br/>
-												<h3><i class="fa fa-support"></i>  About</h3>
-												<ul>
-													<li><a href="about.html">About us</a></li>
-													<li><a href="team.html">Our team</a></li>
-													<li><a href="services.html">Services</a></li>
+													<li><a href="<c:url value="/qna"/>"><i class="fa fa-question-circle"></i>Qna</a></li>
 												</ul>
 											</div>
-											<div class="col-lg-6">
-												<h3><i class="fa fa-users"></i>  모임</h3>
+											<div class="col-lg-3">
+												<h4><i class="fa fa-users"></i>  모임</h4>
 												<ul>
 													<li><a href="<c:url value="/meetings"/>"><i class="fa fa-list"></i>목록으로 보기</a></li>
 													<li><a href=""><i class="fa fa-map-marker"></i>지도로 보기</a></li>
 													<li><a href="<c:url value="/board"/>"><i class="fa fa-table"></i>게시판</a></li>
 													<li><a href="#" onclick="fn_meetingsWrite();"><i class="fa fa-send"></i>모임 개설하기</a></li>
 												</ul>
-												<br/>
-												<h3><i class="fa fa-building"></i>  장소</h3>
+											</div>
+											<div class="col-lg-3">
+												<h4><i class="fa fa-building"></i>  장소</h4>
 												<ul>
 													<li><a href="<c:url value="/lendplace"/>" style="text-decoration: none;"><i class="fa fa-list"></i>장소목록</a></li>
 												</ul>
-												<br/>
-												<h3><i class="fa fa-youtube-play"></i>  영상</h3>
+											</div>
+											<div class="col-lg-3">
+												<h4><i class="fa fa-youtube-play"></i>  영상</h4>
 												<ul>
-													<a href="<c:url value="/videolec"/>" style="text-decoration: none;"><i class="fa fa-list"></i>영상목록</a>
+													<li><a href="<c:url value="/videolec"/>" style="text-decoration: none;"><i class="fa fa-list"></i>영상목록</a></li>
 												</ul>
+											</div>
 											</div>
 										</div>
 									</div> <!-- /.yamm-content -->

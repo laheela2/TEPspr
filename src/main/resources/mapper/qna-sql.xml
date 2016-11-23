@@ -5,27 +5,9 @@
 
 	<select id="selectQnaList" parameterType="hashmap" resultType="hashmap">
 		SELECT
-			q_no,
-			q_lock,
-			q_title,
-			q_content,
-			q_answer,
-			q_date,
-			m_no,
-			m_name as q_name
+			*
 		FROM
-			qna natural join members
-		<where>
-			<if test="searchKey != null and searchKey == 0">
-				q_title like '%' || #{searchWord} || '%'
-			</if>
-			<if test="searchKey != null and searchKey == 1">
-				q_title like '%' || #{searchWord} || '%' or q_content like '%' ||#{searchWord} || '%'
-			</if>
-			<if test="searchKey != null and searchKey == 2">
-				m_name like '%' || #{searchWord} || '%'
-			</if>
-		</where>
+			qna
 		ORDER BY
 			q_no DESC
 	</select>
