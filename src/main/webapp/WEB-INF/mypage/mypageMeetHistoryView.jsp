@@ -16,7 +16,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/main"/>">홈</a>
+                    <li><a href="<c:url value="/mypage/view"/>">마이페이지</a>
                     </li>
                     <li>모임참여내역</li>
                 </ul>

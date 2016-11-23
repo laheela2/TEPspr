@@ -40,7 +40,8 @@
 				</div>
 				<div class="col-md-5">
 					<ul class="breadcrumb">
-						<li><a href="<c:url value="/main"/>">홈</a></li>
+						<li><a href="<c:url value="/mypage/view"/>">마이페이지</a></li>
+						<li><a href="<c:url value="/mypage/qnaHistory"/>">문의내역</a></li>
 						<li>Q&A 수정</li>
 					</ul>
 				</div>
@@ -61,7 +62,7 @@
 						<table class="table" align="center" border="0">
 
 							<tr>
-								<td width="10%">
+								<td width="15%">
 									<select name="q_lock" class="form-control">
 										<option value="N">공개</option>
 										<option value="Y">비공개</option>
