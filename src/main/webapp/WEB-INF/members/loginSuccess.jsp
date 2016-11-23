@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="${savePageURI != null ? 'col-md-4':'col-md-6' }">
                     <div class="box-simple">
-                        <div class="icon" onclick="location.href='<c:url value="/mypageView"/>'">
+                        <div class="icon" onclick="location.href='<c:url value="/mypage/view"/>'">
                             <i class="fa fa-pencil-square-o"></i>
                         </div>
                         <h3>마이페이지</h3>

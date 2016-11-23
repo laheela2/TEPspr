@@ -6,7 +6,7 @@
 <script language="javascript">
 	window.onload = function(){
 			alert('정상적으로 수정완료 되었습니다.');
-			window.location.href = 'mypage/View';
+			window.location.href = '/tepspr/mypage/view';
 		}
 </script>
 </head>

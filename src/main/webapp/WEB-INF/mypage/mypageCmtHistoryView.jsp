@@ -4,7 +4,8 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>" type="text/css">
+<link rel="stylesheet" href="<c:url value='/resources/css/root.css'/>"
+	type="text/css">
 </head>
 <body>
 	<div id="heading-breadcrumbs">
@@ -15,7 +16,7 @@
 				</div>
 				<div class="col-md-5">
 					<ul class="breadcrumb">
-						<li><a href="<c:url value="/mypage/View"/>">마이페이지</a></li>
+						<li><a href="<c:url value="/mypage/view"/>">마이페이지</a></li>
 						<li>답글내역</li>
 					</ul>
 				</div>
@@ -24,6 +25,7 @@
 	</div>
 	<div id="content">
 		<div class="container features-buttons">
+			<section>
 			<div class="row">
 				<%@ include file="/WEB-INF/include/mypage2.jspf"%>
 				<div class="col-md-9">
@@ -48,16 +50,14 @@
 										<c:forEach items="${list }" var="row">
 											<tr align="center">
 												<td>${row.C_NO}</td>
-												<td align="left">
-													<a href="#" name="content">${row.C_CONTENT}</a>
+												<td align="left"><a href="#" name="content">${row.C_CONTENT}</a>
 													<input type="hidden" id="b_no" value="${row.B_NO}">
 													<input type="hidden" id="mt_no" value="${row.MT_NO}">
 													<input type="hidden" id="v_no" value="${row.V_NO}">
 												</td>
 												<td>${sessionScope.session_m_name }</td>
-												<td>
-													<fmt:formatDate value="${row.C_DATE}" pattern="yyyy.MM.dd" />
-												</td>
+												<td><fmt:formatDate value="${row.C_DATE}"
+														pattern="yyyy.MM.dd" /></td>
 											</tr>
 										</c:forEach>
 									</c:when>
@@ -72,7 +72,8 @@
 
 								<!-- 페이징 -->
 								<tr>
-									<td colspan="6" width="100%" align="center" style="padding-top: 20px; padding-bottom: 10px">
+									<td colspan="6" width="100%" align="center"
+										style="padding-top: 20px; padding-bottom: 10px">
 										<ul class="pagination">${pagingHtml}</ul>
 									</td>
 								</tr>
@@ -80,6 +81,7 @@
 					</div>
 				</div>
 			</div>
+			</section>
 		</div>
 	</div>
 
@@ -104,7 +106,7 @@
 				cs.addParam("currentPageNo", "${currentPageNo}");
 				cs.submit();
 			} else {
-				cs.setUrl("<c:url value='/videolec/detail' />");
+				cs.setUrl("<c:url value='/mypage/videoDetail' />");
 				cs.addParam("v_no", obj.parent().find("#v_no").val());
 				cs.addParam("currentPageNo", "${currentPageNo}");
 				cs.submit();

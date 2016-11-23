@@ -11,16 +11,19 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tep.board.service.BoardService;
 import com.tep.commons.common.CommandMap;
+import com.tep.commons.common.TepConstants;
 import com.tep.commons.util.PagingCalculator;
 import com.tep.commons.util.TepUtils;
 import com.tep.meetings.service.MeetingsService;
 import com.tep.mypage.service.MypageService;
 import com.tep.qna.service.QnaService;
+import com.tep.videolec.service.VideolecService;
 
 @Controller
 public class MypageController {
@@ -37,6 +40,9 @@ public class MypageController {
 
 	@Resource
 	private MeetingsService meetingsService;
+	
+	@Resource
+	private VideolecService videolecService;
 
 	@RequestMapping(value = "/mypage/modifyPwChk")
 	public String modifyPwChk() {
@@ -243,4 +249,42 @@ public class MypageController {
 		}
 	}
 
+	@RequestMapping(value = "/mypage/videoDetail")
+	public ModelAndView mypageVideoDetail(CommandMap map, HttpServletRequest request) throws Exception {
+		TepUtils.savePageURI(request);
+
+		ModelAndView mv = new ModelAndView("videolecDetail");
+		Map<String, Object> result = videolecService.selectVideolecDetail(map.getMap(),request.getMethod().equals("POST"));
+		
+		mv.addObject("data",result.get("detail"));
+		mv.addObject("cmtList", result.get("cmtList"));
+		mv.addObject("recList", result.get("recList"));
+
+		return mv;
+	}
+	
+	@RequestMapping(value="/mypage/qna/delete", method=RequestMethod.POST)
+    public ModelAndView qnaDelete(CommandMap map, HttpServletRequest request) throws Exception{
+    	map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
+    	
+    	qnaService.deleteQna(map.getMap());
+    	return new ModelAndView("redirect:/mypage/qnaHistory");
+    }
+	
+	@RequestMapping(value="/mypage/qna/modify")
+    public ModelAndView qnaModify(CommandMap map) throws Exception{
+    	ModelAndView mv = new ModelAndView("mypageQnaModify");
+    	
+    	Map<String, Object> result = qnaService.selectQnaModify(map.getMap());
+		mv.addObject("data",result);
+    	return mv;
+    }
+    
+    @RequestMapping(value="/mypage/qna/modify/result")
+    public ModelAndView qnaModify(CommandMap map, HttpServletRequest request) throws Exception{
+    	map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
+    	
+    	qnaService.updateQna(map.getMap());
+    	return new ModelAndView("redirect:/mypage/qnaHistory");
+    }
 }
