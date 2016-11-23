@@ -75,4 +75,8 @@
 		<put-attribute name="title" value="TEP - 회원탈퇴"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/mypage/deleteResult.jsp"></put-attribute>
 	</definition>
+	<definition name="mypageQnaModify" extends=".uni">
+		<put-attribute name="title" value="TEP - 회원탈퇴"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/mypage/mypageQnaModify.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

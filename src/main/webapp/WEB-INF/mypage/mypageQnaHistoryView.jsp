@@ -130,14 +130,14 @@
 
 			function fn_qnaModify(q_no) {
 				var cs = new CustomSubmit();
-				cs.setUrl("<c:url value='/qna/modify' />");
+				cs.setUrl("<c:url value='/mypage/qna/modify' />");
 				cs.addParam("q_no", q_no);
 				cs.submit();
 			}
 
 			function fn_qnaDelete(q_no) {
 				var cs = new CustomSubmit();
-				cs.setUrl("<c:url value='/qna/delete' />");
+				cs.setUrl("<c:url value='/mypage/qna/delete' />");
 				cs.addParam("q_no", q_no);
 				cs.submit();
 			}
