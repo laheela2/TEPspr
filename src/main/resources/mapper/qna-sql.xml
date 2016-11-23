@@ -20,7 +20,7 @@
 			#{q_title},
 			#{q_content},
 			#{q_lock},
-			#{q_answer},
+			'N',
 			sysdate,
 			#{m_no}
 		)
