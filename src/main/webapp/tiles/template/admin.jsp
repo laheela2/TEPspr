@@ -24,6 +24,9 @@
     <!-- Custom CSS -->
     <link href="<c:url value="/resources/bootstrap/admin/dist/css/sb-admin-2.css"/>" rel="stylesheet">
 
+    <!-- DatePicker stylesheet -->
+    <link href="<c:url value='/resources/bootstrap/uni/css/simple-dtpicker.css'/>" rel="stylesheet">
+
     <!-- Morris Charts CSS -->
     <link href="<c:url value="/resources/bootstrap/admin/vendor/morrisjs/morris.css"/>" rel="stylesheet">
 

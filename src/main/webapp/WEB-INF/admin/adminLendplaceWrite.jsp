@@ -26,7 +26,7 @@
 									</div>
 								</div>
 								<div class="form-group col-lg-12">
-									<label class="col-sm-2">업체 이메일</label>
+									<label class="col-sm-2">업체 URL</label>
 									<div class="col-lg-6">
 										<input class="form-control" name="l_email">
 									</div>
@@ -52,22 +52,40 @@
 								<div class="form-group col-lg-12">
 									<label class="col-sm-2">대관가능시간</label>
 									<div class="col-sm-5 col-lg-3">
-										<input class="form-control" id="startdt" name="l_sdate" placeholder="시작시간 (2016-06-01 06:10)">
+										<input class="form-control" id="startdt" name="l_sdate" placeholder="시작시간">
 									</div>
 									<div class="col-sm-5 col-lg-3">
-										<input class="form-control" id="enddt" name="l_edate"  placeholder="종료시간 (2016-06-10 06:10)">
+										<input class="form-control" id="enddt" name="l_edate"  placeholder="종료시간">
 									</div>
 								</div>
 								<div class="form-group col-lg-12">
 									<label class="col-sm-2">수용인원</label>
 									<div class="col-lg-1">
-										<input class="form-control" name="l_pnum">
+										<input class="form-control" name="l_pnum" type="number">
 									</div>
 								</div>
 								<div class="form-group col-lg-12">
-									<label class="col-sm-2">대표 이미지</label>
+									<label class="col-sm-2">이미지 1</label>
 									<div class="col-lg-10">
-										<input type="file" name="file">
+										<input type="file" name="file1">
+									</div>
+								</div>
+								<div class="form-group col-lg-12">
+									<label class="col-sm-2">이미지 2</label>
+									<div class="col-lg-10">
+										<input type="file" name="file2">
+									</div>
+								</div>
+								<div class="form-group col-lg-12">
+									<label class="col-sm-2">이미지 3</label>
+									<div class="col-lg-10">
+										<input type="file" name="file3">
+									</div>
+								</div>
+								<div class="form-group col-lg-12">
+									<label class="col-sm-2">이미지 4</label>
+									<div class="col-lg-10">
+										<input type="file" name="file4">
 									</div>
 								</div>
 								<div class="form-group col-lg-12">
