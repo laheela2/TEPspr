@@ -12,17 +12,17 @@
 			l_pnum
 		FROM
 			lendplace
-<!-- 		<where>
-			<if test="searchKey != null and searchKey == 0">
-				b_title like '%' || #{searchWord} || '%'
+		<where>
+			<if test="searchWord != null">
+				(l_title like '%' || #{searchWord} || '%' or l_addr like '%' || #{searchWord} || '%' or l_content like '%' || #{searchWord} || '%')
 			</if>
-			<if test="searchKey != null and searchKey == 1">
-				b_title like '%' || #{searchWord} || '%' or b_content like '%' ||#{searchWord} || '%'
+			<if test="searchCategory != null">
+				AND REGEXP_LIKE(l_pnum,#{searchCategory})
 			</if>
-			<if test="searchKey != null and searchKey == 2">
-				m_name like '%' || #{searchWord} || '%'
-			</if>
-		</where> -->
+			<if test="searchAddr != null">
+				AND REGEXP_LIKE(l_addr,#{searchAddr})
+			</if>			
+		</where>		
 		ORDER BY
 			l_no DESC
 	</select>

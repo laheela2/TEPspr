@@ -23,34 +23,44 @@ function fn_lendplaceApplyfor(){
 </script>
 
 
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>장소 상세보기</h1>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumb">
+                    <li><a href="<c:url value="/main"/>">홈</a></li>
+                    <li><a href="<c:url value="/lendplace"/>">장소</a></li>
+                    <li>장소 상세보기</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="content">
     <div class="container">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="heading">
-                    <h2>장소 상세보기</h2>
-                </div>
-            </div>
-        </div>
         <div class="row portfolio-project">
         
-			<section>
+ 			<section>
 
 				<div class="col-sm-8">
 					<div class="project owl-carousel">
 						<div class="item">
-							<img src="resources\bootstrap\uni\img/portfolio-4.jpg" alt="" class="img-responsive">
+							<img src="<c:url value="/resources/bootstrap/uni/img/main-slider1.jpg"/>" alt="" class="img-responsive">
 						</div>
 						<div class="item">
-							<img class="img-responsive" src="{data.L_REP_IMG }" alt="">
+							<img class="img-responsive" src="<c:url value="/resources/bootstrap/uni/img/main-slider2.jpg"/>" alt="">
 						</div>
 						<div class="item">
-							<img class="img-responsive" src="{data.L_REP_IMG }" alt="">
+							<img class="img-responsive" src="<c:url value="/resources/bootstrap/uni/img/main-slider3.jpg"/>" alt="">
 						</div>
 						<div class="item">
-							<img class="img-responsive" src="{data.L_REP_IMG }" alt="">
+							<img class="img-responsive" src="<c:url value="/resources/bootstrap/uni/img/main-slider4.jpg"/>" alt="">
 						</div>
 					</div>
 					<!-- /.project owl-slider -->
@@ -66,7 +76,7 @@ function fn_lendplaceApplyfor(){
 						<h4>수용인원</h4>
 						<p>${data.L_PNUM }명</p>
 						<h4>대관시간</h4>
-						<p>${data.L_SDATE }~${data.L_EDATE }</p>
+						<p>${data.L_DATE }</p>
 					</div>
 					<p>
 						<button type="button" class="btn btn-template-main" onclick="location.href='<c:url value="/lendplace?currentPageNo=${currentPageNo}"/>'"><i class="fa fa-list-ul"></i> 목록보기</button>
@@ -74,7 +84,7 @@ function fn_lendplaceApplyfor(){
 					</p>
 				</div>
 
-			</section>        
+			</section>   
         
 
 			<section>
@@ -92,6 +102,7 @@ function fn_lendplaceApplyfor(){
 
 
         </div>
+
 
         <section>
             <div class="row portfolio">

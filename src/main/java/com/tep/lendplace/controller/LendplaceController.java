@@ -32,7 +32,7 @@ public class LendplaceController {
         ModelAndView mv = new ModelAndView("lendplaceList");
         
         List<Map<String,Object>> list = lendplaceService.selectLendplaceList(map.getMap());
-        PagingCalculator paging = new PagingCalculator("lendplace", map.getCurrentPageNo(), list, 6, 3);
+        PagingCalculator paging = new PagingCalculator("lendplace", map.getCurrentPageNo(), list, 9, 3);
         Map<String, Object> rMap = paging.getPagingList();
         
         mv.addObject("list", rMap.get("list"));
@@ -78,7 +78,7 @@ public class LendplaceController {
     public ModelAndView lendplaceApplyfor(CommandMap map, HttpServletRequest request) throws Exception{
     	map.put("m_no", request.getSession().getAttribute(TepConstants.M_NO));
     	lendplaceService.insertLendplaceApplyfor(map.getMap());
-    	return new ModelAndView("redirect:/lendplace/detail?l_no="+map.get("l_no"));
+    	return new ModelAndView("redirect:/lendplace");
     }
 
 }

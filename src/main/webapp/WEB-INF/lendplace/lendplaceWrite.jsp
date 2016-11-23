@@ -3,14 +3,14 @@
 <html>
 <head>
 <%@include file="/WEB-INF/include/common-header.jspf"%>
-<link rel="stylesheet" href="<c:url value="/resources/css/meetings.write.css"/>">
+<%-- <link rel="stylesheet" href="<c:url value="/resources/css/meetings.write.css"/>"> --%>
 <script src="<c:url value="/resources/js/lendplace.write.js"/>"></script>
 <script src="<c:url value="/resources/js/ckeditor/ckeditor.js"/>"></script>
-<script>
+<%-- <script>
 	window.onload = function() {
 		CKEDITOR.replace('l_content');
 	}
-</script>
+</script> --%>
 </head>
 
 <body>
