@@ -29,19 +29,19 @@
 				B_TITLE like '%' || #{searchWordB} || '%' or B_CONTENT like '%' ||#{searchWordB} || '%' and m_no = #{m_no}
 			</if>
 			<if test="searchKeyB == null">
-			m_no = #{m_no}
+				m_no = #{m_no}
 			</if>
 		</where>
 		ORDER BY
-			B_NO DESC
-			
+		B_NO DESC
+
 	</select>
-	
+
 	<!-- qna 내역 -->
 	<select id="qnaHistory" parameterType="hashmap" resultType="hashmap">
 		SELECT q_no, q_lock, q_title, q_content, q_answer, q_date FROM QNA
 		<where>
-        	<if test="searchKey != null and searchKey == 0">
+			<if test="searchKey != null and searchKey == 0">
 				Q_TITLE like '%' || #{searchWord} || '%' and m_no = #{m_no}
 			</if>
 			<if test="searchKey != null and searchKey == 1">
@@ -52,13 +52,19 @@
 			</if>
 		</where>
 	</select>
+	
 	<!-- 답글 내역 -->
 	<select id="cmtHistory" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-            SELECT c_no, c_date, c_content, mt_no, b_no, v_no FROM comments WHERE m_no = #{m_no} ORDER BY c_no desc
-        ]]> 
+		SELECT
+			*
+		FROM 
+			comments 
+		WHERE 
+			m_no = #{m_no} 
+		ORDER BY 
+			c_no DESC
 	</select>
-	
+
 	<!-- 모임개설내역 -->
 	<select id="writeHistoryOmeet" parameterType="Integer" resultType="hashmap">
 		SELECT mt_no, mt_subject, mt_title, mt_readcount, mt_date, mt_content, mt_category FROM meetings
@@ -73,10 +79,10 @@
 				m_no = #{m_no}
 			</if>
 		</where>
-        ORDER BY
-			MT_NO DESC
+		ORDER BY
+		MT_NO DESC
 	</select>
-	
+
 	<!-- meet 내역 -->
 	<select id="subscribeHistory" parameterType="Integer" resultType="hashmap">
 		<![CDATA[
@@ -88,41 +94,31 @@
             SELECT mt_no, mt_title, mt_rep_img FROM meetings WHERE mt_no = #{mt_no}
         ]]>
 	</select>
-	 
+
 	<!-- 마이페이지 회원정보 수정 -->
 	<update id="memberUpdate" parameterType="hashmap">
 		<![CDATA[
             UPDATE members SET m_name=#{m_name}, m_password=#{m_password}, m_phone=#{m_phone}
             WHERE m_email=#{m_email}
         ]]>
-	</update>	
-	
+	</update>
+
 	<!-- 회원탈퇴 -->
 	<delete id="memDeleteMembers" parameterType="hashmap">
 		{call
-			declare
-			begin
-				DELETE FROM comments WHERE m_no=#{m_no};
-				DELETE FROM board WHERE m_no=#{m_no};
-				DELETE FROM qna WHERE m_no=#{m_no};
-				DELETE FROM meetingsapplyfor WHERE m_no=#{m_no};
-				DELETE FROM likeit WHERE m_no=#{m_no};
-				DELETE FROM meetings WHERE m_no=#{m_no};
-				DELETE FROM lendplaceapplyfor WHERE m_no=#{m_no};
-				DELETE FROM members WHERE m_no=#{m_no};
-			end
+		declare
+		begin
+		DELETE FROM comments WHERE m_no=#{m_no};
+		DELETE FROM board WHERE m_no=#{m_no};
+		DELETE FROM qna WHERE m_no=#{m_no};
+		DELETE FROM meetingsapplyfor WHERE m_no=#{m_no};
+		DELETE FROM likeit WHERE m_no=#{m_no};
+		DELETE FROM meetings WHERE m_no=#{m_no};
+		DELETE FROM lendplaceapplyfor WHERE m_no=#{m_no};
+		DELETE FROM members WHERE m_no=#{m_no};
+		end
 		}
 	</delete>
 	<!-- 회원탈퇴 완료 -->
-	<select id="selectAnswer" parameterType="Integer" resultType="hashmap">
-		SELECT
-			a_no,
-			a_content,
-			a_date,
-			q_no
-		FROM
-			answer
-		WHERE
-			q_no=#{q_no}
-	</select>
+
 </mapper>

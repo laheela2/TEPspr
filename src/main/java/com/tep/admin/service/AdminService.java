@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.tep.commons.common.CommandMap;
-
 public interface AdminService {
 
 	List<Map<String, Object>> selectMemberList(Map<String, Object> map) throws Exception;
