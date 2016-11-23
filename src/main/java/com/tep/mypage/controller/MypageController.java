@@ -21,6 +21,7 @@ import com.tep.commons.util.TepUtils;
 import com.tep.meetings.service.MeetingsService;
 import com.tep.mypage.service.MypageService;
 import com.tep.qna.service.QnaService;
+import com.tep.videolec.service.VideolecService;
 
 @Controller
 public class MypageController {
@@ -37,6 +38,9 @@ public class MypageController {
 
 	@Resource
 	private MeetingsService meetingsService;
+	
+	@Resource
+	private VideolecService videolecService;
 
 	@RequestMapping(value = "/mypage/modifyPwChk")
 	public String modifyPwChk() {
@@ -243,4 +247,17 @@ public class MypageController {
 		}
 	}
 
+	@RequestMapping(value = "/mypage/videoDetail")
+	public ModelAndView mypageVideoDetail(CommandMap map, HttpServletRequest request) throws Exception {
+		TepUtils.savePageURI(request);
+
+		ModelAndView mv = new ModelAndView("videolecDetail");
+		Map<String, Object> result = videolecService.selectVideolecDetail(map.getMap(),request.getMethod().equals("POST"));
+		
+		mv.addObject("data",result.get("detail"));
+		mv.addObject("cmtList", result.get("cmtList"));
+		mv.addObject("recList", result.get("recList"));
+
+		return mv;
+	}
 }

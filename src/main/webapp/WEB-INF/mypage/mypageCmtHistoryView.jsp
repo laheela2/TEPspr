@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="<c:url value="/mypage/View"/>">마이페이지</a>
+                    <li><a href="<c:url value="/mypage/view"/>">마이페이지</a>
                     </li>
                     <li>답글내역</li>
                 </ul>
@@ -106,7 +106,7 @@
             cs.submit();
         }
         else{
-        	cs.setUrl("<c:url value='/videolec/detail' />");
+        	cs.setUrl("<c:url value='/mypage/videoDetail' />");
             cs.addParam("v_no", obj.parent().find("#v_no").val());
             cs.addParam("currentPageNo", "${currentPageNo}");
             cs.submit();
