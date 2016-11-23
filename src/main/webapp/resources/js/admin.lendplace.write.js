@@ -7,12 +7,13 @@ $(function() {
 
 	$('#startdt').change(function() {
 		var startR = new Date($('#startdt').handleDtpicker('getDate'));
+		startR.setDate(startR.getDate());
 		$('#enddt').handleDtpicker('setMinDate', startR);
 	});
 	$('#enddt').change(function() {
 		var endR = new Date($('#enddt').handleDtpicker('getDate'));
+		endR.setDate(endR.getDate());
 		$('#startdt').handleDtpicker('setMaxDate', endR);
-		endR.setDate(endR.getDate() + 1);
 	});
 });
 

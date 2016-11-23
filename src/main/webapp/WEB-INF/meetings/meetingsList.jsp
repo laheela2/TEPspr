@@ -32,7 +32,7 @@
 				<div class="col-md-12">
 					<div class="heading">
 						<h3>
-							다양한 모임에 참여 하거나, 직접 개설 해보세요.<i class="fa fa-users"></i>
+							다양한 모임에 참여 하거나, 직접 개설 해보세요.<i class="fa fa-heart"></i>
 						</h3>
 					</div>
 				</div>
