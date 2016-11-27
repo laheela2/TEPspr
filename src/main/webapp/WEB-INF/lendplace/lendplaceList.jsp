@@ -70,7 +70,7 @@
 							<div class="col-sm-4">
 								<div class="box-image">
 									<div class="image">
-										<img src="<c:url value="/resources/image/meetings_img_001.jpg"/>" alt="" class="img-responsive">
+													<img src="${row.L_IMAGE1 }" alt="" class="img-responsive" width="440" height="440">
 									</div>
 									<div class="bg"></div>
 									<div class="name">

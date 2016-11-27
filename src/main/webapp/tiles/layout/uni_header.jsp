@@ -99,9 +99,9 @@
                                 <li>
                                 	<a href="<c:url value="/meetings"/>"><i class="fa fa-list"></i>목록으로 보기</a>
                                 </li>
-                                <li>
+<!--                                 <li>
                                 	<a href=""><i class="fa fa-map-marker"></i>지도로 보기</a>
-                                </li>
+                                </li> -->
                                 <li>
                                 	<a href="<c:url value="/board"/>"><i class="fa fa-table"></i>게시판</a>
                                 </li>

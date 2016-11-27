@@ -22,9 +22,10 @@ public class FileUploadComponent {
 		if(file.exists() == false){
 			file.mkdirs();
 		}
-		String generatePath = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();
-		projectPath = "/tepspr/resources/image/"+generatePath;
-    	file = new File(filePath+generatePath);
+		String generatePath1 = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();
+		String generatePath2 = multipartFile.getOriginalFilename();
+		projectPath = "/tepspr/resources/image/"+generatePath2;
+    	file = new File(filePath+generatePath2);
     	multipartFile.transferTo(file);
     	return file.getAbsolutePath();
 	}

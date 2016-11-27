@@ -3,64 +3,18 @@
 
 <mapper namespace="location">
 
-	<!-- <select id="" parameterType="" resultType="">
-        <![CDATA[
-            SELECT
-                IDX,
-                TITLE,
-                HIT_CNT,
-                CREA_DTM
-            FROM
-                BOARD
-            WHERE
-                DEL_GB = 'N'
-            ORDER BY IDX DESC
-        ]]>
+	<select id="selectList" parameterType="hashmap" resultType="hashmap">
+		SELECT 
+		  mt_title,
+		  mt_addr,
+		  mt_m_sdate,
+		  mt_m_edate
+		FROM 
+		  meetings
+		WHERE
+		  mt_addr like '%' || #{mt_addr} || '%'
+		ORDER BY
+			mt_no DESC
 	</select>
-
-	<insert id="" parameterType="">
-    <![CDATA[
-        INSERT INTO BOARD
-        (
-            IDX,
-            TITLE, 
-            CONTENTS, 
-            HIT_CNT, 
-            DEL_GB, 
-            CREA_DTM, 
-            CREA_ID
-        )
-        VALUES
-        (
-            SEQ_BOARD_IDX.NEXTVAL, 
-            #{TITLE}, 
-            #{CONTENTS}, 
-            0, 
-            'N', 
-            SYSDATE, 
-            'Admin'
-        )
-    ]]>
-	</insert>
-
-	<update id="" parameterType="">
-    <![CDATA[
-        UPDATE BOARD 
-        SET
-            HIT_CNT = NVL(HIT_CNT,0)+1
-        WHERE
-            IDX = #{IDX}    
-    ]]>
-	</update>
-	
-	<delete id="" parameterType="">
-    <![CDATA[
-        DELETE  
-        FROM 
-        	BOARD
-        WHERE
-            IDX = #{IDX}
-    ]]>	
-	</delete> -->
 
 </mapper>

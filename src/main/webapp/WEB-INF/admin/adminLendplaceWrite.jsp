@@ -91,7 +91,7 @@
 								<div class="form-group col-lg-12">
 									<label class="col-lg-2">내용</label>
 									<div class="col-lg-6">
-										<textarea class="form-control" rows="3" name="l_content"></textarea>
+										<textarea class="form-control" rows="6" name="l_content"></textarea>
 									</div>
 								</div>
 

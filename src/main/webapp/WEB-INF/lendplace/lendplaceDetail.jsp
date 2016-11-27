@@ -26,8 +26,8 @@
 				</div>
 				<div class="col-md-6">
 					<ul class="breadcrumb">
-						<li><a href="<c:url value="/main"/>">홈</a></li>
-						<li><a href="<c:url value="/lendplace"/>">장소</a></li>
+						<li><a href="<c:url value='/main'/>">홈</a></li>
+						<li><a href="<c:url value='/lendplace'/>">장소</a></li>
 						<li>장소 상세보기</li>
 					</ul>
 
@@ -48,13 +48,13 @@
 								<img src="${data.L_IMAGE1 }" alt="" class="img-responsive">
 							</div>
 							<div class="item">
-								<img class="img-responsive" src="${data.L_IMAGE2 }"/>" alt="">
+								<img class="img-responsive" src="${data.L_IMAGE2 }" alt="">
 							</div>
 							<div class="item">
-								<img class="img-responsive" src="${data.L_IMAGE3 }"/>" alt="">
+								<img class="img-responsive" src="${data.L_IMAGE3 }" alt="">
 							</div>
 							<div class="item">
-								<img class="img-responsive" src="${data.L_IMAGE4 }"/>" alt="">
+								<img class="img-responsive" src="${data.L_IMAGE4 }" alt="">
 							</div>
 						</div>
 						<!-- /.project owl-slider -->

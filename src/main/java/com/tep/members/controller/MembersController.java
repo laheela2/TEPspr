@@ -59,6 +59,11 @@ public class MembersController {
 		session.setAttribute(TepConstants.M_PHONE, result.getM_phone());
 		session.setAttribute(TepConstants.M_NO, result.getM_no());
 
+		if(result.getM_email().equalsIgnoreCase("admin@tep.com")){
+			mv.setViewName("redirect:/admin");
+			return mv;
+		}
+
 		mv.setViewName("loginSuccess");
 		return mv;
 	}

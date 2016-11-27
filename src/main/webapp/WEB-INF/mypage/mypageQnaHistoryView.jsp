@@ -29,9 +29,7 @@
 				<div class="col-md-9 clearfix">
 					<section>
 					<div class="heading">
-						<h4>
-							문의 사항에 대한 답변을 확인 하실수 있습니다. 제목을 누르면 내용이 보입니다.<i
-								class="fa fa-heart"></i>
+						<h4>제목을 누르면 내용이 보입니다.<i class="fa fa-heart"></i>
 						</h4>
 					</div>
 					<div class="panel-group" id="accordion">
